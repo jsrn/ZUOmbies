@@ -60,6 +60,7 @@ namespace Server.Mobiles
 
 		public override bool BleedImmune{ get{ return true; } }
 		public override Poison PoisonImmune{ get{ return Poison.Regular; } }
+		public override PackInstinct PackInstinct{ get{ return PackInstinct.Canine; } }
 
 		public Zombie( Serial serial ) : base( serial )
 		{
