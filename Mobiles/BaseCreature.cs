@@ -276,7 +276,7 @@ namespace Server.Mobiles
 		public virtual int FactionSilverWorth{ get{ return 30; } }
 
 		#region Bonding
-		public const bool BondingEnabled = true;
+		public const bool BondingEnabled = false;
 
 		public virtual bool IsNecromancer { get { return ( Skills[ SkillName.Necromancy ].Value > 50 ); } }
 
