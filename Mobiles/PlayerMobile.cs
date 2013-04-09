@@ -2334,7 +2334,14 @@ namespace Server.Mobiles
 				}
 				
 				double mobFame = bc.GetFame();
-				if(!this.Young){
+
+				bool killedByPlayer = (typeof( killer ) == typeof( PlayerMobile );
+				bool killedInTrainingZone = this.m_FreeDeaths;
+				
+				bool killedByPlayerInTrainingZone = killedByPlayer && killedInTrainingZone;
+
+				if( !this.Young && !killedByPlayerInTrainingZone)
+				{
 					deathPoints += (int) ((mobFame/24000.0) * 30);
 					ResetDeathTime();
 				}
@@ -2346,7 +2353,7 @@ namespace Server.Mobiles
 					deathPoints += (int) ((mobFame/24000.0) * 30);
 					ResetDeathTime();
 				}
-			} else if ( killer is PlayerMobile )
+			} else if ( killer is PlayerMobile && !this.m_FreeDeaths )
 			{
 				PlayerMobile pm = (PlayerMobile)killer;
 				
