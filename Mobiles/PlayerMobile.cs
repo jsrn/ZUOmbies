@@ -2335,7 +2335,7 @@ namespace Server.Mobiles
 				
 				double mobFame = bc.GetFame();
 
-				bool killedByPlayer = (typeof( killer ) == typeof( PlayerMobile );
+				bool killedByPlayer = typeof( killer ) == typeof( PlayerMobile );
 				bool killedInTrainingZone = this.m_FreeDeaths;
 				
 				bool killedByPlayerInTrainingZone = killedByPlayer && killedInTrainingZone;
