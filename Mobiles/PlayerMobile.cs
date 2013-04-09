@@ -2406,6 +2406,7 @@ namespace Server.Mobiles
 		private Hashtable m_AntiMacroTable;
 		private TimeSpan m_GameTime;
 		private TimeSpan m_ShortTermElapse;
+		private TimeSpan deathTimer;
 		private TimeSpan m_LongTermElapse;
 		private DateTime m_SessionStart;
 		private DateTime m_LastEscortTime;
@@ -3088,6 +3089,11 @@ namespace Server.Mobiles
 				AddBuff( new BuffInfo( BuffIcon.HidingAndOrStealth, 1075655 ) );
 		}
 
+		public void ResetDeathTime()
+		{
+			deathTimer = this.GameTime + TimeSpan.FromMinutes( 2 );
+		}
+
 		public override void Serialize( GenericWriter writer )
 		{
 			//cleanup our anti-macro table
@@ -3122,6 +3128,7 @@ namespace Server.Mobiles
 
 			writer.Write( (int) 29 ); // version
 			writer.Write(deathPoints);
+			writer.Write( (TimeSpan) deathTimer);
 			writer.Write( (DateTime) m_PeacedUntil );
 			writer.Write( (DateTime) m_AnkhNextUse );
 			writer.Write( m_AutoStabled, true );
