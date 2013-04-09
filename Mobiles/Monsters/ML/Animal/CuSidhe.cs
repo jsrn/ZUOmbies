@@ -69,7 +69,7 @@ namespace Server.Mobiles
 
 		public override void GenerateLoot()
 		{
-			AddLoot( LootPack.AosFilthyRich, 5 );
+			//AddLoot( LootPack.AosFilthyRich, 5 );
 		}
 
 		public override void OnDoubleClick( Mobile from )

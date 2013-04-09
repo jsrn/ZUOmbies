@@ -213,32 +213,6 @@ namespace Server
 			};
 		#endregion
 
-		#region SE definitions
-		public static readonly LootPack SePoor = new LootPack( new LootPackEntry[] {} );
-
-		public static readonly LootPack SeMeager = new LootPack( new LootPackEntry[] {} );
-
-		public static readonly LootPack SeAverage = new LootPack( new LootPackEntry[] {} );
-
-		public static readonly LootPack SeRich = new LootPack( new LootPackEntry[] {} );
-
-		public static readonly LootPack SeFilthyRich = new LootPack( new LootPackEntry[] {} );
-
-		public static readonly LootPack SeUltraRich = new LootPack( new LootPackEntry[] {} );
-
-		public static readonly LootPack SeSuperBoss = new LootPack( new LootPackEntry[] {} );
-		#endregion
-
-		#region AOS definitions
-		public static readonly LootPack AosMeager = new LootPack( new LootPackEntry[] {} );
-
-		public static readonly LootPack AosAverage = new LootPack( new LootPackEntry[] {} );
-
-		public static readonly LootPack AosRich = new LootPack( new LootPackEntry[] {} );
-
-		public static readonly LootPack AosFilthyRich = new LootPack( new LootPackEntry[] {} );
-		#endregion
-
 		#region Pre-AOS definitions
 		public static readonly LootPack OldPoor = new LootPack( new LootPackEntry[]
 			{
