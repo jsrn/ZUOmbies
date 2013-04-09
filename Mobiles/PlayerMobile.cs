@@ -110,6 +110,9 @@ namespace Server.Mobiles
 		*/
 		private int m_ExecutesLightningStrike; // move to Server.Mobiles??
 
+		private int deathPoints; // Keeps track of how many injury points the player has
+		private int lastDamage; // Keeps track of how much the last hit hurt
+
 		private DateTime m_LastOnline;
 		private Server.Guilds.RankDefinition m_GuildRank;
 
@@ -2027,6 +2030,8 @@ namespace Server.Mobiles
 		{
 			int disruptThreshold;
 
+			lastDamage = amount;
+
 			if ( !Core.AOS )
 				disruptThreshold = 0;
 			else if ( from != null && from.Player )
@@ -2060,17 +2065,24 @@ namespace Server.Mobiles
 
 		public override void Resurrect()
 		{
-			bool wasAlive = this.Alive;
+			if(deathPoints <= 30){
+				bool wasAlive = this.Alive;
 
-			base.Resurrect();
+				base.Resurrect();
 
-			if ( this.Alive && !wasAlive )
-			{
-				Item deathRobe = new DeathRobe();
-
-				if ( !EquipItem( deathRobe ) )
-					deathRobe.Delete();
+				if ( this.Alive && !wasAlive )
+				{
+					Item deathRobe = new DeathRobe();
+					
+					if ( !EquipItem( deathRobe ) )
+						deathRobe.Delete();
+				}
 			}
+		}
+
+		public void resetDeathPoints()
+		{
+			deathPoints = 0;
 		}
 
 		public override double RacialSkillBonus
@@ -2306,8 +2318,53 @@ namespace Server.Mobiles
 				BaseCreature bc = (BaseCreature)killer;
 
 				Mobile master = bc.GetMaster();
-				if( master != null )
+				if( master != null ){
 					killer = master;
+				}
+				
+				double mobFame = bc.getFame();
+				if(!this.Young){
+					deathPoints += (int) ((mobFame/24000.0) * 30);
+					ResetDeathTime();
+				}
+			} else if ( killer is BaseChampion)
+			{
+				BaseChampion bc = (BaseChampion)killer;
+				double mobFame = bc.getFame();
+				if(!this.Young){
+					deathPoints += (int) ((mobFame/24000.0) * 30);
+					ResetDeathTime();
+				}
+			} else if ( killer is PlayerMobile )
+			{
+				PlayerMobile pm = (PlayerMobile)killer;
+				
+				List<Item> items = pm.getItems();
+				
+				if ( items != null )
+				{
+					for ( int i = items.Count - 1; i >= 0; --i )
+					{
+						if ( i >= items.Count )
+							continue;
+
+						Item item = items[i];
+
+						if (item is BaseWeapon || item is BaseMeleeWeapon && !(item is Fists))
+						{
+							if(!this.Young){
+								deathPoints += 5;
+								ResetDeathTime();
+							}
+						} else if (item is Spellbook || item is Fists && lastDamage > 25)
+						{
+							if(!this.Young){
+								deathPoints += 5;
+								ResetDeathTime();
+							}
+						}
+					}
+				}
 			}
 
 			if ( this.Young )
@@ -2748,6 +2805,12 @@ namespace Server.Mobiles
 
 			switch ( version )
 			{
+				case 29:
+				{
+					deathPoints = reader.ReadInt();
+					deathTimer = reader.ReadTimeSpan();
+					goto case 28;
+				}
 				case 28:
 				{
 					m_PeacedUntil = reader.ReadDateTime();
@@ -3032,12 +3095,22 @@ namespace Server.Mobiles
 
 			CheckKillDecay();
 
+			// decay our death points
+			if ( deathTimer < this.GameTime && Alive)
+			{
+				deathTimer += TimeSpan.FromMinutes( 2 );
+				if ( deathPoints > 0)
+				{
+					--deathPoints;
+				}
+			}
+
 			CheckAtrophies( this );
 
 			base.Serialize( writer );
 
-			writer.Write( (int) 28 ); // version
-
+			writer.Write( (int) 29 ); // version
+			writer.Write(deathPoints);
 			writer.Write( (DateTime) m_PeacedUntil );
 			writer.Write( (DateTime) m_AnkhNextUse );
 			writer.Write( m_AutoStabled, true );
