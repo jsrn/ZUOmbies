@@ -97,8 +97,8 @@ namespace Server.Engines.VeteranRewards
 
 			if ( acct == null )
 				return 0;
-
-			return GetRewardLevel( acct );
+			return 0; // No rewards, sorry
+			//return GetRewardLevel( acct );
 		}
 
 		public static int GetRewardLevel( Account acct )
@@ -110,7 +110,8 @@ namespace Server.Engines.VeteranRewards
 			if ( level < 0 )
 				level = 0;
 
-			return level;
+			return 0; // No rewards, sorry
+			//return level;
 		}
 
 		public static bool HasHalfLevel( Mobile mob )
