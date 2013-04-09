@@ -2575,6 +2575,11 @@ namespace Server.Mobiles
 			}
 		}
 
+		public List<Item> getItems()
+		{
+			return this.Items;
+		}
+
 		private static string ReplaceSmileyFaces( string text )
 		{
 			string[] m_Disallowed = new string[]
