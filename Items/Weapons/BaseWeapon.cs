@@ -3358,7 +3358,8 @@ namespace Server.Items
 			}
 
 			if ( m_Hits >= 0 && m_MaxHits > 0 )
-				list.Add( 1060639, "{0}\t{1}", m_Hits, m_MaxHits ); // durability ~1_val~ / ~2_val~
+				// This lists the weapon durability
+				list.Add( 1060639, "{0}\t{1} test", m_Hits, m_MaxHits ); // durability ~1_val~ / ~2_val~
 		}
 
 		public override void OnSingleClick( Mobile from )
