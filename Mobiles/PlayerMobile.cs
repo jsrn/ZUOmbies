@@ -2605,8 +2605,9 @@ namespace Server.Mobiles
 
 			for ( int i = 0; i < m_Disallowed.Length; ++i )
 			{
-				text.Replace( m_Disallowed[i], m_Replacements[i] );
+				text = text.Replace( m_Disallowed[i], m_Replacements[i] );
 			}
+			return text;
 		}
 
 		private static void SendToStaffMessage( Mobile from, string text )
