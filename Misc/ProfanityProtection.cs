@@ -16,8 +16,8 @@ namespace Server.Misc
 
 	public class ProfanityProtection
 	{
-		private static bool Enabled = true;
-		private static ProfanityAction Action = ProfanityAction.Disallow; // change here what to do when profanity is detected
+		private static bool Enabled = false;
+		private static ProfanityAction Action = ProfanityAction.Other; // change here what to do when profanity is detected
 
 		public static void Initialize()
 		{
@@ -45,6 +45,9 @@ namespace Server.Misc
 				default:
 				case ProfanityAction.Other: // TODO: Provide custom implementation if this is chosen
 				{
+					// This is where we need to replace the offending part of the text with a more RP friendly
+					// alternative
+
 					return true;
 				}
 			}
@@ -83,6 +86,19 @@ namespace Server.Misc
 				":p",
 				"XD",
 				"xD"
+			};
+
+		private static string[] m_Replacements = new string[]
+			{
+				"*smiles*",
+				"*smiles*",
+				"*frowns*",
+				"*frowns*",
+				"*sticks out tongue*",
+				"*grins*",
+				"*sticks out tongue*",
+				"*grins*",
+				"*grins*"
 			};
 	}
 }

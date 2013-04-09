@@ -2508,7 +2508,42 @@ namespace Server.Mobiles
 			}
 			else
 			{
+				text = ReplaceSmileyFaces( text );
 				base.DoSpeech( text, keywords, type, hue );
+			}
+		}
+
+		private static string ReplaceSmileyFaces( text )
+		{
+			string[] m_Disallowed = new string[]
+			{
+				":)",
+				"=)",
+				":(",
+				"=(",
+				":P",
+				":D",
+				":p",
+				"XD",
+				"xD"
+			};
+
+			string[] m_Replacements = new string[]
+			{
+				"*smiles*",
+				"*smiles*",
+				"*frowns*",
+				"*frowns*",
+				"*sticks out tongue*",
+				"*grins*",
+				"*sticks out tongue*",
+				"*grins*",
+				"*grins*"
+			};
+
+			for ( int i = 0; i < m_Disallowed.Length; ++i )
+			{
+				text.Replace( m_Disallowed[i], m_Replacements[i] );
 			}
 		}
 
