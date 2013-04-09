@@ -16,7 +16,7 @@ namespace Server.Misc
 
 	public class ProfanityProtection
 	{
-		private static bool Enabled = false;
+		private static bool Enabled = true;
 		private static ProfanityAction Action = ProfanityAction.Disallow; // change here what to do when profanity is detected
 
 		public static void Initialize()
@@ -74,51 +74,15 @@ namespace Server.Misc
 
 		private static string[] m_Disallowed = new string[]
 			{
-				"jigaboo",
-				"chigaboo",
-				"wop",
-				"kyke",
-				"kike",
-				"tit",
-				"spic",
-				"prick",
-				"piss",
-				"lezbo",
-				"lesbo",
-				"felatio",
-				"dyke",
-				"dildo",
-				"chinc",
-				"chink",
-				"cunnilingus",
-				"cum",
-				"cocksucker",
-				"cock",
-				"clitoris",
-				"clit",
-				"ass",
-				"hitler",
-				"penis",
-				"nigga",
-				"nigger",
-				"klit",
-				"kunt",
-				"jiz",
-				"jism",
-				"jerkoff",
-				"jackoff",
-				"goddamn",
-				"fag",
-				"blowjob",
-				"bitch",
-				"asshole",
-				"dick",
-				"pussy",
-				"snatch",
-				"cunt",
-				"twat",
-				"shit",
-				"fuck"
+				":)",
+				"=)",
+				":(",
+				"=(",
+				":P",
+				":D",
+				":p",
+				"XD",
+				"xD"
 			};
 	}
 }
