@@ -92,6 +92,9 @@ namespace Server.Engines.Craft
 				SetUseAllRes( index, true );
 			}
 
+			//AddCraft( Type typeItem, int groupName, string itemName, double minSkill, double maxSkill, Type typeRes, string nameRes, int amount )
+			
+			AddCraft( typeof( Torch), 						1044294, "Torch",	00.0,  25.0,	typeof( Log ), 1044041,  1, 1044351 );
 			AddCraft( typeof( BarrelStaves ),				1044294, 1027857,	00.0,  25.0,	typeof( Log ), 1044041,  5, 1044351 );
 			AddCraft( typeof( BarrelLid ),					1044294, 1027608,	11.0,  36.0,	typeof( Log ), 1044041,  4, 1044351 );
 			AddCraft( typeof( ShortMusicStand ),			1044294, 1044313,	78.9, 103.9,	typeof( Log ), 1044041, 15, 1044351 );
