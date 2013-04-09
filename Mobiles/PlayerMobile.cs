@@ -2570,7 +2570,7 @@ namespace Server.Mobiles
 			}
 		}
 
-		private static string ReplaceSmileyFaces( text )
+		private static string ReplaceSmileyFaces( string text )
 		{
 			string[] m_Disallowed = new string[]
 			{
