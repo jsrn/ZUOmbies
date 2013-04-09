@@ -2085,6 +2085,11 @@ namespace Server.Mobiles
 			deathPoints = 0;
 		}
 
+		public int getDeathPoints()
+		{
+			return deathPoints;
+		}
+
 		public override double RacialSkillBonus
 		{
 			get
