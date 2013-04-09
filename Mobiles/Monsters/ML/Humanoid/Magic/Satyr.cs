@@ -43,7 +43,7 @@ namespace Server.Mobiles
 
 		public override void GenerateLoot()
 		{
-			AddLoot( LootPack.MlRich );
+			//AddLoot( LootPack.MlRich );
 		}
 
 		public override void OnThink()

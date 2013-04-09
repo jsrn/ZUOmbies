@@ -117,7 +117,7 @@ namespace Server.Mobiles
 
 		public override void GenerateLoot()
 		{
-			AddLoot( LootPack.AosSuperBoss, 5 );  // Need to verify
+			//AddLoot( LootPack.AosSuperBoss, 5 );  // Need to verify
 		}
 
 		public override int GetAngerSound()
