@@ -112,6 +112,7 @@ namespace Server.Mobiles
 
 		private int deathPoints; // Keeps track of how many injury points the player has
 		private int lastDamage; // Keeps track of how much the last hit hurt
+		private bool m_FreeDeaths; // Keeps track of whether the player is in a free deth zone or not
 
 		private DateTime m_LastOnline;
 		private Server.Guilds.RankDefinition m_GuildRank;
@@ -2168,6 +2169,11 @@ namespace Server.Mobiles
 			RecoverAmmo();
 
 			return base.OnBeforeDeath();
+		}
+
+		public void SetFreeDeaths ( bool f )
+		{
+			m_FreeDeaths = f;
 		}
 
 		private bool CheckInsuranceOnDeath( Item item )
