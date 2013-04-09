@@ -8,12 +8,16 @@ namespace Server.Regions
 		
 		public override void OnEnter( Mobile m )
 		{
-			
+			if( typeof( m ) == typeof( PlayerMobile ){
+				m.SetFreeDeaths(true);
+			}
 		}
 
 		public override void OnExit( Mobile m )
 		{
-			
+			if( typeof( m ) == typeof( PlayerMobile ){
+				m.SetFreeDeaths(false);
+			}
 		}
 
 	}
