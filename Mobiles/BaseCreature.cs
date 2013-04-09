@@ -3632,6 +3632,11 @@ namespace Server.Mobiles
 			}
 		}
 
+		public int GetFame()
+		{
+			return Fame;
+		}
+
 		public void SetKarmaLevel( int level )
 		{
 			switch ( level )

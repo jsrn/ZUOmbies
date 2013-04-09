@@ -2327,7 +2327,7 @@ namespace Server.Mobiles
 					killer = master;
 				}
 				
-				double mobFame = bc.getFame();
+				double mobFame = bc.GetFame();
 				if(!this.Young){
 					deathPoints += (int) ((mobFame/24000.0) * 30);
 					ResetDeathTime();
@@ -2335,7 +2335,7 @@ namespace Server.Mobiles
 			} else if ( killer is BaseChampion)
 			{
 				BaseChampion bc = (BaseChampion)killer;
-				double mobFame = bc.getFame();
+				double mobFame = bc.GetFame();
 				if(!this.Young){
 					deathPoints += (int) ((mobFame/24000.0) * 30);
 					ResetDeathTime();
