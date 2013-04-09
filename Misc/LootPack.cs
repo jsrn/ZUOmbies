@@ -149,68 +149,19 @@ namespace Server
 
 		#region AOS Magic Items
 
-		public static readonly LootPackItem[] AosMagicItemsAverageType1 = new LootPackItem[]
-			{
-				new LootPackItem( typeof( BaseWeapon ), 90 ),
-				new LootPackItem( typeof( BaseRanged ), 23 ),
-				new LootPackItem( typeof( BaseArmor ), 130 ),
-				new LootPackItem( typeof( BaseShield ), 17 ),
-				new LootPackItem( typeof( BaseJewel ), 68 )
-			};
+		public static readonly LootPackItem[] AosMagicItemsAverageType1 = new LootPackItem[] {};
 
-		public static readonly LootPackItem[] AosMagicItemsAverageType2 = new LootPackItem[]
-			{
-				new LootPackItem( typeof( BaseWeapon ), 54 ),
-				new LootPackItem( typeof( BaseRanged ), 13 ),
-				new LootPackItem( typeof( BaseArmor ), 77 ),
-				new LootPackItem( typeof( BaseShield ), 10 ),
-				new LootPackItem( typeof( BaseJewel ), 40 )
-			};
+		public static readonly LootPackItem[] AosMagicItemsAverageType2 = new LootPackItem[] {};
 
-		public static readonly LootPackItem[] AosMagicItemsRichType1 = new LootPackItem[]
-			{
-				new LootPackItem( typeof( BaseWeapon ), 211 ),
-				new LootPackItem( typeof( BaseRanged ), 53 ),
-				new LootPackItem( typeof( BaseArmor ), 303 ),
-				new LootPackItem( typeof( BaseShield ), 39 ),
-				new LootPackItem( typeof( BaseJewel ), 158 )
-			};
+		public static readonly LootPackItem[] AosMagicItemsRichType1 = new LootPackItem[] {};
 
-		public static readonly LootPackItem[] AosMagicItemsRichType2 = new LootPackItem[]
-			{
-				new LootPackItem( typeof( BaseWeapon ), 170 ),
-				new LootPackItem( typeof( BaseRanged ), 43 ),
-				new LootPackItem( typeof( BaseArmor ), 245 ),
-				new LootPackItem( typeof( BaseShield ), 32 ),
-				new LootPackItem( typeof( BaseJewel ), 128 )
-			};
+		public static readonly LootPackItem[] AosMagicItemsRichType2 = new LootPackItem[] {};
 
-		public static readonly LootPackItem[] AosMagicItemsFilthyRichType1 = new LootPackItem[]
-			{
-				new LootPackItem( typeof( BaseWeapon ), 219 ),
-				new LootPackItem( typeof( BaseRanged ), 55 ),
-				new LootPackItem( typeof( BaseArmor ), 315 ),
-				new LootPackItem( typeof( BaseShield ), 41 ),
-				new LootPackItem( typeof( BaseJewel ), 164 )
-			};
+		public static readonly LootPackItem[] AosMagicItemsFilthyRichType1 = new LootPackItem[] {};
 
-		public static readonly LootPackItem[] AosMagicItemsFilthyRichType2 = new LootPackItem[]
-			{
-				new LootPackItem( typeof( BaseWeapon ), 239 ),
-				new LootPackItem( typeof( BaseRanged ), 60 ),
-				new LootPackItem( typeof( BaseArmor ), 343 ),
-				new LootPackItem( typeof( BaseShield ), 90 ),
-				new LootPackItem( typeof( BaseJewel ), 45 )
-			};
+		public static readonly LootPackItem[] AosMagicItemsFilthyRichType2 = new LootPackItem[] {};
 
-		public static readonly LootPackItem[] AosMagicItemsUltraRich = new LootPackItem[]
-			{
-				new LootPackItem( typeof( BaseWeapon ), 276 ),
-				new LootPackItem( typeof( BaseRanged ), 69 ),
-				new LootPackItem( typeof( BaseArmor ), 397 ),
-				new LootPackItem( typeof( BaseShield ), 52 ),
-				new LootPackItem( typeof( BaseJewel ), 207 )
-			};
+		public static readonly LootPackItem[] AosMagicItemsUltraRich = new LootPackItem[] {};
 		#endregion
 
 		#region Pre-AOS definitions
