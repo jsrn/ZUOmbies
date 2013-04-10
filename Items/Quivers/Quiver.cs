@@ -16,6 +16,7 @@ namespace Server.Items
 		public Quiver() : base()
 		{
 			WeightReduction = 30;
+			Hue = 0x2E6; // Brown
 		}
 
 		public Quiver( Serial serial ) : base( serial )
