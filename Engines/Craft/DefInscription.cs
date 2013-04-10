@@ -218,7 +218,7 @@ namespace Server.Engines.Craft
 			AddSpell(typeof(ArchCureScroll), Reg.Garlic, Reg.Ginseng, Reg.MandrakeRoot);
 			AddSpell(typeof(ArchProtectionScroll), Reg.Garlic, Reg.Ginseng, Reg.MandrakeRoot, Reg.SulfurousAsh);
 			AddSpell(typeof(CurseScroll), Reg.Garlic, Reg.Nightshade, Reg.SulfurousAsh);
-			AddSpell(typeof(FireFieldScroll), Reg.BlackPearl, Reg.SpidersSilk, Reg.SulfurousAsh);
+			//AddSpell(typeof(FireFieldScroll), Reg.BlackPearl, Reg.SpidersSilk, Reg.SulfurousAsh);
 			AddSpell(typeof(GreaterHealScroll), Reg.Garlic, Reg.SpidersSilk, Reg.MandrakeRoot, Reg.Ginseng);
 			AddSpell(typeof(LightningScroll), Reg.MandrakeRoot, Reg.SulfurousAsh);
 			AddSpell(typeof(ManaDrainScroll), Reg.BlackPearl, Reg.SpidersSilk, Reg.MandrakeRoot);
@@ -294,12 +294,12 @@ namespace Server.Engines.Craft
 			}
 
 
-			int index;
+			//int index;
 			
 			// Runebook
-			index = AddCraft( typeof( Runebook ), 1044294, 1041267, 45.0, 95.0, typeof( BlankScroll ), 1044377, 8, 1044378 );
-			AddRes( index, typeof( RecallScroll ), 1044445, 1, 1044253 );
-			AddRes( index, typeof( GateTravelScroll ), 1044446, 1, 1044253 );
+			//index = AddCraft( typeof( Runebook ), 1044294, 1041267, 45.0, 95.0, typeof( BlankScroll ), 1044377, 8, 1044378 );
+			//AddRes( index, typeof( RecallScroll ), 1044445, 1, 1044253 );
+			//AddRes( index, typeof( GateTravelScroll ), 1044446, 1, 1044253 );
 
 			if (Core.AOS)
 			{
