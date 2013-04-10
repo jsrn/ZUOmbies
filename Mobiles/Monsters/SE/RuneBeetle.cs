@@ -66,7 +66,7 @@ namespace Server.Mobiles
 				case 9: PackItem( new BonePile() ); break;
 			}
 				
-			Tamable = true;
+			Tamable = false;
 			ControlSlots = 3;
 			MinTameSkill = 93.9;			
 

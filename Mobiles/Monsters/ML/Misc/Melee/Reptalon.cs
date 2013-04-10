@@ -35,7 +35,7 @@ namespace Server.Mobiles
 			SetSkill( SkillName.MagicResist, 76.4, 89.9 );
 			SetSkill( SkillName.Anatomy, 56.4, 59.7 );
 			
-			Tamable = true;
+			Tamable = false;
 			ControlSlots = 4;
 			MinTameSkill = 101.1;
 		}
