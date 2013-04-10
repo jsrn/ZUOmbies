@@ -2597,27 +2597,41 @@ namespace Server.Mobiles
 			string[] m_Disallowed = new string[]
 			{
 				":)",
-				"=)",
 				":(",
-				"=(",
 				":P",
-				":D",
 				":p",
+				":D",
 				"XD",
-				"xD"
+				"xD",
+				":O",
+				":o",
+				":s",
+				":S",
+				":|",
+				";)",
+				":\\",
+				":/",
+				"\\o/"
 			};
 
 			string[] m_Replacements = new string[]
 			{
 				"*smiles*",
-				"*smiles*",
-				"*frowns*",
 				"*frowns*",
 				"*sticks out tongue*",
-				"*grins*",
 				"*sticks out tongue*",
 				"*grins*",
-				"*grins*"
+				"*grins*",
+				"*grins*",
+				"*looks shocked*",
+				"*looks shocked*",
+				"*looks concerned*",
+				"*looks concerned*",
+				"*blank stare*",
+				"*winks*",
+				"*looks unimpressed*",
+				"*looks unimpressed*",
+				"*waves arms*"
 			};
 
 			for ( int i = 0; i < m_Disallowed.Length; ++i )
