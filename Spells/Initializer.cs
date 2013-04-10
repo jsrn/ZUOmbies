@@ -106,12 +106,7 @@ namespace Server.Spells
 			Register( 115, typeof( Necromancy.WraithFormSpell ) );
 
 			if ( Core.AOS )
-			{
-				
-
-				if( Core.SE )
-					Register( 116, typeof( Necromancy.ExorcismSpell ) );
-
+			{				
 				// Paladin abilities
 				Register( 200, typeof( Chivalry.CleanseByFireSpell ) );
 				Register( 201, typeof( Chivalry.CloseWoundsSpell ) );
@@ -126,6 +121,9 @@ namespace Server.Spells
 
 				if ( Core.SE )
 				{
+					// Necromancy abilities
+					Register( 116, typeof( Necromancy.ExorcismSpell ) );
+
 					// Samurai abilities
 					Register( 400, typeof( Bushido.HonorableExecution ) );
 					Register( 401, typeof( Bushido.Confidence ) );
