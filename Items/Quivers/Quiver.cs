@@ -4,17 +4,21 @@ using Server;
 namespace Server.Items
 {
 	[FlipableAttribute( 0x2FB7, 0x3171 )]
-	public class ElvenQuiver : BaseQuiver
+	public class Quiver : BaseQuiver
 	{
-		public override int LabelNumber{ get{ return 1032657; } } // elven quiver
+
+		public override string DefaultName
+		{
+			get { return "quiver"; }
+		}
 		
 		[Constructable]
-		public ElvenQuiver() : base()
+		public Quiver() : base()
 		{
 			WeightReduction = 30;
 		}
 
-		public ElvenQuiver( Serial serial ) : base( serial )
+		public Quiver( Serial serial ) : base( serial )
 		{
 		}
 
