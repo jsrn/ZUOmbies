@@ -13,7 +13,7 @@ namespace Server
 
 			bool Enabled = Core.AOS;
 
-			Mobile.InsuranceEnabled = !Enabled;
+			Mobile.InsuranceEnabled = false;
 			ObjectPropertyList.Enabled = Enabled;
 			Mobile.VisibleDamageType = !Enabled ? VisibleDamageType.Related : VisibleDamageType.None;
 			Mobile.GuildClickMessage = !Enabled;
