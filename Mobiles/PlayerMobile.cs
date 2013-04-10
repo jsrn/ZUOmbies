@@ -1514,8 +1514,6 @@ namespace Server.Mobiles
 				if ( m_JusticeProtectors.Count > 0 )
 					list.Add( new CallbackEntry( 6157, new ContextCallback( CancelProtection ) ) );
 
-				if( Alive )
-					list.Add( new CallbackEntry( 6210, new ContextCallback( ToggleChampionTitleDisplay ) ) );
 			}
 			if ( from != this )
 			{
