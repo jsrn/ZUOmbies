@@ -138,17 +138,11 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( TricorneHat ), 1011375, 1025915, 6.2, 31.2, typeof( Cloth ), 1044286, 12, 1044287 );
 			AddCraft( typeof( JesterHat ), 1011375, 1025916, 7.2, 32.2, typeof( Cloth ), 1044286, 15, 1044287 );
 
-			if ( Core.AOS )
-				AddCraft( typeof( FlowerGarland ), 1011375, 1028965, 10.0, 35.0, typeof( Cloth ), 1044286, 5, 1044287 );
+			AddCraft( typeof( FlowerGarland ), 1011375, 1028965, 10.0, 35.0, typeof( Cloth ), 1044286, 5, 1044287 );
 
-			if( Core.SE )
-			{
-				index = AddCraft( typeof( ClothNinjaHood ), 1011375, 1030202, 80.0, 105.0, typeof( Cloth ), 1044286, 13, 1044287 );
-				SetNeededExpansion( index, Expansion.SE );
-
-				index = AddCraft( typeof( Kasa ), 1011375, 1030211, 60.0, 85.0, typeof( Cloth ), 1044286, 12, 1044287 );	
-				SetNeededExpansion( index, Expansion.SE );
-			}
+			// Rename to cloth hood
+			AddCraft( typeof( ClothNinjaHood ), 1011375, 1030202, 80.0, 105.0, typeof( Cloth ), 1044286, 13, 1044287 );
+			
 			#endregion
 
 			#region Shirts
@@ -217,33 +211,8 @@ namespace Server.Engines.Craft
 				index = AddCraft( typeof( Obi ), 1015283, 1030219, 20.0, 45.0, typeof( Cloth ), 1044286, 6, 1044287 );
 				SetNeededExpansion( index, Expansion.SE );
 			}
-
-			if( Core.ML )
-			{
-				index = AddCraft( typeof( ElvenQuiver ), 1015283, 1032657, 65.0, 115.0, typeof( Leather ), 1044462, 28, 1044463 );
-				AddRecipe( index, 501 );
-				SetNeededExpansion( index, Expansion.ML );
-
-				index = AddCraft( typeof( QuiverOfFire ), 1015283, 1073109, 65.0, 115.0, typeof( Leather ), 1044462, 28, 1044463 );
-				AddRes( index, typeof( FireRuby ), 1032695, 15, 1042081 );
-				AddRecipe( index, 502 );
-				SetNeededExpansion( index, Expansion.ML );
-
-				index = AddCraft( typeof( QuiverOfIce ), 1015283, 1073110, 65.0, 115.0, typeof( Leather ), 1044462, 28, 1044463 );
-				AddRes( index, typeof( WhitePearl ), 1032694, 15, 1042081 );
-				AddRecipe( index, 503 );
-				SetNeededExpansion( index, Expansion.ML );
-
-				index = AddCraft( typeof( QuiverOfBlight ), 1015283, 1073111, 65.0, 115.0, typeof( Leather ), 1044462, 28, 1044463 );
-				AddRes( index, typeof( Blight ), 1032675, 10, 1042081 );
-				AddRecipe( index, 504 );
-				SetNeededExpansion( index, Expansion.ML );
-
-				index = AddCraft( typeof( QuiverOfLightning ), 1015283, 1073112, 65.0, 115.0, typeof( Leather ), 1044462, 28, 1044463 );
-				AddRes( index, typeof( Corruption ), 1032676, 10, 1042081 );
-				AddRecipe( index, 505 );
-				SetNeededExpansion( index, Expansion.ML );
-			}
+			
+			AddCraft( typeof( Quiver ), 1015283, 1032657, 65.0, 115.0, typeof( Leather ), 1044462, 28, 1044463 );
 
 			AddCraft( typeof( OilCloth ), 1015283, 1041498, 74.6, 99.6, typeof( Cloth ), 1044286, 1, 1044287 );
 
