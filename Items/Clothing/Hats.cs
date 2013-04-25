@@ -123,7 +123,7 @@ namespace Server.Items
 	}
 
 	[Flipable( 0x278F, 0x27DA )]
-	public class ClothNinjaHood : BaseHat
+	public class ClothHood : BaseHat
 	{
 		public override int BasePhysicalResistance{ get{ return 3; } }
 		public override int BaseFireResistance{ get{ return 3; } }
@@ -135,17 +135,17 @@ namespace Server.Items
 		public override int InitMaxHits{ get{ return 30; } }
 
 		[Constructable]
-		public ClothNinjaHood() : this( 0 )
+		public ClothHood() : this( 0 )
 		{
 		}
 
 		[Constructable]
-		public ClothNinjaHood( int hue ) : base( 0x278F, hue )
+		public ClothHood( int hue ) : base( 0x278F, hue )
 		{
 			Weight = 2.0;
 		}
 
-		public ClothNinjaHood( Serial serial ) : base( serial )
+		public ClothHood( Serial serial ) : base( serial )
 		{
 		}
 
