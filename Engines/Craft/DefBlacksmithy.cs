@@ -235,48 +235,14 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( NorseHelm ), 1011079, 1025134, 37.9, 87.9, typeof( IronIngot ), 1044036, 15, 1044037 );
 			AddCraft( typeof( PlateHelm ), 1011079, 1025138, 62.6, 112.6, typeof( IronIngot ), 1044036, 15, 1044037 );
 			
-			if( Core.SE )
-			{
-				index = AddCraft( typeof( ChainHatsuburi ), 1011079, 1030175, 30.0, 80.0, typeof( IronIngot ), 1044036, 20, 1044037 );
-				SetNeededExpansion( index, Expansion.SE );
+			AddCraft( typeof( Circlet ), 1011079, 1032645, 62.1, 112.1, typeof( IronIngot ), 1044036, 6, 1044037 );
 
-				index = AddCraft( typeof( PlateHatsuburi ), 1011079, 1030176, 45.0, 95.0, typeof( IronIngot ), 1044036, 20, 1044037 );
-				SetNeededExpansion( index, Expansion.SE );
+			AddCraft( typeof( RoyalCirclet ), 1011079, 1032646, 70.0, 120.0, typeof( IronIngot ), 1044036, 6, 1044037 );
 
-				index = AddCraft( typeof( HeavyPlateJingasa ), 1011079, 1030178, 45.0, 95.0, typeof( IronIngot ), 1044036, 20, 1044037 );
-				SetNeededExpansion( index, Expansion.SE );
-				
-				index = AddCraft( typeof( LightPlateJingasa ), 1011079, 1030188, 45.0, 95.0, typeof( IronIngot ), 1044036, 20, 1044037 );
-				SetNeededExpansion( index, Expansion.SE );
-				
-				index = AddCraft( typeof( SmallPlateJingasa ), 1011079, 1030191, 45.0, 95.0, typeof( IronIngot ), 1044036, 20, 1044037 );
-				SetNeededExpansion( index, Expansion.SE );
-
-				index = AddCraft( typeof( DecorativePlateKabuto ), 1011079, 1030179, 90.0, 140.0, typeof( IronIngot ), 1044036, 25, 1044037 );
-				SetNeededExpansion( index, Expansion.SE );
-				
-				index = AddCraft( typeof( PlateBattleKabuto ), 1011079, 1030192, 90.0, 140.0, typeof( IronIngot ), 1044036, 25, 1044037 );
-				SetNeededExpansion( index, Expansion.SE );
-
-				index = AddCraft( typeof( StandardPlateKabuto ), 1011079, 1030196, 90.0, 140.0, typeof( IronIngot ), 1044036, 25, 1044037 );
-				SetNeededExpansion( index, Expansion.SE );
-				/*
-				if( Core.ML )
-				{
-					index = AddCraft( typeof( Circlet ), 1011079, 1032645, 62.1, 112.1, typeof( IronIngot ), 1044036, 6, 1044037 );
-					SetNeededExpansion( index, Expansion.ML );
-
-					index = AddCraft( typeof( RoyalCirclet ), 1011079, 1032646, 70.0, 120.0, typeof( IronIngot ), 1044036, 6, 1044037 );
-					SetNeededExpansion( index, Expansion.ML );
-
-					index = AddCraft( typeof( GemmedCirclet ), 1011079, 1032647, 75.0, 125.0, typeof( IronIngot ), 1044036, 6, 1044037 );
-					AddRes( index, typeof( Tourmaline ), 1044237, 1, 1044240 );
-					AddRes( index, typeof( Amethyst ), 1044236, 1, 1044240 );
-					AddRes( index, typeof( BlueDiamond ), 1032696, 1, 1044240 );
-					SetNeededExpansion( index, Expansion.ML );
-				}
-				 * */
-			}
+			index = AddCraft( typeof( GemmedCirclet ), 1011079, 1032647, 75.0, 125.0, typeof( IronIngot ), 1044036, 6, 1044037 );
+			AddRes( index, typeof( Tourmaline ), 1044237, 1, 1044240 );
+			AddRes( index, typeof( Amethyst ), 1044236, 1, 1044240 );
+			AddRes( index, typeof( BlueDiamond ), 1032696, 1, 1044240 );
 			#endregion
 
 			#region Shields
@@ -287,11 +253,9 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( MetalKiteShield ), 1011080, 1027028, 4.6, 54.6, typeof( IronIngot ), 1044036, 16, 1044037 );
 			AddCraft( typeof( WoodenKiteShield ), 1011080, 1027032, -15.2, 34.8, typeof( IronIngot ), 1044036, 8, 1044037 );
 
-			if ( Core.AOS )
-			{
-				AddCraft( typeof( ChaosShield ), 1011080, 1027107, 85.0, 135.0, typeof( IronIngot ), 1044036, 25, 1044037 );
-				AddCraft( typeof( OrderShield ), 1011080, 1027108, 85.0, 135.0, typeof( IronIngot ), 1044036, 25, 1044037 );
-			}
+			AddCraft( typeof( ChaosShield ), 1011080, 1027107, 85.0, 135.0, typeof( IronIngot ), 1044036, 25, 1044037 );
+			AddCraft( typeof( OrderShield ), 1011080, 1027108, 85.0, 135.0, typeof( IronIngot ), 1044036, 25, 1044037 );
+			
 			#endregion
 
 			#region Bladed
@@ -347,30 +311,24 @@ namespace Server.Engines.Craft
 
 			AddCraft( typeof( Bardiche ), 1011083, 1023917, 31.7, 81.7, typeof( IronIngot ), 1044036, 18, 1044037 );
 
-			if ( Core.AOS )
-				AddCraft( typeof( BladedStaff ), 1011083, 1029917, 40.0, 90.0, typeof( IronIngot ), 1044036, 12, 1044037 );
+			AddCraft( typeof( BladedStaff ), 1011083, 1029917, 40.0, 90.0, typeof( IronIngot ), 1044036, 12, 1044037 );
 
-			if ( Core.AOS )
-				AddCraft( typeof( DoubleBladedStaff ), 1011083, 1029919, 45.0, 95.0, typeof( IronIngot ), 1044036, 16, 1044037 );
+			AddCraft( typeof( DoubleBladedStaff ), 1011083, 1029919, 45.0, 95.0, typeof( IronIngot ), 1044036, 16, 1044037 );
 
 			AddCraft( typeof( Halberd ), 1011083, 1025183, 39.1, 89.1, typeof( IronIngot ), 1044036, 20, 1044037 );
 
-			if ( Core.AOS )
-				AddCraft( typeof( Lance ), 1011083, 1029920, 48.0, 98.0, typeof( IronIngot ), 1044036, 20, 1044037 );
+			AddCraft( typeof( Lance ), 1011083, 1029920, 48.0, 98.0, typeof( IronIngot ), 1044036, 20, 1044037 );
 
-			if ( Core.AOS )
-				AddCraft( typeof( Pike ), 1011083, 1029918, 47.0, 97.0, typeof( IronIngot ), 1044036, 12, 1044037 );
+			AddCraft( typeof( Pike ), 1011083, 1029918, 47.0, 97.0, typeof( IronIngot ), 1044036, 12, 1044037 );
 
 			AddCraft( typeof( ShortSpear ), 1011083, 1025123, 45.3, 95.3, typeof( IronIngot ), 1044036, 6, 1044037 );
 
-			if ( Core.AOS )
-				AddCraft( typeof( Scythe ), 1011083, 1029914, 39.0, 89.0, typeof( IronIngot ), 1044036, 14, 1044037 );
+			AddCraft( typeof( Scythe ), 1011083, 1029914, 39.0, 89.0, typeof( IronIngot ), 1044036, 14, 1044037 );
 
 			AddCraft( typeof( Spear ), 1011083, 1023938, 49.0, 99.0, typeof( IronIngot ), 1044036, 12, 1044037 );
 			AddCraft( typeof( WarFork ), 1011083, 1025125, 42.9, 92.9, typeof( IronIngot ), 1044036, 12, 1044037 );
 
-			// Not craftable (is this an AOS change ??)
-			//AddCraft( typeof( Pitchfork ), 1011083, 1023720, 36.1, 86.1, typeof( IronIngot ), 1044036, 12, 1044037 );
+			AddCraft( typeof( Pitchfork ), 1011083, 1023720, 36.1, 86.1, typeof( IronIngot ), 1044036, 12, 1044037 );
 			#endregion
 
 			#region Bashing
@@ -378,8 +336,7 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( Mace ), 1011084, 1023932, 14.5, 64.5, typeof( IronIngot ), 1044036, 6, 1044037 );
 			AddCraft( typeof( Maul ), 1011084, 1025179, 19.4, 69.4, typeof( IronIngot ), 1044036, 10, 1044037 );
 
-			if ( Core.AOS )
-				AddCraft( typeof( Scepter ), 1011084, 1029916, 21.4, 71.4, typeof( IronIngot ), 1044036, 10, 1044037 );
+			AddCraft( typeof( Scepter ), 1011084, 1029916, 21.4, 71.4, typeof( IronIngot ), 1044036, 10, 1044037 );
 
 			AddCraft( typeof( WarMace ), 1011084, 1025127, 28.0, 78.0, typeof( IronIngot ), 1044036, 14, 1044037 );
 			AddCraft( typeof( WarHammer ), 1011084, 1025177, 34.2, 84.2, typeof( IronIngot ), 1044036, 16, 1044037 );
@@ -395,35 +352,6 @@ namespace Server.Engines.Craft
 			if( Core.ML )
 			{
 				index = AddCraft( typeof( DiamondMace ), 1011084, 1073568, 70.0, 120.0, typeof( IronIngot ), 1044036, 20, 1044037 );
-				SetNeededExpansion( index, Expansion.ML );
-
-				index = AddCraft( typeof( ShardThrasher ), 1011084, 1072918, 70.0, 120.0, typeof( IronIngot ), 1044036, 20, 1044037 );
-				AddRes( index, typeof( EyeOfTheTravesty ), 1073126, 1, 1042081 );
-				AddRes( index, typeof( Muculent ), 1072139, 10, 1042081 );
-				AddRes( index, typeof( Corruption ), 1072135, 10, 1042081 );
-				AddRecipe( index, 37 );
-				ForceNonExceptional( index );
-				SetNeededExpansion( index, Expansion.ML );
-
-				index = AddCraft( typeof( RubyMace ), 1011084, 1073529, 75.0, 125.0, typeof( IronIngot ), 1044036, 20, 1044037 );
-				AddRes( index, typeof( FireRuby ), 1032695, 1, 1044240 );
-				AddRecipe( index, 38 );
-				SetNeededExpansion( index, Expansion.ML );
-
-				index = AddCraft( typeof( EmeraldMace ), 1011084, 1073530, 75.0, 125.0, typeof( IronIngot ), 1044036, 20, 1044037 );
-				AddRes( index, typeof( PerfectEmerald ), 1032692, 1, 1044240 );
-				AddRecipe( index, 39 );
-				SetNeededExpansion( index, Expansion.ML );
-
-				index = AddCraft( typeof( SapphireMace ), 1011084, 1073531, 75.0, 125.0, typeof( IronIngot ), 1044036, 20, 1044037 );
-				AddRes( index, typeof( DarkSapphire ), 1032690, 1, 1044240 );
-				AddRecipe( index, 40 );
-				SetNeededExpansion( index, Expansion.ML );
-
-				index = AddCraft( typeof( SilverEtchedMace ), 1011084, 1073532, 75.0, 125.0, typeof( IronIngot ), 1044036, 20, 1044037 );
-				AddRes( index, typeof( BlueDiamond ), 1032696, 1, 1044240 );
-				AddRecipe( index, 41 );
-				SetNeededExpansion( index, Expansion.ML );
 			}*/
 			#endregion
 
