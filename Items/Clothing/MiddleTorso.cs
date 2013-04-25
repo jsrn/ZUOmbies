@@ -269,20 +269,20 @@ namespace Server.Items
 	}
 
 	[Flipable( 0x27A1, 0x27EC )]
-	public class JinBaori : BaseMiddleTorso
+	public class Waistcoat : BaseMiddleTorso
 	{
 		[Constructable]
-		public JinBaori() : this( 0 )
+		public Waistcoat() : this( 0 )
 		{
 		}
 
 		[Constructable]
-		public JinBaori( int hue ) : base( 0x27A1, hue )
+		public Waistcoat( int hue ) : base( 0x27A1, hue )
 		{
 			Weight = 3.0;
 		}
 
-		public JinBaori( Serial serial ) : base( serial )
+		public Waistcoat( Serial serial ) : base( serial )
 		{
 		}
 
