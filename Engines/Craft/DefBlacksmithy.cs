@@ -225,29 +225,7 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( PlateLegs ), 1011078, 1025137, 68.8, 118.8, typeof( IronIngot ), 1044036, 20, 1044037 );
 			AddCraft( typeof( PlateChest ), 1011078, 1046431, 75.0, 125.0, typeof( IronIngot ), 1044036, 25, 1044037 );
 			AddCraft( typeof( FemalePlateChest ), 1011078, 1046430, 44.1, 94.1, typeof( IronIngot ), 1044036, 20, 1044037 );
-
-			if ( Core.AOS ) // exact pre-aos functionality unknown
-				AddCraft( typeof( DragonBardingDeed ), 1011078, 1053012, 72.5, 122.5, typeof( IronIngot ), 1044036, 750, 1044037 );
-
-			if( Core.SE )
-			{
-				
-				index = AddCraft( typeof( PlateMempo ), 1011078, 1030180, 80.0, 130.0, typeof( IronIngot ), 1044036, 18, 1044037 );
-				SetNeededExpansion( index, Expansion.SE );
-
-				index = AddCraft( typeof( PlateDo ), 1011078, 1030184, 80.0, 130.0, typeof( IronIngot ), 1044036, 28, 1044037 ); //Double check skill
-				SetNeededExpansion( index, Expansion.SE );
-
-				index = AddCraft( typeof( PlateHiroSode ), 1011078, 1030187, 80.0, 130.0, typeof( IronIngot ), 1044036, 16, 1044037 );
-				SetNeededExpansion( index, Expansion.SE );
-
-				index = AddCraft( typeof( PlateSuneate ), 1011078, 1030195, 65.0, 115.0, typeof( IronIngot ), 1044036, 20, 1044037 );
-				SetNeededExpansion( index, Expansion.SE );
-
-				index = AddCraft( typeof( PlateHaidate ), 1011078, 1030200, 65.0, 115.0, typeof( IronIngot ), 1044036, 20, 1044037 );
-				SetNeededExpansion( index, Expansion.SE );
-				
-			}
+			AddCraft( typeof( PlateMempo ), 1011078, 1030180, 80.0, 130.0, typeof( IronIngot ), 1044036, 18, 1044037 );
 			#endregion
 
 			#region Helmets
