@@ -276,19 +276,18 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( Scimitar ), 1011081, 1025046, 31.7, 81.7, typeof( IronIngot ), 1044036, 10, 1044037 );
 			AddCraft( typeof( VikingSword ), 1011081, 1025049, 24.3, 74.3, typeof( IronIngot ), 1044036, 14, 1044037 );
 
+			// This needs to be replaced with throwing stars
+			AddCraft( typeof( Shuriken ), 1011081, 1030231, 45.0, 95.0, typeof( IronIngot ), 1044036, 5, 1044037 );
+			
 			if( Core.SE )
 			{
 				index = AddCraft( typeof( NoDachi ), 1011081, 1030221, 75.0, 125.0, typeof( IronIngot ), 1044036, 18, 1044037 );
 				SetNeededExpansion( index, Expansion.SE );
 				index = AddCraft( typeof( Wakizashi ), 1011081, 1030223, 50.0, 100.0, typeof( IronIngot ), 1044036, 8, 1044037 );
 				SetNeededExpansion( index, Expansion.SE );
-				index = AddCraft( typeof( Lajatang ), 1011081, 1030226, 80.0, 130.0, typeof( IronIngot ), 1044036, 25, 1044037 );
-				SetNeededExpansion( index, Expansion.SE );
 				index = AddCraft( typeof( Daisho ), 1011081, 1030228, 60.0, 110.0, typeof( IronIngot ), 1044036, 15, 1044037 );
 				SetNeededExpansion( index, Expansion.SE );
 				index = AddCraft( typeof( Tekagi ), 1011081, 1030230, 55.0, 105.0, typeof( IronIngot ), 1044036, 12, 1044037 );
-				SetNeededExpansion( index, Expansion.SE );
-				index = AddCraft( typeof( Shuriken ), 1011081, 1030231, 45.0, 95.0, typeof( IronIngot ), 1044036, 5, 1044037 );
 				SetNeededExpansion( index, Expansion.SE );
 				index = AddCraft( typeof( Kama ), 1011081, 1030232, 40.0, 90.0, typeof( IronIngot ), 1044036, 14, 1044037 );
 				SetNeededExpansion( index, Expansion.SE );
