@@ -1986,6 +1986,12 @@ namespace Server.Mobiles
 		{
 			deathPoints = 0;
 		}
+		
+		public void PermaKill()
+		{
+			deathPoints = 100;
+			base.Kill();
+		}
 
 		public int getDeathPoints()
 		{
