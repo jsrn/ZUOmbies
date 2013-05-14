@@ -10,37 +10,50 @@ namespace Server.Commands
 {
 	public class DeathCountSystem
 	{
-		public static readonly bool PopPouchEnabled = true;
 		
 		public static void StartPopPouch( Mobile m )
 		{
-			if (PopPouchEnabled == true)
-			{
-				PlayerMobile pl = (PlayerMobile)m;
-				m.SendMessage( "You have accumulated " + pl.getDeathPoints() + " death points." );
-				return; 
-			}
-			else
-			{
-			return;
-			}
+			PlayerMobile pl = (PlayerMobile)m;
+			m.SendMessage( "You have accumulated " + pl.getDeathPoints() + " death points." );
 		}
 		
 		public static void ResetDeathCount( Mobile m )
 		{
-			if (PopPouchEnabled == true)
+			m.Target = new ResetDeathPointsTarget();
+		}
+		
+		public static void Permakill( Mobile m )
+		{
+			m.Target = new PermakillTarget();
+		}
+		
+		private class PermakillTarget : Target
+		{
+			public PermakillTarget() :  base ( 8, false, TargetFlags.None )
 			{
-				m.Target = new InternalTarget();
+				AllowNonlocal = true;
 			}
-			else
+
+			protected override void OnTarget( Mobile from, object target )
 			{
-			return;
-			}
+				if ( target is PlayerMobile)
+				{
+					PlayerMobile pl = (PlayerMobile)target;
+					pl.PermaKill();
+					pl.SendMessage( "The light fades..." );
+					PlayerMobile you = (PlayerMobile)from;
+					from.SendMessage( "They will not be doing that any more." );
+				}
+				else
+				{
+					from.SendMessage( "You can not permakill that!" );
+				}
+			}	
 		}
 	
-		private class InternalTarget : Target
+		private class ResetDeathPointsTarget : Target
 		{
-			public InternalTarget() :  base ( 8, false, TargetFlags.None )
+			public ResetDeathPointsTarget() :  base ( 8, false, TargetFlags.None )
 			{
 				AllowNonlocal = true;
 			}
