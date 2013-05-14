@@ -641,7 +641,7 @@ namespace Server.Misc
 					switch ( Utility.Random( 2 ) )
 					{
 						case 0: EquipItem( new Kryss() ); break;
-						case 1: EquipItem( new Katana() ); break;
+						case 1: EquipItem( new Broadsword() ); break;
 						case 2: EquipItem( new Club() ); break;
 					}
 					break;
@@ -853,12 +853,12 @@ namespace Server.Misc
 				}
 				case SkillName.Swords:
 				{
-					EquipItem( new Katana() );
+					EquipItem( new Broadsword() );
 					break;
 				}
 				case SkillName.Tactics:
 				{
-					EquipItem( new Katana() );
+					EquipItem( new Broadsword() );
 					break;
 				}
 				case SkillName.Tailoring:
