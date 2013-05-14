@@ -28,7 +28,11 @@ namespace Server.Misc
 			}
 
 			PackItem( new RedBook( "a book", m.Name, 20, true ) );
-			PackItem( new Gold( 1000 ) ); // Starting gold can be customized here
+			
+			Random rnd = new Random();
+			int startingGold = 5 * rnd.Next(1, 101); // creates a number between 1 and 500
+			PackItem( new Gold( startingGold ) ); // Starting gold can be customized here
+			
 			PackItem( new Dagger() );
 			PackItem( new Candle() );
 		}
