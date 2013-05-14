@@ -1490,16 +1490,6 @@ namespace Server.Mobiles
 				if ( m_Quest != null )
 					m_Quest.GetContextMenuEntries( list );
 
-				if ( Alive && InsuranceEnabled )
-				{
-					list.Add( new CallbackEntry( 6201, new ContextCallback( ToggleItemInsurance ) ) );
-
-					if ( AutoRenewInsurance )
-						list.Add( new CallbackEntry( 6202, new ContextCallback( CancelRenewInventoryInsurance ) ) );
-					else
-						list.Add( new CallbackEntry( 6200, new ContextCallback( AutoRenewInventoryInsurance ) ) );
-				}
-
 				BaseHouse house = BaseHouse.FindHouseAt( this );
 
 				if ( house != null )
@@ -1562,114 +1552,27 @@ namespace Server.Mobiles
 
 		private void ToggleItemInsurance()
 		{
-			if ( !CheckAlive() )
-				return;
-
-			BeginTarget( -1, false, TargetFlags.None, new TargetCallback( ToggleItemInsurance_Callback ) );
-			SendLocalizedMessage( 1060868 ); // Target the item you wish to toggle insurance status on <ESC> to cancel
+			// Blanked
 		}
 
 		private bool CanInsure( Item item )
 		{
-			if ( (( item is Container) && !(item is BaseQuiver)) || item is BagOfSending || item is KeyRing )
-				return false;
-
-			if ( (item is Spellbook && item.LootType == LootType.Blessed)|| item is Runebook || item is PotionKeg || item is Sigil )
-				return false;
-
-			if ( item.Stackable )
-				return false;
-
-			if ( item.LootType == LootType.Cursed )
-				return false;
-
-			if ( item.ItemID == 0x204E ) // death shroud
-				return false;
-
-			return true;
+			return false; // Blanked
 		}
 
 		private void ToggleItemInsurance_Callback( Mobile from, object obj )
 		{
-			if ( !CheckAlive() )
-				return;
-
-			Item item = obj as Item;
-
-			if ( item == null || !item.IsChildOf( this ) )
-			{
-				BeginTarget( -1, false, TargetFlags.None, new TargetCallback( ToggleItemInsurance_Callback ) );
-				SendLocalizedMessage( 1060871, "", 0x23 ); // You can only insure items that you have equipped or that are in your backpack
-			}
-			else if ( item.Insured )
-			{
-				item.Insured = false;
-
-				SendLocalizedMessage( 1060874, "", 0x35 ); // You cancel the insurance on the item
-
-				BeginTarget( -1, false, TargetFlags.None, new TargetCallback( ToggleItemInsurance_Callback ) );
-				SendLocalizedMessage( 1060868, "", 0x23 ); // Target the item you wish to toggle insurance status on <ESC> to cancel
-			}
-			else if ( !CanInsure( item ) )
-			{
-				BeginTarget( -1, false, TargetFlags.None, new TargetCallback( ToggleItemInsurance_Callback ) );
-				SendLocalizedMessage( 1060869, "", 0x23 ); // You cannot insure that
-			}
-			else if ( item.LootType == LootType.Blessed || item.LootType == LootType.Newbied || item.BlessedFor == from )
-			{
-				BeginTarget( -1, false, TargetFlags.None, new TargetCallback( ToggleItemInsurance_Callback ) );
-				SendLocalizedMessage( 1060870, "", 0x23 ); // That item is blessed and does not need to be insured
-				SendLocalizedMessage( 1060869, "", 0x23 ); // You cannot insure that
-			}
-			else
-			{
-				if ( !item.PayedInsurance )
-				{
-					if ( Banker.Withdraw( from, 600 ) )
-					{
-						SendLocalizedMessage( 1060398, "600" ); // ~1_AMOUNT~ gold has been withdrawn from your bank box.
-						item.PayedInsurance = true;
-					}
-					else
-					{
-						SendLocalizedMessage( 1061079, "", 0x23 ); // You lack the funds to purchase the insurance
-						return;
-					}
-				}
-
-				item.Insured = true;
-
-				SendLocalizedMessage( 1060873, "", 0x23 ); // You have insured the item
-
-				BeginTarget( -1, false, TargetFlags.None, new TargetCallback( ToggleItemInsurance_Callback ) );
-				SendLocalizedMessage( 1060868, "", 0x23 ); // Target the item you wish to toggle insurance status on <ESC> to cancel
-			}
+			// Blanked
 		}
 
 		private void AutoRenewInventoryInsurance()
 		{
-			if ( !CheckAlive() )
-				return;
-
-			SendLocalizedMessage( 1060881, "", 0x23 ); // You have selected to automatically reinsure all insured items upon death
-			AutoRenewInsurance = true;
+			// Blanked
 		}
 
 		private void CancelRenewInventoryInsurance()
 		{
-			if ( !CheckAlive() )
-				return;
-
-			if( Core.SE )
-			{
-				if( !HasGump( typeof( CancelRenewInventoryInsuranceGump ) ) )
-					SendGump( new CancelRenewInventoryInsuranceGump( this ) );
-			}
-			else
-			{
-				SendLocalizedMessage( 1061075, "", 0x23 ); // You have cancelled automatically reinsuring all insured items upon death
-				AutoRenewInsurance = false;
-			}
+			// Blanked
 		}
 
 		private class CancelRenewInventoryInsuranceGump : Gump
