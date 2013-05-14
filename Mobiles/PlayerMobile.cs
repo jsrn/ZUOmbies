@@ -387,7 +387,7 @@ namespace Server.Mobiles
 
 		public void RecoverAmmo()
 		{
-			if ( Core.SE && Alive )
+			if ( Alive )
 			{
 				foreach ( KeyValuePair<Type, int> kvp in m_RecoverableAmmo )
 				{
