@@ -64,113 +64,16 @@ namespace Server.Misc
 
 		private static void FillBankAOS( Mobile m )
 		{
-			// This method has mostly been blanked out
+			// This method has been blanked out.
 			// The code will never be used on this shard,
 			// and I don't want to keep scrolling through it
 		}
 
 		private static void FillBankbox( Mobile m )
 		{
-			BankBox bank = m.BankBox;
-
-			bank.DropItem( new BankCheck( 1000000 ) );
-
-			// Full spellbook
-			Spellbook book = new Spellbook();
-
-			book.Content = ulong.MaxValue;
-
-			bank.DropItem( book );
-
-			Bag bag = new Bag();
-
-			for ( int i = 0; i < 5; ++i )
-				bag.DropItem( new Moonstone( MoonstoneType.Felucca ) );
-
-			// Felucca moonstones
-			bank.DropItem( bag );
-
-			bag = new Bag();
-
-			for ( int i = 0; i < 5; ++i )
-				bag.DropItem( new Moonstone( MoonstoneType.Trammel ) );
-
-			// Trammel moonstones
-			bank.DropItem( bag );
-
-			// Treasure maps
-			bank.DropItem( new TreasureMap( 1, Map.Trammel ) );
-			bank.DropItem( new TreasureMap( 2, Map.Trammel ) );
-			bank.DropItem( new TreasureMap( 3, Map.Trammel ) );
-			bank.DropItem( new TreasureMap( 4, Map.Trammel ) );
-			bank.DropItem( new TreasureMap( 5, Map.Trammel ) );
-
-			// Bag containing 50 of each reagent
-			bank.DropItem( new BagOfReagents( 50 ) );
-
-			// Craft tools
-			bank.DropItem( MakeNewbie( new Scissors() ) );
-			bank.DropItem( MakeNewbie( new SewingKit( 1000 ) ) );
-			bank.DropItem( MakeNewbie( new SmithHammer( 1000 ) ) );
-			bank.DropItem( MakeNewbie( new FletcherTools( 1000 ) ) );
-			bank.DropItem( MakeNewbie( new DovetailSaw( 1000 ) ) );
-			bank.DropItem( MakeNewbie( new MortarPestle( 1000 ) ) );
-			bank.DropItem( MakeNewbie( new ScribesPen( 1000 ) ) );
-			bank.DropItem( MakeNewbie( new TinkerTools( 1000 ) ) );
-
-			// A few dye tubs
-			bank.DropItem( new Dyes() );
-			bank.DropItem( new DyeTub() );
-			bank.DropItem( new DyeTub() );
-			bank.DropItem( new BlackDyeTub() );
-
-			DyeTub darkRedTub = new DyeTub();
-
-			darkRedTub.DyedHue = 0x485;
-			darkRedTub.Redyable = false;
-
-			bank.DropItem( darkRedTub );
-
-			// Some food
-			bank.DropItem( MakeNewbie( new Apple( 1000 ) ) );
-
-			// Resources
-			bank.DropItem( MakeNewbie( new Feather( 1000 ) ) );
-			bank.DropItem( MakeNewbie( new BoltOfCloth( 1000 ) ) );
-			bank.DropItem( MakeNewbie( new BlankScroll( 1000 ) ) );
-			bank.DropItem( MakeNewbie( new Hides( 1000 ) ) );
-			bank.DropItem( MakeNewbie( new Bandage( 1000 ) ) );
-			bank.DropItem( MakeNewbie( new Bottle( 1000 ) ) );
-			bank.DropItem( MakeNewbie( new Log( 1000 ) ) );
-
-			bank.DropItem( MakeNewbie( new IronIngot( 5000 ) ) );
-			bank.DropItem( MakeNewbie( new DullCopperIngot( 5000 ) ) );
-			bank.DropItem( MakeNewbie( new ShadowIronIngot( 5000 ) ) );
-			bank.DropItem( MakeNewbie( new CopperIngot( 5000 ) ) );
-			bank.DropItem( MakeNewbie( new BronzeIngot( 5000 ) ) );
-			bank.DropItem( MakeNewbie( new GoldIngot( 5000 ) ) );
-			bank.DropItem( MakeNewbie( new AgapiteIngot( 5000 ) ) );
-			bank.DropItem( MakeNewbie( new VeriteIngot( 5000 ) ) );
-			bank.DropItem( MakeNewbie( new ValoriteIngot( 5000 ) ) );
-
-			// Reagents
-			bank.DropItem( MakeNewbie( new BlackPearl( 1000 ) ) );
-			bank.DropItem( MakeNewbie( new Bloodmoss( 1000 ) ) );
-			bank.DropItem( MakeNewbie( new Garlic( 1000 ) ) );
-			bank.DropItem( MakeNewbie( new Ginseng( 1000 ) ) );
-			bank.DropItem( MakeNewbie( new MandrakeRoot( 1000 ) ) );
-			bank.DropItem( MakeNewbie( new Nightshade( 1000 ) ) );
-			bank.DropItem( MakeNewbie( new SulfurousAsh( 1000 ) ) );
-			bank.DropItem( MakeNewbie( new SpidersSilk( 1000 ) ) );
-
-			// Some extra starting gold
-			bank.DropItem( MakeNewbie( new Gold( 9000 ) ) );
-
-			// 5 blank recall runes
-			for ( int i = 0; i < 5; ++i )
-				bank.DropItem( MakeNewbie( new RecallRune() ) );
-
-			AddPowerScrolls( bank );
+			// This method has been blanked out.
+			// The code will never be used on this shard,
+			// and I don't want to keep scrolling through it
 		}
 
 		private static void AddPowerScrolls( BankBox bank )
