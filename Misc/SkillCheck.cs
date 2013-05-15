@@ -125,10 +125,10 @@ namespace Server.Misc
 			bool success = ( chance >= Utility.RandomDouble() );
 			double gc = (double)(from.Skills.Cap - from.Skills.Total) / from.Skills.Cap;
 			gc += ( skill.Cap - skill.Base ) / skill.Cap;
-			gc /= 2 * (1/3); // Default of 2
+			gc /= 2 * (2/3); // Default of 2
 
 			gc += ( 1.0 - chance ) * ( success ? 0.5 : (Core.AOS ? 0.0 : 0.2) );
-			gc /= 2 * (1/3); // Default of 2
+			gc /= 2 * (2/3); // Default of 2
 
 			gc *= skill.Info.GainFactor;
 
