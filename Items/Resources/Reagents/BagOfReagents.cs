@@ -14,14 +14,14 @@ namespace Server.Items
 		[Constructable]
 		public BagOfReagents( int amount )
 		{
-			DropItem( new BlackPearl   ( amount ) );
-			DropItem( new Bloodmoss    ( amount ) );
-			DropItem( new Garlic       ( amount ) );
-			DropItem( new Ginseng      ( amount ) );
-			DropItem( new MandrakeRoot ( amount ) );
-			DropItem( new Nightshade   ( amount ) );
-			DropItem( new SulfurousAsh ( amount ) );
-			DropItem( new SpidersSilk  ( amount ) );
+			DropItem( new BlackPearl   ( Utility.Random( amount ) ) );
+			DropItem( new Bloodmoss    ( Utility.Random( amount ) ) );
+			DropItem( new Garlic       ( Utility.Random( amount ) ) );
+			DropItem( new Ginseng      ( Utility.Random( amount ) ) );
+			DropItem( new MandrakeRoot ( Utility.Random( amount ) ) );
+			DropItem( new Nightshade   ( Utility.Random( amount ) ) );
+			DropItem( new SulfurousAsh ( Utility.Random( amount ) ) );
+			DropItem( new SpidersSilk  ( Utility.Random( amount ) ) );
 		}
 
 		public BagOfReagents( Serial serial ) : base( serial )
