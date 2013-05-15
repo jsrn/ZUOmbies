@@ -280,7 +280,7 @@ namespace Server
 		private static Type[] m_SEClothingTypes = new Type[]
 			{
 				typeof( ClothNinjaJacket ),		typeof( FemaleKimono ),			typeof( Hakama ),
-				typeof( HakamaShita ),			typeof( JinBaori ),				typeof( Kamishimo ),
+				typeof( HakamaShita ),			typeof( Waistcoat ),				typeof( Kamishimo ),
 				typeof( MaleKimono ),			typeof( NinjaTabi ),			typeof( Obi ),
 				typeof( SamuraiTabi ),			typeof( TattsukeHakama ),		typeof( Waraji )
 			};
@@ -314,7 +314,7 @@ namespace Server
 
 		private static Type[] m_SEHatTypes = new Type[]
 			{
-				typeof( ClothNinjaHood ),		typeof( Kasa )
+				typeof( ClothHood ),		typeof( Kasa )
 			};
 
 		public static Type[] SEHatTypes{ get{ return m_SEHatTypes; } }
