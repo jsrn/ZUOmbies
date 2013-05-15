@@ -22,7 +22,7 @@ namespace Server.Mobiles
 			{
 				Add( new GenericBuyInfo( typeof( Kasa ), 31, 20, 0x2798, 0 ) );
 				Add( new GenericBuyInfo( typeof( LeatherJingasa ), 11, 20, 0x2776, 0 ) );
-				Add( new GenericBuyInfo( typeof( ClothNinjaHood ), 33, 20, 0x278F, 0 ) );
+				Add( new GenericBuyInfo( typeof( ClothHood ), 33, 20, 0x278F, 0 ) );
 			}
 		}
 
@@ -32,7 +32,7 @@ namespace Server.Mobiles
 			{
 				Add( typeof( Kasa ), 15 );
 				Add( typeof( LeatherJingasa ), 5 );
-				Add( typeof( ClothNinjaHood ), 16 );
+				Add( typeof( ClothHood ), 16 );
 			}
 		}
 	}
