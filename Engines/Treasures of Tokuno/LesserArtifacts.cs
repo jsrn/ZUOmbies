@@ -128,7 +128,7 @@ namespace Server.Items
 		public override int InitMaxHits { get { return 255; } }
 	}
 
-	public class BlackLotusHood : ClothNinjaHood
+	public class BlackLotusHood : ClothHood
 	{
 		public override int LabelNumber { get { return 1070919; } } // Black Lotus Hood
 
