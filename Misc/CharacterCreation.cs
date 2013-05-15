@@ -160,14 +160,12 @@ namespace Server.Misc
 			newChar.Player = true;
 			newChar.AccessLevel = args.Account.AccessLevel;
 			newChar.Female = args.Female;
-			//newChar.Body = newChar.Female ? 0x191 : 0x190;
 
 			if( Core.Expansion >= args.Race.RequiredExpansion )
 				newChar.Race = args.Race;	//Sets body
 			else
 				newChar.Race = Race.DefaultRace;
 
-			//newChar.Hue = Utility.ClipSkinHue( args.Hue & 0x3FFF ) | 0x8000;
 			newChar.Hue = newChar.Race.ClipSkinHue( args.Hue & 0x3FFF ) | 0x8000;
 
 			newChar.Hunger = 20;
@@ -258,7 +256,7 @@ namespace Server.Misc
 		private static CityInfo GetStartLocation( CharacterCreatedEventArgs args, bool isYoung )
 		{
 			// Start in an appropriate place in Zombie Town
-			return new CityInfo( "The Outpost", "The last safe place in the world...", 3503, 2574, 14, Map.Trammel );
+			return new CityInfo( "New Haven", "The ruins of New Haven", 3503, 2574, 14, Map.Trammel );
 		}
 
 		private static void FixStats( ref int str, ref int dex, ref int intel, int max )
@@ -470,8 +468,6 @@ namespace Server.Misc
 
 					PackItem( book );
 
-					book.LootType = LootType.Blessed;
-
 					addSkillItems = false;
 
 					break;
@@ -491,8 +487,6 @@ namespace Server.Misc
 					Spellbook book = new BookOfChivalry( (ulong)0x3FF );
 
 					PackItem( book );
-
-					book.LootType = LootType.Blessed;
 
 					addSkillItems = false;
 
@@ -771,13 +765,7 @@ namespace Server.Misc
 				}
 				case SkillName.Magery:
 				{
-					BagOfReagents regs = new BagOfReagents( 30 );
-
-					if ( !Core.AOS )
-					{
-						foreach ( Item item in regs.Items )
-							item.LootType = LootType.Newbied;
-					}
+					BagOfReagents regs = new BagOfReagents( 100 );
 
 					PackItem( regs );
 
@@ -790,11 +778,6 @@ namespace Server.Misc
 					Spellbook book = new Spellbook( (ulong)0x382A8C38 );
 
 					EquipItem( book );
-
-					book.LootType = LootType.Blessed;
-
-					EquipItem( new WizardsHat() );
-					EquipItem( new Robe( Utility.RandomBlueHue() ) );
 
 					break;
 				}
