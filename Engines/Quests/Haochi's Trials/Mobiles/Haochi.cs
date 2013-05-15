@@ -30,8 +30,6 @@ namespace Server.Engines.Quests.Samurai
 			HairHue = 0x901;
 
 			AddItem( new SamuraiTabi() );
-			AddItem( new JinBaori() );
-
 			AddItem( new PlateHaidate() );
 			AddItem( new StandardPlateKabuto() );
 			AddItem( new PlateMempo() );
@@ -103,7 +101,6 @@ namespace Server.Engines.Quests.Samurai
 					{
 						Container cont = GetNewContainer();
 						cont.DropItem( new LeatherHiroSode() );
-						cont.DropItem( new JinBaori() );
 						player.AddToBackpack( cont );
 					}
 
