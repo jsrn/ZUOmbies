@@ -59,19 +59,6 @@ namespace Server.Items
 
 		public virtual bool Validate( Mobile m )
 		{
-			if ( m == null || !m.Player || m.AccessLevel != AccessLevel.Player || Core.AOS )
-				return true;
-
-			Guild g = m.Guild as Guild;
-
-			if ( g == null || g.Type != GuildType.Chaos )
-			{
-				m.FixedEffect( 0x3728, 10, 13 );
-				Delete();
-
-				return false;
-			}
-
 			return true;
 		}
 	}
