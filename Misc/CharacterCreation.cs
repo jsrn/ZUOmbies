@@ -171,16 +171,10 @@ namespace Server.Misc
 			newChar.Hunger = 20;
 			newChar.Skills.Cap = 7000;
 
-			bool young = false;
-
 			if ( newChar is PlayerMobile )
 			{
 				PlayerMobile pm = (PlayerMobile) newChar;
-
 				pm.Profession = args.Profession;
-
-				if ( pm.AccessLevel == AccessLevel.Player && ((Account)pm.Account).Young )
-					young = pm.Young = true;
 			}
 
 			SetName( newChar, args.Name );
