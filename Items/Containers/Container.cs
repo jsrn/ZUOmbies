@@ -584,6 +584,33 @@ namespace Server.Items
 			int version = reader.ReadInt();
 		}
 	}
+	
+	public class TreeStumpStash : BaseContainer
+	{
+		[Constructable]
+		public TreeStumpStash() : base( 0xE56 )
+		{
+			Weight = 1.0; // Stratics doesn't know weight
+		}
+
+		public TreeStumpStash( Serial serial ) : base( serial )
+		{
+		}
+
+		public override void Serialize( GenericWriter writer )
+		{
+			base.Serialize( writer );
+
+			writer.Write( (int) 0 ); // version
+		}
+
+		public override void Deserialize( GenericReader reader )
+		{
+			base.Deserialize( reader );
+
+			int version = reader.ReadInt();
+		}
+	}
 
 	[Furniture]
 	[Flipable( 0x9AA, 0xE7D )]
