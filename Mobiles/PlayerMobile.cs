@@ -2090,44 +2090,6 @@ namespace Server.Mobiles
 
 		private bool CheckInsuranceOnDeath( Item item )
 		{
-			if ( InsuranceEnabled && item.Insured )
-			{
-				if ( AutoRenewInsurance )
-				{
-					int cost = ( m_InsuranceAward == null ? 600 : 300 );
-
-					if ( Banker.Withdraw( this, cost ) )
-					{
-						m_InsuranceCost += cost;
-						item.PayedInsurance = true;
-						SendLocalizedMessage(1060398, cost.ToString()); // ~1_AMOUNT~ gold has been withdrawn from your bank box.
-					}
-					else
-					{
-						SendLocalizedMessage( 1061079, "", 0x23 ); // You lack the funds to purchase the insurance
-						item.PayedInsurance = false;
-						item.Insured = false;
-						m_NonAutoreinsuredItems++;
-					}
-				}
-				else
-				{
-					item.PayedInsurance = false;
-					item.Insured = false;
-				}
-
-				if ( m_InsuranceAward != null )
-				{
-					if ( Banker.Deposit( m_InsuranceAward, 300 ) )
-					{
-						if ( m_InsuranceAward is PlayerMobile )
-							((PlayerMobile)m_InsuranceAward).m_InsuranceBonus += 300;
-					}
-				}
-
-				return true;
-			}
-
 			return false;
 		}
 
