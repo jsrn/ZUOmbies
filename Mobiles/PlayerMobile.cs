@@ -1899,23 +1899,15 @@ namespace Server.Mobiles
 
 		public override void OnDamage( int amount, Mobile from, bool willKill )
 		{
-			int disruptThreshold;
-
 			lastDamage = amount;
+			
+			int disruptThreshold = 0;
+			
+			BandageContext c = BandageContext.GetContext( this );
 
-			if ( !Core.AOS )
-				disruptThreshold = 0;
-			else if ( from != null && from.Player )
-				disruptThreshold = 18;
-			else
-				disruptThreshold = 25;
-
-			if ( amount > disruptThreshold )
+			if ( amount > 0 && c != null)
 			{
-				BandageContext c = BandageContext.GetContext( this );
-
-				if ( c != null )
-					c.Slip();
+				c.Slip();
 			}
 
 			WeightOverloading.FatigueOnDamage( this, amount );
