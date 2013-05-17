@@ -1974,10 +1974,15 @@ namespace Server.Mobiles
 
 				if ( this.Alive && !wasAlive )
 				{
-					Item deathRobe = new DeathRobe();
+					Mobile killer = this.FindMostRecentDamager( true );
+
+					if ( killer is PlayerMobile && !this.m_FreeDeaths )
+					{
+						Item deathRobe = new DeathRobe();
 					
-					if ( !EquipItem( deathRobe ) )
-						deathRobe.Delete();
+						if ( !EquipItem( deathRobe ) )
+							deathRobe.Delete();
+					}
 				}
 			}
 		}
