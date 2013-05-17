@@ -2007,9 +2007,6 @@ namespace Server.Mobiles
 		{
 			get
 			{
-				if( Core.ML && this.Race == Race.Human )
-					return 20.0;
-
 				return 0;
 			}
 		}
@@ -2435,7 +2432,9 @@ namespace Server.Mobiles
 				";)",
 				":\\",
 				":/",
-				"\\o/"
+				"\\o/",
+				":C",
+				":c"
 			};
 
 			string[] m_Replacements = new string[]
@@ -2455,7 +2454,9 @@ namespace Server.Mobiles
 				"*winks*",
 				"*looks unimpressed*",
 				"*looks unimpressed*",
-				"*waves arms*"
+				"*waves arms*",
+				"*looks sad*",
+				"*looks sad*"
 			};
 
 			for ( int i = 0; i < m_Disallowed.Length; ++i )
@@ -3669,14 +3670,6 @@ namespace Server.Mobiles
 
 		public override string ApplyNameSuffix( string suffix )
 		{
-			if ( Young )
-			{
-				if ( suffix.Length == 0 )
-					suffix = "(Young)";
-				else
-					suffix = String.Concat( suffix, " (Young)" );
-			}
-
 			#region Ethics
 			if ( m_EthicPlayer != null )
 			{
@@ -3687,26 +3680,12 @@ namespace Server.Mobiles
 			}
 			#endregion
 
-			if ( Core.ML && this.Map == Faction.Facet )
-			{
-				Faction faction = Faction.Find( this );
-
-				if ( faction != null )
-				{
-					string adjunct = String.Format( "[{0}]", faction.Definition.Abbreviation );
-					if ( suffix.Length == 0 )
-						suffix = adjunct;
-					else
-						suffix = String.Concat( suffix, " ", adjunct );
-				}
-			}
-
 			return base.ApplyNameSuffix( suffix );
 		}
 
 		public override TimeSpan GetLogoutDelay()
 		{
-			if ( Young || BedrollLogout || TestCenter.Enabled )
+			if ( BedrollLogout )
 				return TimeSpan.Zero;
 
 			return base.GetLogoutDelay();
@@ -3716,25 +3695,7 @@ namespace Server.Mobiles
 
 		public bool CheckYoungProtection( Mobile from )
 		{
-			if ( !this.Young )
-				return false;
-
-			if ( Region is BaseRegion && !((BaseRegion)Region).YoungProtected )
-				return false;
-
-			if( from is BaseCreature && ((BaseCreature)from).IgnoreYoungProtection )
-				return false;
-
-			if ( this.Quest != null && this.Quest.IgnoreYoungProtection( from ) )
-				return false;
-
-			if ( DateTime.Now - m_LastYoungMessage > TimeSpan.FromMinutes( 1.0 ) )
-			{
-				m_LastYoungMessage = DateTime.Now;
-				SendLocalizedMessage( 1019067 ); // A monster looks at you menacingly but does not attack.  You would be under attack now if not for your status as a new citizen of Britannia.
-			}
-
-			return true;
+			return false;
 		}
 
 		private DateTime m_LastYoungHeal = DateTime.MinValue;
