@@ -169,7 +169,7 @@ namespace Server.Misc
 			newChar.Hue = newChar.Race.ClipSkinHue( args.Hue & 0x3FFF ) | 0x8000;
 
 			newChar.Hunger = 20;
-			newChar.Skills.Cap = 7000;
+			newChar.Skills.Cap = 10000;
 
 			if ( newChar is PlayerMobile )
 			{
