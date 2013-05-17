@@ -2154,16 +2154,10 @@ namespace Server.Mobiles
 
 		public override void OnDeath( Container c )
 		{
-			if (m_NonAutoreinsuredItems > 0)
-			{
-				SendLocalizedMessage(1061115);
-			}
-
 			base.OnDeath(c);
 
 			HueMod = -1;
 			NameMod = null;
-			SavagePaintExpiration = TimeSpan.Zero;
 
 			SetHairMods( -1, -1 );
 
@@ -2189,46 +2183,6 @@ namespace Server.Mobiles
 					Criminal = true;
 			}
 
-			if ( this.Kills >= 5 && DateTime.Now >= m_NextJustAward )
-			{
-				Mobile m = FindMostRecentDamager( false );
-
-				if( m is BaseCreature )
-					m = ((BaseCreature)m).GetMaster();
-
-				if ( m != null && m is PlayerMobile && m != this )
-				{
-					bool gainedPath = false;
-
-					int pointsToGain = 0;
-
-					pointsToGain += (int) Math.Sqrt( this.GameTime.TotalSeconds * 4 );
-					pointsToGain *= 5;
-					pointsToGain += (int) Math.Pow( this.Skills.Total / 250, 2 );
-
-					if ( VirtueHelper.Award( m, VirtueName.Justice, pointsToGain, ref gainedPath ) )
-					{
-						if ( gainedPath )
-							m.SendLocalizedMessage( 1049367 ); // You have gained a path in Justice!
-						else
-							m.SendLocalizedMessage( 1049363 ); // You have gained in Justice.
-
-						m.FixedParticles( 0x375A, 9, 20, 5027, EffectLayer.Waist );
-						m.PlaySound( 0x1F7 );
-
-						m_NextJustAward = DateTime.Now + TimeSpan.FromMinutes( pointsToGain / 3 );
-					}
-				}
-			}
-
-			if ( m_InsuranceAward is PlayerMobile )
-			{
-				PlayerMobile pm = (PlayerMobile)m_InsuranceAward;
-
-				if ( pm.m_InsuranceBonus > 0 )
-					pm.SendLocalizedMessage( 1060397, pm.m_InsuranceBonus.ToString() ); // ~1_AMOUNT~ gold has been deposited into your bank box.
-			}
-
 			Mobile killer = this.FindMostRecentDamager( true );
 
 			if ( killer is BaseCreature )
@@ -2247,20 +2201,20 @@ namespace Server.Mobiles
 				
 				bool killedByPlayerInTrainingZone = killedByPlayer && killedInTrainingZone;
 
-				if( !this.Young && !killedByPlayerInTrainingZone)
+				if( !killedByPlayerInTrainingZone)
 				{
 					deathPoints += (int) ((mobFame/24000.0) * 30);
 					ResetDeathTime();
 				}
-			} else if ( killer is BaseChampion)
+			}
+			else if ( killer is BaseChampion)
 			{
 				BaseChampion bc = (BaseChampion)killer;
 				double mobFame = bc.GetFame();
-				if(!this.Young){
-					deathPoints += (int) ((mobFame/24000.0) * 30);
-					ResetDeathTime();
-				}
-			} else if ( killer is PlayerMobile && !this.m_FreeDeaths )
+				deathPoints += (int) ((mobFame/24000.0) * 30);
+				ResetDeathTime();
+			}
+			else if ( killer is PlayerMobile && !this.m_FreeDeaths )
 			{
 				PlayerMobile pm = (PlayerMobile)killer;
 				
@@ -2290,12 +2244,6 @@ namespace Server.Mobiles
 						}
 					}
 				}
-			}
-
-			if ( this.Young )
-			{
-				if ( YoungDeathTeleport() )
-					Timer.DelayCall( TimeSpan.FromSeconds( 2.5 ), new TimerCallback( SendYoungDeathNotice ) );
 			}
 
 			Faction.HandleDeath( this, killer );
