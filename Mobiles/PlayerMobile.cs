@@ -660,9 +660,6 @@ namespace Server.Mobiles
 			if ( type != ResistanceType.Physical && 60 < max && Spells.Fourth.CurseSpell.UnderEffect( this ) )
 				max = 60;
 
-			if( Core.ML && this.Race == Race.Elf && type == ResistanceType.Energy )
-				max += 5; //Intended to go after the 60 max from curse
-
 			return max;
 		}
 
@@ -686,12 +683,7 @@ namespace Server.Mobiles
 		{
 			global = LightCycle.ComputeLevelFor( this );
 
-			bool racialNightSight = (Core.ML && this.Race == Race.Elf);
-
-			if ( this.LightLevel < 21 && ( AosAttributes.GetValue( this, AosAttribute.NightSight ) > 0 || racialNightSight ))
-				personal = 21;
-			else
-				personal = this.LightLevel;
+			personal = this.LightLevel;
 		}
 
 		public override void CheckLightLevels( bool forceResend )
@@ -1259,24 +1251,8 @@ namespace Server.Mobiles
 		{
 			get
 			{
-				int strBase;
+				int strBase = this.RawStr;
 				int strOffs = GetStatOffset( StatType.Str );
-
-				if ( Core.AOS )
-				{
-					strBase = this.Str;	//this.Str already includes GetStatOffset/str
-					strOffs = AosAttributes.GetValue( this, AosAttribute.BonusHits );
-
-					if ( Core.ML && strOffs > 25 && AccessLevel <= AccessLevel.Player )
-						strOffs = 25;
-
-					if ( AnimalForm.UnderTransformation( this, typeof( BakeKitsune ) ) || AnimalForm.UnderTransformation( this, typeof( GreyWolf ) ) )
-						strOffs += 20;
-				}
-				else
-				{
-					strBase = this.RawStr;
-				}
 
 				return (strBase / 2) + 50 + strOffs;
 			}
@@ -1302,9 +1278,6 @@ namespace Server.Mobiles
 		{
 			get
 			{
-				if( Core.ML && this.AccessLevel == AccessLevel.Player )
-					return Math.Min( base.Str, 150 );
-
 				return base.Str;
 			}
 			set
@@ -1318,9 +1291,6 @@ namespace Server.Mobiles
 		{
 			get
 			{
-				if( Core.ML && this.AccessLevel == AccessLevel.Player )
-					return Math.Min( base.Int, 150 );
-
 				return base.Int;
 			}
 			set
@@ -1334,8 +1304,7 @@ namespace Server.Mobiles
 		{
 			get
 			{
-				if( Core.ML && this.AccessLevel == AccessLevel.Player )
-					return Math.Min( base.Dex, 150 );
+				return Math.Min( base.Dex, 150 );
 
 				return base.Dex;
 			}
@@ -1949,9 +1918,6 @@ namespace Server.Mobiles
 					c.Slip();
 			}
 
-			if( Confidence.IsRegenerating( this ) )
-				Confidence.StopRegenerating( this );
-
 			WeightOverloading.FatigueOnDamage( this, amount );
 
 			if ( m_ReceivedHonorContext != null )
@@ -1974,9 +1940,7 @@ namespace Server.Mobiles
 
 				if ( this.Alive && !wasAlive )
 				{
-					Mobile killer = this.FindMostRecentDamager( true );
-
-					if ( killer is PlayerMobile && !this.m_FreeDeaths )
+					if ( this.FindMostRecentDamager( true ) is PlayerMobile && !this.m_FreeDeaths )
 					{
 						Item deathRobe = new DeathRobe();
 					
@@ -3702,12 +3666,6 @@ namespace Server.Mobiles
 
 		public bool CheckYoungHealTime()
 		{
-			if ( DateTime.Now - m_LastYoungHeal > TimeSpan.FromMinutes( 5.0 ) )
-			{
-				m_LastYoungHeal = DateTime.Now;
-				return true;
-			}
-
 			return false;
 		}
 
@@ -3758,60 +3716,7 @@ namespace Server.Mobiles
 
 		public bool YoungDeathTeleport()
 		{
-			if ( this.Region.IsPartOf( typeof( Jail ) )
-				|| this.Region.IsPartOf( "Samurai start location" )
-				|| this.Region.IsPartOf( "Ninja start location" )
-				|| this.Region.IsPartOf( "Ninja cave" ) )
-				return false;
-
-			Point3D loc;
-			Map map;
-
-			DungeonRegion dungeon = (DungeonRegion) this.Region.GetRegion( typeof( DungeonRegion ) );
-			if ( dungeon != null && dungeon.EntranceLocation != Point3D.Zero )
-			{
-				loc = dungeon.EntranceLocation;
-				map = dungeon.EntranceMap;
-			}
-			else
-			{
-				loc = this.Location;
-				map = this.Map;
-			}
-
-			Point3D[] list;
-
-			if ( map == Map.Trammel )
-				list = m_TrammelDeathDestinations;
-			else if ( map == Map.Ilshenar )
-				list = m_IlshenarDeathDestinations;
-			else if ( map == Map.Malas )
-				list = m_MalasDeathDestinations;
-			else if ( map == Map.Tokuno )
-				list = m_TokunoDeathDestinations;
-			else
-				return false;
-
-			Point3D dest = Point3D.Zero;
-			int sqDistance = int.MaxValue;
-
-			for ( int i = 0; i < list.Length; i++ )
-			{
-				Point3D curDest = list[i];
-
-				int width = loc.X - curDest.X;
-				int height = loc.Y - curDest.Y;
-				int curSqDistance = width * width + height * height;
-
-				if ( curSqDistance < sqDistance )
-				{
-					dest = curDest;
-					sqDistance = curSqDistance;
-				}
-			}
-
-			this.MoveToWorld( dest, map );
-			return true;
+			return false;
 		}
 
 		private void SendYoungDeathNotice()
