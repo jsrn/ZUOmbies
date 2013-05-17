@@ -3688,7 +3688,7 @@ namespace Server.Mobiles
 			if ( BedrollLogout )
 				return TimeSpan.Zero;
 
-			return base.GetLogoutDelay();
+			return TimeSpan.FromSeconds( 30 );
 		}
 
 		private DateTime m_LastYoungMessage = DateTime.MinValue;
