@@ -200,6 +200,7 @@ namespace Server.Engines.Craft
 			AddRes( index, typeof( BarrelLid ), 1044251, 1, 1044253 );
 
 			// Staves and Shields
+			AddCraft( typeof( WoodenSword ), 1044295, "wooden sword", 70.0, 95.0, typeof( Log ), 1044041, 6, 1044351 );
 			AddCraft( typeof( ShepherdsCrook ), 1044295, 1023713, 78.9, 103.9, typeof( Log ), 1044041, 7, 1044351 );
 			AddCraft( typeof( QuarterStaff ), 1044295, 1023721, 73.6, 98.6, typeof( Log ), 1044041, 6, 1044351 );
 			AddCraft( typeof( GnarledStaff ), 1044295, 1025112, 78.9, 103.9, typeof( Log ), 1044041, 7, 1044351 );
@@ -208,18 +209,6 @@ namespace Server.Engines.Craft
 			index = AddCraft( typeof( FishingPole ), 1044295, 1023519, 68.4, 93.4, typeof( Log ), 1044041, 5, 1044351 ); //This is in the categor of Other during AoS
 			AddSkill( index, SkillName.Tailoring, 40.0, 45.0 );
 			AddRes( index, typeof( Cloth ), 1044286, 5, 1044287 );
-
-			if( Core.SE )
-			{
-				index = AddCraft( typeof( Bokuto ), 1044295, 1030227, 70.0, 95.0, typeof( Log ), 1044041, 6, 1044351 );
-				SetNeededExpansion( index, Expansion.SE );
-
-				index = AddCraft( typeof( Fukiya ), 1044295, 1030229, 60.0, 85.0, typeof( Log ), 1044041, 6, 1044351 );
-				SetNeededExpansion( index, Expansion.SE );
-
-				index = AddCraft( typeof( Tetsubo ), 1044295, 1030225, 80.0, 140.3, typeof( Log ), 1044041, 10, 1044351 );
-				SetNeededExpansion( index, Expansion.SE );
-			}
 
 			// Instruments
 			index = AddCraft( typeof( LapHarp ), 1044293, 1023762, 63.1, 88.1, typeof( Log ), 1044041, 20, 1044351 );

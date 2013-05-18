@@ -5,7 +5,7 @@ using Server.Items;
 namespace Server.Items
 {
 	[FlipableAttribute( 0x27A8, 0x27F3 )]
-	public class Bokuto : BaseSword
+	public class WoodenSword : BaseSword
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.Feint; } }
 		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.NerveStrike; } }
@@ -28,12 +28,13 @@ namespace Server.Items
 		public override int InitMaxHits{ get{ return 50; } }
 
 		[Constructable]
-		public Bokuto() : base( 0x27A8 )
+		public WoodenSword() : base( 0x27A8 )
 		{
 			Weight = 7.0;
+			Name = "wooden sword";
 		}
 
-		public Bokuto( Serial serial ) : base( serial )
+		public WoodenSword( Serial serial ) : base( serial )
 		{
 		}
 
