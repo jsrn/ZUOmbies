@@ -143,6 +143,7 @@ namespace Server.Items
 		public ClothHood( int hue ) : base( 0x278F, hue )
 		{
 			Weight = 2.0;
+			Name = "cloth hood";
 		}
 
 		public ClothHood( Serial serial ) : base( serial )
