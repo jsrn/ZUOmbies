@@ -27,7 +27,7 @@ namespace Server.Mobiles
 				Add( new GenericBuyInfo( typeof( Lajatang ), 108, 20, 0x27A7, 0 ) );
 				Add( new GenericBuyInfo( typeof( Daisho ), 66, 20, 0x27A9, 0 ) );
 				Add( new GenericBuyInfo( typeof( Tekagi ), 55, 20, 0x27AB, 0 ) );
-				Add( new GenericBuyInfo( typeof( Shuriken ), 18, 20, 0x27AC, 0 ) );
+				Add( new GenericBuyInfo( typeof( ThrowingStar ), 18, 20, 0x27AC, 0 ) );
 				Add( new GenericBuyInfo( typeof( Kama ), 61, 20, 0x27AD, 0 ) );
 				Add( new GenericBuyInfo( typeof( Sai ), 56, 20, 0x27AF, 0 ) );		
 
@@ -45,7 +45,7 @@ namespace Server.Mobiles
 				Add( typeof( Lajatang ), 54 );
 				Add( typeof( Daisho ), 33 );
 				Add( typeof( Tekagi ), 22 );
-				Add( typeof( Shuriken), 9 );
+				Add( typeof( ThrowingStar), 9 );
 				Add( typeof( Kama ), 30 );
 				Add( typeof( Sai ), 28 );
 			}
