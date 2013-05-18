@@ -85,13 +85,6 @@ namespace Server.Engines.Craft
 		{
 			int index = -1;
 
-			// Other Items
-			if ( Core.Expansion == Expansion.AOS || Core.Expansion == Expansion.SE )
-			{
-				index =	AddCraft( typeof( Board ),				1044294, 1027127,	 0.0,   0.0,	typeof( Log ), 1044466,  1, 1044465 );
-				SetUseAllRes( index, true );
-			}
-
 			//AddCraft( Type typeItem, int groupName, string itemName, double minSkill, double maxSkill, Type typeRes, string nameRes, int amount )
 			
 			AddCraft( typeof( Torch), 						1044294, "torch",	00.0,  25.0,	typeof( Log ), 1044041,  1, 1044351 );
@@ -138,11 +131,8 @@ namespace Server.Engines.Craft
 
 			if( Core.SE )
 			{
-				index = AddCraft( typeof( ElegantLowTable ),	1044291, 1030265,	80.0, 105.0,	typeof( Log ), 1044041, 35, 1044351 );
-				SetNeededExpansion( index, Expansion.SE );
-
-				index = AddCraft( typeof( PlainLowTable ),		1044291, 1030266,	80.0, 105.0,	typeof( Log ), 1044041, 35, 1044351 );
-				SetNeededExpansion( index, Expansion.SE );
+				AddCraft( typeof( ElegantLowTable ),	1044291, 1030265,	80.0, 105.0,	typeof( Log ), 1044041, 35, 1044351 );
+				AddCraft( typeof( PlainLowTable ),		1044291, 1030266,	80.0, 105.0,	typeof( Log ), 1044041, 35, 1044351 );
 			}
 
 			// Containers
