@@ -330,23 +330,10 @@ namespace Server.Engines.Craft
 			}*/
 			#endregion
 
-			#region Dragon Scale Armor
-			index = AddCraft( typeof( DragonGloves ), 1053114, 1029795, 68.9, 118.9, typeof( RedScales ), 1060883, 16, 1060884 );
-			SetUseSubRes2( index, true );
-
-			index = AddCraft( typeof( DragonHelm ), 1053114, 1029797, 72.6, 122.6, typeof( RedScales ), 1060883, 20, 1060884 );
-			SetUseSubRes2( index, true );
-
-			index = AddCraft( typeof( DragonLegs ), 1053114, 1029799, 78.8, 128.8, typeof( RedScales ), 1060883, 28, 1060884 );
-			SetUseSubRes2( index, true );
-
-			index = AddCraft( typeof( DragonArms ), 1053114, 1029815, 76.3, 126.3, typeof( RedScales ), 1060883, 24, 1060884 );
-			SetUseSubRes2( index, true );
-
-			index = AddCraft( typeof( DragonChest ), 1053114, 1029793, 85.0, 135.0, typeof( RedScales ), 1060883, 36, 1060884 );
-			SetUseSubRes2( index, true );
+			#region Tools
+			AddCraft( typeof( Blowpipe ), "Tools", "glass blowing pipe", 34.2, 84.2, typeof( IronIngot ), 1044036, 10, 1044037 );
 			#endregion
-			
+
 			// Set the overridable material
 			SetSubRes( typeof( IronIngot ), 1044022 );
 
