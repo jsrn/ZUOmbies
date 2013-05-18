@@ -280,6 +280,7 @@ namespace Server.Items
 		public Waistcoat( int hue ) : base( 0x27A1, hue )
 		{
 			Weight = 3.0;
+			Name = "waistcoat";
 		}
 
 		public Waistcoat( Serial serial ) : base( serial )
