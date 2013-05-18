@@ -205,7 +205,7 @@ namespace Server.Misc
 				AddShoes( newChar );
 			}
 
-			CityInfo city = GetStartLocation( args, young );
+			CityInfo city = GetStartLocation( args );
 
 			newChar.MoveToWorld( city.Location, city.Map );
 
@@ -247,7 +247,7 @@ namespace Server.Misc
 			}
 		}
 
-		private static CityInfo GetStartLocation( CharacterCreatedEventArgs args, bool isYoung )
+		private static CityInfo GetStartLocation( CharacterCreatedEventArgs args )
 		{
 			// Start in an appropriate place in Zombie Town
 			return new CityInfo( "New Haven", "The ruins of New Haven", 3503, 2574, 14, Map.Trammel );
