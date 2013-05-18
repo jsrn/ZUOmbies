@@ -16,6 +16,7 @@ namespace Server.Items
 		{
 			Weight = 4.0;
 			Hue = 0x3B9;
+			Name = "glass blowing pipe";
 		}
 
 		[Constructable]
@@ -23,6 +24,7 @@ namespace Server.Items
 		{
 			Weight = 4.0;
 			Hue = 0x3B9;
+			Name = "glass blowing pipe";
 		}
 
 		public Blowpipe( Serial serial ) : base( serial )
