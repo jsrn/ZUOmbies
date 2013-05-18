@@ -163,7 +163,7 @@ namespace Server
 
 		private static Type[] m_SEInstrumentTypes = new Type[]
 			{
-				typeof( BambooFlute )
+				typeof( Flute )
 			};
 
 		public static Type[] SEInstrumentTypes{ get{ return m_SEInstrumentTypes; } }

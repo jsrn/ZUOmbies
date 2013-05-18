@@ -2,15 +2,16 @@ using System;
 
 namespace Server.Items
 {
-	public class BambooFlute : BaseInstrument
+	public class Flute : BaseInstrument
 	{
 		[Constructable]
-		public BambooFlute() : base( 0x2805, 0x504, 0x503 )
+		public Flute() : base( 0x2805, 0x504, 0x503 )
 		{
 			Weight = 2.0;
+			Name = "flute";
 		}
 
-		public BambooFlute( Serial serial ) : base( serial )
+		public Flute( Serial serial ) : base( serial )
 		{
 		}
 

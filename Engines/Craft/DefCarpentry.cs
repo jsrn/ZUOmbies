@@ -108,21 +108,17 @@ namespace Server.Engines.Craft
 			{
 				index = AddCraft( typeof( RedHangingLantern ), 1044294, 1029412, 65.0, 90.0, typeof( Log ), 1044041, 5, 1044351 );
 				AddRes( index, typeof( BlankScroll ), 1044377, 10, 1044378 );
-				SetNeededExpansion( index, Expansion.SE );
 
 				index = AddCraft( typeof( WhiteHangingLantern ), 1044294, 1029416, 65.0, 90.0, typeof( Log ), 1044041, 5, 1044351 );
 				AddRes( index, typeof( BlankScroll ), 1044377, 10, 1044378 );
-				SetNeededExpansion( index, Expansion.SE );
 
 				index = AddCraft( typeof( ShojiScreen ), 1044294, 1029423, 80.0, 105.0, typeof( Log ), 1044041, 75, 1044351 );
 				AddSkill( index, SkillName.Tailoring, 50.0, 55.0 );
 				AddRes( index, typeof( Cloth ), 1044286, 60, 1044287 );
-				SetNeededExpansion( index, Expansion.SE );
 
 				index = AddCraft( typeof( BambooScreen ), 1044294, 1029428, 80.0, 105.0, typeof( Log ), 1044041, 75, 1044351 );
 				AddSkill( index, SkillName.Tailoring, 50.0, 55.0 );
 				AddRes( index, typeof( Cloth ), 1044286, 60, 1044287 );
-				SetNeededExpansion( index, Expansion.SE );
 			}
 
 			// Furniture
@@ -161,38 +157,17 @@ namespace Server.Engines.Craft
 
 			if( Core.SE )
 			{
-				index = AddCraft( typeof( PlainWoodenChest ),	1044292, 1030251, 90.0, 115.0,	typeof( Log ), 1044041, 30, 1044351 );
-				SetNeededExpansion( index, Expansion.SE );
-
-				index = AddCraft( typeof( OrnateWoodenChest ),	1044292, 1030253, 90.0, 115.0,	typeof( Log ), 1044041, 30, 1044351 );
-				SetNeededExpansion( index, Expansion.SE );
-
-				index = AddCraft( typeof( GildedWoodenChest ),	1044292, 1030255, 90.0, 115.0,	typeof( Log ), 1044041, 30, 1044351 );
-				SetNeededExpansion( index, Expansion.SE );
-
-				index = AddCraft( typeof( WoodenFootLocker ),	1044292, 1030257, 90.0, 115.0,	typeof( Log ), 1044041, 30, 1044351 );
-				SetNeededExpansion( index, Expansion.SE );
-
-				index = AddCraft( typeof( FinishedWoodenChest ),1044292, 1030259, 90.0, 115.0,	typeof( Log ), 1044041, 30, 1044351 );
-				SetNeededExpansion( index, Expansion.SE );
-
-				index = AddCraft( typeof( TallCabinet ),	1044292, 1030261, 90.0, 115.0,	typeof( Log ), 1044041, 35, 1044351 );
-				SetNeededExpansion( index, Expansion.SE );
-
-				index = AddCraft( typeof( ShortCabinet ),	1044292, 1030263, 90.0, 115.0,	typeof( Log ), 1044041, 35, 1044351 );
-				SetNeededExpansion( index, Expansion.SE );
-
-				index = AddCraft( typeof( RedArmoire ),	1044292, 1030328, 90.0, 115.0,	typeof( Log ), 1044041, 40, 1044351 );
-				SetNeededExpansion( index, Expansion.SE );
-
-				index = AddCraft( typeof( ElegantArmoire ),	1044292, 1030330, 90.0, 115.0,	typeof( Log ), 1044041, 40, 1044351 );
-				SetNeededExpansion( index, Expansion.SE );
-
-				index = AddCraft( typeof( MapleArmoire ),	1044292, 1030332, 90.0, 115.0,	typeof( Log ), 1044041, 40, 1044351 );
-				SetNeededExpansion( index, Expansion.SE );
-
-				index = AddCraft( typeof( CherryArmoire ),	1044292, 1030334, 90.0, 115.0,	typeof( Log ), 1044041, 40, 1044351 );
-				SetNeededExpansion( index, Expansion.SE );
+				AddCraft( typeof( PlainWoodenChest ),	1044292, 1030251, 90.0, 115.0,	typeof( Log ), 1044041, 30, 1044351 );
+				AddCraft( typeof( OrnateWoodenChest ),	1044292, 1030253, 90.0, 115.0,	typeof( Log ), 1044041, 30, 1044351 );
+				AddCraft( typeof( GildedWoodenChest ),	1044292, 1030255, 90.0, 115.0,	typeof( Log ), 1044041, 30, 1044351 );
+				AddCraft( typeof( WoodenFootLocker ),	1044292, 1030257, 90.0, 115.0,	typeof( Log ), 1044041, 30, 1044351 );
+				AddCraft( typeof( FinishedWoodenChest ),1044292, 1030259, 90.0, 115.0,	typeof( Log ), 1044041, 30, 1044351 );
+				AddCraft( typeof( TallCabinet ),	1044292, 1030261, 90.0, 115.0,	typeof( Log ), 1044041, 35, 1044351 );
+				AddCraft( typeof( ShortCabinet ),	1044292, 1030263, 90.0, 115.0,	typeof( Log ), 1044041, 35, 1044351 );
+				AddCraft( typeof( RedArmoire ),	1044292, 1030328, 90.0, 115.0,	typeof( Log ), 1044041, 40, 1044351 );
+				AddCraft( typeof( ElegantArmoire ),	1044292, 1030330, 90.0, 115.0,	typeof( Log ), 1044041, 40, 1044351 );
+				AddCraft( typeof( MapleArmoire ),	1044292, 1030332, 90.0, 115.0,	typeof( Log ), 1044041, 40, 1044351 );
+				AddCraft( typeof( CherryArmoire ),	1044292, 1030334, 90.0, 115.0,	typeof( Log ), 1044041, 40, 1044351 );
 			}
 
 			index = AddCraft( typeof( Keg ), 1044292, 1023711, 57.8, 82.8, typeof( BarrelStaves ), 1044288, 3, 1044253 );
@@ -229,10 +204,7 @@ namespace Server.Engines.Craft
 			index = AddCraft( typeof( TambourineTassel ), 1044293, 1044320, 57.8, 82.8, typeof( Log ), 1044041, 15, 1044351 );
 			AddRes( index, typeof( Cloth ), 1044286, 15, 1044287 );
 
-			if( Core.SE )
-			{
-				index = AddCraft( typeof( BambooFlute ), 1044293, 1030247, 80.0, 105.0, typeof( Log ), 1044041, 15, 1044351 );
-			}
+			AddCraft( typeof( Flute ), 1044293, "flute", 80.0, 105.0, typeof( Log ), 1044041, 15, 1044351 );
 
 			// Misc Add-ons
 			index = AddCraft( typeof( SmallBedSouthDeed ), 1044290, 1044321, 94.7, 119.8, typeof( Log ), 1044041, 100, 1044351 );
