@@ -138,7 +138,7 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( TricorneHat ), 1011375, 1025915, 6.2, 31.2, typeof( Cloth ), 1044286, 12, 1044287 );
 			AddCraft( typeof( JesterHat ), 1011375, 1025916, 7.2, 32.2, typeof( Cloth ), 1044286, 15, 1044287 );
 			AddCraft( typeof( FlowerGarland ), 1011375, 1028965, 10.0, 35.0, typeof( Cloth ), 1044286, 5, 1044287 );
-			AddCraft( typeof( ClothHood ), 1011375, 1030202, 80.0, 105.0, typeof( Cloth ), 1044286, 13, 1044287 );
+			AddCraft( typeof( ClothHood ), 1011375, "cloth hood", 80.0, 105.0, typeof( Cloth ), 1044286, 13, 1044287 );
 			#endregion
 
 			#region Shirts
