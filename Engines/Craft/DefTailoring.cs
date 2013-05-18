@@ -155,7 +155,7 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( FurCape ), 1015269, 1028969, 35.0, 60.0, typeof( Cloth ), 1044286, 13, 1044287 );
 			AddCraft( typeof( GildedDress ), 1015269, 1028973, 37.5, 62.5, typeof( Cloth ), 1044286, 16, 1044287 );
 			AddCraft( typeof( FormalShirt ), 1015269, 1028975, 26.0, 51.0, typeof( Cloth ), 1044286, 16, 1044287 );
-			AddCraft( typeof( Waistcoat ), 1015269, 1030220, 30.0, 55.0, typeof( Cloth ), 1044286, 12, 1044287 );
+			AddCraft( typeof( Waistcoat ), 1015269, "waistcoat", 30.0, 55.0, typeof( Cloth ), 1044286, 12, 1044287 );
 			#endregion
 
 			#region Pants
@@ -170,9 +170,11 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( BodySash ), 1015283, 1025441, 4.1, 29.1, typeof( Cloth ), 1044286, 4, 1044287 );
 			AddCraft( typeof( HalfApron ), 1015283, 1025435, 20.7, 45.7, typeof( Cloth ), 1044286, 6, 1044287 );
 			AddCraft( typeof( FullApron ), 1015283, 1025437, 29.0, 54.0, typeof( Cloth ), 1044286, 10, 1044287 );
-
-			AddCraft( typeof( Quiver ), 1015283, 1032657, 65.0, 115.0, typeof( Leather ), 1044462, 28, 1044463 );
+			AddCraft( typeof( Quiver ), 1015283, "quiver", 65.0, 115.0, typeof( Leather ), 1044462, 28, 1044463 );
 			AddCraft( typeof( OilCloth ), 1015283, 1041498, 74.6, 99.6, typeof( Cloth ), 1044286, 1, 1044287 );
+			AddCraft( typeof( Pouch ), 1015283, "pouch", 0.0, 30.0, typeof( Leather ), 1044462, 5, 1044463 );
+			AddCraft( typeof( Bag ), 1015283, "bag", 30.0, 60.0, typeof( Leather ), 1044462, 15, 1044463 );
+			AddCraft( typeof( Backpack ), 1015283, "backpack", 60.0, 90.0, typeof( Leather ), 1044462, 20, 1044463 );
 			AddCraft( typeof( GozaMatEastDeed ), 1015283, 1030404, 55.0, 80.0, typeof( Cloth ), 1044286, 25, 1044287 );
 			AddCraft( typeof( GozaMatSouthDeed ), 1015283, 1030405, 55.0, 80.0, typeof( Cloth ), 1044286, 25, 1044287 );
 			AddCraft( typeof( SquareGozaMatEastDeed ), 1015283, 1030407, 55.0, 80.0, typeof( Cloth ), 1044286, 25, 1044287 );
