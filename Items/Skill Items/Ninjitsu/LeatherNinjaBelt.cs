@@ -24,7 +24,7 @@ namespace Server.Items
 
 		public virtual int WeaponDamage { get { return Utility.RandomMinMax(3, 5); } }
 
-		public virtual Type AmmoType { get { return typeof(Shuriken); } }
+		public virtual Type AmmoType { get { return typeof(ThrowingStar); } }
 
 		private int m_UsesRemaining;
 		private Poison m_Poison;
