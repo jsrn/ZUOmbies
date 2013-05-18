@@ -357,7 +357,7 @@ namespace Server.Engines.Craft
 					typeof( DragonBardingDeed ),
 					typeof( BaseTool ),
 					typeof( BaseHarvestTool ),
-					typeof( FukiyaDarts ), typeof( Shuriken ),
+					typeof( FukiyaDarts ), typeof( ThrowingStar ),
 					typeof( Spellbook ), typeof( Runebook ),
 					typeof( BaseQuiver )
 				};
