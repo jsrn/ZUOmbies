@@ -125,15 +125,6 @@ namespace Server.Engines.Craft
 				SetNeededExpansion( index, Expansion.SE );
 			}
 
-			if ( Core.ML )
-			{
-				index = AddCraft( typeof( RunedSwitch ), 1044294, 1072896, 70.0, 120.0, typeof( Log ), 1044041, 2, 1044351 );
-				AddRes( index, typeof( EnchantedSwitch ), 1072893, 1, 1053098 );
-				AddRes( index, typeof( RunedPrism ), 1073465, 1, 1053098 );
-				AddRes( index, typeof( JeweledFiligree ), 1072894, 1, 1053098 );
-				SetNeededExpansion( index, Expansion.ML );
-			}
-
 			// Furniture
 			AddCraft( typeof( FootStool ),					1044291, 1022910,	11.0,  36.0,	typeof( Log ), 1044041,  9, 1044351 );
 			AddCraft( typeof( Stool ),						1044291, 1022602,	11.0,  36.0,	typeof( Log ), 1044041,  9, 1044351 );
@@ -232,34 +223,26 @@ namespace Server.Engines.Craft
 
 			// Instruments
 			index = AddCraft( typeof( LapHarp ), 1044293, 1023762, 63.1, 88.1, typeof( Log ), 1044041, 20, 1044351 );
-			AddSkill( index, SkillName.Musicianship, 45.0, 50.0 );
 			AddRes( index, typeof( Cloth ), 1044286, 10, 1044287 );
 
 			index = AddCraft( typeof( Harp ), 1044293, 1023761, 78.9, 103.9, typeof( Log ), 1044041, 35, 1044351 );
-			AddSkill( index, SkillName.Musicianship, 45.0, 50.0 );
 			AddRes( index, typeof( Cloth ), 1044286, 15, 1044287 );
 
 			index = AddCraft( typeof( Drums ), 1044293, 1023740, 57.8, 82.8, typeof( Log ), 1044041, 20, 1044351 );
-			AddSkill( index, SkillName.Musicianship, 45.0, 50.0 );
 			AddRes( index, typeof( Cloth ), 1044286, 10, 1044287 );
 
 			index = AddCraft( typeof( Lute ), 1044293, 1023763, 68.4, 93.4, typeof( Log ), 1044041, 25, 1044351 );
-			AddSkill( index, SkillName.Musicianship, 45.0, 50.0 );
 			AddRes( index, typeof( Cloth ), 1044286, 10, 1044287 );
 
 			index = AddCraft( typeof( Tambourine ), 1044293, 1023741, 57.8, 82.8, typeof( Log ), 1044041, 15, 1044351 );
-			AddSkill( index, SkillName.Musicianship, 45.0, 50.0 );
 			AddRes( index, typeof( Cloth ), 1044286, 10, 1044287 );
 
 			index = AddCraft( typeof( TambourineTassel ), 1044293, 1044320, 57.8, 82.8, typeof( Log ), 1044041, 15, 1044351 );
-			AddSkill( index, SkillName.Musicianship, 45.0, 50.0 );
 			AddRes( index, typeof( Cloth ), 1044286, 15, 1044287 );
 
 			if( Core.SE )
 			{
 				index = AddCraft( typeof( BambooFlute ), 1044293, 1030247, 80.0, 105.0, typeof( Log ), 1044041, 15, 1044351 );
-				AddSkill( index, SkillName.Musicianship, 45.0, 50.0 );
-				SetNeededExpansion( index, Expansion.SE );
 			}
 
 			// Misc Add-ons
