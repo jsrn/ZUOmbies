@@ -97,22 +97,14 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( ShortMusicStand ),			1044294, 1044313,	78.9, 103.9,	typeof( Log ), 1044041, 15, 1044351 );
 			AddCraft( typeof( TallMusicStand ),				1044294, 1044315,	81.5, 106.5,	typeof( Log ), 1044041, 20, 1044351 );
 			AddCraft( typeof( Easle ),						1044294, 1044317,	86.8, 111.8,	typeof( Log ), 1044041, 20, 1044351 );
-			if( Core.SE )
-			{
-				index = AddCraft( typeof( RedHangingLantern ), 1044294, 1029412, 65.0, 90.0, typeof( Log ), 1044041, 5, 1044351 );
-				AddRes( index, typeof( BlankScroll ), 1044377, 10, 1044378 );
+			
+			index = AddCraft( typeof( ShojiScreen ), 1044294, 1029423, 80.0, 105.0, typeof( Log ), 1044041, 75, 1044351 );
+			AddSkill( index, SkillName.Tailoring, 50.0, 55.0 );
+			AddRes( index, typeof( Cloth ), 1044286, 60, 1044287 );
 
-				index = AddCraft( typeof( WhiteHangingLantern ), 1044294, 1029416, 65.0, 90.0, typeof( Log ), 1044041, 5, 1044351 );
-				AddRes( index, typeof( BlankScroll ), 1044377, 10, 1044378 );
-
-				index = AddCraft( typeof( ShojiScreen ), 1044294, 1029423, 80.0, 105.0, typeof( Log ), 1044041, 75, 1044351 );
-				AddSkill( index, SkillName.Tailoring, 50.0, 55.0 );
-				AddRes( index, typeof( Cloth ), 1044286, 60, 1044287 );
-
-				index = AddCraft( typeof( BambooScreen ), 1044294, 1029428, 80.0, 105.0, typeof( Log ), 1044041, 75, 1044351 );
-				AddSkill( index, SkillName.Tailoring, 50.0, 55.0 );
-				AddRes( index, typeof( Cloth ), 1044286, 60, 1044287 );
-			}
+			index = AddCraft( typeof( BambooScreen ), 1044294, 1029428, 80.0, 105.0, typeof( Log ), 1044041, 75, 1044351 );
+			AddSkill( index, SkillName.Tailoring, 50.0, 55.0 );
+			AddRes( index, typeof( Cloth ), 1044286, 60, 1044287 );
 
 			// Furniture
 			AddCraft( typeof( FootStool ),					1044291, 1022910,	11.0,  36.0,	typeof( Log ), 1044041,  9, 1044351 );
@@ -128,12 +120,8 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( WritingTable ),				1044291, 1022890,	63.1,  88.1,	typeof( Log ), 1044041, 17, 1044351 );
 			AddCraft( typeof( YewWoodTable ),				1044291, 1044307,	63.1,  88.1,	typeof( Log ), 1044041, 23, 1044351 );
 			AddCraft( typeof( LargeTable ),					1044291, 1044308,	84.2, 109.2,	typeof( Log ), 1044041, 27, 1044351 );
-
-			if( Core.SE )
-			{
-				AddCraft( typeof( ElegantLowTable ),	1044291, 1030265,	80.0, 105.0,	typeof( Log ), 1044041, 35, 1044351 );
-				AddCraft( typeof( PlainLowTable ),		1044291, 1030266,	80.0, 105.0,	typeof( Log ), 1044041, 35, 1044351 );
-			}
+			AddCraft( typeof( ElegantLowTable ),			1044291, 1030265,	80.0, 105.0,	typeof( Log ), 1044041, 35, 1044351 );
+			AddCraft( typeof( PlainLowTable ),				1044291, 1030266,	80.0, 105.0,	typeof( Log ), 1044041, 35, 1044351 );
 
 			// Containers
 			AddCraft( typeof( WoodenBox ),					1044292, 1023709,	21.0,  46.0,	typeof( Log ), 1044041, 10, 1044351 );
@@ -145,21 +133,18 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( FancyArmoire ),				1044292, 1044312,	84.2, 109.2,	typeof( Log ), 1044041, 35, 1044351 );
 			AddCraft( typeof( Armoire ),					1044292, 1022643,	84.2, 109.2,	typeof( Log ), 1044041, 35, 1044351 );
 
-			if( Core.SE )
-			{
-				AddCraft( typeof( PlainWoodenChest ),	1044292, 1030251, 90.0, 115.0,	typeof( Log ), 1044041, 30, 1044351 );
-				AddCraft( typeof( OrnateWoodenChest ),	1044292, 1030253, 90.0, 115.0,	typeof( Log ), 1044041, 30, 1044351 );
-				AddCraft( typeof( GildedWoodenChest ),	1044292, 1030255, 90.0, 115.0,	typeof( Log ), 1044041, 30, 1044351 );
-				AddCraft( typeof( WoodenFootLocker ),	1044292, 1030257, 90.0, 115.0,	typeof( Log ), 1044041, 30, 1044351 );
-				AddCraft( typeof( FinishedWoodenChest ),1044292, 1030259, 90.0, 115.0,	typeof( Log ), 1044041, 30, 1044351 );
-				AddCraft( typeof( TallCabinet ),	1044292, 1030261, 90.0, 115.0,	typeof( Log ), 1044041, 35, 1044351 );
-				AddCraft( typeof( ShortCabinet ),	1044292, 1030263, 90.0, 115.0,	typeof( Log ), 1044041, 35, 1044351 );
-				AddCraft( typeof( RedArmoire ),	1044292, 1030328, 90.0, 115.0,	typeof( Log ), 1044041, 40, 1044351 );
-				AddCraft( typeof( ElegantArmoire ),	1044292, 1030330, 90.0, 115.0,	typeof( Log ), 1044041, 40, 1044351 );
-				AddCraft( typeof( MapleArmoire ),	1044292, 1030332, 90.0, 115.0,	typeof( Log ), 1044041, 40, 1044351 );
-				AddCraft( typeof( CherryArmoire ),	1044292, 1030334, 90.0, 115.0,	typeof( Log ), 1044041, 40, 1044351 );
-			}
-
+			AddCraft( typeof( PlainWoodenChest ),	1044292, 1030251, 90.0, 115.0,	typeof( Log ), 1044041, 30, 1044351 );
+			AddCraft( typeof( OrnateWoodenChest ),	1044292, 1030253, 90.0, 115.0,	typeof( Log ), 1044041, 30, 1044351 );
+			AddCraft( typeof( GildedWoodenChest ),	1044292, 1030255, 90.0, 115.0,	typeof( Log ), 1044041, 30, 1044351 );
+			AddCraft( typeof( WoodenFootLocker ),	1044292, 1030257, 90.0, 115.0,	typeof( Log ), 1044041, 30, 1044351 );
+			AddCraft( typeof( FinishedWoodenChest ),1044292, 1030259, 90.0, 115.0,	typeof( Log ), 1044041, 30, 1044351 );
+			AddCraft( typeof( TallCabinet ),	1044292, 1030261, 90.0, 115.0,	typeof( Log ), 1044041, 35, 1044351 );
+			AddCraft( typeof( ShortCabinet ),	1044292, 1030263, 90.0, 115.0,	typeof( Log ), 1044041, 35, 1044351 );
+			AddCraft( typeof( RedArmoire ),	1044292, 1030328, 90.0, 115.0,	typeof( Log ), 1044041, 40, 1044351 );
+			AddCraft( typeof( ElegantArmoire ),	1044292, 1030330, 90.0, 115.0,	typeof( Log ), 1044041, 40, 1044351 );
+			AddCraft( typeof( MapleArmoire ),	1044292, 1030332, 90.0, 115.0,	typeof( Log ), 1044041, 40, 1044351 );
+			AddCraft( typeof( CherryArmoire ),	1044292, 1030334, 90.0, 115.0,	typeof( Log ), 1044041, 40, 1044351 );
+			
 			index = AddCraft( typeof( Keg ), 1044292, 1023711, 57.8, 82.8, typeof( BarrelStaves ), 1044288, 3, 1044253 );
 			AddRes( index, typeof( BarrelHoops ), 1044289, 1, 1044253 );
 			AddRes( index, typeof( BarrelLid ), 1044251, 1, 1044253 );
