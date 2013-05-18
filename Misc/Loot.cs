@@ -11,7 +11,7 @@ namespace Server
 		#region List definitions
 		private static Type[] m_SEWeaponTypes = new Type[]
 			{
-				typeof( Bokuto ),				typeof( Daisho ),				typeof( Kama ),
+				typeof( WoodenSword ),				typeof( Daisho ),				typeof( Kama ),
 				typeof( Lajatang ),				typeof( NoDachi ),				typeof( Nunchaku ),
 				typeof( Sai ),					typeof( Tekagi ),				typeof( Tessen ),
 				typeof( Tetsubo ),				typeof( Wakizashi )

@@ -122,8 +122,6 @@ namespace Server.Engines.Craft
 
 		public override void InitCraftList()
 		{
-			int index = -1;
-
 			#region Hats
 			AddCraft( typeof( SkullCap ), 1011375, 1025444, 0.0, 25.0, typeof( Cloth ), 1044286, 2, 1044287 );
 			AddCraft( typeof( Bandana ), 1011375, 1025440, 0.0, 25.0, typeof( Cloth ), 1044286, 2, 1044287 );
