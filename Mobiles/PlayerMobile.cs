@@ -1304,8 +1304,6 @@ namespace Server.Mobiles
 		{
 			get
 			{
-				return Math.Min( base.Dex, 150 );
-
 				return base.Dex;
 			}
 			set
@@ -1905,7 +1903,7 @@ namespace Server.Mobiles
 			
 			BandageContext c = BandageContext.GetContext( this );
 
-			if ( amount > 0 && c != null)
+			if ( amount > disruptThreshold && c != null)
 			{
 				c.Slip();
 			}
