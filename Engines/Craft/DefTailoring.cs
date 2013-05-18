@@ -221,26 +221,6 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( FemaleStuddedChest ), 1015306, 1027170, 87.1, 112.1, typeof( Leather ), 1044462, 10, 1044463 );
 			#endregion
 
-			#region Bone Armor
-			index = AddCraft( typeof( BoneHelm ), 1049149, 1025206, 85.0, 110.0, typeof( Leather ), 1044462, 4, 1044463 );
-			AddRes( index, typeof( Bone ), 1049064, 2, 1049063 );
-			
-			index = AddCraft( typeof( BoneGloves ), 1049149, 1025205, 89.0, 114.0, typeof( Leather ), 1044462, 6, 1044463 );
-			AddRes( index, typeof( Bone ), 1049064, 2, 1049063 );
-
-			index = AddCraft( typeof( BoneArms ), 1049149, 1025203, 92.0, 117.0, typeof( Leather ), 1044462, 8, 1044463 );
-			AddRes( index, typeof( Bone ), 1049064, 4, 1049063 );
-
-			index = AddCraft( typeof( BoneLegs ), 1049149, 1025202, 95.0, 120.0, typeof( Leather ), 1044462, 10, 1044463 );
-			AddRes( index, typeof( Bone ), 1049064, 6, 1049063 );
-		
-			index = AddCraft( typeof( BoneChest ), 1049149, 1025199, 96.0, 121.0, typeof( Leather ), 1044462, 12, 1044463 );
-			AddRes( index, typeof( Bone ), 1049064, 10, 1049063 );
-
-			index = AddCraft(typeof(OrcHelm), 1049149, 1027947, 90.0, 115.0, typeof(Leather), 1044462, 6, 1044463);
-			AddRes(index, typeof(Bone), 1049064, 4, 1049063);
-			#endregion
-
 			// Set the overridable material
 			SetSubRes( typeof( Leather ), 1049150 );
 
