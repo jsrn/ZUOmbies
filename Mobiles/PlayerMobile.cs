@@ -4152,7 +4152,7 @@ namespace Server.Mobiles
 
 		public void AutoStablePets()
 		{
-			if ( Core.SE && AllFollowers.Count > 0 )
+			if ( AllFollowers.Count > 0 )
 			{
 				for ( int i = m_AllFollowers.Count - 1; i >= 0; --i )
 				{
@@ -4199,7 +4199,7 @@ namespace Server.Mobiles
 
 		public void ClaimAutoStabledPets()
 		{
-			if ( !Core.SE || m_AutoStabled.Count <= 0 )
+			if ( m_AutoStabled.Count <= 0 )
 				return;
 
 			if ( !Alive )
