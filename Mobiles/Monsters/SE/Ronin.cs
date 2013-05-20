@@ -84,7 +84,6 @@ namespace Server.Mobiles
 		public override void OnDeath( Container c )
  		{
 			base.OnDeath( c );
-	 		c.DropItem( new BookOfBushido() );
  		}
 
 		// TODO: Bushido abilities

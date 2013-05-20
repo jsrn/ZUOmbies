@@ -5,7 +5,6 @@ using Server.Items;
 using Server.Mobiles;
 using Server.Network;
 using Server.Spells.Ninjitsu;
-using Server.Spells.Bushido;
 
 namespace Server.Spells
 {
@@ -144,12 +143,6 @@ namespace Server.Spells
 		{
 			if ( !from.Player )
 				return true;
-
-			if ( Bushido.HonorableExecution.IsUnderPenalty( from ) )
-			{
-				from.SendLocalizedMessage( 1063024 ); // You cannot perform this special move right now.
-				return false;
-			}
 
 			if ( Ninjitsu.AnimalForm.UnderTransformation( from ) )
 			{

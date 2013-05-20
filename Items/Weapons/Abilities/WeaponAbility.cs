@@ -177,12 +177,6 @@ namespace Server.Items
 				return false;
 			}
 			
-			if ( Spells.Bushido.HonorableExecution.IsUnderPenalty( from ) || Spells.Ninjitsu.AnimalForm.UnderTransformation( from ) )
-			{
-				from.SendLocalizedMessage( 1063024 ); // You cannot perform this special move right now.
-				return false;
-			}
-
 			if ( Core.ML && from.Spell != null )
 			{
 				from.SendLocalizedMessage( 1063024 ); // You cannot perform this special move right now.

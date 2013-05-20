@@ -8,7 +8,6 @@ using Server.Spells.Necromancy;
 using Server.Spells.Ninjitsu;
 using System.Collections.Generic;
 using Server.Spells.Spellweaving;
-using Server.Spells.Bushido;
 
 namespace Server.Spells
 {
@@ -321,9 +320,6 @@ namespace Server.Spells
 				scalar *= GetSlayerDamageScalar( target );
 
 			target.Region.SpellDamageScalar( m_Caster, target, ref scalar );
-
-			if( Evasion.CheckSpellEvasion( target ) )	//Only single target spells an be evaded
-				scalar = 0;
 
 			return scalar;
 		}
