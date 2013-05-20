@@ -1,6 +1,5 @@
 ﻿using System;
 using Server.Mobiles;
-using Server.Spells.Ninjitsu;
 
 namespace Server.Items
 {
@@ -49,13 +48,6 @@ namespace Server.Items
 		public override void OnRemoved( object parent )
 		{
 			base.OnRemoved( parent );
-
-			if ( parent is Mobile )
-			{
-				Mobile m = (Mobile) parent;
-
-				AnimalForm.RemoveContext( m, true );
-			}
 		}
 
 		public static bool EntryEnabled( Mobile m, Type type )

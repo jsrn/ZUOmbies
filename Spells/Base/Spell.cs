@@ -5,7 +5,6 @@ using Server.Targeting;
 using Server.Mobiles;
 using Server.Spells.Second;
 using Server.Spells.Necromancy;
-using Server.Spells.Ninjitsu;
 using System.Collections.Generic;
 
 namespace Server.Spells
@@ -482,7 +481,7 @@ namespace Server.Spells
 			{
 				m_Caster.SendLocalizedMessage( 502642 ); // You are already casting a spell.
 			}
-			else if ( BlockedByHorrificBeast && TransformationSpellHelper.UnderTransformation( m_Caster, typeof( HorrificBeastSpell ) ) || ( BlockedByAnimalForm && AnimalForm.UnderTransformation( m_Caster ) ))
+			else if ( BlockedByHorrificBeast && TransformationSpellHelper.UnderTransformation( m_Caster, typeof( HorrificBeastSpell ) ) )
 			{
 				m_Caster.SendLocalizedMessage( 1061091 ); // You cannot cast that spell in this form.
 			}

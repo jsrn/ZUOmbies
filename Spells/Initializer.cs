@@ -118,22 +118,6 @@ namespace Server.Spells
 				Register( 207, typeof( Chivalry.NobleSacrificeSpell ) );
 				Register( 208, typeof( Chivalry.RemoveCurseSpell ) );
 				Register( 209, typeof( Chivalry.SacredJourneySpell ) );
-
-				if ( Core.SE )
-				{
-					// Necromancy abilities
-					Register( 116, typeof( Necromancy.ExorcismSpell ) );
-
-					// Ninja abilities
-					Register( 500, typeof( Ninjitsu.FocusAttack ) );
-					Register( 501, typeof( Ninjitsu.DeathStrike ) );
-					Register( 502, typeof( Ninjitsu.AnimalForm ) );
-					Register( 503, typeof( Ninjitsu.KiAttack ) );
-					Register( 504, typeof( Ninjitsu.SurpriseAttack ) );
-					Register( 505, typeof( Ninjitsu.Backstab ) );
-					Register( 506, typeof( Ninjitsu.Shadowjump ) );
-					Register( 507, typeof( Ninjitsu.MirrorImage ) );
-				}
 			}
 		}
 

@@ -44,10 +44,6 @@ namespace Server.Items
 			{
 				from.SendLocalizedMessage( 1040016 ); // You cannot use this while riding a mount
 			}
-			else if ( Server.Spells.Ninjitsu.AnimalForm.UnderTransformation( from ) )
-			{
-				from.SendLocalizedMessage( 1070902 ); // You can't use this while in an animal form!
-			}
 			else
 			{
 				EtherealMount.StopMounting( from );
@@ -127,10 +123,6 @@ namespace Server.Items
 					else if ( from.Mounted )
 					{
 						from.SendLocalizedMessage( 1040016 ); // You cannot use this while riding a mount
-					}
-					else if ( Server.Spells.Ninjitsu.AnimalForm.UnderTransformation( from ) )
-					{
-						from.SendLocalizedMessage( 1070902 ); // You can't use this while in an animal form!
 					}
 					else if ( !to.Mounted )
 					{

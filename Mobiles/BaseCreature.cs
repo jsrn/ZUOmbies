@@ -3658,10 +3658,7 @@ namespace Server.Mobiles
 
 		public void PackArcanceScroll( double chance )
 		{
-			if ( !Core.ML || chance <= Utility.RandomDouble() )
-				return;
-
-			PackItem( Loot.Construct( Loot.ArcaneScrollTypes ) );
+			return;
 		}
 
 		public void PackNecroScroll( int index )

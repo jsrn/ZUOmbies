@@ -4,7 +4,6 @@ using Server;
 using Server.Items;
 using Server.Mobiles;
 using Server.Network;
-using Server.Spells.Ninjitsu;
 
 namespace Server.Spells
 {
@@ -143,12 +142,6 @@ namespace Server.Spells
 		{
 			if ( !from.Player )
 				return true;
-
-			if ( Ninjitsu.AnimalForm.UnderTransformation( from ) )
-			{
-				from.SendLocalizedMessage( 1063024 ); // You cannot perform this special move right now.
-				return false;
-			}
 
 			return CheckSkills( from ) && CheckMana( from, false );
 		}

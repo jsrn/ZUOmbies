@@ -6,7 +6,6 @@ using Server.Targeting;
 using Server.Mobiles;
 using Server.Spells;
 using Server.Spells.Necromancy;
-using Server.Spells.Ninjitsu;
 using Server.Factions;
 using Server.Engines.Craft;
 using System.Collections.Generic;
@@ -757,7 +756,7 @@ namespace Server.Items
 
 		private static bool CheckAnimal( Mobile m, Type type )
 		{
-			return AnimalForm.UnderTransformation( m, type );
+			return false;
 		}
 
 		public virtual bool CheckHit( Mobile attacker, Mobile defender )
@@ -822,11 +821,6 @@ namespace Server.Items
 
 				if ( Block.GetBonus( defender, ref blockBonus ) )
 					bonus += blockBonus;
-
-				int surpriseMalus = 0;
-
-				if ( SurpriseAttack.GetMalus( defender, ref surpriseMalus ) )
-					bonus -= surpriseMalus;
 
 				int discordanceEffect = 0;
 
@@ -1302,31 +1296,6 @@ namespace Server.Items
 
 		public virtual void OnHit( Mobile attacker, Mobile defender, double damageBonus )
 		{
-			if ( MirrorImage.HasClone( defender ) && (defender.Skills.Ninjitsu.Value / 150.0) > Utility.RandomDouble() )
-			{
-				Clone bc;
-
-				foreach ( Mobile m in defender.GetMobilesInRange( 4 ) )
-				{
-					bc = m as Clone;
-
-					if ( bc != null && bc.Summoned && bc.SummonMaster == defender )
-					{
-						attacker.SendLocalizedMessage( 1063141 ); // Your attack has been diverted to a nearby mirror image of your target!
-						defender.SendLocalizedMessage( 1063140 ); // You manage to divert the attack onto one of your nearby mirror images.
-
-						/*
-						 * TODO: What happens if the Clone parries a blow?
-						 * And what about if the attacker is using Honorable Execution
-						 * and kills it?
-						 */
-
-						defender = m;
-						break;
-					}
-				}
-			}
-
 			PlaySwingAnimation( attacker );
 			PlayHurtAnimation( defender );
 
@@ -1696,15 +1665,6 @@ namespace Server.Items
 
 			if ( defender is IHonorTarget && ((IHonorTarget)defender).ReceivedHonorContext != null )
 				((IHonorTarget)defender).ReceivedHonorContext.OnTargetHit( attacker );
-
-			if ( !(this is BaseRanged) )
-			{
-				if ( AnimalForm.UnderTransformation( attacker, typeof( GiantSerpent ) ) )
-					defender.ApplyPoison( attacker, Poison.Lesser );
-
-				if ( AnimalForm.UnderTransformation( defender, typeof( BullFrog ) ) )
-					attacker.ApplyPoison( defender, Poison.Regular );
-			}
 		}
 
 		public virtual double GetAosDamage( Mobile attacker, int bonus, int dice, int sides )

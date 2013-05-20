@@ -4,7 +4,6 @@ using System.IO;
 using Server.Spells.Chivalry;
 using Server.Items;
 using Server.Spells.Necromancy;
-using Server.Spells.Ninjitsu;
 
 namespace Server.Spells
 {
@@ -143,10 +142,7 @@ namespace Server.Spells
 				"Seventh",
 				"Eighth",
 				"Necromancy",
-				"Chivalry",
-				"Bushido",
-				"Ninjitsu",
-				"Spellweaving"
+				"Chivalry"
 			};
 
 		public static Spell NewSpell( string name, Mobile caster, Item scroll )

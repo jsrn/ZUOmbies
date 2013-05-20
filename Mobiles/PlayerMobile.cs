@@ -12,7 +12,6 @@ using Server.Spells;
 using Server.Spells.Fifth;
 using Server.Spells.Seventh;
 using Server.Spells.Necromancy;
-using Server.Spells.Ninjitsu;
 using Server.Targeting;
 using Server.Engines.Quests;
 using Server.Factions;
@@ -1367,30 +1366,8 @@ namespace Server.Mobiles
 			return DesignContext.Check( this );
 		}
 
-		public SkillName[] AnimalFormRestrictedSkills{ get{ return m_AnimalFormRestrictedSkills; } }
-
-		private SkillName[] m_AnimalFormRestrictedSkills = new SkillName[]
-		{
-			SkillName.ArmsLore,	SkillName.Begging, SkillName.Discordance, SkillName.Forensics,
-			SkillName.Inscribe, SkillName.ItemID, SkillName.Meditation, SkillName.Peacemaking,
-			SkillName.Provocation, SkillName.RemoveTrap, SkillName.SpiritSpeak, SkillName.Stealing,
-			SkillName.TasteID
-		};
-
 		public override bool AllowSkillUse( SkillName skill )
 		{
-			if ( AnimalForm.UnderTransformation( this ) )
-			{
-				for( int i = 0; i < m_AnimalFormRestrictedSkills.Length; i++ )
-				{
-					if( m_AnimalFormRestrictedSkills[i] == skill )
-					{
-						SendLocalizedMessage( 1070771 ); // You cannot use that skill in this form.
-						return false;
-					}
-				}
-			}
-
 			return DesignContext.Check( this );
 		}
 
@@ -3409,9 +3386,7 @@ namespace Server.Mobiles
 
 			bool onHorse = ( this.Mount != null );
 
-			AnimalFormContext animalContext = AnimalForm.GetContext( this );
-
-			if( onHorse || (animalContext != null && animalContext.SpeedBoost) )
+			if( onHorse )
 				return ( running ? Mobile.RunMount : Mobile.WalkMount );
 
 			return ( running ? Mobile.RunFoot : Mobile.WalkFoot );
