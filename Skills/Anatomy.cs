@@ -30,11 +30,7 @@ namespace Server.SkillHandlers
 
 			protected override void OnTarget( Mobile from, object targeted )
 			{
-				if ( from == targeted )
-				{
-					from.LocalOverheadMessage( MessageType.Regular, 0x3B2, 500324 ); // You know yourself quite well enough already.
-				}
-				else if ( targeted is TownCrier )
+				if ( targeted is TownCrier )
 				{
 					((TownCrier)targeted).PrivateOverheadMessage( MessageType.Regular, 0x3B2, 500322, from.NetState ); // This person looks fine to me, though he may have some news...
 				}
@@ -46,35 +42,70 @@ namespace Server.SkillHandlers
 				{
 					Mobile targ = (Mobile)targeted;
 
-					int marginOfError = Math.Max( 0, 25 - (int)(from.Skills[SkillName.Anatomy].Value / 4) );
-
-					int str = targ.Str + Utility.RandomMinMax( -marginOfError, +marginOfError );
-					int dex = targ.Dex + Utility.RandomMinMax( -marginOfError, +marginOfError );
-					int stm = ((targ.Stam * 100) / Math.Max( targ.StamMax, 1 )) + Utility.RandomMinMax( -marginOfError, +marginOfError );
-
-					int strMod = str / 10;
-					int dexMod = dex / 10;
-					int stmMod = stm / 10;
-
-					if ( strMod < 0 ) strMod = 0;
-					else if ( strMod > 10 ) strMod = 10;
-
-					if ( dexMod < 0 ) dexMod = 0;
-					else if ( dexMod > 10 ) dexMod = 10;
-
-					if ( stmMod > 10 ) stmMod = 10;
-					else if ( stmMod < 0 ) stmMod = 0;
-
-					if ( from.CheckTargetSkill( SkillName.Anatomy, targ, 0, 100 ) )
+					if( targ is PlayerMobile )
 					{
-						targ.PrivateOverheadMessage( MessageType.Regular, 0x3B2, 1038045 + (strMod * 11) + dexMod, from.NetState ); // That looks [strong] and [dexterous].
+						PlayerMobile targPM = (PlayerMobile)targ;
+						int targetInjuryPoints = targPM.getDeathPoints();
 
-						if ( from.Skills[SkillName.Anatomy].Base >= 65.0 )
-							targ.PrivateOverheadMessage( MessageType.Regular, 0x3B2, 1038303 + stmMod, from.NetState ); // That being is at [10,20,...] percent endurance.
+						string message = "";
+
+						if( from == targeted ){
+							message += "You ";
+						} else {
+							message += "They ";
+						}
+
+						if( targetInjuryPoints == 0 )
+						{
+							message += "look fine. [0/30]";
+						}
+						else if( targetInjuryPoints < 10 )
+						{
+							message += "look a bit bruised up. [" + targetInjuryPoints + "/30]";
+						}
+						else if( targetInjuryPoints < 20 )
+						{
+							message += "look quite badly beaten. [" + targetInjuryPoints + "/30]";
+						}
+						else if( targetInjuryPoints < 30 )
+						{
+							message += "are badly injured! [" + targetInjuryPoints + "/30]";
+						}
+
+						targ.PrivateOverheadMessage( MessageType.Regular, 0x3B2, true, message, from.NetState );
 					}
 					else
 					{
-						targ.PrivateOverheadMessage( MessageType.Regular, 0x3B2, 1042666, from.NetState ); // You can not quite get a sense of their physical characteristics.
+						int marginOfError = Math.Max( 0, 25 - (int)(from.Skills[SkillName.Anatomy].Value / 4) );
+
+						int str = targ.Str + Utility.RandomMinMax( -marginOfError, +marginOfError );
+						int dex = targ.Dex + Utility.RandomMinMax( -marginOfError, +marginOfError );
+						int stm = ((targ.Stam * 100) / Math.Max( targ.StamMax, 1 )) + Utility.RandomMinMax( -marginOfError, +marginOfError );
+
+						int strMod = str / 10;
+						int dexMod = dex / 10;
+						int stmMod = stm / 10;
+
+						if ( strMod < 0 ) strMod = 0;
+						else if ( strMod > 10 ) strMod = 10;
+
+						if ( dexMod < 0 ) dexMod = 0;
+						else if ( dexMod > 10 ) dexMod = 10;
+
+						if ( stmMod > 10 ) stmMod = 10;
+						else if ( stmMod < 0 ) stmMod = 0;
+
+						if ( from.CheckTargetSkill( SkillName.Anatomy, targ, 0, 100 ) )
+						{
+							targ.PrivateOverheadMessage( MessageType.Regular, 0x3B2, 1038045 + (strMod * 11) + dexMod, from.NetState ); // That looks [strong] and [dexterous].
+
+							if ( from.Skills[SkillName.Anatomy].Base >= 65.0 )
+								targ.PrivateOverheadMessage( MessageType.Regular, 0x3B2, 1038303 + stmMod, from.NetState ); // That being is at [10,20,...] percent endurance.
+						}
+						else
+						{
+							targ.PrivateOverheadMessage( MessageType.Regular, 0x3B2, 1042666, from.NetState ); // You can not quite get a sense of their physical characteristics.
+						}
 					}
 				}
 				else if ( targeted is Item )
