@@ -2149,16 +2149,13 @@ namespace Server.Mobiles
 
 						if (item is BaseWeapon || item is BaseMeleeWeapon && !(item is Fists))
 						{
-							if(!this.Young){
-								deathPoints += 5;
-								ResetDeathTime();
-							}
-						} else if (item is Spellbook || item is Fists && lastDamage > 25)
+							deathPoints += 5;
+							ResetDeathTime();
+						}
+						else if (item is Spellbook || item is Fists && lastDamage > 25)
 						{
-							if(!this.Young){
-								deathPoints += 5;
-								ResetDeathTime();
-							}
+							deathPoints += 5;
+							ResetDeathTime();
 						}
 					}
 				}
