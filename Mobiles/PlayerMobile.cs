@@ -20,7 +20,6 @@ using Server.Regions;
 using Server.Accounting;
 using Server.Engines.CannedEvil;
 using Server.Engines.Craft;
-using Server.Spells.Spellweaving;
 using Server.Engines.PartySystem;
 
 namespace Server.Mobiles
@@ -3405,9 +3404,6 @@ namespace Server.Mobiles
 				return Mobile.RunMount;	// We are NOT actually moving (just a direction change)
 
 			TransformContext context = TransformationSpellHelper.GetContext( this );
-
-			if ( context != null && context.Type == typeof( ReaperFormSpell ) )
-				return Mobile.WalkFoot;
 
 			bool running = ( (dir & Direction.Running) != 0 );
 

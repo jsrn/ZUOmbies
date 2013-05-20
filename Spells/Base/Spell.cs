@@ -7,7 +7,6 @@ using Server.Spells.Second;
 using Server.Spells.Necromancy;
 using Server.Spells.Ninjitsu;
 using System.Collections.Generic;
-using Server.Spells.Spellweaving;
 
 namespace Server.Spells
 {
@@ -144,11 +143,6 @@ namespace Server.Spells
 				sdiBonus = 15;
 
 			damageBonus += sdiBonus;
-
-			TransformContext context = TransformationSpellHelper.GetContext( Caster );
-
-			if( context != null && context.Spell is ReaperFormSpell )
-				damageBonus += ((ReaperFormSpell)context.Spell).SpellDamageBonus;
 
 			damage = AOS.Scale( damage, 100 + damageBonus );
 
@@ -626,21 +620,7 @@ namespace Server.Spells
 
 		public virtual TimeSpan GetCastRecovery()
 		{
-			if ( !Core.AOS )
-				return NextSpellDelay;
-
-			int fcr = AosAttributes.GetValue( m_Caster, AosAttribute.CastRecovery );
-
-			fcr -= ThunderstormSpell.GetCastRecoveryMalus( m_Caster );
-
-			int fcrDelay = -(CastRecoveryFastScalar * fcr);
-
-			int delay = CastRecoveryBase + fcrDelay;
-
-			if ( delay < CastRecoveryMinimum )
-				delay = CastRecoveryMinimum;
-
-			return TimeSpan.FromSeconds( (double)delay / CastRecoveryPerSecond );
+			return NextSpellDelay;
 		}
 
 
@@ -677,9 +657,6 @@ namespace Server.Spells
 
 			if ( ProtectionSpell.Registry.Contains( m_Caster ) )
 				fc -= 2;
-
-			if( EssenceOfWindSpell.IsDebuffed( m_Caster ) )
-				fc -= EssenceOfWindSpell.GetFCMalus( m_Caster );
 
 			TimeSpan baseDelay = CastDelayBase;
 

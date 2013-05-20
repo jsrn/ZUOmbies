@@ -10,7 +10,6 @@ using Server.Spells.Ninjitsu;
 using Server.Factions;
 using Server.Engines.Craft;
 using System.Collections.Generic;
-using Server.Spells.Spellweaving;
 
 namespace Server.Items
 {
@@ -893,19 +892,11 @@ namespace Server.Items
 				if( Feint.Registry.Contains( m ) )
 					bonus -= ((Feint.FeintTimer)Feint.Registry[m]).SwingSpeedReduction;
 
-				TransformContext context = TransformationSpellHelper.GetContext( m );
-
-				if( context != null && context.Spell is ReaperFormSpell )
-					bonus += ((ReaperFormSpell)context.Spell).SwingSpeedBonus;
-
 				int discordanceEffect = 0;
 
 				// Discordance gives a malus of -0/-28% to swing speed.
 				if ( SkillHandlers.Discordance.GetEffect( m, ref discordanceEffect ) )
 					bonus -= discordanceEffect;
-
-				if( EssenceOfWindSpell.IsDebuffed( m ) )
-					bonus -= EssenceOfWindSpell.GetSSIMalus( m );
 
 				if ( bonus > 60 )
 					bonus = 60;
@@ -1736,11 +1727,6 @@ namespace Server.Items
 
 				// SDI bonus
 				damageBonus += AosAttributes.GetValue( attacker, AosAttribute.SpellDamage );
-
-				TransformContext context = TransformationSpellHelper.GetContext( attacker );
-
-				if( context != null && context.Spell is ReaperFormSpell )
-					damageBonus += ((ReaperFormSpell)context.Spell).SpellDamageBonus;
 			}
 
 			damage = AOS.Scale( damage, 100 + damageBonus );
