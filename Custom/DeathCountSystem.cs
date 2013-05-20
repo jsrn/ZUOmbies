@@ -11,12 +11,6 @@ namespace Server.Commands
 	public class DeathCountSystem
 	{
 		
-		public static void StartPopPouch( Mobile m )
-		{
-			PlayerMobile pl = (PlayerMobile)m;
-			m.SendMessage( "You have accumulated " + pl.getDeathPoints() + " death points." );
-		}
-		
 		public static void ResetDeathCount( Mobile m )
 		{
 			m.Target = new ResetDeathPointsTarget();
