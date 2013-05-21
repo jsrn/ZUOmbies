@@ -116,6 +116,7 @@ namespace Server.Items
 			LootType = LootType.Newbied;
 			Hue = 2301;
 			BeginDecay( m_DefaultDecayTime );
+			Name = "a bandage dressing";
 		}
 
 		public new bool Scissor( Mobile from, Scissors scissors )
