@@ -2819,11 +2819,8 @@ namespace Server.Mobiles
 
 		private void DecayDeathRobes()
 		{
-			if( deathTimer >= TimeSpan.FromMinutes(30) )
+			if( deathTimer >= TimeSpan.FromMinutes(3) )
 			{
-				if ( Map == null || Map == Map.Internal )
-					return;
-
 				List<Item> items = this.Items;
 
 				if ( items == null )
@@ -2831,11 +2828,8 @@ namespace Server.Mobiles
 
 				for ( int i = 0; i < items.Count; i++)
 				{
-					Item item = items[i];
-					if(item is DeathRobe)
-					{
-						item.Delete();
-					}
+					if(items[i] is DeathRobe)
+						items[i].Delete();
 				}
 			}
 		}
