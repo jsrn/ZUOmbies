@@ -3657,30 +3657,10 @@ namespace Server.Mobiles
 		#endregion
 
 		#region Champion Titles
-		[CommandProperty( AccessLevel.GameMaster )]
-		public bool DisplayChampionTitle
-		{
-			get { return GetFlag( PlayerFlag.DisplayChampionTitle ); }
-			set { SetFlag( PlayerFlag.DisplayChampionTitle, value ); }
-		}
-
 		private ChampionTitleInfo m_ChampionTitles;
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public ChampionTitleInfo ChampionTitles { get { return m_ChampionTitles; } set { } }
-
-		private void ToggleChampionTitleDisplay()
-		{
-			if( !CheckAlive() )
-				return;
-
-			if( DisplayChampionTitle )
-				SendLocalizedMessage( 1062419, "", 0x23 ); // You have chosen to hide your monster kill title.
-			else
-				SendLocalizedMessage( 1062418, "", 0x23 ); // You have chosen to display your monster kill title.
-
-			DisplayChampionTitle = !DisplayChampionTitle;
-		}
 
 		[PropertyObject]
 		public class ChampionTitleInfo
