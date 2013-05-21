@@ -2819,7 +2819,7 @@ namespace Server.Mobiles
 
 		private void DecayDeathRobes()
 		{
-			if( deathTimer >= TimeSpan.FromMinutes(3) )
+			if( deathTimer >= TimeSpan.FromMinutes(30) )
 			{
 				List<Item> items = this.Items;
 
