@@ -1167,7 +1167,7 @@ namespace Server.Mobiles
 		public override bool CanBeHarmful( Mobile target, bool message, bool ignoreOurBlessedness )
 		{
 			// If YOU'RE wearing a deathrobe
-			if( this.IsWearingDeathRobe() )
+			if( target is PlayerMobile && this.IsWearingDeathRobe() )
 			{
 				this.SendMessage( "You cannot attack them while you are injured!" );
 				return false;
