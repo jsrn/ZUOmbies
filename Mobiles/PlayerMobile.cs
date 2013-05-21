@@ -1166,15 +1166,18 @@ namespace Server.Mobiles
 
 		public override bool CanBeHarmful( Mobile target, bool message, bool ignoreOurBlessedness )
 		{
+			bool targetIsPet = target is BaseCreature && ((BaseCreature)target).GetMaster() != null;
+			bool targetIsPlayer = target is PlayerMobile;
+
 			// If YOU'RE wearing a deathrobe
-			if( target is PlayerMobile && this.IsWearingDeathRobe() )
+			if( (targetIsPet || targetIsPlayer) && this.IsWearingDeathRobe() )
 			{
 				this.SendMessage( "You cannot attack them while you are injured!" );
 				return false;
 			}
 				
 			// If target is player mobile, and target is wearing deathrobe
-			if( target is PlayerMobile && ((PlayerMobile)target).IsWearingDeathRobe() )
+			if( targetIsPlayer && ((PlayerMobile)target).IsWearingDeathRobe() )
 			{
 				this.SendMessage( "You cannot attack them while they are injured!" );
 				return false;
