@@ -2296,46 +2296,20 @@ namespace Server.Mobiles
 		{
 			string[] m_Disallowed = new string[]
 			{
-				":)",
-				":(",
-				":P",
-				":p",
-				":D",
-				"XD",
-				"xD",
-				":O",
-				":o",
-				":s",
-				":S",
-				":|",
-				";)",
-				":\\",
-				":/",
-				"\\o/",
-				":C",
-				":c"
+				":)", ":(", ":P", ":p",
+				":D", "XD", "xD", ":O",
+				":o", ":s", ":S", ":|",
+				";)", ":\\", ":/", "\\o/",
+				":C", ":c"
 			};
 
 			string[] m_Replacements = new string[]
 			{
-				"*smiles*",
-				"*frowns*",
-				"*sticks out tongue*",
-				"*sticks out tongue*",
-				"*grins*",
-				"*grins*",
-				"*grins*",
-				"*looks shocked*",
-				"*looks shocked*",
-				"*looks concerned*",
-				"*looks concerned*",
-				"*blank stare*",
-				"*winks*",
-				"*looks unimpressed*",
-				"*looks unimpressed*",
-				"*waves arms*",
-				"*looks sad*",
-				"*looks sad*"
+				"*smiles*", "*frowns*", "*sticks out tongue*", "*sticks out tongue*",
+				"*grins*", "*grins*", "*grins*", "*looks shocked*",
+				"*looks shocked*", "*looks concerned*", "*looks concerned*", "*blank stare*",
+				"*winks*", "*looks unimpressed*", "*looks unimpressed*", "*waves arms*",
+				"*looks sad*", "*looks sad*"
 			};
 
 			for ( int i = 0; i < m_Disallowed.Length; ++i )
@@ -2823,6 +2797,40 @@ namespace Server.Mobiles
 			deathTimer = this.GameTime + TimeSpan.FromMinutes( 2 );
 		}
 
+		private void DecayInjuryPoints()
+		{
+			if ( deathTimer < this.GameTime && Alive)
+			{
+				deathTimer += TimeSpan.FromMinutes( 2 );
+
+				if ( deathPoints > 0)
+					--deathPoints;
+			}
+		}
+
+		private void DecayDeathRobes()
+		{
+			if( deathTimer >= TimeSpan.FromMinutes(30) )
+			{
+				if ( Map == null || Map == Map.Internal )
+					return;
+
+				List<Item> items = this.Items;
+
+				if ( items == null )
+					return;
+
+				for ( int i = 0; i < items.Count; i++)
+				{
+					Item item = items[i];
+					if(item is DeathRobe)
+					{
+						item.Delete();
+					}
+				}
+			}
+		}
+
 		public override void Serialize( GenericWriter writer )
 		{
 			//cleanup our anti-macro table
@@ -2841,15 +2849,9 @@ namespace Server.Mobiles
 
 			CheckKillDecay();
 
-			// decay our death points
-			if ( deathTimer < this.GameTime && Alive)
-			{
-				deathTimer += TimeSpan.FromMinutes( 2 );
-				if ( deathPoints > 0)
-				{
-					--deathPoints;
-				}
-			}
+			DecayInjuryPoints();
+
+			DecayDeathRobes();
 
 			CheckAtrophies( this );
 
