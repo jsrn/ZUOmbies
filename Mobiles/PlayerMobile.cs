@@ -785,6 +785,26 @@ namespace Server.Mobiles
 			Timer.DelayCall( TimeSpan.Zero, new TimerCallback( ValidateEquipment_Sandbox ) );
 		}
 
+		private bool IsWearingDeathRobe()
+		{
+			if ( Map == null || Map == Map.Internal )
+				return false;
+
+			List<Item> items = this.Items;
+
+			if ( items == null )
+				return false;
+
+			for ( int i = 0; i < items.Count; i++)
+			{
+				Item item = items[i];
+				if(item is DeathRobe)
+					return true;
+			}
+
+			return false;
+		}
+
 		private void ValidateEquipment_Sandbox()
 		{
 			try
@@ -1146,6 +1166,14 @@ namespace Server.Mobiles
 
 		public override bool CanBeHarmful( Mobile target, bool message, bool ignoreOurBlessedness )
 		{
+			// If YOU'RE wearing a deathrobe
+			if( this.IsWearingDeathRobe() )
+				return false;
+
+			// If target is player mobile, and target is wearing deathrobe
+			if( target is PlayerMobile && ((PlayerMobile)target).IsWearingDeathRobe() )
+				return false;
+
 			if ( m_DesignContext != null || (target is PlayerMobile && ((PlayerMobile)target).m_DesignContext != null) )
 				return false;
 
