@@ -785,7 +785,7 @@ namespace Server.Mobiles
 			Timer.DelayCall( TimeSpan.Zero, new TimerCallback( ValidateEquipment_Sandbox ) );
 		}
 
-		private bool IsWearingDeathRobe()
+		public bool IsWearingDeathRobe()
 		{
 			if ( Map == null || Map == Map.Internal )
 				return false;

@@ -4624,6 +4624,20 @@ namespace Server.Mobiles
 
 		public override bool CanBeHarmful( Mobile target, bool message, bool ignoreOurBlessedness )
 		{
+			bool hasMaster = GetMaster() != null;
+
+			bool targetIsWoundedPlayer = target is PlayerMobile && ((PlayerMobile)target).IsWearingDeathRobe();
+
+			bool targetIsPet = target is BaseCreature && ((BaseCreature)target).GetMaster() != null;
+			bool targetIsPetOfWoundedPlayer = targetIsPet && ((PlayerMobile)((BaseCreature)target).GetMaster()).IsWearingDeathRobe();
+
+			if( hasMaster && (targetIsWoundedPlayer || targetIsPetOfWoundedPlayer) )
+			{
+				Mobile m = this.GetMaster();
+				((PlayerMobile)m).SendMessage( "You cannot attack them while they are injured!" );
+				return false;
+			}
+
 			if ( target is BaseFactionGuard )
 				return false;
 
