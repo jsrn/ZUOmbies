@@ -5250,7 +5250,7 @@ namespace Server.Mobiles
 
 		public static void Initialize()
 		{
-			new LoyaltyTimer().Start();
+			//new LoyaltyTimer().Start();
 		}
 
 		public LoyaltyTimer() : base( InternalDelay, InternalDelay )
