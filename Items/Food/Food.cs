@@ -84,8 +84,8 @@ namespace Server.Items
 				// Heal a bit
 				from.Hits +=  Utility.Random( 5, 11 );
 
-				if( from.Hits > from.MaxHits )
-					from.Hits = from.MaxHits;
+				if( from.Hits > from.HitsMax )
+					from.Hits = from.HitsMax;
 
 				Consume();
 
