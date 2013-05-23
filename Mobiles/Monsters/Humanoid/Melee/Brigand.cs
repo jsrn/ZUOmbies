@@ -44,7 +44,7 @@ namespace Server.Mobiles
 			SetSkill( SkillName.Tactics, 65.0, 87.5 );
 			SetSkill( SkillName.Wrestling, 15.0, 37.5 );
 
-			Fame = 3500;
+			Fame = 4000;
 			Karma = -1000;
 
 			AddItem( new Boots( Utility.RandomNeutralHue() ) );
