@@ -1069,19 +1069,13 @@ namespace Server.Items
 			BaseShield shield = defender.FindItemOnLayer( Layer.TwoHanded ) as BaseShield;
 
 			double parry = defender.Skills[SkillName.Parry].Value;
-			double bushidoNonRacial = defender.Skills[SkillName.Bushido].NonRacialValue;
-			double bushido = defender.Skills[SkillName.Bushido].Value;
 
-			if ( shield != null )
+			if ( shield != null ) // Parry with shield
 			{
-				double chance = (parry - bushidoNonRacial) / 400.0;	// As per OSI, no negitive effect from the Racial stuffs, ie, 120 parry and '0' bushido with humans
+				double chance = parry / 400.0;
 
 				if ( chance < 0 ) // chance shouldn't go below 0
 					chance = 0;				
-
-				// Parry/Bushido over 100 grants a 5% bonus.
-				if ( parry >= 100.0 || bushido >= 100.0)
-					chance += 0.05;
 
 				// Low dexterity lowers the chance.
 				if ( defender.Dex < 80 )
@@ -1089,35 +1083,23 @@ namespace Server.Items
 
 				return defender.CheckSkill( SkillName.Parry, chance );
 			}
-			else if ( !(defender.Weapon is Fists) && !(defender.Weapon is BaseRanged) )
+			else if ( !(defender.Weapon is Fists) && !(defender.Weapon is BaseRanged) ) // Parry with weapon
 			{
 				BaseWeapon weapon = defender.Weapon as BaseWeapon;
 
-				double divisor = (weapon.Layer == Layer.OneHanded) ? 48000.0 : 41140.0;
+				double divisor;
+				if( weapon.Layer == Layer.OneHanded )
+					divisor = 1000.0; // 10%
+				else
+					divisor = 600.0; // 16.6%
 
-				double chance = (parry * bushido) / divisor;
-
-				double aosChance = parry / 800.0;
-
-				// Parry or Bushido over 100 grant a 5% bonus.
-				if( parry >= 100.0 )
-				{
-					chance += 0.05;
-					aosChance += 0.05;
-				}
-				else if( bushido >= 100.0 )
-				{
-					chance += 0.05;
-				}
+				double chance = parry / divisor;
 
 				// Low dexterity lowers the chance.
 				if( defender.Dex < 80 )
 					chance = chance * (20 + defender.Dex) / 100;
 
-				if ( chance > aosChance )
-					return defender.CheckSkill( SkillName.Parry, chance );
-				else
-					return (aosChance > Utility.RandomDouble()); // Only skillcheck if wielding a shield & there's no effect from Bushido
+				return defender.CheckSkill( SkillName.Parry, chance );
 			}
 
 			return false;
