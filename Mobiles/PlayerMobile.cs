@@ -2039,6 +2039,7 @@ namespace Server.Mobiles
 			}
 
 			Mobile killer = this.FindMostRecentDamager( true );
+			int deathPointsGained = 0;
 
 			if ( killer is BaseCreature )
 			{
@@ -2058,7 +2059,7 @@ namespace Server.Mobiles
 
 				if( !killedByPlayerInTrainingZone)
 				{
-					deathPoints += (int) ((mobFame/24000.0) * 30);
+					deathPointsGained = (int) ((mobFame/24000.0) * 30);
 					ResetDeathTime();
 				}
 			}
@@ -2066,7 +2067,7 @@ namespace Server.Mobiles
 			{
 				BaseChampion bc = (BaseChampion)killer;
 				double mobFame = bc.GetFame();
-				deathPoints += (int) ((mobFame/24000.0) * 30);
+				deathPointsGained = (int) ((mobFame/24000.0) * 30);
 				ResetDeathTime();
 			}
 			else if ( killer is PlayerMobile && !this.m_FreeDeaths )
@@ -2086,17 +2087,22 @@ namespace Server.Mobiles
 
 						if (item is BaseWeapon || item is BaseMeleeWeapon && !(item is Fists))
 						{
-							deathPoints += 5;
+							deathPointsGained = 5;
 							ResetDeathTime();
 						}
 						else if (item is Spellbook || item is Fists && lastDamage > 25)
 						{
-							deathPoints += 5;
+							deathPointsGained = 5;
 							ResetDeathTime();
 						}
 					}
 				}
 			}
+
+			if ( deathPointsGained < 1 )
+				deathPointsGained = 1;
+
+			deathPoints += deathPointsGained;
 
 			Faction.HandleDeath( this, killer );
 
