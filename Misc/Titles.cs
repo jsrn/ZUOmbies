@@ -119,12 +119,6 @@ namespace Server.Misc
 				else if ( offset < 0 )
 					m.SendLocalizedMessage( 1019063 ); // You have lost a little karma.
 			}
-
-			if ( !Core.AOS && wasPositiveKarma && m.Karma < 0 && m is PlayerMobile && !((PlayerMobile)m).KarmaLocked )
-			{
-				((PlayerMobile)m).KarmaLocked = true;
-				m.SendLocalizedMessage( 1042511, "", 0x22 ); // Karma is locked.  A mantra spoken at a shrine will unlock it again.
-			}
 		}
 
 		public static string[] HarrowerTitles = new string[] { "Spite", "Opponent", "Hunter", "Venom", "Executioner", "Annihilator", "Champion", "Assailant", "Purifier", "Nullifier" };
