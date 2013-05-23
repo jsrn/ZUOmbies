@@ -73,6 +73,24 @@ namespace Server.SkillHandlers
 						}
 
 						targ.PrivateOverheadMessage( MessageType.Regular, 0x3B2, true, message, from.NetState );
+
+						if( from == targeted ){
+							int hungerAmount = ((PlayerMobile)targ).Hunger;
+							string hungerMessage = "";
+
+							if( hungerAmount == 1)
+								hungerMessage += "You are stuffed! [" + hungerMessage + "/20]";
+							else if (hungerAmount < 5)
+								hungerMessage += "You are peckish. [" + hungerMessage + "/20]";
+							else if (hungerAmount < 10)
+								hungerMessage += "You are a little hungry. [" + hungerMessage + "/20]";
+							else if (hungerAmount < 15)
+								hungerMessage += "You are quite hungry. [" + hungerMessage + "/20]";
+							else
+								hungerMessage += "You are very hungry!. [" + hungerMessage + "/20]";
+
+							targ.PrivateOverheadMessage( MessageType.Regular, 0x3B2, true, hungerMessage, from.NetState );
+						}
 					}
 					else
 					{
