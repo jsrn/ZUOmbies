@@ -150,6 +150,7 @@ namespace Server.Engines.Craft
 			AddRes( index, typeof( BarrelLid ), 1044251, 1, 1044253 );
 
 			// Staves and Shields
+			AddCraft( typeof( Club ), 1044295, "wooden club", 0.0, 50.0, typeof( Log ), 1044041, 1, 1044351 );
 			AddCraft( typeof( WoodenSword ), 1044295, "wooden sword", 70.0, 95.0, typeof( Log ), 1044041, 6, 1044351 );
 			AddCraft( typeof( ShepherdsCrook ), 1044295, 1023713, 78.9, 103.9, typeof( Log ), 1044041, 7, 1044351 );
 			AddCraft( typeof( QuarterStaff ), 1044295, 1023721, 73.6, 98.6, typeof( Log ), 1044041, 6, 1044351 );
