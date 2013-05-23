@@ -81,6 +81,12 @@ namespace Server.Items
 				if ( m_Poison != null )
 					from.ApplyPoison( m_Poisoner, m_Poison );
 
+				// Heal a bit
+				from.Hits +=  Utility.Random( 5, 11 );
+
+				if( from.Hits > from.MaxHits )
+					from.Hits = from.MaxHits;
+
 				Consume();
 
 				return true;
