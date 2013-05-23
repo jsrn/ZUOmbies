@@ -79,15 +79,15 @@ namespace Server.SkillHandlers
 							string hungerMessage = "";
 
 							if( hungerAmount == 1)
-								hungerMessage += "You are stuffed! [" + hungerMessage + "/20]";
+								hungerMessage += "You are stuffed! [" + hungerAmount + "/20]";
 							else if (hungerAmount < 5)
-								hungerMessage += "You are peckish. [" + hungerMessage + "/20]";
+								hungerMessage += "You are peckish. [" + hungerAmount + "/20]";
 							else if (hungerAmount < 10)
-								hungerMessage += "You are a little hungry. [" + hungerMessage + "/20]";
+								hungerMessage += "You are a little hungry. [" + hungerAmount + "/20]";
 							else if (hungerAmount < 15)
-								hungerMessage += "You are quite hungry. [" + hungerMessage + "/20]";
+								hungerMessage += "You are quite hungry. [" + hungerAmount + "/20]";
 							else
-								hungerMessage += "You are very hungry!. [" + hungerMessage + "/20]";
+								hungerMessage += "You are very hungry!. [" + hungerAmount + "/20]";
 
 							targ.PrivateOverheadMessage( MessageType.Regular, 0x3B2, true, hungerMessage, from.NetState );
 						}
