@@ -78,16 +78,16 @@ namespace Server.SkillHandlers
 							int hungerAmount = ((PlayerMobile)targ).Hunger;
 							string hungerMessage = "";
 
-							if( hungerAmount == 1)
-								hungerMessage += "You are stuffed! [" + hungerAmount + "/20]";
+							if( hungerAmount == 0)
+								hungerMessage += "You are very hungry. [" + hungerAmount + "/20]";
 							else if (hungerAmount < 5)
-								hungerMessage += "You are peckish. [" + hungerAmount + "/20]";
+								hungerMessage += "You are quite hungry. [" + hungerAmount + "/20]";
 							else if (hungerAmount < 10)
 								hungerMessage += "You are a little hungry. [" + hungerAmount + "/20]";
 							else if (hungerAmount < 15)
-								hungerMessage += "You are quite hungry. [" + hungerAmount + "/20]";
+								hungerMessage += "You are peckish. [" + hungerAmount + "/20]";
 							else
-								hungerMessage += "You are very hungry!. [" + hungerAmount + "/20]";
+								hungerMessage += "You are full. [" + hungerAmount + "/20]";
 
 							targ.PrivateOverheadMessage( MessageType.Regular, 0x3B2, true, hungerMessage, from.NetState );
 						}
