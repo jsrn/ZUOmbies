@@ -2040,7 +2040,7 @@ namespace Server.Mobiles
 
 			Mobile killer = this.FindMostRecentDamager( true );
 
-			int deathPointsGained = 0;
+			int injuryPointsGained = 0;
 
 			if ( killer is BaseCreature ) // Killer is monster/creature
 			{
@@ -2049,16 +2049,14 @@ namespace Server.Mobiles
 				if( bc.GetMaster() != null )
 				{
 					if( !this.m_FreeDeaths )
-						deathPointsGained = 5;
+						injuryPointsGained = 5;
 				}
 				else
 				{
-					double mobFame = bc.GetFame();
+					injuryPointsGained = (int) (( bc.Fame / 24000.0 ) * 30);
 
-					deathPointsGained = (int) ((mobFame/24000.0) * 30);
-
-					if ( deathPointsGained < 5 )
-						deathPointsGained = 5;
+					if ( injuryPointsGained < 5 )
+						injuryPointsGained = 5;
 				}
 
 				ResetDeathTime();
@@ -2066,11 +2064,11 @@ namespace Server.Mobiles
 			else if ( killer is BaseChampion ) // Killer is champion
 			{
 				BaseChampion bc = (BaseChampion)killer;
-				double mobFame = bc.GetFame();
-				deathPointsGained = (int) ((mobFame/24000.0) * 30);
 
-				if ( deathPointsGained < 5 )
-					deathPointsGained = 5;
+				injuryPointsGained = (int) (( bc.Fame / 24000.0 ) * 30);
+
+				if ( injuryPointsGained < 5 )
+					injuryPointsGained = 5;
 
 				ResetDeathTime();
 			}
@@ -2078,14 +2076,14 @@ namespace Server.Mobiles
 			{
 				PlayerMobile pm = (PlayerMobile)killer;
 				
-				if ( !pm.Weapon is Fists )
+				if ( !(pm.Weapon is Fists) )
 				{
-					deathPointsGained = 5;
+					injuryPointsGained = 5;
 					ResetDeathTime();
 				}
 			}
 
-			deathPoints += deathPointsGained;
+			deathPoints += injuryPointsGained;
 
 			Faction.HandleDeath( this, killer );
 
