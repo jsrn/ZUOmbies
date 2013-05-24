@@ -129,30 +129,25 @@ namespace Server.Engines.Craft
 			{
 				index = AddCraft( typeof( GreenTea ), 1044496, 1030315, 80.0, 130.0, typeof( GreenTeaBasket ), 1030316, 1, 1044253 );
 				AddRes( index, typeof( BaseBeverage ), 1046458, 1, 1044253 );
-				SetNeededExpansion( index, Expansion.SE );
 				SetNeedOven( index, true );
 
 				index = AddCraft( typeof( WasabiClumps ), 1044496, 1029451, 70.0, 120.0, typeof( BaseBeverage ), 1046458, 1, 1044253 );
 				AddRes( index, typeof( WoodenBowlOfPeas ), 1025633, 3, 1044253 );
-				SetNeededExpansion( index, Expansion.SE );
 
 				index = AddCraft( typeof( SushiRolls ), 1044496, 1030303, 90.0, 120.0, typeof( BaseBeverage ), 1046458, 1, 1044253 );
 				AddRes( index, typeof( RawFishSteak ), 1044476, 10, 1044253 );
-				SetNeededExpansion( index, Expansion.SE );
 
 				index = AddCraft( typeof( SushiPlatter ), 1044496, 1030305, 90.0, 120.0, typeof( BaseBeverage ), 1046458, 1, 1044253 );
 				AddRes( index, typeof( RawFishSteak ), 1044476, 10, 1044253 );
-				SetNeededExpansion( index, Expansion.SE );
 			}
 
-			index = AddCraft( typeof( TribalPaint ), 1044496, 1040000, Core.ML? 55.0 : 80.0, Core.ML? 105.0 : 80.0, typeof( SackFlour ), 1044468, 1, 1044253 );
+			index = AddCraft( typeof( TribalPaint ), 1044496, 1040000, 55.0, 100.0, typeof( SackFlour ), 1044468, 1, 1044253 );
 			AddRes( index, typeof( TribalBerry ), 1046460, 1, 1044253 );
 
 			if ( Core.SE )
 			{
 				index = AddCraft( typeof( EggBomb ), 1044496, 1030249, 90.0, 120.0, typeof( Eggs ), 1044477, 1, 1044253 );
 				AddRes( index, typeof( SackFlour ), 1044468, 3, 1044253 );
-				SetNeededExpansion( index, Expansion.SE );
 			}
 			/* End Preparations */
 
@@ -197,22 +192,18 @@ namespace Server.Engines.Craft
 			{
 				index = AddCraft( typeof( MisoSoup ), 1044497, 1030317, 60.0, 110.0, typeof( RawFishSteak ), 1044476, 1, 1044253 );
 				AddRes( index, typeof( BaseBeverage ), 1046458, 1, 1044253 );
-				SetNeededExpansion( index, Expansion.SE );
 				SetNeedOven( index, true );
 
 				index = AddCraft( typeof( WhiteMisoSoup ), 1044497, 1030318, 60.0, 110.0, typeof( RawFishSteak ), 1044476, 1, 1044253 );
 				AddRes( index, typeof( BaseBeverage ), 1046458, 1, 1044253 );
-				SetNeededExpansion( index, Expansion.SE );
 				SetNeedOven( index, true );
 
 				index = AddCraft( typeof( RedMisoSoup ), 1044497, 1030319, 60.0, 110.0, typeof( RawFishSteak ), 1044476, 1, 1044253 );
 				AddRes( index, typeof( BaseBeverage ), 1046458, 1, 1044253 );
-				SetNeededExpansion( index, Expansion.SE );
 				SetNeedOven( index, true );
 
 				index = AddCraft( typeof( AwaseMisoSoup ), 1044497, 1030320, 60.0, 110.0, typeof( RawFishSteak ), 1044476, 1, 1044253 );
 				AddRes( index, typeof( BaseBeverage ), 1046458, 1, 1044253 );
-				SetNeededExpansion( index, Expansion.SE );
 				SetNeedOven( index, true );
 			}
 			/* End Baking */
