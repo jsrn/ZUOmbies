@@ -493,8 +493,7 @@ namespace Server.Engines.Harvest
 				Timer.DelayCall( TimeSpan.FromSeconds( 1.5 ), 
 					delegate
 					{
-						if( Core.ML )
-							from.RevealingAction();
+						from.RevealingAction();
 
 						Effects.SendLocationEffect( loc, map, 0x352D, 16, 4 );
 						Effects.PlaySound( loc, map, 0x364 );
@@ -505,8 +504,7 @@ namespace Server.Engines.Harvest
 		{
 			base.OnHarvestFinished( from, tool, def, vein, bank, resource, harvested );
 
-			if ( Core.ML )
-				from.RevealingAction();
+			from.RevealingAction();
 		}
 
 		public override object GetLock( Mobile from, Item tool, HarvestDefinition def, object toHarvest )
