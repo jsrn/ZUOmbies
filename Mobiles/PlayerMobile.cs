@@ -2039,68 +2039,51 @@ namespace Server.Mobiles
 			}
 
 			Mobile killer = this.FindMostRecentDamager( true );
+
 			int deathPointsGained = 0;
 
-			if ( killer is BaseCreature )
+			if ( killer is BaseCreature ) // Killer is monster/creature
 			{
 				BaseCreature bc = (BaseCreature)killer;
 
-				Mobile master = bc.GetMaster();
-				if( master != null ){
-					killer = master;
-				}
-				
-				double mobFame = bc.GetFame();
-
-				bool killedByPlayer = killer is PlayerMobile;
-				bool killedInTrainingZone = this.m_FreeDeaths;
-				
-				bool killedByPlayerInTrainingZone = killedByPlayer && killedInTrainingZone;
-
-				if( !killedByPlayerInTrainingZone)
+				if( bc.GetMaster() != null )
 				{
-					deathPointsGained = (int) ((mobFame/24000.0) * 30);
-					ResetDeathTime();
+					if( !this.m_FreeDeaths )
+						deathPointsGained = 5;
 				}
+				else
+				{
+					double mobFame = bc.GetFame();
+
+					deathPointsGained = (int) ((mobFame/24000.0) * 30);
+
+					if ( deathPointsGained < 5 )
+						deathPointsGained = 5;
+				}
+
+				ResetDeathTime();
 			}
-			else if ( killer is BaseChampion)
+			else if ( killer is BaseChampion ) // Killer is champion
 			{
 				BaseChampion bc = (BaseChampion)killer;
 				double mobFame = bc.GetFame();
 				deathPointsGained = (int) ((mobFame/24000.0) * 30);
+
+				if ( deathPointsGained < 5 )
+					deathPointsGained = 5;
+
 				ResetDeathTime();
 			}
-			else if ( killer is PlayerMobile && !this.m_FreeDeaths )
+			else if ( killer is PlayerMobile && !this.m_FreeDeaths ) // Killer is player, and not in zone
 			{
 				PlayerMobile pm = (PlayerMobile)killer;
 				
-				List<Item> items = pm.getItems();
-				
-				if ( items != null )
+				if ( !pm.Weapon is Fists )
 				{
-					for ( int i = items.Count - 1; i >= 0; --i )
-					{
-						if ( i >= items.Count )
-							continue;
-
-						Item item = items[i];
-
-						if (item is BaseWeapon || item is BaseMeleeWeapon && !(item is Fists))
-						{
-							deathPointsGained = 5;
-							ResetDeathTime();
-						}
-						else if (item is Spellbook || item is Fists && lastDamage > 25)
-						{
-							deathPointsGained = 5;
-							ResetDeathTime();
-						}
-					}
+					deathPointsGained = 5;
+					ResetDeathTime();
 				}
 			}
-
-			if ( deathPointsGained < 1 )
-				deathPointsGained = 1;
 
 			deathPoints += deathPointsGained;
 
