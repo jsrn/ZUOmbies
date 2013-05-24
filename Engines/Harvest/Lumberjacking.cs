@@ -123,7 +123,6 @@ namespace Server.Engines.Harvest
 			lumber.Resources = res;
 			lumber.Veins = veins;
 
-			lumber.RaceBonus = Core.ML;
 			lumber.RandomizeVeins = Core.ML;
 
 			m_Definition = lumber;

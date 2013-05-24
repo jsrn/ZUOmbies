@@ -171,17 +171,11 @@ namespace Server.Engines.Harvest
 							int feluccaAmount = def.ConsumedPerFeluccaHarvest;
 
 							int racialAmount = (int)Math.Ceiling( amount * 1.1 );
-							int feluccaRacialAmount = (int)Math.Ceiling( feluccaAmount * 1.1 );
 
-							bool eligableForRacialBonus = ( def.RaceBonus && from.Race == Race.Human );
 							bool inFelucca = (map == Map.Felucca);
 
-							if( eligableForRacialBonus && inFelucca && bank.Current >= feluccaRacialAmount && 0.1 > Utility.RandomDouble() )
-								item.Amount = feluccaRacialAmount;
-							else if( inFelucca && bank.Current >= feluccaAmount )
+							if( inFelucca && bank.Current >= feluccaAmount )
 								item.Amount = feluccaAmount;
-							else if( eligableForRacialBonus && bank.Current >= racialAmount && 0.1 > Utility.RandomDouble() )
-								item.Amount = racialAmount;
 							else
 								item.Amount = amount;
 						}
@@ -314,9 +308,7 @@ namespace Server.Engines.Harvest
 
 		public virtual HarvestResource MutateResource( Mobile from, Item tool, HarvestDefinition def, Map map, Point3D loc, HarvestVein vein, HarvestResource primary, HarvestResource fallback )
 		{
-			bool racialBonus = (def.RaceBonus && from.Race == Race.Elf );
-
-			if( vein.ChanceToFallback > (Utility.RandomDouble() + (racialBonus ? .20 : 0)) )
+			if( vein.ChanceToFallback > Utility.RandomDouble() )
 				return fallback;
 
 			double skillValue = from.Skills[def.Skill].Value;

@@ -124,7 +124,6 @@ namespace Server.Engines.Harvest
 				};
 			}
 
-			oreAndStone.RaceBonus = Core.ML;
 			oreAndStone.RandomizeVeins = Core.ML;
 
 			Definitions.Add( oreAndStone );
