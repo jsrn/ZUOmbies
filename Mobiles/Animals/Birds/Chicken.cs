@@ -1,5 +1,6 @@
 using System;
 using Server.Mobiles;
+using Server.Items;
 
 namespace Server.Mobiles
 {
@@ -55,6 +56,23 @@ namespace Server.Mobiles
 			base.Serialize(writer);
 
 			writer.Write((int) 0);
+		}
+
+		protected override bool OnMove(Direction d)
+		{
+			if (!base.OnMove(d))
+				return false;
+
+			if ( Utility.Random( 200 ) == 0 )
+				DropEgg();
+
+			return true;
+		}
+
+		private void DropEgg()
+		{
+			Eggs eggs = new Eggs();
+      		eggs.MoveToWorld( this.Location, this.Map );
 		}
 
 		public override void Deserialize(GenericReader reader)
