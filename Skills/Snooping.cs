@@ -25,16 +25,6 @@ namespace Server.SkillHandlers
 			if ( map != null && (map.Rules & MapRules.HarmfulRestrictions) == 0 )
 				return true; // felucca you can snoop anybody
 
-			GuardedRegion reg = (GuardedRegion) to.Region.GetRegion( typeof( GuardedRegion ) );
-
-			if ( reg == null || reg.IsDisabled() )
-				return true; // not in town? we can snoop any npc
-
-			BaseCreature cret = to as BaseCreature;
-
-			if ( to.Body.IsHuman && (cret == null || (!cret.AlwaysAttackable && !cret.AlwaysMurderer)) )
-				return false; // in town we cannot snoop blue human npcs
-
 			return true;
 		}
 
