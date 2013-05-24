@@ -2113,6 +2113,7 @@ namespace Server.Mobiles
 		private Hashtable m_AntiMacroTable;
 		private TimeSpan m_GameTime;
 		private TimeSpan m_ShortTermElapse;
+		private TimeSpan m_InjuryDecayTime;
 		private TimeSpan deathTimer;
 		private TimeSpan m_LongTermElapse;
 		private DateTime m_SessionStart;
@@ -2213,6 +2214,7 @@ namespace Server.Mobiles
 			m_GameTime = TimeSpan.Zero;
 			m_ShortTermElapse = TimeSpan.FromHours( 8.0 );
 			m_LongTermElapse = TimeSpan.FromHours( 40.0 );
+			m_InjuryDecayTime = TimeSpan.FromMinutes( 30.0 );
 
 			m_JusticeProtectors = new List<Mobile>();
 			m_GuildRank = Guilds.RankDefinition.Lowest;
@@ -2790,23 +2792,27 @@ namespace Server.Mobiles
 
 		public void ResetDeathTime()
 		{
-			deathTimer = this.GameTime + TimeSpan.FromMinutes( 2 );
+			deathTimer = TimeSpan.Zero;
 		}
 
 		private void DecayInjuryPoints()
 		{
-			if ( deathTimer < this.GameTime && Alive)
-			{
-				deathTimer += TimeSpan.FromMinutes( 2 );
+			TimeSpan increment = TimeSpan.FromMinutes( 30 );
 
-				if ( deathPoints > 0)
+			if ( m_InjuryDecayTime < this.GameTime )
+			{
+				m_InjuryDecayTime += increment;
+
+				if ( deathPoints > 0 )
 					--deathPoints;
 			}
 		}
 
 		private void DecayDeathRobes()
 		{
-			if( deathTimer >= TimeSpan.FromMinutes(30) )
+			TimeSpan increment = TimeSpan.FromMinutes( 30 );
+
+			if( deathTimer < TimeSpan.Zero + increment )
 			{
 				List<Item> items = this.Items;
 
