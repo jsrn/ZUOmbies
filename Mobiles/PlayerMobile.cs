@@ -107,7 +107,7 @@ namespace Server.Mobiles
 		*/
 		private int m_ExecutesLightningStrike; // move to Server.Mobiles??
 
-		private int deathPoints; // Keeps track of how many injury points the player has
+		public int InjuryPoints; // Keeps track of how many injury points the player has
 		private int lastDamage; // Keeps track of how much the last hit hurt
 		private bool m_FreeDeaths; // Keeps track of whether the player is in a free deth zone or not
 
@@ -1860,7 +1860,7 @@ namespace Server.Mobiles
 
 		public override void Resurrect()
 		{
-			if(deathPoints <= 30){
+			if(InjuryPoints <= 30){
 				bool wasAlive = this.Alive;
 
 				base.Resurrect();
@@ -1880,18 +1880,18 @@ namespace Server.Mobiles
 
 		public void resetDeathPoints()
 		{
-			deathPoints = 0;
+			InjuryPoints = 0;
 		}
 		
 		public void PermaKill()
 		{
-			deathPoints = 100;
+			InjuryPoints = 100;
 			base.Kill();
 		}
 
 		public int getDeathPoints()
 		{
-			return deathPoints;
+			return InjuryPoints;
 		}
 
 		public override double RacialSkillBonus
@@ -2083,7 +2083,7 @@ namespace Server.Mobiles
 				}
 			}
 
-			deathPoints += injuryPointsGained;
+			InjuryPoints += injuryPointsGained;
 
 			Faction.HandleDeath( this, killer );
 
@@ -2408,18 +2408,12 @@ namespace Server.Mobiles
 
 		public override bool CheckPoisonImmunity( Mobile from, Poison poison )
 		{
-			if ( this.Young )
-				return true;
-
 			return base.CheckPoisonImmunity( from, poison );
 		}
 
 		public override void OnPoisonImmunity( Mobile from, Poison poison )
 		{
-			if ( this.Young )
-				SendLocalizedMessage( 502808 ); // You would have been poisoned, were you not new to the land of Britannia. Be careful in the future.
-			else
-				base.OnPoisonImmunity( from, poison );
+			base.OnPoisonImmunity( from, poison );
 		}
 
 		#endregion
@@ -2520,7 +2514,7 @@ namespace Server.Mobiles
 			{
 				case 29:
 				{
-					deathPoints = reader.ReadInt();
+					InjuryPoints = reader.ReadInt();
 					deathTimer = reader.ReadTimeSpan();
 					goto case 28;
 				}
@@ -2795,19 +2789,6 @@ namespace Server.Mobiles
 			deathTimer = TimeSpan.Zero;
 		}
 
-		private void DecayInjuryPoints()
-		{
-			TimeSpan increment = TimeSpan.FromMinutes( 30 );
-
-			if ( m_InjuryDecayTime < this.GameTime )
-			{
-				m_InjuryDecayTime += increment;
-
-				if ( deathPoints > 0 )
-					--deathPoints;
-			}
-		}
-
 		private void DecayDeathRobes()
 		{
 			TimeSpan increment = TimeSpan.FromMinutes( 30 );
@@ -2845,8 +2826,6 @@ namespace Server.Mobiles
 
 			CheckKillDecay();
 
-			DecayInjuryPoints();
-
 			DecayDeathRobes();
 
 			CheckAtrophies( this );
@@ -2854,7 +2833,7 @@ namespace Server.Mobiles
 			base.Serialize( writer );
 
 			writer.Write( (int) 29 ); // version
-			writer.Write(deathPoints);
+			writer.Write( InjuryPoints );
 			writer.Write( (TimeSpan) deathTimer);
 			writer.Write( (DateTime) m_PeacedUntil );
 			writer.Write( (DateTime) m_AnkhNextUse );
@@ -3249,14 +3228,6 @@ namespace Server.Mobiles
 
 		public override void OnKillsChange( int oldValue )
 		{
-			if ( this.Young && this.Kills > oldValue )
-			{
-				Account acc = this.Account as Account;
-
-				if ( acc != null )
-					acc.RemoveYoungStatus( 0 );
-			}
-
 			InvalidateMyRunUO();
 		}
 
@@ -3287,14 +3258,6 @@ namespace Server.Mobiles
 
 		public override void OnSkillChange( SkillName skill, double oldBase )
 		{
-			if ( this.Young && this.SkillsTotal >= 4500 )
-			{
-				Account acc = this.Account as Account;
-
-				if ( acc != null )
-					acc.RemoveYoungStatus( 1019036 ); // You have successfully obtained a respectable skill level, and have outgrown your status as a young player!
-			}
-
 			InvalidateMyRunUO();
 		}
 
