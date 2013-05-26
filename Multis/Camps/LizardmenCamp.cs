@@ -17,8 +17,6 @@ namespace Server.Multis
 
 		public override void AddComponents()
 		{
-			BaseCreature bc;
-
 			Visible = false;
 			DecayDelay = TimeSpan.FromMinutes( 5.0 );
 			AddItem(new Static(0x10ee), 0, 0, 0);
