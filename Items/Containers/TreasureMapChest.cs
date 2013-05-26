@@ -107,6 +107,14 @@ namespace Server.Items
 				if ( Utility.RandomBool() )
 				{
 					cont.DropItem( new Gold( Utility.RandomMinMax( level*10, (level*10)+10 ) ) );
+
+					int gems = level * 2;
+
+					for ( int i = 0; i < gems; i++ )
+					{
+						Item item = Loot.RandomGem();
+						cont.DropItem( item );
+					}
 				}
 				else
 				{
@@ -116,29 +124,17 @@ namespace Server.Items
 					{
 						cont.DropItem( Loot.RandomArmorOrShieldOrWeaponOrJewelry() );
 					}
+
+					int reagents = 6;
+
+					for ( int i = 0; i < reagents; i++ )
+					{
+						Item item = Loot.RandomPossibleReagent();
+						item.Amount = Utility.RandomMinMax( level + 1, (level + 1)*3 );
+						cont.DropItem( item );
+					}
 				}
-			}
-
-			int reagents = 6;
-
-			for ( int i = 0; i < reagents; i++ )
-			{
-				Item item = Loot.RandomPossibleReagent();
-				item.Amount = Utility.RandomMinMax( level + 1, (level + 1)*3 );
-				cont.DropItem( item );
-			}
-
-			int gems;
-			if ( level == 0 )
-				gems = 2;
-			else
-				gems = level * 3;
-
-			for ( int i = 0; i < gems; i++ )
-			{
-				Item item = Loot.RandomGem();
-				cont.DropItem( item );
-			}
+			}	
 		}
 
 		public override bool CheckLocked( Mobile from )
