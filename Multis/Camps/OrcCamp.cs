@@ -18,7 +18,6 @@ namespace Server.Multis
 		public override void AddComponents()
 		{
 			BaseCreature bc;
-			//BaseEscortable be;
 
 			Visible = false;
 			DecayDelay = TimeSpan.FromMinutes(5.0);
@@ -53,22 +52,6 @@ namespace Server.Multis
 				AddMobile( Orcs, 6, Utility.RandomMinMax( -7, 7 ), Utility.RandomMinMax( -7, 7 ), 0 );
 			}
 			AddMobile( new OrcCaptain(), 2, Utility.RandomMinMax( -7, 7 ), Utility.RandomMinMax( -7, 7 ), 0 );
-			
-			switch ( Utility.Random( 2 ) )
-			{
-				case 0: m_Prisoner = new Noble(); break;
-				default: m_Prisoner = new SeekerOfAdventure(); break;
-			}
-			
-			//be = (BaseEscortable)m_Prisoner;
-			//be.m_Captive = true;
-			
-			bc = (BaseCreature)m_Prisoner;
-			bc.IsPrisoner = true;
-			bc.CantWalk = true;
-			
-			m_Prisoner.YellHue = Utility.RandomList( 0x57, 0x67, 0x77, 0x87, 0x117 );
-			AddMobile( m_Prisoner, 2, Utility.RandomMinMax( -2, 2 ), Utility.RandomMinMax( -2, 2 ), 0 );
 		}
 
 		private void AddCampChests()
@@ -107,7 +90,7 @@ namespace Server.Multis
 			crates.MaxLockLevel = 116;
 			crates.Locked = true;
 
-			crates.DropItem(new Gold(Utility.RandomMinMax(100, 400)));
+			crates.DropItem(new Gold(Utility.RandomMinMax(5, 15)));
 			crates.DropItem(new Arrow(10));
 			crates.DropItem(new Bolt(10));
 
