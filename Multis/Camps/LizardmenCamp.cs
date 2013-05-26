@@ -89,7 +89,7 @@ namespace Server.Multis
 			crates.MaxLockLevel = 116;
 			crates.Locked = true;
 			
-			crates.DropItem( new Gold( Utility.RandomMinMax( 100, 400 ) ) );
+			crates.DropItem( new Gold( Utility.RandomMinMax( 5, 15 ) ) );
 			crates.DropItem( new Arrow( 10 ) );
 			crates.DropItem( new Bolt( 10 ) );
 
