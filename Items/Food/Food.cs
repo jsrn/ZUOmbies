@@ -214,6 +214,40 @@ namespace Server.Items
 		}
 	}
 
+	public class MeatBun : Food
+	{
+		[Constructable]
+		public MeatBun() : this( 1 )
+		{
+		}
+
+		[Constructable]
+		public MeatBun( int amount ) : base( amount, 0x103B )
+		{
+			this.Weight = 2.0;
+			this.FillFactor = 5;
+			this.Name = "a meat bun";
+		}
+
+		public MeatBun( Serial serial ) : base( serial )
+		{
+		}
+
+		public override void Serialize( GenericWriter writer )
+		{
+			base.Serialize( writer );
+
+			writer.Write( (int) 0 ); // version
+		}
+
+		public override void Deserialize( GenericReader reader )
+		{
+			base.Deserialize( reader );
+
+			int version = reader.ReadInt();
+		}
+	}
+
 	public class Bacon : Food
 	{
 		[Constructable]
