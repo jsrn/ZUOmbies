@@ -111,31 +111,10 @@ namespace Server.Multis
 		}
 
 		// Don't refresh decay timer
-		public override void OnEnter(Mobile m)
-		{
-			if ( m.Player && m_Prisoner != null && m_Prisoner.CantWalk )
-			{
-				int number;
-
-				switch ( Utility.Random( 8 ) )
-				{
-					case 0: number = 502261; break; // HELP!
-					case 1: number = 502262; break; // Help me!
-					case 2: number = 502263; break; // Canst thou aid me?!
-					case 3: number = 502264; break; // Help a poor prisoner!
-					case 4: number = 502265; break; // Help! Please!
-					case 5: number = 502266; break; // Aaah! Help me!
-					case 6: number = 502267; break; // Go and get some help!
-					default: number = 502268; break; // Quickly, I beg thee! Unlock my chains! If thou dost look at me close thou canst see them.	
-				}
-				m_Prisoner.Yell( number );
-			}
-		}
+		public override void OnEnter(Mobile m) { }
 
 		// Don't refresh decay timer
-		public override void OnExit(Mobile m)
-		{
-		}
+		public override void OnExit(Mobile m) { }
 
 		public OrcCamp( Serial serial ) : base( serial )
 		{
