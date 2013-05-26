@@ -170,6 +170,10 @@ namespace Server.Engines.Craft
 			index = AddCraft( typeof( MeatPie ), 1044497, 1041347, 0.0, 100.0, typeof( UnbakedMeatPie ), 1044519, 1, 1044253 );
 			SetNeedOven( index, true );
 
+			index = AddCraft( typeof( MeatBun ), 1044497, 1041347, 0.0, 100.0, typeof( Dough ), 1044519, 1, 1044253 );
+			AddRes( index, typeof( RawRibs ), 1044482, 1, 1044253 );
+			SetNeedOven( index, true );
+
 			index = AddCraft( typeof( SausagePizza ), 1044497, 1044517, 0.0, 100.0, typeof( UncookedSausagePizza ), 1044520, 1, 1044253 );
 			SetNeedOven( index, true );
 
