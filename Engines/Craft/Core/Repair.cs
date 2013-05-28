@@ -168,11 +168,7 @@ namespace Server.Engines.Craft
 					SkillName skill = m_CraftSystem.MainSkill;
 					int toWeaken = 0;
 
-					if ( Core.AOS )
-					{
-						toWeaken = 1;
-					}
-					else if ( skill != SkillName.Tailoring )
+					if ( skill != SkillName.Tailoring )
 					{
 						double skillLevel = from.Skills[skill].Base;
 
@@ -227,11 +223,7 @@ namespace Server.Engines.Craft
 					SkillName skill = m_CraftSystem.MainSkill;
 					int toWeaken = 0;
 
-					if ( Core.AOS )
-					{
-						toWeaken = 1;
-					}
-					else if ( skill != SkillName.Tailoring )
+					if ( skill != SkillName.Tailoring )
 					{
 						double skillLevel = from.Skills[skill].Base;
 
@@ -286,11 +278,7 @@ namespace Server.Engines.Craft
 					SkillName skill = m_CraftSystem.MainSkill;
 					int toWeaken = 0;
 
-					if ( Core.AOS )
-					{
-						toWeaken = 1;
-					}
-					else if ( skill != SkillName.Tailoring )
+					if ( skill != SkillName.Tailoring )
 					{
 						double skillLevel = from.Skills[skill].Base;
 
