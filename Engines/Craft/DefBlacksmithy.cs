@@ -247,26 +247,20 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( MetalShield ), 1011080, 1027035, -10.2, 39.8, typeof( IronIngot ), 1044036, 14, 1044037 );
 			AddCraft( typeof( MetalKiteShield ), 1011080, 1027028, 4.6, 54.6, typeof( IronIngot ), 1044036, 16, 1044037 );
 			AddCraft( typeof( WoodenKiteShield ), 1011080, 1027032, -15.2, 34.8, typeof( IronIngot ), 1044036, 8, 1044037 );
-
 			AddCraft( typeof( ChaosShield ), 1011080, 1027107, 85.0, 135.0, typeof( IronIngot ), 1044036, 25, 1044037 );
 			AddCraft( typeof( OrderShield ), 1011080, 1027108, 85.0, 135.0, typeof( IronIngot ), 1044036, 25, 1044037 );
 			#endregion
 
 			#region Bladed
 			AddCraft( typeof( BoneHarvester ), 1011081, 1029915, 33.0, 83.0, typeof( IronIngot ), 1044036, 10, 1044037 );
-
 			AddCraft( typeof( Broadsword ), 1011081, 1023934, 35.4, 85.4, typeof( IronIngot ), 1044036, 10, 1044037 );
-
 			AddCraft( typeof( CrescentBlade ), 1011081, 1029921, 45.0, 95.0, typeof( IronIngot ), 1044036, 14, 1044037 );
-
 			AddCraft( typeof( Cutlass ), 1011081, 1025185, 24.3, 74.3, typeof( IronIngot ), 1044036, 8, 1044037 );
 			AddCraft( typeof( Dagger ), 1011081, 1023921, -0.4, 49.6, typeof( IronIngot ), 1044036, 3, 1044037 );
 			AddCraft( typeof( Kryss ), 1011081, 1025121, 36.7, 86.7, typeof( IronIngot ), 1044036, 8, 1044037 );
 			AddCraft( typeof( Longsword ), 1011081, 1023937, 28.0, 78.0, typeof( IronIngot ), 1044036, 12, 1044037 );
 			AddCraft( typeof( Scimitar ), 1011081, 1025046, 31.7, 81.7, typeof( IronIngot ), 1044036, 10, 1044037 );
 			AddCraft( typeof( VikingSword ), 1011081, 1025049, 24.3, 74.3, typeof( IronIngot ), 1044036, 14, 1044037 );
-
-			// This needs to be replaced with throwing stars
 			AddCraft( typeof( ThrowingStar ), 1011081, 1030231, 45.0, 95.0, typeof( IronIngot ), 1044036, 5, 1044037 );
 			AddCraft( typeof( Kama ), 1011081, 1030232, 40.0, 90.0, typeof( IronIngot ), 1044036, 14, 1044037 );
 			AddCraft( typeof( Sai ), 1011081, 1030234, 50.0, 100.0, typeof( IronIngot ), 1044036, 12, 1044037 );
@@ -310,9 +304,7 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( HammerPick ), 1011084, 1025181, 34.2, 84.2, typeof( IronIngot ), 1044036, 16, 1044037 );
 			AddCraft( typeof( Mace ), 1011084, 1023932, 14.5, 64.5, typeof( IronIngot ), 1044036, 6, 1044037 );
 			AddCraft( typeof( Maul ), 1011084, 1025179, 19.4, 69.4, typeof( IronIngot ), 1044036, 10, 1044037 );
-
 			AddCraft( typeof( Scepter ), 1011084, 1029916, 21.4, 71.4, typeof( IronIngot ), 1044036, 10, 1044037 );
-
 			AddCraft( typeof( WarMace ), 1011084, 1025127, 28.0, 78.0, typeof( IronIngot ), 1044036, 14, 1044037 );
 			AddCraft( typeof( WarHammer ), 1011084, 1025177, 34.2, 84.2, typeof( IronIngot ), 1044036, 16, 1044037 );
 
@@ -333,6 +325,7 @@ namespace Server.Engines.Craft
 			#region Tools
 			AddCraft( typeof( Blowpipe ), "Tools", "glass blowing pipe", 34.2, 84.2, typeof( IronIngot ), 1044036, 10, 1044037 );
 			AddCraft( typeof( Nails ), "Tools", "nails", 00.0, 50.0, typeof( IronIngot ), 1044036, 1, 1044037 );
+			AddCraft( typeof( Cauldron ), "Tools", "cauldron", 50.0, 90.0, typeof( IronIngot ), 1044036, 15, 1044037 );
 			#endregion
 
 			// Set the overridable material
