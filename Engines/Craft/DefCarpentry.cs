@@ -86,6 +86,7 @@ namespace Server.Engines.Craft
 			int index = -1;
 
 			//AddCraft( Type typeItem, int groupName, string itemName, double minSkill, double maxSkill, Type typeRes, string nameRes, int amount )
+			AddCraft( typeof( BlankScroll ),				1044294, "blank scroll",	 30.0,  70.0,	typeof( Log ), 1044041,  1, 1044351 );
 			AddCraft( typeof( WaterBucket ),				1044294, "bucket",			 00.0,  25.0,	typeof( Log ), 1044041,  4, 1044351 );
 			AddCraft( typeof( Chessboard ), 				1044294, "chess board", 	 50.0, 100.0, 	typeof( Log ), 1044041, 5, 1044351 );
 			AddCraft( typeof( CheckerBoard ), 				1044294, "checkers board", 	 50.0, 100.0, 	typeof( Log ), 1044041, 5, 1044351 );
