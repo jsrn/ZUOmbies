@@ -86,26 +86,14 @@ namespace Server.Engines.Craft
 			int index = -1;
 
 			//AddCraft( Type typeItem, int groupName, string itemName, double minSkill, double maxSkill, Type typeRes, string nameRes, int amount )
-			
-			AddCraft( typeof( Torch), 						1044294, "torch",	00.0,  25.0,	typeof( Log ), 1044041,  1, 1044351 );
-			AddCraft( typeof( Dices ), 						1044294, "dice", 20.0, 60.0, typeof( Log ), 1044041, 1, 1044351 );
-			AddCraft( typeof( Chessboard ), 				1044294, "chess board", 50.0, 100.0, typeof( Log ), 1044041, 5, 1044351 );
-			AddCraft( typeof( CheckerBoard ), 				1044294, "checkers board", 50.0, 100.0, typeof( Log ), 1044041, 5, 1044351 );
-			AddCraft( typeof( Backgammon ), 				1044294, "backgammon board", 50.0, 100.0, typeof( Log ), 1044041, 5, 1044351 );
-			AddCraft( typeof( BarrelStaves ),				1044294, 1027857,	00.0,  25.0,	typeof( Log ), 1044041,  5, 1044351 );
-			AddCraft( typeof( BarrelLid ),					1044294, 1027608,	11.0,  36.0,	typeof( Log ), 1044041,  4, 1044351 );
-			AddCraft( typeof( WaterBucket ),				1044294, "bucket",	00.0,  25.0,	typeof( Log ), 1044041,  4, 1044351 );
-			AddCraft( typeof( ShortMusicStand ),			1044294, 1044313,	78.9, 103.9,	typeof( Log ), 1044041, 15, 1044351 );
-			AddCraft( typeof( TallMusicStand ),				1044294, 1044315,	81.5, 106.5,	typeof( Log ), 1044041, 20, 1044351 );
-			AddCraft( typeof( Easle ),						1044294, 1044317,	86.8, 111.8,	typeof( Log ), 1044041, 20, 1044351 );
-			
-			index = AddCraft( typeof( ShojiScreen ), 1044294, 1029423, 80.0, 105.0, typeof( Log ), 1044041, 75, 1044351 );
-			AddSkill( index, SkillName.Tailoring, 50.0, 55.0 );
-			AddRes( index, typeof( Cloth ), 1044286, 60, 1044287 );
-
-			index = AddCraft( typeof( BambooScreen ), 1044294, 1029428, 80.0, 105.0, typeof( Log ), 1044041, 75, 1044351 );
-			AddSkill( index, SkillName.Tailoring, 50.0, 55.0 );
-			AddRes( index, typeof( Cloth ), 1044286, 60, 1044287 );
+			AddCraft( typeof( WaterBucket ),				1044294, "bucket",			 00.0,  25.0,	typeof( Log ), 1044041,  4, 1044351 );
+			AddCraft( typeof( Chessboard ), 				1044294, "chess board", 	 50.0, 100.0, 	typeof( Log ), 1044041, 5, 1044351 );
+			AddCraft( typeof( CheckerBoard ), 				1044294, "checkers board", 	 50.0, 100.0, 	typeof( Log ), 1044041, 5, 1044351 );
+			AddCraft( typeof( Backgammon ), 				1044294, "backgammon board", 50.0, 100.0, 	typeof( Log ), 1044041, 5, 1044351 );
+			AddCraft( typeof( BarrelStaves ),				1044294, "barrel staves",	 00.0,  25.0,	typeof( Log ), 1044041,  5, 1044351 );
+			AddCraft( typeof( BarrelLid ),					1044294, "barrel lid",		 11.0,  36.0,	typeof( Log ), 1044041,  4, 1044351 );
+			AddCraft( typeof( Dices ), 						1044294, "dice", 			 20.0, 60.0, 	typeof( Log ), 1044041, 1, 1044351 );
+			AddCraft( typeof( Torch), 						1044294, "torch",			 00.0,  25.0,	typeof( Log ), 1044041,  1, 1044351 );			
 
 			// Furniture
 			AddCraft( typeof( FootStool ),					1044291, 1022910,	11.0,  36.0,	typeof( Log ), 1044041,  9, 1044351 );
@@ -123,6 +111,17 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( LargeTable ),					1044291, 1044308,	84.2, 109.2,	typeof( Log ), 1044041, 27, 1044351 );
 			AddCraft( typeof( ElegantLowTable ),			1044291, 1030265,	80.0, 105.0,	typeof( Log ), 1044041, 35, 1044351 );
 			AddCraft( typeof( PlainLowTable ),				1044291, 1030266,	80.0, 105.0,	typeof( Log ), 1044041, 35, 1044351 );
+			AddCraft( typeof( ShortMusicStand ),			1044291, "short music stand",78.9, 103.9,	typeof( Log ), 1044041, 15, 1044351 );
+			AddCraft( typeof( TallMusicStand ),				1044291, "tall music stand", 81.5, 106.5,	typeof( Log ), 1044041, 20, 1044351 );
+			AddCraft( typeof( Easle ),						1044291, "easel",			 86.8, 111.8,	typeof( Log ), 1044041, 20, 1044351 );
+
+			index = AddCraft( typeof( ShojiScreen ), 		1044291, "shoji screen", 	 80.0, 105.0, typeof( Log ), 1044041, 75, 1044351 );
+			AddSkill( index, SkillName.Tailoring, 50.0, 55.0 );
+			AddRes( index, typeof( Cloth ), 1044286, 60, 1044287 );
+
+			index = AddCraft( typeof( BambooScreen ), 		1044291, "bamboo screen", 	 80.0, 105.0, typeof( Log ), 1044041, 75, 1044351 );
+			AddSkill( index, SkillName.Tailoring, 50.0, 55.0 );
+			AddRes( index, typeof( Cloth ), 1044286, 60, 1044287 );
 
 			// Containers
 			AddCraft( typeof( WoodenBox ),					1044292, 1023709,	21.0,  46.0,	typeof( Log ), 1044041, 10, 1044351 );
