@@ -37,14 +37,6 @@ namespace Server.Misc
 			PackItem( new Candle() );
 		}
 
-		private static Item MakeNewbie( Item item )
-		{
-			if ( !Core.AOS )
-				item.LootType = LootType.Newbied;
-
-			return item;
-		}
-
 		private static void PlaceItemIn( Container parent, int x, int y, Item item )
 		{
 			parent.AddItem( item );
@@ -59,28 +51,7 @@ namespace Server.Misc
 			keg.Type = type;
 			keg.Hue = hue;
 
-			return MakeNewbie( keg );
-		}
-
-		private static void FillBankAOS( Mobile m )
-		{
-			// This method has been blanked out.
-			// The code will never be used on this shard,
-			// and I don't want to keep scrolling through it
-		}
-
-		private static void FillBankbox( Mobile m )
-		{
-			// This method has been blanked out.
-			// The code will never be used on this shard,
-			// and I don't want to keep scrolling through it
-		}
-
-		private static void AddPowerScrolls( BankBox bank )
-		{
-			// This method has been blanked out.
-			// The code will never be used on this shard,
-			// and I don't want to keep scrolling through it
+			return keg;
 		}
 
 		private static void AddShirt( Mobile m, int shirtHue )
@@ -436,12 +407,6 @@ namespace Server.Misc
 				{
 					Container regs = new BagOfNecroReagents( 50 );
 
-					if ( !Core.AOS )
-					{
-						foreach ( Item item in regs.Items )
-							item.LootType = LootType.Newbied;
-					}
-
 					PackItem( regs );
 
 					regs.LootType = LootType.Regular;
@@ -514,9 +479,6 @@ namespace Server.Misc
 
 		private static void EquipItem( Item item, bool mustEquip )
 		{
-			if ( !Core.AOS )
-				item.LootType = LootType.Newbied;
-
 			if ( m_Mobile != null && m_Mobile.EquipItem( item ) )
 				return;
 
@@ -530,9 +492,6 @@ namespace Server.Misc
 
 		private static void PackItem( Item item )
 		{
-			if ( !Core.AOS )
-				item.LootType = LootType.Newbied;
-
 			Container pack = m_Mobile.Backpack;
 
 			if ( pack != null )
