@@ -411,7 +411,6 @@ namespace Server.Misc
 
 					regs.LootType = LootType.Regular;
 
-					
 					EquipItem( new BoneHelm() );
 
 					EquipItem( new BoneHarvester() );
