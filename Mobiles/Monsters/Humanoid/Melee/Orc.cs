@@ -43,14 +43,13 @@ namespace Server.Mobiles
 
 			VirtualArmor = 28;
 
-			switch ( Utility.Random( 20 ) )
+			switch ( Utility.Random( 16 ) )
 			{
 				case 0: PackItem( new Scimitar() ); break;
-				case 1: PackItem( new Katana() ); break;
-				case 2: PackItem( new WarMace() ); break;
-				case 3: PackItem( new WarHammer() ); break;
-				case 4: PackItem( new Kryss() ); break;
-				case 5: PackItem( new Pitchfork() ); break;
+				case 1: PackItem( new WarMace() ); break;
+				case 2: PackItem( new WarHammer() ); break;
+				case 3: PackItem( new Kryss() ); break;
+				case 4: PackItem( new Pitchfork() ); break;
 			}
 
 			PackItem( new ThighBoots() );
