@@ -109,11 +109,7 @@ namespace Server.Engines.Craft
 					Golem g = (Golem)targeted;
 					int damage = g.HitsMax - g.Hits;
 
-					if ( g.IsDeadBondedPet )
-					{
-						number = 500426; // You can't repair that.
-					}
-					else if ( damage <= 0 )
+					if ( damage <= 0 )
 					{
 						number = 500423; // That is already in full repair.
 					}
