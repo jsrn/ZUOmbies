@@ -96,7 +96,7 @@ namespace Server.Guilds
 			if( s.Length < 1 || s.Length > maxLength )
 				return false;
 
-			char[] exceptions = ProfanityProtection.Exceptions;
+			char[] exceptions = new char[0];
 
 			s = s.ToLower();
 
@@ -117,7 +117,7 @@ namespace Server.Guilds
 				}
 			}
 
-			string[] disallowed = ProfanityProtection.Disallowed;
+			string[] disallowed = new string[0];
 
 			for( int i = 0; i < disallowed.Length; i++ )
 			{
