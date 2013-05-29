@@ -34,32 +34,6 @@ namespace Server.SkillHandlers
 				Targeting.Target.Cancel( m );
 			}
 
-			double bonus = 0.0;
-
-			BaseHouse house = BaseHouse.FindHouseAt( m );
-
-			if ( house != null && house.IsFriend( m ) )
-			{
-				bonus = 100.0;
-			}
-			else if ( !Core.AOS )
-			{
-				if ( house == null )
-					house = BaseHouse.FindHouseAt( new Point3D( m.X - 1, m.Y, 127 ), m.Map, 16 );
-
-				if ( house == null )
-					house = BaseHouse.FindHouseAt( new Point3D( m.X + 1, m.Y, 127 ), m.Map, 16 );
-
-				if ( house == null )
-					house = BaseHouse.FindHouseAt( new Point3D( m.X, m.Y - 1, 127 ), m.Map, 16 );
-
-				if ( house == null )
-					house = BaseHouse.FindHouseAt( new Point3D( m.X, m.Y + 1, 127 ), m.Map, 16 );
-
-				if ( house != null )
-					bonus = 50.0;
-			}
-
 			//int range = 18 - (int)(m.Skills[SkillName.Hiding].Value / 10);
 			int range = Math.Min( (int)((100 - m.Skills[SkillName.Hiding].Value)/2) + 8, 18 );	//Cap of 18 not OSI-exact, intentional difference
 
@@ -81,7 +55,7 @@ namespace Server.SkillHandlers
 					}
 				}
 
-				ok = ( !badCombat && m.CheckSkill( SkillName.Hiding, 0.0 - bonus, 100.0 - bonus ) );
+				ok = ( !badCombat && m.CheckSkill( SkillName.Hiding, 0.0, 100.0 ) );
 			}
 
 			if ( badCombat )
