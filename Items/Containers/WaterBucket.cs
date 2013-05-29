@@ -19,22 +19,22 @@ namespace Server.Items
 		public override int ComputeItemID()
 		{
 			if( IsEmpty )
+			{
 				return 0x14e0;
-
+			}
+				
 			return 0x2004;
 		}
 
 		[Constructable]
-		public WaterBucket( BeverageType type )
-			: base( type )
+		public WaterBucket( BeverageType type ) : base( type )
 		{
 			Weight = 1.0;
 			Name = "a bucket";
 			Quantity = 0;
 		}
 
-		public WaterBucket( Serial serial )
-			: base( serial )
+		public WaterBucket( Serial serial ) : base( serial )
 		{
 		}
 
@@ -77,7 +77,13 @@ namespace Server.Items
 					case BeverageType.Liquor: Name = "a bucket of liquor"; break;
 				}
 			}
-			else
+		}
+
+		public override void Pour_OnTarget( Mobile from, object targ )
+		{
+			base.Pour_OnTarget( from, targ );
+
+			if( IsEmpty )
 			{
 				Name = "a bucket";
 			}
