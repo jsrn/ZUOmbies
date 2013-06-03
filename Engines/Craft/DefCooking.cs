@@ -103,7 +103,6 @@ namespace Server.Engines.Craft
 			index = AddCraft( typeof( UnbakedQuiche ), 1044496, 1041339, 0.0, 100.0, typeof( Dough ), 1044469, 1, 1044253 );
 			AddRes( index, typeof( Eggs ), 1044477, 1, 1044253 );
 
-			// TODO: This must also support chicken and lamb legs
 			index = AddCraft( typeof( UnbakedMeatPie ), 1044496, 1041338, 0.0, 100.0, typeof( Dough ), 1044469, 1, 1044253 );
 			AddRes( index, typeof( RawRibs ), 1044482, 1, 1044253 );
 
@@ -158,6 +157,9 @@ namespace Server.Engines.Craft
 			index = AddCraft( typeof( Cookies ), 1044497, 1025643, 0.0, 100.0, typeof( CookieMix ), 1044474, 1, 1044253 );
 			SetNeedOven( index, true );
 
+			index = AddCraft( typeof( GingerBreadCookie ), 1044497, "ginger bread cookie", 30.0, 70.0, typeof( CookieMix ), 1044474, 1, 1044253 );
+			SetNeedOven( index, true );
+
 			index = AddCraft( typeof( Cake ), 1044497, 1022537, 0.0, 100.0, typeof( CakeMix ), 1044471, 1, 1044253 );
 			SetNeedOven( index, true );
 
@@ -170,8 +172,16 @@ namespace Server.Engines.Craft
 			index = AddCraft( typeof( MeatPie ), 1044497, 1041347, 0.0, 100.0, typeof( UnbakedMeatPie ), 1044519, 1, 1044253 );
 			SetNeedOven( index, true );
 
-			index = AddCraft( typeof( MeatBun ), 1044497, 1041347, 0.0, 100.0, typeof( Dough ), 1044519, 1, 1044253 );
+			index = AddCraft( typeof( MeatBun ), 1044497, "meat bun", 0.0, 100.0, typeof( Dough ), 1044469, 1, 1044253 );
 			AddRes( index, typeof( RawRibs ), 1044482, 1, 1044253 );
+			SetNeedOven( index, true );
+
+			index = AddCraft( typeof( MeatBun ), 1044497, "chicken bun", 0.0, 100.0, typeof( Dough ), 1044469, 1, 1044253 );
+			AddRes( index, typeof( RawChickenLeg ), 1044473, 1, 1044253 );
+			SetNeedOven( index, true );
+
+			index = AddCraft( typeof( MeatBun ), 1044497, "bird bun", 0.0, 100.0, typeof( Dough ), 1044469, 1, 1044253 );
+			AddRes( index, typeof( RawBird ), 1044470, 1, 1044253 );
 			SetNeedOven( index, true );
 
 			index = AddCraft( typeof( SausagePizza ), 1044497, 1044517, 0.0, 100.0, typeof( UncookedSausagePizza ), 1044520, 1, 1044253 );
