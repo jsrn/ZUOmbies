@@ -98,14 +98,21 @@ namespace Server.SkillHandlers
 									if ((m is BaseCreature && ((BaseCreature)m).Uncalmable) || (m is BaseCreature && ((BaseCreature)m).AreaPeaceImmune) || m == from || !from.CanBeHarmful ( m, false ))
 										continue;
 
-									calmed = true;
+									if ( m is PlayerMobile )
+									{
+										m.SendMessage( from.Name + " is provides a lovely musical acompaniment to the situation." );
+									}
+									else 
+									{
+										calmed = true;
 
-									m.SendLocalizedMessage( 500616 ); // You hear lovely music, and forget to continue battling!
-									m.Combatant = null;
-									m.Warmode = false;
+										m.SendLocalizedMessage( 500616 ); // You hear lovely music, and forget to continue battling!
+										m.Combatant = null;
+										m.Warmode = false;
 
-									if ( m is BaseCreature && !((BaseCreature)m).BardPacified )
-										((BaseCreature)m).Pacify( from, DateTime.Now + TimeSpan.FromSeconds( 1.0 ) );
+										if ( m is BaseCreature && !((BaseCreature)m).BardPacified )
+											((BaseCreature)m).Pacify( from, DateTime.Now + TimeSpan.FromSeconds( 1.0 ) );
+									}
 								}
 
 								if ( !calmed )
