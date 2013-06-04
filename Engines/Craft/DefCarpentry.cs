@@ -94,7 +94,8 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( BarrelStaves ),				1044294, "barrel staves",	 00.0,  25.0,	typeof( Log ), 1044041,  5, 1044351 );
 			AddCraft( typeof( BarrelLid ),					1044294, "barrel lid",		 11.0,  36.0,	typeof( Log ), 1044041,  4, 1044351 );
 			AddCraft( typeof( Dices ), 						1044294, "dice", 			 20.0, 60.0, 	typeof( Log ), 1044041, 1, 1044351 );
-			AddCraft( typeof( Torch), 						1044294, "torch",			 00.0,  25.0,	typeof( Log ), 1044041,  1, 1044351 );			
+			AddCraft( typeof( Torch ), 						1044294, "torch",			 00.0,  25.0,	typeof( Log ), 1044041,  1, 1044351 );			
+			AddCraft( typeof( WaxSeal ), 					1044294, "wax seal",		 40.0,  80.0,	typeof( Log ), 1044041,  1, 1044351 );			
 
 			// Furniture
 			AddCraft( typeof( FootStool ),					1044291, 1022910,	11.0,  36.0,	typeof( Log ), 1044041,  9, 1044351 );
