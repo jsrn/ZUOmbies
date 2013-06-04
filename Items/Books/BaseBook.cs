@@ -300,23 +300,13 @@ namespace Server.Items
 				base.AddNameProperty( list );
 		}
 
-		/*public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			if ( m_Title != null && m_Title.Length > 0 )
-				list.Add( 1060658, "Title\t{0}", m_Title ); // ~1_val~: ~2_val~
-
-			if ( m_Author != null && m_Author.Length > 0 )
-				list.Add( 1060659, "Author\t{0}", m_Author ); // ~1_val~: ~2_val~
-
-			if ( m_Pages != null && m_Pages.Length > 0 )
-				list.Add( 1060660, "Pages\t{0}", m_Pages.Length ); // ~1_val~: ~2_val~
-		}*/
-		
 		public override void OnSingleClick ( Mobile from )
 		{
-			LabelTo( from, "{0} by {1}", m_Title, m_Author );
+			LabelTo( from, "{0}", m_Title, m_Author );
+
+			if( !Writable )
+				LabelTo( from, "[sealed by {0}]", m_Author );
+
 			LabelTo( from, "[{0} pages]", m_Pages.Length );
 		}
 		
