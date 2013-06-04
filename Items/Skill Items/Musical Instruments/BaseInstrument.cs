@@ -146,8 +146,6 @@ namespace Server.Items
 
 		public void ConsumeUse( Mobile from )
 		{
-			// TODO: Confirm what must happen here?
-
 			if ( UsesRemaining > 1 )
 			{
 				--UsesRemaining;
@@ -297,32 +295,6 @@ namespace Server.Items
 
 			if ( m_Quality == InstrumentQuality.Exceptional )
 				val -= 5.0; // 10%
-
-			if ( m_Slayer != SlayerName.None )
-			{
-				SlayerEntry entry = SlayerGroup.GetEntryByName( m_Slayer );
-
-				if ( entry != null )
-				{
-					if ( entry.Slays( targ ) )
-						val -= 10.0; // 20%
-					else if ( entry.Group.OppositionSuperSlays( targ ) )
-						val += 10.0; // -20%
-				}
-			}
-
-			if ( m_Slayer2 != SlayerName.None )
-			{
-				SlayerEntry entry = SlayerGroup.GetEntryByName( m_Slayer2 );
-
-				if ( entry != null )
-				{
-					if ( entry.Slays( targ ) )
-						val -= 10.0; // 20%
-					else if ( entry.Group.OppositionSuperSlays( targ ) )
-						val += 10.0; // -20%
-				}
-			}
 
 			return val;
 		}
