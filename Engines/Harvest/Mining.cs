@@ -110,19 +110,19 @@ namespace Server.Engines.Harvest
 			oreAndStone.Resources = res;
 			oreAndStone.Veins = veins;
 
-			if ( Core.ML )
+			oreAndStone.BonusResources = new BonusHarvestResource[]
 			{
-				oreAndStone.BonusResources = new BonusHarvestResource[]
-				{
-					new BonusHarvestResource( 0, 99.4, null, null ),	//Nothing
-					new BonusHarvestResource( 100, .1, 1072562, typeof( BlueDiamond ) ),
-					new BonusHarvestResource( 100, .1, 1072567, typeof( DarkSapphire ) ),
-					new BonusHarvestResource( 100, .1, 1072570, typeof( EcruCitrine ) ),
-					new BonusHarvestResource( 100, .1, 1072564, typeof( FireRuby ) ),
-					new BonusHarvestResource( 100, .1, 1072566, typeof( PerfectEmerald ) ),
-					new BonusHarvestResource( 100, .1, 1072568, typeof( Turquoise ) )
-				};
-			}
+				new BonusHarvestResource( 0, 98.3, null, null ),	//Nothing
+				new BonusHarvestResource( 100, .2, "You have found a chunk of amber!", typeof( Amber ) ),
+				new BonusHarvestResource( 100, .2, "You have found an amethyst!", typeof( Amethyst ) ),
+				new BonusHarvestResource( 100, .2, "You have found a citrine!", typeof( Citrine ) ),
+				new BonusHarvestResource( 100, .2, "You have found an emerald!", typeof( Emerald ) ),
+				new BonusHarvestResource( 100, .2, "You have found a ruby!", typeof( Ruby ) ),
+				new BonusHarvestResource( 100, .2, "You have found a sapphire!", typeof( Sapphire ) ),
+				new BonusHarvestResource( 100, .2, "You have found a star sapphire!", typeof( StarSapphire ) ),
+				new BonusHarvestResource( 100, .2, "You have found a tourmaline!", typeof( Tourmaline ) ),
+				new BonusHarvestResource( 100, .1, "You have found a diamond!", typeof( Diamond ) )
+			};
 
 			oreAndStone.RandomizeVeins = Core.ML;
 
