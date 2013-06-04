@@ -104,81 +104,11 @@ namespace Server.Engines.Craft
 				{
 					number = 1044282; // You must be near a forge and and anvil to repair items. * Yes, there are two and's *
 				}
-				else if ( m_CraftSystem is DefTinkering && targeted is Golem )
-				{
-					Golem g = (Golem)targeted;
-					int damage = g.HitsMax - g.Hits;
-
-					if ( damage <= 0 )
-					{
-						number = 500423; // That is already in full repair.
-					}
-					else
-					{
-						double skillValue = from.Skills[SkillName.Tinkering].Value;
-
-						if ( skillValue < 60.0 )
-						{
-							number = 1044153; // You don't have the required skills to attempt this item.
-						}
-						else if ( !from.CanBeginAction( typeof( Golem ) ) )
-						{
-							number = 501789; // You must wait before trying again.
-						}
-						else
-						{
-							if ( damage > (int)(skillValue * 0.3) )
-								damage = (int)(skillValue * 0.3);
-
-							damage += 30;
-
-							if ( !from.CheckSkill( SkillName.Tinkering, 0.0, 100.0 ) )
-								damage /= 2;
-
-							Container pack = from.Backpack;
-
-							if ( pack != null )
-							{
-								int v = pack.ConsumeUpTo( typeof( IronIngot ), (damage+4)/5 );
-
-								if ( v > 0 )
-								{
-									g.Hits += v*5;
-
-									number = 1044279; // You repair the item.
-
-									from.BeginAction( typeof( Golem ) );
-									Timer.DelayCall( TimeSpan.FromSeconds( 12.0 ), new TimerStateCallback( EndGolemRepair ), from );
-								}
-								else
-								{
-									number = 1044037; // You do not have sufficient metal to make that.
-								}
-							}
-							else
-							{
-								number = 1044037; // You do not have sufficient metal to make that.
-							}
-						}
-					}
-				}
 				else if ( targeted is BaseWeapon )
 				{
 					BaseWeapon weapon = (BaseWeapon)targeted;
 					SkillName skill = m_CraftSystem.MainSkill;
-					int toWeaken = 0;
-
-					if ( skill != SkillName.Tailoring )
-					{
-						double skillLevel = from.Skills[skill].Base;
-
-						if ( skillLevel >= 90.0 )
-							toWeaken = 1;
-						else if ( skillLevel >= 70.0 )
-							toWeaken = 2;
-						else
-							toWeaken = 3;
-					}
+					int toWeaken = weapon.MaxHitPoints / 2;
 
 					if ( m_CraftSystem.CraftItems.SearchForSubclass( weapon.GetType() ) == null && !IsSpecialWeapon( weapon ) )
 					{
@@ -198,11 +128,8 @@ namespace Server.Engines.Craft
 					}
 					else
 					{
-						if ( CheckWeaken( from, skill, weapon.HitPoints, weapon.MaxHitPoints ) )
-						{
-							weapon.MaxHitPoints -= toWeaken;
-							weapon.HitPoints = Math.Max( 0, weapon.HitPoints - toWeaken );
-						}
+						weapon.MaxHitPoints -= toWeaken;
+						weapon.HitPoints = Math.Max( 0, weapon.HitPoints - toWeaken );
 
 						if ( CheckRepairDifficulty( from, skill, weapon.HitPoints, weapon.MaxHitPoints ) )
 						{
@@ -221,19 +148,7 @@ namespace Server.Engines.Craft
 				{
 					BaseArmor armor = (BaseArmor)targeted;
 					SkillName skill = m_CraftSystem.MainSkill;
-					int toWeaken = 0;
-
-					if ( skill != SkillName.Tailoring )
-					{
-						double skillLevel = from.Skills[skill].Base;
-
-						if ( skillLevel >= 90.0 )
-							toWeaken = 1;
-						else if ( skillLevel >= 70.0 )
-							toWeaken = 2;
-						else
-							toWeaken = 3;
-					}
+					int toWeaken = armor.MaxHitPoints / 2;
 
 					if ( m_CraftSystem.CraftItems.SearchForSubclass( armor.GetType() ) == null )
 					{
@@ -253,11 +168,8 @@ namespace Server.Engines.Craft
 					}
 					else
 					{
-						if ( CheckWeaken( from, skill, armor.HitPoints, armor.MaxHitPoints ) )
-						{
-							armor.MaxHitPoints -= toWeaken;
-							armor.HitPoints = Math.Max( 0, armor.HitPoints - toWeaken );
-						}
+						armor.MaxHitPoints -= toWeaken;
+						armor.HitPoints = Math.Max( 0, armor.HitPoints - toWeaken );
 
 						if ( CheckRepairDifficulty( from, skill, armor.HitPoints, armor.MaxHitPoints ) )
 						{
@@ -276,21 +188,9 @@ namespace Server.Engines.Craft
 				{
 					BaseClothing clothing = (BaseClothing)targeted;
 					SkillName skill = m_CraftSystem.MainSkill;
-					int toWeaken = 0;
+					int toWeaken = clothing.MaxHitPoints / 2;
 
-					if ( skill != SkillName.Tailoring )
-					{
-						double skillLevel = from.Skills[skill].Base;
-
-						if ( skillLevel >= 90.0 )
-							toWeaken = 1;
-						else if ( skillLevel >= 70.0 )
-							toWeaken = 2;
-						else
-							toWeaken = 3;
-					}
-
- 					if (m_CraftSystem.CraftItems.SearchForSubclass(clothing.GetType()) == null && !IsSpecialClothing(clothing) && !((targeted is TribalMask) || (targeted is HornedTribalMask)) )
+					if (m_CraftSystem.CraftItems.SearchForSubclass(clothing.GetType()) == null && !IsSpecialClothing(clothing) && !((targeted is TribalMask) || (targeted is HornedTribalMask)) )
  					{
 						number = 1044277; // That item cannot be repaired.
 					}
@@ -308,11 +208,8 @@ namespace Server.Engines.Craft
 					}
 					else
 					{
-						if ( CheckWeaken( from, skill, clothing.HitPoints, clothing.MaxHitPoints ) )
-						{
-							clothing.MaxHitPoints -= toWeaken;
-							clothing.HitPoints = Math.Max( 0, clothing.HitPoints - toWeaken );
-						}
+						clothing.MaxHitPoints -= toWeaken;
+						clothing.HitPoints = Math.Max( 0, clothing.HitPoints - toWeaken );
 
 						if ( CheckRepairDifficulty( from, skill, clothing.HitPoints, clothing.MaxHitPoints ) )
 						{
