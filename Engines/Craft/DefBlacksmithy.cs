@@ -198,6 +198,8 @@ namespace Server.Engines.Craft
 			Coming soon....
 			*/
 
+			int index = -1;
+
 			#region Ringmail
 			AddCraft( typeof( RingmailGloves ), 1011076, 1025099, 12.0, 62.0, typeof( IronIngot ), 1044036, 10, 1044037 );
 			AddCraft( typeof( RingmailLegs ), 1011076, 1025104, 19.4, 69.4, typeof( IronIngot ), 1044036, 16, 1044037 );
@@ -210,8 +212,6 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( ChainLegs ), 1011077, 1025054, 36.7, 86.7, typeof( IronIngot ), 1044036, 18, 1044037 );
 			AddCraft( typeof( ChainChest ), 1011077, 1025055, 39.1, 89.1, typeof( IronIngot ), 1044036, 20, 1044037 );
 			#endregion
-
-			int index = -1;
 
 			#region Platemail
 			AddCraft( typeof( PlateArms ), 1011078, 1025136, 66.3, 116.3, typeof( IronIngot ), 1044036, 18, 1044037 );
@@ -228,10 +228,8 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( CloseHelm ), 1011079, 1025128, 37.9, 87.9, typeof( IronIngot ), 1044036, 15, 1044037 );
 			AddCraft( typeof( Helmet ), 1011079, 1025130, 37.9, 87.9, typeof( IronIngot ), 1044036, 15, 1044037 );
 			AddCraft( typeof( NorseHelm ), 1011079, 1025134, 37.9, 87.9, typeof( IronIngot ), 1044036, 15, 1044037 );
-			AddCraft( typeof( PlateHelm ), 1011079, 1025138, 62.6, 112.6, typeof( IronIngot ), 1044036, 15, 1044037 );
-			
+			AddCraft( typeof( PlateHelm ), 1011079, 1025138, 62.6, 112.6, typeof( IronIngot ), 1044036, 15, 1044037 );	
 			AddCraft( typeof( Circlet ), 1011079, 1032645, 62.1, 112.1, typeof( IronIngot ), 1044036, 6, 1044037 );
-
 			AddCraft( typeof( RoyalCirclet ), 1011079, 1032646, 70.0, 120.0, typeof( IronIngot ), 1044036, 6, 1044037 );
 
 			index = AddCraft( typeof( GemmedCirclet ), 1011079, 1032647, 75.0, 125.0, typeof( IronIngot ), 1044036, 6, 1044037 );
@@ -264,7 +262,6 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( ThrowingStar ), 1011081, 1030231, 45.0, 95.0, typeof( IronIngot ), 1044036, 5, 1044037 );
 			AddCraft( typeof( Kama ), 1011081, 1030232, 40.0, 90.0, typeof( IronIngot ), 1044036, 14, 1044037 );
 			AddCraft( typeof( Sai ), 1011081, 1030234, 50.0, 100.0, typeof( IronIngot ), 1044036, 12, 1044037 );
-			
 			
 			if( Core.SE )
 			{
@@ -313,13 +310,12 @@ namespace Server.Engines.Craft
 				index = AddCraft( typeof( Tessen ), 1011084, 1030222, 85.0, 135.0, typeof( IronIngot ), 1044036, 16, 1044037 );
 				AddSkill( index, SkillName.Tailoring, 50.0, 55.0 );
 				AddRes( index, typeof( Cloth ), 1044286, 10, 1044287 );
-				SetNeededExpansion( index, Expansion.SE );
 			}
-			/*
+			
 			if( Core.ML )
 			{
 				index = AddCraft( typeof( DiamondMace ), 1011084, 1073568, 70.0, 120.0, typeof( IronIngot ), 1044036, 20, 1044037 );
-			}*/
+			}
 			#endregion
 
 			#region Tools
@@ -353,7 +349,7 @@ namespace Server.Engines.Craft
 			AddSubRes2( typeof( BlueScales ),		1060880, 0.0, 1053137, 1044268 );
 
 			Resmelt = true;
-			Repair = true;
+			Repair = false;
 			MarkOption = true;
 			CanEnhance = Core.AOS;
 		}

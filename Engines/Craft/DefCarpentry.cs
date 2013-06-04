@@ -283,7 +283,7 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( WaterTroughSouthDeed ), 1044299, 1044350, 94.7, 119.7, typeof( Log ), 1044041, 150, 1044351 );
 
 			MarkOption = true;
-			Repair = Core.AOS;
+			Repair = false;
 
 			SetSubRes( typeof( Log ), 1072643 );
 
