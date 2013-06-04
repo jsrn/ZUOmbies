@@ -10,7 +10,6 @@ namespace Server.Items
 		public WaxSeal() : base( 0xF7C )
 		{
 			Weight = 1.0;
-			Hue = 0x21;
 			Name = "a wax seal";
 		}
 
@@ -27,7 +26,7 @@ namespace Server.Items
 			}
 
 			from.Target = new InternalTarget( this );
-			from.SendLocalizedMessage( 1061907 ); // Choose a book you wish to seal with the wax from the red leaf.
+			from.SendMessage( "Choose the parchment on which you wish to apply the wax seal." );
 		}
 
 		private class InternalTarget : Target
@@ -58,7 +57,7 @@ namespace Server.Items
 				}
 				else if ( !(item is BaseBook) )
 				{
-					item.LabelTo( from, 1061911 ); // You can only use red leaves to seal the ink into book pages!
+					from.SendMessage( "You may only apply the seal to parchments!" );
 				}
 				else
 				{
@@ -71,8 +70,7 @@ namespace Server.Items
 					else
 					{
 						book.Writable = false;
-						book.Name = book.Name + " [sealed by " + from.Name + "]";
-						book.LabelTo( from, 1061910 ); // You seal the ink to the page using wax from the red leaf.
+						from.SendMessage( "You stamp the parchment with your seal." );
 					}
 				}
 			}
