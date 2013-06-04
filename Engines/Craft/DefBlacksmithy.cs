@@ -329,7 +329,7 @@ namespace Server.Engines.Craft
 			AddSubRes2( typeof( BlueScales ),		1060880, 0.0, 1053137, 1044268 );
 
 			Resmelt = true;
-			Repair = false;
+			Repair = true;
 			MarkOption = true;
 			CanEnhance = Core.AOS;
 		}
