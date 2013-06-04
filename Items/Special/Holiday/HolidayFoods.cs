@@ -107,31 +107,4 @@ namespace Server.Items
 			int version = reader.ReadInt();
 		}
 	}
-
-	public class GingerBreadCookie : Food
-	{
-		[Constructable]
-		public GingerBreadCookie() : base( 0x2be1 )
-		{
-			ItemID = Utility.RandomBool() ? 0x2be1 : 0x2be2;
-			Stackable = false;
-		}
-
-		public GingerBreadCookie( Serial serial ) : base( serial )
-		{
-		}
-
-		public override void Serialize( GenericWriter writer )
-		{
-			base.Serialize( writer );
-			writer.Write( (int) 0 ); // version
-		}
-
-		public override void Deserialize( GenericReader reader )
-		{
-			base.Deserialize( reader );
-			int version = reader.ReadInt();
-		}
-	}
 }
-
