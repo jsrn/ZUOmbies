@@ -262,15 +262,6 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( ThrowingStar ), 1011081, 1030231, 45.0, 95.0, typeof( IronIngot ), 1044036, 5, 1044037 );
 			AddCraft( typeof( Kama ), 1011081, 1030232, 40.0, 90.0, typeof( IronIngot ), 1044036, 14, 1044037 );
 			AddCraft( typeof( Sai ), 1011081, 1030234, 50.0, 100.0, typeof( IronIngot ), 1044036, 12, 1044037 );
-			
-			if( Core.SE )
-			{
-				AddCraft( typeof( Katana ),1011081, 1025119, 44.1, 94.1, typeof( IronIngot ), 1044036, 8, 1044037 );
-				AddCraft( typeof( NoDachi ), 1011081, 1030221, 75.0, 125.0, typeof( IronIngot ), 1044036, 18, 1044037 );
-				AddCraft( typeof( Wakizashi ), 1011081, 1030223, 50.0, 100.0, typeof( IronIngot ), 1044036, 8, 1044037 );
-				AddCraft( typeof( Daisho ), 1011081, 1030228, 60.0, 110.0, typeof( IronIngot ), 1044036, 15, 1044037 );
-				AddCraft( typeof( Tekagi ), 1011081, 1030230, 55.0, 105.0, typeof( IronIngot ), 1044036, 12, 1044037 );
-			}
 			#endregion
 
 			#region Axes
@@ -304,18 +295,7 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( Scepter ), 1011084, 1029916, 21.4, 71.4, typeof( IronIngot ), 1044036, 10, 1044037 );
 			AddCraft( typeof( WarMace ), 1011084, 1025127, 28.0, 78.0, typeof( IronIngot ), 1044036, 14, 1044037 );
 			AddCraft( typeof( WarHammer ), 1011084, 1025177, 34.2, 84.2, typeof( IronIngot ), 1044036, 16, 1044037 );
-
-			if( Core.SE )
-			{
-				index = AddCraft( typeof( Tessen ), 1011084, 1030222, 85.0, 135.0, typeof( IronIngot ), 1044036, 16, 1044037 );
-				AddSkill( index, SkillName.Tailoring, 50.0, 55.0 );
-				AddRes( index, typeof( Cloth ), 1044286, 10, 1044287 );
-			}
-			
-			if( Core.ML )
-			{
-				index = AddCraft( typeof( DiamondMace ), 1011084, 1073568, 70.0, 120.0, typeof( IronIngot ), 1044036, 20, 1044037 );
-			}
+			AddCraft( typeof( DiamondMace ), 1011084, 1073568, 70.0, 120.0, typeof( IronIngot ), 1044036, 20, 1044037 );
 			#endregion
 
 			#region Tools
