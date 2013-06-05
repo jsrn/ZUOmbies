@@ -69,6 +69,7 @@ namespace Server.Items
 					}
 					else
 					{
+						book.Author = from.Name;
 						book.Writable = false;
 						from.SendMessage( "You stamp the parchment with your seal." );
 					}
