@@ -299,9 +299,10 @@ namespace Server.Engines.Craft
 			#endregion
 
 			#region Tools
-			AddCraft( typeof( Blowpipe ), "Tools", "glass blowing pipe", 34.2, 84.2, typeof( IronIngot ), 1044036, 10, 1044037 );
-			AddCraft( typeof( Nails ), "Tools", "nails", 00.0, 50.0, typeof( IronIngot ), 1044036, 1, 1044037 );
-			AddCraft( typeof( Cauldron ), "Tools", "cauldron", 50.0, 90.0, typeof( IronIngot ), 1044036, 15, 1044037 );
+			AddCraft( typeof( Blowpipe ), "Other", "glass blowing pipe", 34.2, 84.2, typeof( IronIngot ), 1044036, 10, 1044037 );
+			AddCraft( typeof( Nails ), "Other", "nails", 00.0, 50.0, typeof( IronIngot ), 1044036, 1, 1044037 );
+			AddCraft( typeof( Cauldron ), "Other", "cauldron", 50.0, 90.0, typeof( IronIngot ), 1044036, 15, 1044037 );
+			AddCraft( typeof( Bottle ), "Other", "bottle", 30.0, 70.0, typeof( IronIngot ), 1044036, 2, 1044037 );
 			#endregion
 
 			// Set the overridable material
