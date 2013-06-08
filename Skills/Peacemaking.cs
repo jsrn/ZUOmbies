@@ -100,7 +100,7 @@ namespace Server.SkillHandlers
 
 									if ( m is PlayerMobile )
 									{
-										m.SendMessage( from.Name + " provides a lovely musical acompaniment to the situation." );
+										m.SendMessage( from.Name + " provides a lovely musical accompaniment to the situation." );
 									}
 									else 
 									{
