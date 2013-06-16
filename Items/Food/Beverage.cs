@@ -928,14 +928,14 @@ namespace Server.Items
 						if( !m_Drunk.Mounted )
 						{
 							// turn in a random direction
-							m_Drunk.Direction = (Direction)Utility.Random( 8 );
+							// m_Drunk.Direction = (Direction)Utility.Random( 8 );
 
 							// heave
-							m_Drunk.Animate( 32, 5, 1, true, false, 0 );
+							// m_Drunk.Animate( 32, 5, 1, true, false, 0 );
 						}
 
 						// *hic*
-						m_Drunk.PublicOverheadMessage( Network.MessageType.Regular, 0x3B2, 500849 );
+						// m_Drunk.PublicOverheadMessage( Network.MessageType.Regular, 0x3B2, 500849 );
 					}
 
 					if( m_Drunk.BAC <= 0 )
