@@ -295,7 +295,7 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( Scepter ), 1011084, 1029916, 21.4, 71.4, typeof( IronIngot ), 1044036, 10, 1044037 );
 			AddCraft( typeof( WarMace ), 1011084, 1025127, 28.0, 78.0, typeof( IronIngot ), 1044036, 14, 1044037 );
 			AddCraft( typeof( WarHammer ), 1011084, 1025177, 34.2, 84.2, typeof( IronIngot ), 1044036, 16, 1044037 );
-			AddCraft( typeof( DiamondMace ), 1011084, 1073568, 70.0, 120.0, typeof( IronIngot ), 1044036, 20, 1044037 );
+			AddCraft( typeof( DiamondMace ), 1011084, "diamond mace", 70.0, 120.0, typeof( IronIngot ), 1044036, 20, 1044037 );
 			#endregion
 
 			#region Tools
