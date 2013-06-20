@@ -363,73 +363,43 @@ namespace Server
 					return item;
 				}
 
-				if ( item is BaseWeapon || item is BaseArmor || item is BaseJewel || item is BaseHat )
+				if ( item is BaseWeapon || item is BaseArmor )
 				{
-					if ( Core.AOS )
+					if ( item is BaseWeapon )
 					{
-						int bonusProps = GetBonusProperties();
-						int min = m_MinIntensity;
-						int max = m_MaxIntensity;
+						BaseWeapon weapon = (BaseWeapon)item;
 
-						if ( bonusProps < m_MaxProps && LootPack.CheckLuck( luckChance ) )
-							++bonusProps;
+						if ( 80 > Utility.Random( 100 ) )
+							weapon.AccuracyLevel = (WeaponAccuracyLevel)GetRandomOldBonus();
 
-						int props = 1 + bonusProps;
+						if ( 60 > Utility.Random( 100 ) )
+							weapon.DamageLevel = (WeaponDamageLevel)GetRandomOldBonus();
 
-						// Make sure we're not spawning items with 6 properties.
-						if ( props > m_MaxProps )
-							props = m_MaxProps;
+						if ( 40 > Utility.Random( 100 ) )
+							weapon.DurabilityLevel = (WeaponDurabilityLevel)GetRandomOldBonus();
 
-						if ( item is BaseWeapon )
-							BaseRunicTool.ApplyAttributesTo( (BaseWeapon)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity );
-						else if ( item is BaseArmor )
-							BaseRunicTool.ApplyAttributesTo( (BaseArmor)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity );
-						else if ( item is BaseJewel )
-							BaseRunicTool.ApplyAttributesTo( (BaseJewel)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity );
-						else if ( item is BaseHat )
-							BaseRunicTool.ApplyAttributesTo( (BaseHat)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity );
+						if ( 5 > Utility.Random( 100 ) )
+							weapon.Slayer = SlayerName.Silver;
+
+						if ( from != null && weapon.AccuracyLevel == 0 && weapon.DamageLevel == 0 && weapon.DurabilityLevel == 0 && weapon.Slayer == SlayerName.None && 5 > Utility.Random( 100 ) )
+							weapon.Slayer = SlayerGroup.GetLootSlayerType( from.GetType() );
 					}
-					else // not aos
+					else if ( item is BaseArmor )
 					{
-						if ( item is BaseWeapon )
-						{
-							BaseWeapon weapon = (BaseWeapon)item;
+						BaseArmor armor = (BaseArmor)item;
 
-							if ( 80 > Utility.Random( 100 ) )
-								weapon.AccuracyLevel = (WeaponAccuracyLevel)GetRandomOldBonus();
+						if ( 80 > Utility.Random( 100 ) )
+							armor.ProtectionLevel = (ArmorProtectionLevel)GetRandomOldBonus();
 
-							if ( 60 > Utility.Random( 100 ) )
-								weapon.DamageLevel = (WeaponDamageLevel)GetRandomOldBonus();
-
-							if ( 40 > Utility.Random( 100 ) )
-								weapon.DurabilityLevel = (WeaponDurabilityLevel)GetRandomOldBonus();
-
-							if ( 5 > Utility.Random( 100 ) )
-								weapon.Slayer = SlayerName.Silver;
-
-							if ( from != null && weapon.AccuracyLevel == 0 && weapon.DamageLevel == 0 && weapon.DurabilityLevel == 0 && weapon.Slayer == SlayerName.None && 5 > Utility.Random( 100 ) )
-								weapon.Slayer = SlayerGroup.GetLootSlayerType( from.GetType() );
-						}
-						else if ( item is BaseArmor )
-						{
-							BaseArmor armor = (BaseArmor)item;
-
-							if ( 80 > Utility.Random( 100 ) )
-								armor.ProtectionLevel = (ArmorProtectionLevel)GetRandomOldBonus();
-
-							if ( 40 > Utility.Random( 100 ) )
-								armor.Durability = (ArmorDurabilityLevel)GetRandomOldBonus();
-						}
+						if ( 40 > Utility.Random( 100 ) )
+							armor.Durability = (ArmorDurabilityLevel)GetRandomOldBonus();
 					}
 				}
 				else if ( item is BaseInstrument )
 				{
 					SlayerName slayer = SlayerName.None;
 
-					if ( Core.AOS )
-						slayer = BaseRunicTool.GetRandomSlayer();
-					else
-						slayer = SlayerGroup.GetLootSlayerType( from.GetType() );
+					slayer = SlayerGroup.GetLootSlayerType( from.GetType() );
 
 					if ( slayer == SlayerName.None )
 					{
