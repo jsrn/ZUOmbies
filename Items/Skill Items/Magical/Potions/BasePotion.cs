@@ -179,13 +179,9 @@ namespace Server.Items
 
 		public static int EnhancePotions( Mobile m )
 		{
-			int EP = AosAttributes.GetValue( m, AosAttribute.EnhancePotions );
 			int skillBonus = m.Skills.Alchemy.Fixed / 330 * 10;
 
-			if ( Core.ML && EP > 50 && m.AccessLevel <= AccessLevel.Player )
-				EP = 50;
-
-			return ( EP + skillBonus );
+			return skillBonus;
 		}
 
 		public static TimeSpan Scale( Mobile m, TimeSpan v )
