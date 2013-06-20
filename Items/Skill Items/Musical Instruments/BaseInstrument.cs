@@ -519,11 +519,58 @@ namespace Server.Items
 
 		public void PlayInstrumentWell( Mobile from )
 		{
+			int songsKnown = (int)(from.Skills[SkillName.Musicianship].Value / 10);
+			from.SendMessage( "You play well, and boost the spirits of those around you!" );
+			PlaySong( from, Utility.RandomMinMax( 1, songsKnown ) );
 			from.PlaySound( m_WellSound );
+		}
+
+		private void PlaySong( Mobile from, int songNum )
+		{
+			string message = "You begin to play '";
+
+			switch ( songNum )
+			{
+				case 1:
+					message += "Fisticuff Fury"; // Increase to damage
+					break;
+				case 2:
+					message += "Turtle Soup"; // Increase to parry
+					break;
+				case 3:
+					message += "The Dancer and the Fighter"; // Increase to dodge chance
+					break;
+				case 4:
+					message += "Purple Drank"; // Boost to potion usefulness
+					break;
+				case 5:
+					message += "The Grenadier Song"; // Explosion potions more useful
+					break;
+				case 6:
+					message += "Nightshade Blur"; // Poison resist
+					break;
+				case 7:
+					message += "The Wytch is Burning"; // Magic resist
+					break;
+				case 8:
+					message += "Hammer n' Tong"; // Crafting success
+					break;
+				case 9:
+					message += "Banned from Trinsic"; // +10 to 3 random skills over 50
+					break;
+				case 10:
+					message += "Earth, Wind and Fire"; // Str, dex, int buff
+					break;
+			}
+
+			message += "'.";
+
+			from.SendMessage( message );
 		}
 
 		public void PlayInstrumentBadly( Mobile from )
 		{
+			from.SendMessage( "You play poorly." );
 			from.PlaySound( m_BadlySound );
 		}
 
