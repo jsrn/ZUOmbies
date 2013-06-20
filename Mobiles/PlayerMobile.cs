@@ -2063,13 +2063,7 @@ namespace Server.Mobiles
 			}
 			else if ( killer is BaseChampion ) // Killer is champion
 			{
-				BaseChampion bc = (BaseChampion)killer;
-
-				injuryPointsGained = (int) (( bc.Fame / 24000.0 ) * 30);
-
-				if ( injuryPointsGained < 5 )
-					injuryPointsGained = 5;
-
+				injuryPointsGained = 20;
 				ResetDeathTime();
 			}
 			else if ( killer is PlayerMobile && !this.m_FreeDeaths ) // Killer is player, and not in zone
