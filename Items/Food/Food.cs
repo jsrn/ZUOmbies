@@ -82,7 +82,7 @@ namespace Server.Items
 					from.ApplyPoison( m_Poisoner, m_Poison );
 
 				// Heal a bit
-				from.Hits +=  Utility.Random( 1, m_FillFactor );
+				from.Hits +=  Utility.Random( 1, m_FillFactor + 1 );
 
 				if( from.Hits > from.HitsMax )
 					from.Hits = from.HitsMax;
