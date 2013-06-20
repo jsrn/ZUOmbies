@@ -363,56 +363,6 @@ namespace Server
 					return item;
 				}
 
-				if ( item is BaseWeapon || item is BaseArmor )
-				{
-					if ( item is BaseWeapon )
-					{
-						BaseWeapon weapon = (BaseWeapon)item;
-
-						if ( 80 > Utility.Random( 100 ) )
-							weapon.AccuracyLevel = (WeaponAccuracyLevel)GetRandomOldBonus();
-
-						if ( 60 > Utility.Random( 100 ) )
-							weapon.DamageLevel = (WeaponDamageLevel)GetRandomOldBonus();
-
-						if ( 40 > Utility.Random( 100 ) )
-							weapon.DurabilityLevel = (WeaponDurabilityLevel)GetRandomOldBonus();
-
-						if ( 5 > Utility.Random( 100 ) )
-							weapon.Slayer = SlayerName.Silver;
-
-						if ( from != null && weapon.AccuracyLevel == 0 && weapon.DamageLevel == 0 && weapon.DurabilityLevel == 0 && weapon.Slayer == SlayerName.None && 5 > Utility.Random( 100 ) )
-							weapon.Slayer = SlayerGroup.GetLootSlayerType( from.GetType() );
-					}
-					else if ( item is BaseArmor )
-					{
-						BaseArmor armor = (BaseArmor)item;
-
-						if ( 80 > Utility.Random( 100 ) )
-							armor.ProtectionLevel = (ArmorProtectionLevel)GetRandomOldBonus();
-
-						if ( 40 > Utility.Random( 100 ) )
-							armor.Durability = (ArmorDurabilityLevel)GetRandomOldBonus();
-					}
-				}
-				else if ( item is BaseInstrument )
-				{
-					SlayerName slayer = SlayerName.None;
-
-					slayer = SlayerGroup.GetLootSlayerType( from.GetType() );
-
-					if ( slayer == SlayerName.None )
-					{
-						item.Delete();
-						return null;
-					}
-
-					BaseInstrument instr = (BaseInstrument)item;
-
-					instr.Quality = InstrumentQuality.Regular;
-					instr.Slayer = slayer;
-				}
-
 				if ( item.Stackable )
 					item.Amount = m_Quantity.Roll();
 			}
