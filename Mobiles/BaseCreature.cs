@@ -5022,7 +5022,9 @@ namespace Server.Mobiles
 			|| this is Skeleton
 			|| this is SkeletalMage
 			|| this is SkeletalKnight
-			|| this is Wraith;
+			|| this is Wraith
+			|| this is BoneKnight
+			|| this is SkeletonArcher;
 		}
 
 		public virtual bool Rummage()
