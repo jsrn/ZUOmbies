@@ -613,16 +613,7 @@ namespace Server.Items
 				{
 					BaseArmor armor = (BaseArmor)item;
 
-					if( armor.RequiredRace != null && m.Race != armor.RequiredRace )
-					{
-						if( armor.RequiredRace == Race.Elf )
-							m.SendLocalizedMessage( 1072203 ); // Only Elves may use this.
-						else
-							m.SendMessage( "Only {0} may use this.", armor.RequiredRace.PluralName );
-
-						m.AddToBackpack( armor );
-					}
-					else if ( !armor.AllowMaleWearer && !m.Female && m.AccessLevel < AccessLevel.GameMaster )
+					if ( !armor.AllowMaleWearer && !m.Female && m.AccessLevel < AccessLevel.GameMaster )
 					{
 						if ( armor.AllowFemaleWearer )
 							m.SendLocalizedMessage( 1010388 ); // Only females can wear this.
@@ -672,9 +663,6 @@ namespace Server.Items
 			if ( parent is Mobile )
 			{
 				Mobile from = (Mobile)parent;
-
-				if ( Core.AOS )
-					m_AosSkillBonuses.AddTo( from );
 
 				from.Delta( MobileDelta.Armor ); // Tell them armor rating has changed
 			}
@@ -1172,16 +1160,7 @@ namespace Server.Items
 
 			if( from.AccessLevel < AccessLevel.GameMaster )
 			{
-				if( RequiredRace != null && from.Race != RequiredRace )
-				{
-					if( RequiredRace == Race.Elf )
-						from.SendLocalizedMessage( 1072203 ); // Only Elves may use this.
-					else
-						from.SendMessage( "Only {0} may use this.", RequiredRace.PluralName );
-
-					return false;
-				}
-				else if( !AllowMaleWearer && !from.Female )
+				if( !AllowMaleWearer && !from.Female )
 				{
 					if( AllowFemaleWearer )
 						from.SendLocalizedMessage( 1010388 ); // Only females can wear this.
@@ -1512,27 +1491,7 @@ namespace Server.Items
 
 			if( Quality == ArmorQuality.Exceptional )
 			{
-				if ( !( Core.ML && this is BaseShield ))		// Guessed Core.ML removed exceptional resist bonuses from crafted shields
-					DistributeBonuses( (tool is BaseRunicTool ? 6 : Core.SE ? 15 : 14) ); // Not sure since when, but right now 15 points are added, not 14.
-
-				if( Core.ML && !(this is BaseShield) )
-				{
-					int bonus = (int)(from.Skills.ArmsLore.Value / 20);
-
-					for( int i = 0; i < bonus; i++ )
-					{
-						switch( Utility.Random( 5 ) )
-						{
-							case 0: m_PhysicalBonus++;	break;
-							case 1: m_FireBonus++;		break;
-							case 2: m_ColdBonus++;		break;
-							case 3: m_EnergyBonus++;	break;
-							case 4: m_PoisonBonus++;	break;
-						}
-					}
-
-					from.CheckSkill( SkillName.ArmsLore, 0, 100 );
-				}
+				DistributeBonuses( 14 );
 			}
 
 			return quality;
