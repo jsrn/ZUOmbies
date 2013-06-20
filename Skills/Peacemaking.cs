@@ -52,11 +52,6 @@ namespace Server.SkillHandlers
 					from.NextSkillTime = DateTime.Now;
 			}
 
-			private bool IsUndead ( Mobile m )
-			{
-				return m is Zombie;
-			}
-
 			protected override void OnTarget( Mobile from, object targeted )
 			{
 				from.RevealingAction();
@@ -114,7 +109,7 @@ namespace Server.SkillHandlers
 									{
 										m.SendMessage( from.Name + " provides a soothing tune on their instrument." );
 									}
-									else if ( IsUndead( m ) ) // Undead are not susceptible to this malarky!
+									else if ( (m is BaseCreature) && ((BaseCreature)m).IsUndead() ) // Undead are not susceptible to this malarky!
 									{
 										attemptedOnUndead = true;
 									}
@@ -152,7 +147,7 @@ namespace Server.SkillHandlers
 							from.SendMessage( "You play your instrument at them, but nothing happens..." );
 
 						}
-						else if ( IsUndead( targ ) ) // Undead are not susceptible to this malarky!
+						else if ( (targ is BaseCreature) && ((BaseCreature)targ).IsUndead() ) // Undead are not susceptible to this malarky!
 						{
 							from.SendMessage( "The undead do not seem to notice your music." );
 						}

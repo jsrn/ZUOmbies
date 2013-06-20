@@ -5010,6 +5010,11 @@ namespace Server.Mobiles
 			}
 		}
 
+		public bool IsUndead()
+		{
+			return this is Zombie;
+		}
+
 		public virtual bool Rummage()
 		{
 			Corpse toRummage = null;
