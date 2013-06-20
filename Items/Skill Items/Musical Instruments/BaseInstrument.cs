@@ -541,10 +541,10 @@ namespace Server.Items
 					message += "The Dancer and the Fighter"; // Increase to dodge chance
 					break;
 				case 4:
-					message += "Purple Drank"; // Boost to potion usefulness
+					message += "Echoes of the Fallen"; // HP Regen
 					break;
 				case 5:
-					message += "The Grenadier Song"; // Explosion potions more useful
+					message += "The Grenadier Song"; // Increase in potion usefulness
 					break;
 				case 6:
 					message += "Nightshade Blur"; // Poison resist
