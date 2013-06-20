@@ -15,11 +15,11 @@ namespace Server.Mobiles
 			Body = 3;
 			BaseSoundID = 471;
 
-			SetStr( 46, 70 );
-			SetDex( 31, 50 );
-			SetInt( 26, 40 );
+			SetStr( 46, 80 );
+			SetDex( 31, 60 );
+			SetInt( 26, 50 );
 
-			SetHits( 28, 42 );
+			SetHits( 28, 72 );
 
 			SetDamage( 3, 7 );
 
@@ -30,8 +30,8 @@ namespace Server.Mobiles
 			SetResistance( ResistanceType.Poison, 5, 10 );
 
 			SetSkill( SkillName.MagicResist, 15.1, 40.0 );
-			SetSkill( SkillName.Tactics, 35.1, 50.0 );
-			SetSkill( SkillName.Wrestling, 35.1, 50.0 );
+			SetSkill( SkillName.Tactics, 35.1, 70.0 );
+			SetSkill( SkillName.Wrestling, 35.1, 80.0 );
 
 			Fame = 600;
 			Karma = -600;
