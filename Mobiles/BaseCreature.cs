@@ -5012,7 +5012,17 @@ namespace Server.Mobiles
 
 		public bool IsUndead()
 		{
-			return this is Zombie;
+			return this is Zombie
+			|| this is Ghoul
+			|| this is Spectre
+			|| this is Lich
+			|| this is LichLord
+			|| this is AncientLich
+			|| this is Shade
+			|| this is Skeleton
+			|| this is SkeletalMage
+			|| this is SkeletalKnight
+			|| this is Wraith;
 		}
 
 		public virtual bool Rummage()
