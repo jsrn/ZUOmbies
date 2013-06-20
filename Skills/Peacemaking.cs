@@ -15,6 +15,12 @@ namespace Server.SkillHandlers
 
 		public static TimeSpan OnUse( Mobile m )
 		{
+			if ( !(m.Weapon is Fists) )
+			{
+				m.SendMessage( "You cannot play an instrument while holding a weapon." );
+				return TimeSpan.FromSeconds( 1.0 ); // Cannot use another skill for 1 second
+			}
+
 			m.RevealingAction();
 
 			BaseInstrument.PickInstrument( m, new InstrumentPickedCallback( OnPickedInstrument ) );
@@ -44,6 +50,11 @@ namespace Server.SkillHandlers
 			{
 				if ( m_SetSkillTime )
 					from.NextSkillTime = DateTime.Now;
+			}
+
+			private bool IsUndead ( Mobile m )
+			{
+				return m is Zombie;
 			}
 
 			protected override void OnTarget( Mobile from, object targeted )
@@ -92,6 +103,7 @@ namespace Server.SkillHandlers
 								int range = BaseInstrument.GetBardRange( from, SkillName.Peacemaking );
 
 								bool calmed = false;
+								bool attemptedOnUndead = false;
 
 								foreach ( Mobile m in from.GetMobilesInRange( range ) )
 								{
@@ -100,12 +112,15 @@ namespace Server.SkillHandlers
 
 									if ( m is PlayerMobile )
 									{
-										m.SendMessage( from.Name + " provides a lovely musical accompaniment to the situation." );
+										m.SendMessage( from.Name + " provides a soothing tune on their instrument." );
+									}
+									else if ( IsUndead( m ) ) // Undead are not susceptible to this malarky!
+									{
+										attemptedOnUndead = true;
 									}
 									else 
 									{
 										calmed = true;
-
 										m.SendLocalizedMessage( 500616 ); // You hear lovely music, and forget to continue battling!
 										m.Combatant = null;
 										m.Warmode = false;
@@ -114,6 +129,9 @@ namespace Server.SkillHandlers
 											((BaseCreature)m).Pacify( from, DateTime.Now + TimeSpan.FromSeconds( 1.0 ) );
 									}
 								}
+
+								if ( attemptedOnUndead )
+									from.SendMessage( "The undead do not seem to notice your music." );
 
 								if ( !calmed )
 									from.SendLocalizedMessage( 1049648 ); // You play hypnotic music, but there is nothing in range for you to calm.
@@ -128,7 +146,17 @@ namespace Server.SkillHandlers
 
 						Mobile targ = (Mobile)targeted;
 
-						if ( !from.CanBeHarmful( targ, false ) )
+						if ( targ is PlayerMobile )
+						{
+							targ.SendMessage( from.Name + " plays their instrument at you, to no effect..." );
+							from.SendMessage( "You play your instrument at them, but nothing happens..." );
+
+						}
+						else if ( IsUndead( targ ) ) // Undead are not susceptible to this malarky!
+						{
+							from.SendMessage( "The undead do not seem to notice your music." );
+						}
+						else if ( !from.CanBeHarmful( targ, false ) )
 						{
 							from.SendLocalizedMessage( 1049528 );
 							m_SetSkillTime = true;
