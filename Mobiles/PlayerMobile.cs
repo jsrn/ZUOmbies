@@ -1855,6 +1855,13 @@ namespace Server.Mobiles
 			if ( willKill && from is PlayerMobile )
 				Timer.DelayCall( TimeSpan.FromSeconds( 10 ), new TimerCallback( ((PlayerMobile) from).RecoverAmmo ) );
 
+			// Check zombification
+			if( from is Zombie || from is ZombieBrute )
+			{
+				if( ZombieInfection.WasBitten( this, from ) )
+					this.SendMessage( "Alas! The zombie has breached your defenses and wounded you." );
+			}
+
 			base.OnDamage( amount, from, willKill );
 		}
 
