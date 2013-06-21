@@ -24,6 +24,8 @@ namespace Server.Items
 		public override int InitMinHits{ get{ return 31; } }
 		public override int InitMaxHits{ get{ return 110; } }
 
+		public override int DefMaxRange{ get{ return 2; } }
+
 		[Constructable]
 		public Pike() : base( 0x26BE )
 		{

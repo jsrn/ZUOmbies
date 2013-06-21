@@ -26,6 +26,8 @@ namespace Server.Items
 
 		public override SkillName DefSkill{ get{ return SkillName.Swords; } }
 
+		public override int DefMaxRange{ get{ return 2; } }
+
 		[Constructable]
 		public BladedStaff() : base( 0x26BD )
 		{

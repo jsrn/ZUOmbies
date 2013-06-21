@@ -24,6 +24,8 @@ namespace Server.Items
 		public override int InitMinHits{ get{ return 31; } }
 		public override int InitMaxHits{ get{ return 80; } }
 
+		public override int DefMaxRange{ get{ return 2; } }
+
 		[Constructable]
 		public Spear() : base( 0xF62 )
 		{

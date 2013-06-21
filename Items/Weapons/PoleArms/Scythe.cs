@@ -27,6 +27,8 @@ namespace Server.Items
 
 		public override HarvestSystem HarvestSystem{ get{ return null; } }
 
+		public override int DefMaxRange{ get{ return 2; } }
+
 		[Constructable]
 		public Scythe() : base( 0x26BA )
 		{

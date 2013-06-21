@@ -31,6 +31,8 @@ namespace Server.Items
 		public override WeaponType DefType{ get{ return WeaponType.Piercing; } }
 		public override WeaponAnimation DefAnimation{ get{ return WeaponAnimation.Pierce1H; } }
 
+		public override int DefMaxRange{ get{ return 2; } }
+
 		[Constructable]
 		public Lance() : base( 0x26C0 )
 		{

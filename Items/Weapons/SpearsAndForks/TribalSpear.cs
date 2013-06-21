@@ -26,6 +26,8 @@ namespace Server.Items
 
 		public override int VirtualDamageBonus{ get{ return 25; } }
 
+		public override int DefMaxRange{ get{ return 2; } }
+
 		public override string DefaultName
 		{
 			get { return "a tribal spear"; }

@@ -24,6 +24,8 @@ namespace Server.Items
 		public override int InitMinHits{ get{ return 31; } }
 		public override int InitMaxHits{ get{ return 60; } }
 
+		public override int DefMaxRange{ get{ return 2; } }
+
 		[Constructable]
 		public QuarterStaff() : base( 0xE89 )
 		{
