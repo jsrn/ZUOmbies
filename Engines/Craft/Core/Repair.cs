@@ -126,6 +126,10 @@ namespace Server.Engines.Craft
 					{
 						number = 1044278; // That item has been repaired many times, and will break if repairs are attempted again.
 					}
+					else if ( weapon.Slayer != SlayerName.None || weapon.Slayer2 != SlayerName.None )
+					{
+						number = 1044277; // That item cannot be repaired.
+					}
 					else
 					{
 						weapon.MaxHitPoints -= toWeaken;
