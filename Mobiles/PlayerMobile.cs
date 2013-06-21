@@ -1857,10 +1857,7 @@ namespace Server.Mobiles
 
 			// Check zombification
 			if( from is Zombie || from is ZombieBrute )
-			{
-				if( ZombieInfection.WasBitten( this, from ) )
-					this.SendMessage( "Alas! The zombie has breached your defenses and wounded you." );
-			}
+				ZombieInfection.CheckBites( this, from );
 
 			base.OnDamage( amount, from, willKill );
 		}
