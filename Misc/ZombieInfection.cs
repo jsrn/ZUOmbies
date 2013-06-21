@@ -15,6 +15,8 @@ namespace Server.Misc
 				infectionChance = 0.017;
 			else if ( zombie is ZombieBrute )
 				infectionChance = 0.02;
+			else
+				infectionChance = 0.0;
 
 			infectionChance -= GetArmourBiteProtection( pm );
 
@@ -23,6 +25,7 @@ namespace Server.Misc
 
 		private static double GetArmourBiteProtection( PlayerMobile pm )
 		{
+
 			return -100.0;
 		}
 	}
