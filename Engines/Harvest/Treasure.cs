@@ -68,12 +68,12 @@ namespace Server.Engines.Harvest
 			treasuresAndTrinkets.EffectDelay = TimeSpan.FromSeconds( 1.6 );
 			treasuresAndTrinkets.EffectSoundDelay = TimeSpan.FromSeconds( 0.9 );
 
-			treasuresAndTrinkets.NoResourcesMessage = 503040; // There is no metal here to mine.
-			treasuresAndTrinkets.DoubleHarvestMessage = 503042; // Someone has gotten to the metal before you.
-			treasuresAndTrinkets.TimedOutOfRangeMessage = 503041; // You have moved too far away to continue mining.
+			treasuresAndTrinkets.NoResourcesMessage = "You have already searched this area for treasure.";
+			treasuresAndTrinkets.DoubleHarvestMessage = "Someone has beaten you to the loot.";
+			treasuresAndTrinkets.TimedOutOfRangeMessage = "You have moved too far away to continue digging.";
 			treasuresAndTrinkets.OutOfRangeMessage = 500446; // That is too far away.
-			treasuresAndTrinkets.FailMessage = 503043; // You loosen some rocks but fail to find any useable ore.
-			treasuresAndTrinkets.PackFullMessage = 1010481; // Your backpack is full, so the ore you mined is lost.
+			treasuresAndTrinkets.FailMessage = "You dig into the ground, but find nothing interesting.";
+			treasuresAndTrinkets.PackFullMessage = "Your pack is full, so you do not take the treasure.";
 			treasuresAndTrinkets.ToolBrokeMessage = 1044038; // You have worn out your tool!
 
 			res = new HarvestResource[]
@@ -83,7 +83,7 @@ namespace Server.Engines.Harvest
 
 			veins = new HarvestVein[]
 				{
-					new HarvestVein( 100.6, 0.0, res[0], null   ) // Gold
+					new HarvestVein( 100.0, 0.0, res[0], null   ) // Gold
 				};
 
 			treasuresAndTrinkets.Resources = res;
@@ -112,12 +112,12 @@ namespace Server.Engines.Harvest
 
 			if ( from.Mounted )
 			{
-				from.SendLocalizedMessage( 501864 ); // You can't mine while riding.
+				from.SendMessage( "You can't dig while riding." );
 				return false;
 			}
 			else if ( from.IsBodyMod && !from.Body.IsHuman )
 			{
-				from.SendLocalizedMessage( 501865 ); // You can't mine while polymorphed.
+				from.SendMessage( "You can't dig while polymorphed." );
 				return false;
 			}
 
@@ -126,10 +126,7 @@ namespace Server.Engines.Harvest
 
 		public override void SendSuccessTo( Mobile from, Item item, HarvestResource resource )
 		{
-			if ( item is BaseGranite )
-				from.SendLocalizedMessage( 1044606 ); // You carefully extract some workable stone from the ore vein!
-			else
-				base.SendSuccessTo( from, item, resource );
+			base.SendSuccessTo( from, item, resource );
 		}
 
 		public override bool CheckHarvest( Mobile from, Item tool, HarvestDefinition def, object toHarvest )
@@ -139,12 +136,12 @@ namespace Server.Engines.Harvest
 
 			if ( from.Mounted )
 			{
-				from.SendLocalizedMessage( 501864 ); // You can't mine while riding.
+				from.SendMessage( "You can't dig while riding." );
 				return false;
 			}
 			else if ( from.IsBodyMod && !from.Body.IsHuman )
 			{
-				from.SendLocalizedMessage( 501865 ); // You can't mine while polymorphed.
+				from.SendMessage( "You can't dig while polymorphed." );
 				return false;
 			}
 
@@ -191,9 +188,9 @@ namespace Server.Engines.Harvest
 		public override void OnBadHarvestTarget( Mobile from, Item tool, object toHarvest )
 		{
 			if ( toHarvest is LandTarget )
-				from.SendLocalizedMessage( 501862 ); // You can't mine there.
+				from.SendMessage( "You can't dig there." );
 			else
-				from.SendLocalizedMessage( 501863 ); // You can't mine that.
+				from.SendMessage( "You can't dig that." );
 		}
 
 		#region Tile lists
