@@ -1,6 +1,7 @@
 using System;
 using Server.Network;
 using Server.Items;
+using Server.Targets;
 
 namespace Server.Items
 {
