@@ -37,10 +37,7 @@ namespace Server.Mobiles
 
 			SetDamage( 10, 23 );
 
-			SetSkill( SkillName.Fencing, 66.0, 97.5 );
-			SetSkill( SkillName.Macing, 65.0, 87.5 );
 			SetSkill( SkillName.MagicResist, 25.0, 47.5 );
-			SetSkill( SkillName.Swords, 65.0, 87.5 );
 			SetSkill( SkillName.Tactics, 65.0, 87.5 );
 			SetSkill( SkillName.Wrestling, 15.0, 37.5 );
 
@@ -50,19 +47,35 @@ namespace Server.Mobiles
 			AddItem( new Boots( Utility.RandomNeutralHue() ) );
 			AddItem( new FancyShirt());
 			AddItem( new Bandana());
-
-			switch ( Utility.Random( 7 ))
-			{
-				case 0: AddItem( new Longsword() ); break;
-				case 1: AddItem( new Cutlass() ); break;
-				case 2: AddItem( new Broadsword() ); break;
-				case 3: AddItem( new Axe() ); break;
-				case 4: AddItem( new Club() ); break;
-				case 5: AddItem( new Dagger() ); break;
-				case 6: AddItem( new Spear() ); break;
-			}
-
+			
 			Utility.AssignRandomHair( this );
+
+			if ( Utility.RandomMinMax( 1, 3) == 1 )
+			{
+				ChangeAIType( AIType.AI_Archer );
+
+				SetSkill( SkillName.Archery, 65.0, 87.5 );
+
+				AddItem( new Bow() );
+				PackItem( new Arrow( Utility.RandomMinMax( 50, 70 ) ) );
+			}
+			else
+			{
+				switch ( Utility.Random( 7 ))
+				{
+					case 0: AddItem( new Longsword() ); break;
+					case 1: AddItem( new Cutlass() ); break;
+					case 2: AddItem( new Broadsword() ); break;
+					case 3: AddItem( new Axe() ); break;
+					case 4: AddItem( new Club() ); break;
+					case 5: AddItem( new Dagger() ); break;
+					case 6: AddItem( new Spear() ); break;
+				}
+
+				SetSkill( SkillName.Fencing, 66.0, 97.5 );
+				SetSkill( SkillName.Macing, 65.0, 87.5 );
+				SetSkill( SkillName.Swords, 65.0, 87.5 );
+			}
 		}
 
 		public override void GenerateLoot()
