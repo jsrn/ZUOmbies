@@ -30,6 +30,13 @@ namespace Server.Items
 			Weight = 1.0;
 		}
 
+		public override void OnDoubleClick( Mobile from )
+		{
+			from.SendLocalizedMessage( 1010018 ); // What do you want to use this item on?
+
+			from.Target = new BladedItemTarget( this );
+		}
+
 		public SkinningKnife( Serial serial ) : base( serial )
 		{
 		}
