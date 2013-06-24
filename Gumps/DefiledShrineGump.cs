@@ -6,31 +6,55 @@ using Server.Spells;
 using Server.Spells.Seventh;
 using Server.Mobiles;
 using Server.Misc;
+using Server.Items;
 
 namespace Server.Gumps
 {
+	public class DefiledWeaponRewardEntry : DefiledRewardEntry
+	{
+		public static readonly DefiledRewardEntry Longsword = new DefiledWeaponRewardEntry( 3937, "longsword", 50, new Longsword() );
+		public static readonly DefiledRewardEntry Mace = new DefiledWeaponRewardEntry( 3932, "mace", 50, new Mace() );
+		public static readonly DefiledRewardEntry Bow = new DefiledWeaponRewardEntry( 5042, "bow", 50, new Bow() );
+
+		private BaseWeapon m_Weapon;
+
+		public DefiledWeaponRewardEntry( int Art, string Label, int Cost, BaseWeapon Weapon ) : base( Art, Label, Cost )
+		{
+			m_Weapon = Weapon;
+		}
+
+		public BaseWeapon Weapon { get { return m_Weapon; } }
+	}
+
+	public class DefiledArmourRewardEntry : DefiledRewardEntry
+	{
+		public static readonly DefiledRewardEntry Gorget = new DefiledArmourRewardEntry( 5139, "gorget", 50, new PlateGorget() );
+		public static readonly DefiledRewardEntry PlateArms = new DefiledArmourRewardEntry( 5143, "plate arms", 50, new PlateArms() );
+		public static readonly DefiledRewardEntry PlateTunic = new DefiledArmourRewardEntry( 5141, "plate tunic", 100, new PlateChest() );
+		public static readonly DefiledRewardEntry PlateLegs = new DefiledArmourRewardEntry( 5146, "plate legs", 100, new PlateLegs() );
+		public static readonly DefiledRewardEntry ChainTunic = new DefiledArmourRewardEntry( 5055, "phain tunic", 50, new ChainChest() );
+		public static readonly DefiledRewardEntry ChainLeggings = new DefiledArmourRewardEntry( 5054, "chain legs", 50, new ChainLegs() );
+
+		private BaseArmor m_Armour;
+
+		public DefiledArmourRewardEntry( int Art, string Label, int Cost, BaseArmor Armour ) : base( Art, Label, Cost )
+		{
+			m_Armour = Armour;
+		}
+
+		public BaseArmor Armour { get { return m_Armour; } }
+	}
+
 	public class DefiledRewardEntry
 	{
 		// Familiars
 		public static readonly DefiledRewardEntry Skeleton = new DefiledRewardEntry( 8423, "Skeleton", 50 );
-		public static readonly DefiledRewardEntry UndeadHound = new DefiledRewardEntry( 8405, "Hellhound", 50 );
-		// Weapons
-		public static readonly DefiledRewardEntry Longsword = new DefiledRewardEntry( 3937, "Longsword", 50 );
-		public static readonly DefiledRewardEntry Mace = new DefiledRewardEntry( 3932, "Mace", 50 );
-		public static readonly DefiledRewardEntry Bow = new DefiledRewardEntry( 5042, "Bow", 50 );
-		// Armour
-		public static readonly DefiledRewardEntry Gorget = new DefiledRewardEntry( 5139, "Gorget", 50 );
-		public static readonly DefiledRewardEntry PlateArms =	new DefiledRewardEntry( 5143, "Plate arms", 50 );
-		public static readonly DefiledRewardEntry PlateTunic = new DefiledRewardEntry( 5141, "Plate tunic", 100 );
-		public static readonly DefiledRewardEntry PlateLegs =	new DefiledRewardEntry( 5146, "Plate legs", 100 );
+		public static readonly DefiledRewardEntry UndeadHound = new DefiledRewardEntry( 8405, "Hellhound", 50 );		
 
-		public static readonly DefiledRewardEntry ChainTunic = new DefiledRewardEntry( 5055, "Chain tunic", 50 );
-		public static readonly DefiledRewardEntry ChainLeggings = new DefiledRewardEntry( 5054, "Chain legs", 50 );
-
-		private int m_Art, m_X, m_Y, m_Cost;
+		private int m_Art, m_Cost;
 		private string m_Label;
 
-		private DefiledRewardEntry( int Art, string Label, int Cost )
+		public DefiledRewardEntry( int Art, string Label, int Cost )
 		{
 			m_Art = Art;
 			m_Label = Label;
@@ -66,17 +90,17 @@ namespace Server.Gumps
 					DefiledRewardEntry.UndeadHound ),
 
 				new DefiledRewardCategory( "Weapons",
-					DefiledRewardEntry.Longsword,
-					DefiledRewardEntry.Mace,
-					DefiledRewardEntry.Bow ),
+					DefiledWeaponRewardEntry.Longsword,
+					DefiledWeaponRewardEntry.Mace,
+					DefiledWeaponRewardEntry.Bow ),
 
 				new DefiledRewardCategory( "Armour",
-					DefiledRewardEntry.Gorget,
-					DefiledRewardEntry.PlateArms,
-					DefiledRewardEntry.PlateTunic,
-					DefiledRewardEntry.PlateLegs,
-					DefiledRewardEntry.ChainTunic,
-					DefiledRewardEntry.ChainLeggings )
+					DefiledArmourRewardEntry.Gorget,
+					DefiledArmourRewardEntry.PlateArms,
+					DefiledArmourRewardEntry.PlateTunic,
+					DefiledArmourRewardEntry.PlateLegs,
+					DefiledArmourRewardEntry.ChainTunic,
+					DefiledArmourRewardEntry.ChainLeggings )
 			};
 
 
@@ -139,7 +163,7 @@ namespace Server.Gumps
 						string label = entry.Label;
 						string category = Categories[cat].Label;
 						int cost = entry.Cost;
-						DefiledRewards.GiveReward( category, label, cost, (PlayerMobile)m_From );
+						DefiledRewards.GiveReward( entry, (PlayerMobile)m_From );
 					}
 				}
 			}

@@ -3,28 +3,32 @@ using Server;
 using Server.Mobiles;
 using Server.Items;
 using System.Collections.Generic; // For Dictionary
+using Server.Gumps;
 
 namespace Server.Misc
 {
 	public class DefiledRewards
 	{
 
-		public static void GiveReward( string category, string reward, int cost, PlayerMobile m )
+		public static void GiveReward( DefiledRewardEntry entry, PlayerMobile m )
 		{
-			m.SendMessage( "Picking " + reward + " from " + category);
+			string reward = entry.Label;
 
-			switch( category )
+			if ( entry is DefiledWeaponRewardEntry )
 			{
-				case "Familiars":
-					GiveFamiliar( reward, cost, m );
-					break;
-				case "Weapons":
-					GiveWeapon( reward, cost, m );
-					break;
-				case "Armour":
-					GiveArmour( reward, cost, m );
-					break;
+				DefiledWeaponRewardEntry weaponEntry = (DefiledWeaponRewardEntry)entry;
+				GiveWeapon( reward, weaponEntry.Weapon, weaponEntry.Cost, m );
 			}
+			else if ( entry is DefiledArmourRewardEntry )
+			{
+				DefiledArmourRewardEntry armourEntry = (DefiledArmourRewardEntry)entry;
+				GiveArmour( reward, armourEntry.Armour, armourEntry.Cost, m );
+			}
+			/*else if ( entry is DefiledFamiliarRewardEntry )
+			{
+				DefiledFamiliarRewardEntry familiarEntry = (DefiledFamiliarRewardEntry)entry;
+				m.SendMessage( "Picking " + reward + " from familiars");
+			}*/
 		}
 
 		private static void GiveFamiliar( string familiar, int cost, PlayerMobile m )
@@ -32,35 +36,17 @@ namespace Server.Misc
 			m.SendMessage( "Giving familiar: " + familiar );
 		}
 
-		private static void GiveWeapon( string weapon, int cost, PlayerMobile m )
+		private static void GiveWeapon( string label, BaseWeapon weapon, int cost, PlayerMobile m )
 		{
-			m.SendMessage( "Giving weapon: " + weapon );
-			BaseWeapon rewardWeapon = null;
-			string name = "";
-
-			switch( weapon )
-			{
-				case "Longsword":
-					rewardWeapon = new Longsword();
-					name = "longsword";
-					break;
-				case "Mace":
-					rewardWeapon = new Mace();
-					name = "mace";
-					break;
-				case "Bow":
-					rewardWeapon = new Bow();
-					name = "bow";
-					break;
-			}
-			rewardWeapon.Name = "defiled " + name;
-			rewardWeapon.Hue = 1175;
-			m.PlaceInBackpack( rewardWeapon );
+			weapon.Name = "defiled " + label;
+			m.PlaceInBackpack( weapon );
 		}
 
-		private static void GiveArmour( string armour, int cost, PlayerMobile m )
+		private static void GiveArmour( string label, BaseArmor armour, int cost, PlayerMobile m )
 		{
-			m.SendMessage( "Giving armour: " + armour );
+			armour.Name = "defiled " + label;
+			armour.Hue = 1175;
+			m.PlaceInBackpack( armour );
 		}
 	}
 }
