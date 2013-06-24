@@ -45,12 +45,21 @@ namespace Server.Gumps
 		public BaseArmor Armour { get { return m_Armour; } }
 	}
 
+	public class DefiledFamiliarRewardEntry : DefiledRewardEntry
+	{
+		public static readonly DefiledRewardEntry Skeleton = new DefiledFamiliarRewardEntry( 8423, "skeleton", 50, new Skeleton() );
+		public static readonly DefiledRewardEntry UndeadHound = new DefiledFamiliarRewardEntry( 8405, "dire wolf", 50, new DireWolf() );
+
+		private BaseCreature m_Creature;
+
+		public DefiledFamiliarRewardEntry( int Art, string Label, int Cost, BaseCreature Creature ) : base( Art, Label, Cost )
+		{
+			m_Creature = Creature;
+		}
+	}
+
 	public class DefiledRewardEntry
 	{
-		// Familiars
-		public static readonly DefiledRewardEntry Skeleton = new DefiledRewardEntry( 8423, "Skeleton", 50 );
-		public static readonly DefiledRewardEntry UndeadHound = new DefiledRewardEntry( 8405, "Hellhound", 50 );		
-
 		private int m_Art, m_Cost;
 		private string m_Label;
 
@@ -86,8 +95,8 @@ namespace Server.Gumps
 		private static DefiledRewardCategory[] Categories = new DefiledRewardCategory[]
 			{
 				new DefiledRewardCategory( "Familiars",
-					DefiledRewardEntry.Skeleton,
-					DefiledRewardEntry.UndeadHound ),
+					DefiledFamiliarRewardEntry.Skeleton,
+					DefiledFamiliarRewardEntry.UndeadHound ),
 
 				new DefiledRewardCategory( "Weapons",
 					DefiledWeaponRewardEntry.Longsword,

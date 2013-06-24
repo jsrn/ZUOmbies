@@ -24,11 +24,11 @@ namespace Server.Misc
 				DefiledArmourRewardEntry armourEntry = (DefiledArmourRewardEntry)entry;
 				GiveArmour( reward, armourEntry.Armour, armourEntry.Cost, m );
 			}
-			/*else if ( entry is DefiledFamiliarRewardEntry )
+			else if ( entry is DefiledFamiliarRewardEntry )
 			{
 				DefiledFamiliarRewardEntry familiarEntry = (DefiledFamiliarRewardEntry)entry;
 				m.SendMessage( "Picking " + reward + " from familiars");
-			}*/
+			}
 		}
 
 		private static void GiveFamiliar( string familiar, int cost, PlayerMobile m )
