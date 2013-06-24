@@ -11,7 +11,7 @@ namespace Server.Items
 {
 	public class Bandage : Item, IDyable
 	{
-		public static int Range = ( Core.AOS ? 2 : 1 ); 
+		public static int Range = 2; 
 
 		public override double DefaultWeight
 		{
