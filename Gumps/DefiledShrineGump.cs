@@ -10,29 +10,33 @@ namespace Server.Gumps
 	public class DefiledRewardEntry
 	{
 		// Familiars
-		public static readonly DefiledRewardEntry Skeleton = new DefiledRewardEntry( 8423, "skeleton [50]" );
-		public static readonly DefiledRewardEntry HordeMinion = new DefiledRewardEntry( 8405, "undead hound [50]" );
+		public static readonly DefiledRewardEntry Skeleton = new DefiledRewardEntry( 8423, "skeleton", 50 );
+		public static readonly DefiledRewardEntry UndeadHound = new DefiledRewardEntry( 8405, "hellhound", 50 );
 		// Weapons
-		public static readonly DefiledRewardEntry CursedSword = new DefiledRewardEntry( 8426, "cursed sword [50]" );
+		public static readonly DefiledRewardEntry Longsword = new DefiledRewardEntry( 8426, "longsword", 50 );
 		// Armour
-		public static readonly DefiledRewardEntry CursedGorget = new DefiledRewardEntry( 8426, "cursed gorget [50]" );
-		public static readonly DefiledRewardEntry CursedPlateArms =	new DefiledRewardEntry( 8426, "cursed plate arms [50]" );
-		public static readonly DefiledRewardEntry CursedPlateTunic = new DefiledRewardEntry( 8426, "cursed plate tunic [100]" );
-		public static readonly DefiledRewardEntry CursedPlateLegs =	new DefiledRewardEntry( 8426, "cursed plate legs [100]" );
+		public static readonly DefiledRewardEntry Gorget = new DefiledRewardEntry( 5139, "gorget", 50 );
+		public static readonly DefiledRewardEntry PlateArms =	new DefiledRewardEntry( 5143, "plate arms", 50 );
+		public static readonly DefiledRewardEntry PlateTunic = new DefiledRewardEntry( 5141, "plate tunic", 100 );
+		public static readonly DefiledRewardEntry PlateLegs =	new DefiledRewardEntry( 5146, "plate legs", 100 );
 
-		private int m_Art, m_X, m_Y;
+		public static readonly DefiledRewardEntry ChainTunic = new DefiledRewardEntry( 5055, "chain tunic", 50 );
+		public static readonly DefiledRewardEntry ChainLeggings = new DefiledRewardEntry( 5054, "chain legs", 50 );
+
+		private int m_Art, m_X, m_Y, m_Cost;
 		private string m_Label;
 
-		private DefiledRewardEntry( int Art, string Label )
+		private DefiledRewardEntry( int Art, string Label, int Cost )
 		{
 			m_Art = Art;
 			m_Label = Label;
+			m_Cost = Cost;
 		}
 
 		public int ArtID { get { return m_Art; } }
 		public string Label { get { return m_Label; } }
+		public int Cost { get { return m_Cost; } }
 	}
-
 
 	public class DefiledShrineGump : Gump
 	{
@@ -55,15 +59,22 @@ namespace Server.Gumps
 			{
 				new DefiledRewardCategory( "Familiars", // Animals
 					DefiledRewardEntry.Skeleton,
-					DefiledRewardEntry.HordeMinion ),
+					DefiledRewardEntry.UndeadHound ),
 
 				new DefiledRewardCategory( "Weapons", // Monsters
-					DefiledRewardEntry.CursedSword )
+					DefiledRewardEntry.Longsword ),
+
+				new DefiledRewardCategory( "Armour",
+					DefiledRewardEntry.Gorget,
+					DefiledRewardEntry.PlateArms,
+					DefiledRewardEntry.PlateTunic,
+					DefiledRewardEntry.PlateLegs,
+					DefiledRewardEntry.ChainTunic,
+					DefiledRewardEntry.ChainLeggings )
 			};
 
 
 		private Mobile m_From;
-		private Item m_Scroll;
 
 		public DefiledShrineGump( Mobile from ) : base( 50, 50 )
 		{
@@ -99,7 +110,7 @@ namespace Server.Gumps
 					x = 198 + (c%3)*129;
 					y = 38 + (c/3)*67;
 
-					AddHtml( x, y, 100, 18, entry.Label, false, false );
+					AddHtml( x, y, 110, 18, entry.Label + " [" + entry.Cost + "]", false, false );
 					AddItem( x+20, y+25, entry.ArtID );
 					AddRadio( x, y+20, 210, 211, false, (c<<8) + i );
 				}
@@ -118,7 +129,8 @@ namespace Server.Gumps
 				{
 					if ( ent >= 0 && ent < Categories[cat].Entries.Length )
 					{
-						m_From.SendMessage( "Picked cat " + cat + ", entry " + ent );
+						DefiledRewardEntry entry = Categories[cat].Entries[ent];
+						m_From.SendMessage( "Picked cat " + cat + ", entry " + entry.Label );
 					}
 				}
 			}
