@@ -17,6 +17,7 @@ namespace Server.Gumps
 		// Weapons
 		public static readonly DefiledRewardEntry Longsword = new DefiledRewardEntry( 3937, "Longsword", 50 );
 		public static readonly DefiledRewardEntry Mace = new DefiledRewardEntry( 3932, "Mace", 50 );
+		public static readonly DefiledRewardEntry Bow = new DefiledRewardEntry( 5042, "Bow", 50 );
 		// Armour
 		public static readonly DefiledRewardEntry Gorget = new DefiledRewardEntry( 5139, "Gorget", 50 );
 		public static readonly DefiledRewardEntry PlateArms =	new DefiledRewardEntry( 5143, "Plate arms", 50 );
@@ -66,7 +67,8 @@ namespace Server.Gumps
 
 				new DefiledRewardCategory( "Weapons",
 					DefiledRewardEntry.Longsword,
-					DefiledRewardEntry.Mace ),
+					DefiledRewardEntry.Mace,
+					DefiledRewardEntry.Bow ),
 
 				new DefiledRewardCategory( "Armour",
 					DefiledRewardEntry.Gorget,

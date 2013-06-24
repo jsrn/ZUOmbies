@@ -48,6 +48,10 @@ namespace Server.Misc
 					rewardWeapon = new Mace();
 					name = "mace";
 					break;
+				case "Bow":
+					rewardWeapon = new Bow();
+					name = "bow";
+					break;
 			}
 			rewardWeapon.Name = "defiled " + name;
 			rewardWeapon.Hue = 1175;
