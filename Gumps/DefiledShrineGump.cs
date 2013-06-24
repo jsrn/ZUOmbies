@@ -10,10 +10,15 @@ namespace Server.Gumps
 	public class DefiledRewardEntry
 	{
 		// Familiars
-		public static readonly DefiledRewardEntry Skeleton =		new DefiledRewardEntry( 8423, "skeleton" );
-		public static readonly DefiledRewardEntry HordeMinion =		new DefiledRewardEntry( 8405, "undead hound" );
+		public static readonly DefiledRewardEntry Skeleton = new DefiledRewardEntry( 8423, "skeleton [50]" );
+		public static readonly DefiledRewardEntry HordeMinion = new DefiledRewardEntry( 8405, "undead hound [50]" );
 		// Weapons
-		public static readonly DefiledRewardEntry CursedSword =		new DefiledRewardEntry( 8426, "cursed sword" );
+		public static readonly DefiledRewardEntry CursedSword = new DefiledRewardEntry( 8426, "cursed sword [50]" );
+		// Armour
+		public static readonly DefiledRewardEntry CursedGorget = new DefiledRewardEntry( 8426, "cursed gorget [50]" );
+		public static readonly DefiledRewardEntry CursedPlateArms =	new DefiledRewardEntry( 8426, "cursed plate arms [50]" );
+		public static readonly DefiledRewardEntry CursedPlateTunic = new DefiledRewardEntry( 8426, "cursed plate tunic [100]" );
+		public static readonly DefiledRewardEntry CursedPlateLegs =	new DefiledRewardEntry( 8426, "cursed plate legs [100]" );
 
 		private int m_Art, m_X, m_Y;
 		private string m_Label;
