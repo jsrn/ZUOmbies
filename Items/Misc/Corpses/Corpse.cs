@@ -1140,7 +1140,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			Open( from, Core.AOS );
+			Open( from, true );
 		}
 
 		public override bool CheckContentDisplay( Mobile from )
