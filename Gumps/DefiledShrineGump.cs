@@ -4,24 +4,27 @@ using Server.Network;
 using Server.Targets;
 using Server.Spells;
 using Server.Spells.Seventh;
+using Server.Mobiles;
+using Server.Misc;
 
 namespace Server.Gumps
 {
 	public class DefiledRewardEntry
 	{
 		// Familiars
-		public static readonly DefiledRewardEntry Skeleton = new DefiledRewardEntry( 8423, "skeleton", 50 );
-		public static readonly DefiledRewardEntry UndeadHound = new DefiledRewardEntry( 8405, "hellhound", 50 );
+		public static readonly DefiledRewardEntry Skeleton = new DefiledRewardEntry( 8423, "Skeleton", 50 );
+		public static readonly DefiledRewardEntry UndeadHound = new DefiledRewardEntry( 8405, "Hellhound", 50 );
 		// Weapons
-		public static readonly DefiledRewardEntry Longsword = new DefiledRewardEntry( 8426, "longsword", 50 );
+		public static readonly DefiledRewardEntry Longsword = new DefiledRewardEntry( 3937, "Longsword", 50 );
+		public static readonly DefiledRewardEntry Mace = new DefiledRewardEntry( 3932, "Mace", 50 );
 		// Armour
-		public static readonly DefiledRewardEntry Gorget = new DefiledRewardEntry( 5139, "gorget", 50 );
-		public static readonly DefiledRewardEntry PlateArms =	new DefiledRewardEntry( 5143, "plate arms", 50 );
-		public static readonly DefiledRewardEntry PlateTunic = new DefiledRewardEntry( 5141, "plate tunic", 100 );
-		public static readonly DefiledRewardEntry PlateLegs =	new DefiledRewardEntry( 5146, "plate legs", 100 );
+		public static readonly DefiledRewardEntry Gorget = new DefiledRewardEntry( 5139, "Gorget", 50 );
+		public static readonly DefiledRewardEntry PlateArms =	new DefiledRewardEntry( 5143, "Plate arms", 50 );
+		public static readonly DefiledRewardEntry PlateTunic = new DefiledRewardEntry( 5141, "Plate tunic", 100 );
+		public static readonly DefiledRewardEntry PlateLegs =	new DefiledRewardEntry( 5146, "Plate legs", 100 );
 
-		public static readonly DefiledRewardEntry ChainTunic = new DefiledRewardEntry( 5055, "chain tunic", 50 );
-		public static readonly DefiledRewardEntry ChainLeggings = new DefiledRewardEntry( 5054, "chain legs", 50 );
+		public static readonly DefiledRewardEntry ChainTunic = new DefiledRewardEntry( 5055, "Chain tunic", 50 );
+		public static readonly DefiledRewardEntry ChainLeggings = new DefiledRewardEntry( 5054, "Chain legs", 50 );
 
 		private int m_Art, m_X, m_Y, m_Cost;
 		private string m_Label;
@@ -57,12 +60,13 @@ namespace Server.Gumps
 
 		private static DefiledRewardCategory[] Categories = new DefiledRewardCategory[]
 			{
-				new DefiledRewardCategory( "Familiars", // Animals
+				new DefiledRewardCategory( "Familiars",
 					DefiledRewardEntry.Skeleton,
 					DefiledRewardEntry.UndeadHound ),
 
-				new DefiledRewardCategory( "Weapons", // Monsters
-					DefiledRewardEntry.Longsword ),
+				new DefiledRewardCategory( "Weapons",
+					DefiledRewardEntry.Longsword,
+					DefiledRewardEntry.Mace ),
 
 				new DefiledRewardCategory( "Armour",
 					DefiledRewardEntry.Gorget,
@@ -130,10 +134,27 @@ namespace Server.Gumps
 					if ( ent >= 0 && ent < Categories[cat].Entries.Length )
 					{
 						DefiledRewardEntry entry = Categories[cat].Entries[ent];
-						m_From.SendMessage( "Picked cat " + cat + ", entry " + entry.Label );
+						string label = entry.Label;
+						string category = Categories[cat].Label;
+						int cost = entry.Cost;
+						DefiledRewards.GiveReward( category, label, cost, (PlayerMobile)m_From );
 					}
 				}
 			}
 		}
 	}
 }
+
+/*
+
+thomasvane: But yeah, back to the list. Cheapo option, skells/skell archers, then ghouls, then corpser seeds, then bone knights, then shades, then reaper seeds.
+Hoagie: Awesome stuff
+thomasvane: Ghouls are like wraiths/specters/shades, but not see through and have no magery.
+
+thomasvane: Maybe buying the scolls in the first place costs points.
+thomasvane: Hell, maybe even the initial book costs points.
+thomasvane: They have to prove they're worthy of His gifts.
+2406 and 1175
+
+
+*/

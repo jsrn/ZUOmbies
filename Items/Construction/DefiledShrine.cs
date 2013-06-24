@@ -24,20 +24,35 @@ namespace Server.Items
 		public override void OnDoubleClick( Mobile from )
 		{
 			if ( !from.Alive )
-			{
-				from.SendMessage( "You cannot do that in your current state." );
 				return;
-			}
-				
+
 			if ( !from.InRange( this.GetWorldLocation(), 2 ) )
 			{
 				from.SendMessage( "You must be closer to the shrine to pray." );
 				return;
 			}
-				
-			from.SendMessage( "You pray at the defiled shrine." );
-			from.CloseGump( typeof( DefiledShrineGump ) );
-			from.SendGump( new DefiledShrineGump( from ) );
+			else
+			{
+				from.SendMessage( "You pray at the defiled shrine." );
+				from.CloseGump( typeof( DefiledShrineGump ) );
+				from.SendGump( new DefiledShrineGump( from ) );
+			}			
+		}
+
+		public override void OnDoubleClickDead( Mobile m )
+		{
+			if ( m.Alive )
+				return;
+
+			if ( !m.InRange( this.GetWorldLocation(), 2 ) )
+				m.SendLocalizedMessage( 500446 ); // That is too far away.
+			else if( m.Map != null && m.Map.CanFit( m.Location, 16, false, false ) )
+			{
+				m.CloseGump( typeof( ResurrectGump ) );
+				m.SendGump( new ResurrectGump( m, ResurrectMessage.VirtueShrine ) );
+			}
+			else
+				m.SendLocalizedMessage( 502391 ); // Thou can not be resurrected there!
 		}
 
 		public override void Serialize( GenericWriter writer )
