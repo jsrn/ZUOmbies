@@ -37,7 +37,7 @@ namespace Server.Items
 				
 			from.SendMessage( "You pray at the defiled shrine." );
 			from.CloseGump( typeof( DefiledShrineGump ) );
-			from.SendGump( new DefiledShrineGump( from, null ) );
+			from.SendGump( new DefiledShrineGump( from ) );
 		}
 
 		public override void Serialize( GenericWriter writer )
