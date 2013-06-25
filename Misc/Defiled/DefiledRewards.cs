@@ -17,28 +17,28 @@ namespace Server.Misc
 
 			if( typeof( BaseWeapon ).IsAssignableFrom( type ) )
 			{	
-				m.SendMessage( "Giving base weapon" );
 				GiveWeapon( reward, entry.Type, entry.Cost, m );
 			}
 			else if( typeof( BaseArmor ).IsAssignableFrom( type ) )
 			{
-				m.SendMessage( "Giving base armour" );
 				GiveArmour( reward, entry.Type, entry.Cost, m );
 			}
 			else if( typeof( BaseCreature ).IsAssignableFrom( type ) )
 			{
-				m.SendMessage( "Giving base familiar" );
 				GiveFamiliar( reward, entry.Type, entry.Cost, m );
 			}
 			else if( typeof( Item ).IsAssignableFrom( type ) )
 			{
-				// 
+				GiveItem( reward, entry.Type, entry.Cost, m );
 			}
 		}
 
 		private static void GiveFamiliar( string label, Type familiarType, int cost, PlayerMobile m )
 		{
 			m.SendMessage( "Giving familiar: " + label );
+			BaseCreature bc = Activator.CreateInstance( familiarType ) as BaseCreature;
+			bc.Name = "defiled " + label;
+			BaseCreature.Summon( bc, m, m.Location, -1, TimeSpan.FromDays( 1.0 ) );
 		}
 
 		private static void GiveWeapon( string label, Type weaponType, int cost, PlayerMobile m )
@@ -54,6 +54,12 @@ namespace Server.Misc
 			armour.Name = "defiled " + label;
 			armour.Hue = 1175;
 			m.PlaceInBackpack( armour );
+		}
+
+		private static void GiveItem( string label, Type itemType, int cost, PlayerMobile m )
+		{
+			Item item = Activator.CreateInstance( itemType ) as Item;
+			m.PlaceInBackpack( item );
 		}
 	}
 }
