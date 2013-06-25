@@ -9,6 +9,26 @@ namespace Server.Misc
 {
 	public class DefiledRewards
 	{
+		public static void GrantPoints( PlayerMobile pm, Mobile m )
+		{
+			if( m is PlayerMobile )
+			{
+				GrantPoints( pm, 100 );
+
+				PlayerMobile target = (PlayerMobile)m;
+				if( target.InjuryPoints >= 30 )
+					GrantPoints( pm, 300 );
+			}
+			else if( m is BaseCreature )
+			{
+				GrantPoints( pm, 25 );
+			}
+		}
+
+		public static void GrantPoints( PlayerMobile pm, int amount )
+		{
+			pm.EvilPoints += amount;
+		}
 
 		public static void GiveReward( DefiledRewardEntry entry, PlayerMobile m )
 		{

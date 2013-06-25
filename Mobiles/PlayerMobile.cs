@@ -1998,7 +1998,7 @@ namespace Server.Mobiles
 			return base.OnBeforeDeath();
 		}
 
-		public void SetFreeDeaths ( bool f )
+		public void SetFreeDeaths( bool f )
 		{
 			m_FreeDeaths = f;
 		}
@@ -2102,6 +2102,9 @@ namespace Server.Mobiles
 					injuryPointsGained = 5;
 					ResetDeathTime();
 				}
+
+				if( pm.Undead )
+					DefiledRewards.GrantPoints( pm, this );
 			}
 
 			InjuryPoints += injuryPointsGained;
