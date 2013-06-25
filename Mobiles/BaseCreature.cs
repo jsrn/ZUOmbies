@@ -4411,9 +4411,6 @@ namespace Server.Mobiles
 
 		public virtual void OnKilledBy( Mobile mob )
 		{
-			if ( m_Paragon && Paragon.CheckArtifactChance( mob, this ) )
-				Paragon.GiveArtifactTo( mob );
-
 			if ( mob is PlayerMobile && ((PlayerMobile)mob).Undead )
 			{
 				DefiledRewards.GrantPoints( (PlayerMobile)mob, this );
