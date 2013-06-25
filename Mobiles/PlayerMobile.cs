@@ -121,6 +121,8 @@ namespace Server.Mobiles
 		private List<Mobile> m_AllFollowers;
 		private List<Mobile> m_RecentlyReported;
 
+		private int m_EvilPoints;
+
 		#region Getters & Setters
 
 		public List<Mobile> RecentlyReported
@@ -1347,6 +1349,19 @@ namespace Server.Mobiles
 			}
 		}
 
+		[CommandProperty( AccessLevel.GameMaster )]
+		public int EvilPoints
+		{
+			get
+			{
+				return m_EvilPoints;
+			}
+			set
+			{
+				m_EvilPoints = value;
+			}
+		}
+
 		#endregion
 
 		public override bool Move( Direction d )
@@ -2490,6 +2505,9 @@ namespace Server.Mobiles
 
 			switch ( version )
 			{
+				case 30:
+					m_EvilPoints = reader.ReadInt();
+					goto case 29;
 				case 29:
 				{
 					InjuryPoints = reader.ReadInt();
@@ -2810,7 +2828,8 @@ namespace Server.Mobiles
 
 			base.Serialize( writer );
 
-			writer.Write( (int) 29 ); // version
+			writer.Write( (int) 30 ); // version
+			writer.Write( m_EvilPoints );
 			writer.Write( InjuryPoints );
 			writer.Write( (TimeSpan) deathTimer);
 			writer.Write( (DateTime) m_PeacedUntil );
