@@ -104,6 +104,8 @@ namespace Server.Gumps
 				AddButton( 155, y, 4005, 4007, 0, GumpButtonType.Page, i+1 );
 				y += 25;
 			}
+			y += 5;
+			AddHtml( 5, y, 150, 25, "Balance: " + ((PlayerMobile)from).EvilPoints, true, false );
 
 			for ( int i=0;i<Categories.Length;i++ )
 			{
