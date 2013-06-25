@@ -137,8 +137,18 @@ namespace Server.Gumps
 				{
 					if ( ent >= 0 && ent < Categories[cat].Entries.Length )
 					{
+						PlayerMobile pm = (PlayerMobile)m_From;
 						DefiledRewardEntry entry = Categories[cat].Entries[ent];
-						DefiledRewards.GiveReward( entry, (PlayerMobile)m_From );
+
+						if( pm.EvilPoints > entry.Cost )
+						{
+							DefiledRewards.GiveReward( entry, pm );
+							pm.EvilPoints -= entry.Cost;
+						}
+						else
+						{
+							pm.SendMessage( "You must earn more of the guardian's favour." );
+						}
 					}
 				}
 			}
