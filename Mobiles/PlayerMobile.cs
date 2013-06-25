@@ -41,7 +41,8 @@ namespace Server.Mobiles
 		Young					= 0x00000400,
 		AcceptGuildInvites		= 0x00000800,
 		DisplayChampionTitle	= 0x00001000,
-		HasStatReward			= 0x00002000
+		HasStatReward			= 0x00002000,
+		Undead					= 0x00010000
 	}
 
 	public enum NpcGuild
@@ -294,6 +295,13 @@ namespace Server.Mobiles
 		{
 			get{ return GetFlag( PlayerFlag.PagingSquelched ); }
 			set{ SetFlag( PlayerFlag.PagingSquelched, value ); }
+		}
+
+		[CommandProperty( AccessLevel.GameMaster )]
+		public bool Undead
+		{
+			get{ return GetFlag( PlayerFlag.Undead ); }
+			set{ SetFlag( PlayerFlag.Undead, value ); }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
