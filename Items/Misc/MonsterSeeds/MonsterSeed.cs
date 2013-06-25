@@ -8,13 +8,21 @@ namespace Server.Items
 {
 	public class MonsterSeed : Item
 	{
+		private Type m_Creature;
+
+		public Type CreatureType { get { return m_Creature; } }
 
 		[Constructable]
-		public MonsterSeed( ) : base( 0xDCD )
+		public MonsterSeed() : this( typeof( Zombie ) )
+		{
+		}
+
+		public MonsterSeed( Type creatureType ) : base( 0xDCD )
 		{
 			Name = "a monster seed";
 			Weight = 1.0;
 			Hue = 0x42;
+			m_Creature = creatureType;
 		}
 
 		public MonsterSeed( Serial serial ) : base( serial )
@@ -35,17 +43,39 @@ namespace Server.Items
 				return;
 			}
 
-			from.Target = new InternalTarget( this );
+			from.Target = new InternalTarget( this, m_Creature );
 			from.SendMessage( "Choose a spot to plant the seed." );
 		}
 
 		private class InternalTarget : Target
 		{
-			private MonsterSeed m_Seed;
+			private int[] tiles = new int[]
+			{
+				// Dirt
+				0x71, 0x7C, 0x82, 0xA7, 0xDC, 0xE3, 0xE8, 0xEB, 0x141, 0x144, 0x14C, 0x14F,
+				0x169, 0x174, 0x1DC, 0x1E7, 0x1EC, 0x1EF, 0x272, 0x275, 0x27E, 0x281, 0x2D0,
+				0x2D7, 0x2E5, 0x2FF, 0x303, 0x31F, 0x32C, 0x32F, 0x33D, 0x340, 0x345, 0x34C,
+				0x355, 0x358, 0x367, 0x36E, 0x377, 0x37A, 0x38D, 0x390, 0x395, 0x39C, 0x3A5,
+				0x3A8, 0x3F6, 0x405, 0x547, 0x54E, 0x553, 0x556, 0x597, 0x59E, 0x623, 0x63A,
+				0x6F3, 0x6FA, 0x777, 0x791, 0x79A, 0x7A9, 0x7AE, 0x7B1,
+				// Furrow
+				0x9, 0x15, 0x150, 0x15C,
+				// Swamp
+				0x9C4, 0x9EB, 0x3D65, 0x3D65, 0x3DC0, 0x3DD9, 0x3DDB, 0x3DDC, 0x3DDE, 0x3EF0,
+				0x3FF6, 0x3FF6, 0x3FFC, 0x3FFE,
+				// Snow
+				0x10C, 0x10F, 0x114, 0x117, 0x119, 0x11D, 0x179, 0x18A, 0x385, 0x38C, 0x391,
+				0x394, 0x39D, 0x3A4, 0x3A9, 0x3AC, 0x5BF, 0x5D6, 0x5DF, 0x5E2, 0x745, 0x748,
+				0x751, 0x758, 0x75D, 0x760, 0x76D, 0x773
+			};
 
-			public InternalTarget( MonsterSeed seed ) : base( 3, true, TargetFlags.None )
+			private MonsterSeed m_Seed;
+			private Type m_Creature;
+
+			public InternalTarget( MonsterSeed seed, Type creature ) : base( 3, true, TargetFlags.None )
 			{
 				m_Seed = seed;
+				m_Creature = creature;
 			}
 
 			protected override void OnTarget( Mobile from, object targeted )
@@ -73,9 +103,9 @@ namespace Server.Items
 				}
 				else
 				{
-					MonsterSeedEffect effect = MonsterSeedEffect.Create( from, land );
+					//MonsterSeedEffect effect = MonsterSeedEffect.Create( from, land, m_Seed.CreatureType );
 
-					if ( effect == null )
+					if ( false ) // Target is in tiles
 					{
 						from.SendMessage( "That would be futile." );
 					}
@@ -86,10 +116,10 @@ namespace Server.Items
 						from.SendMessage( "You push the seed into the ground." );
 						from.Emote( "*Pushes a seed into the ground.*" );
 
-						from.BeginAction( typeof( MonsterSeed ) );
-						new MonsterSeed.EndActionTimer( from ).Start();
+						object[] arg = new object[] { from, land, m_Creature };
 
-						effect.Start();
+						Timer.DelayCall( TimeSpan.FromSeconds( 2.0 ), new TimerStateCallback( SpawnCreature ), arg);
+						//SpawnCreature( from, land, m_Creature );
 					}
 				}
 			}
@@ -98,600 +128,31 @@ namespace Server.Items
 			{
 				from.LocalOverheadMessage( MessageType.Regular, 0x3B2, 502825 ); // That location is too far away
 			}
-		}
 
-		private class EndActionTimer : Timer
-		{
-			private Mobile m_From;
-
-			public EndActionTimer( Mobile from ) : base( TimeSpan.FromMinutes( 3.0 ) )
+			public void SpawnCreature( object arg )
 			{
-				m_From = from;
-				Priority = TimerPriority.FiveSeconds;
-			}
+				object[] args = (object[])arg;
+				Mobile from = (Mobile)args[0];
+				LandTarget target = (LandTarget)args[1];
+				Type creatureType = (Type)args[2];
 
-			protected override void OnTick()
-			{
-				m_From.EndAction( typeof( MonsterSeed ) );
-			}
-		}
+				BaseCreature creature = Activator.CreateInstance( creatureType ) as BaseCreature;
 
-		public override void Serialize( GenericWriter writer )
-		{
-			base.Serialize( writer );
+				for ( int i = 0; i < 5; i++ ) // Try 5 times
+				{
+					int x = target.X;
+					int y = target.Y;
+					int z = from.Map.GetAverageZ( x, y );
 
-			writer.Write( (int) 0 ); // version
-		}
-
-		public override void Deserialize( GenericReader reader )
-		{
-			base.Deserialize( reader );
-
-			int version = reader.ReadInt();
-		}
-	}
-
-	public abstract class MonsterSeedEffect : Timer
-	{
-		private class TilesAndEffect
-		{
-			private int[] m_Tiles;
-			private Type m_Effect;
-
-			public int[] Tiles { get { return m_Tiles; } }
-			public Type Effect { get { return m_Effect; } }
-
-			public TilesAndEffect( int[] tiles, Type effect )
-			{
-				m_Tiles = tiles;
-				m_Effect = effect;
-			}
-		}
-
-		private static TilesAndEffect[] m_Table = new TilesAndEffect[]
-			{
-				new TilesAndEffect( new int[]
+					if ( from.Map.CanSpawnMobile( x, y, target.Z ) )
 					{
-						0x71, 0x7C,
-						0x82, 0xA7,
-						0xDC, 0xE3,
-						0xE8, 0xEB,
-						0x141, 0x144,
-						0x14C, 0x14F,
-						0x169, 0x174,
-						0x1DC, 0x1E7,
-						0x1EC, 0x1EF,
-						0x272, 0x275,
-						0x27E, 0x281,
-						0x2D0, 0x2D7,
-						0x2E5, 0x2FF,
-						0x303, 0x31F,
-						0x32C, 0x32F,
-						0x33D, 0x340,
-						0x345, 0x34C,
-						0x355, 0x358,
-						0x367, 0x36E,
-						0x377, 0x37A,
-						0x38D, 0x390,
-						0x395, 0x39C,
-						0x3A5, 0x3A8,
-						0x3F6, 0x405,
-						0x547, 0x54E,
-						0x553, 0x556,
-						0x597, 0x59E,
-						0x623, 0x63A,
-						0x6F3, 0x6FA,
-						0x777, 0x791,
-						0x79A, 0x7A9,
-						0x7AE, 0x7B1,
-					},
-				typeof( DirtMonsterSeedEffect ) ),
-
-				new TilesAndEffect( new int[]
-					{
-						0x9, 0x15,
-						0x150, 0x15C
-					},
-				typeof( FurrowsMonsterSeedEffect ) ),
-
-				new TilesAndEffect( new int[]
-					{
-						0x9C4, 0x9EB,
-						0x3D65, 0x3D65,
-						0x3DC0, 0x3DD9,
-						0x3DDB, 0x3DDC,
-						0x3DDE, 0x3EF0,
-						0x3FF6, 0x3FF6,
-						0x3FFC, 0x3FFE,
-					},
-				typeof( SwampMonsterSeedEffect ) ),
-
-				new TilesAndEffect( new int[]
-					{
-						0x10C, 0x10F,
-						0x114, 0x117,
-						0x119, 0x11D,
-						0x179, 0x18A,
-						0x385, 0x38C,
-						0x391, 0x394,
-						0x39D, 0x3A4,
-						0x3A9, 0x3AC,
-						0x5BF, 0x5D6,
-						0x5DF, 0x5E2,
-						0x745, 0x748,
-						0x751, 0x758,
-						0x75D, 0x760,
-						0x76D, 0x773
-					},
-				typeof( SnowMonsterSeedEffect ) ),
-
-				new TilesAndEffect( new int[]
-					{
-						0x16, 0x3A,
-						0x44, 0x4B,
-						0x11E, 0x121,
-						0x126, 0x12D,
-						0x192, 0x192,
-						0x1A8, 0x1AB,
-						0x1B9, 0x1D1,
-						0x282, 0x285,
-						0x28A, 0x291,
-						0x335, 0x33C,
-						0x341, 0x344,
-						0x34D, 0x354,
-						0x359, 0x35C,
-						0x3B7, 0x3BE,
-						0x3C7, 0x3CA,
-						0x5A7, 0x5B2,
-						0x64B, 0x652,
-						0x657, 0x65A,
-						0x663, 0x66A,
-						0x66F, 0x672,
-						0x7BD, 0x7D0
-					},
-				typeof( SandMonsterSeedEffect ) )
-			};
-
-		public static MonsterSeedEffect Create( Mobile from, LandTarget land )
-		{
-			if ( !from.Map.CanSpawnMobile( land.Location ) )
-				return null;
-
-			int tileID = land.TileID;
-
-			foreach ( TilesAndEffect taep in m_Table )
-			{
-				bool contains = false;
-
-				for ( int i = 0; !contains && i < taep.Tiles.Length; i += 2 )
-					contains = ( tileID >= taep.Tiles[i] && tileID <= taep.Tiles[i + 1] );
-
-				if ( contains )
-				{
-					MonsterSeedEffect effect = (MonsterSeedEffect)Activator.CreateInstance( taep.Effect, new object[] { land.Location, from.Map, from } );
-					return effect;
-				}
-			}
-
-			return null;
-		}
-
-		private Point3D m_Location;
-		private Map m_Map;
-		private Mobile m_From;
-
-		public Point3D Location { get { return m_Location; } }
-		public Map Map { get { return m_Map; } }
-		public Mobile From { get { return m_From; } }
-
-		public MonsterSeedEffect( Point3D location, Map map, Mobile from ) : base( TimeSpan.FromSeconds( 2.5 ) )
-		{
-			m_Location = location;
-			m_Map = map;
-			m_From = from;
-
-			Priority = TimerPriority.TwoFiftyMS;
-		}
-
-		private int m_Step;
-
-		protected override void OnTick()
-		{
-			TimeSpan nextDelay = Play( m_Step++ );
-
-			if ( nextDelay > TimeSpan.Zero )
-			{
-				Delay = nextDelay;
-
-				Start();
-			}
-		}
-
-		protected abstract TimeSpan Play( int step );
-
-		protected bool SpawnItem( Item item )
-		{
-			for ( int i = 0; i < 5; i++ ) // Try 5 times
-			{
-				int x = Location.X + Utility.RandomMinMax( -1, 1 );
-				int y = Location.Y + Utility.RandomMinMax( -1, 1 );
-				int z = Map.GetAverageZ( x, y );
-
-				if ( Map.CanFit( x, y, Location.Z, 1 ) )
-				{
-					item.MoveToWorld( new Point3D( x, y, Location.Z ), Map );
-					return true;
-				}
-				else if ( Map.CanFit( x, y, z, 1 ) )
-				{
-					item.MoveToWorld( new Point3D( x, y, z ), Map );
-					return true;
-				}
-			}
-
-			return false;
-		}
-
-		protected bool SpawnCreature( BaseCreature creature )
-		{
-			for ( int i = 0; i < 5; i++ ) // Try 5 times
-			{
-				int x = Location.X + Utility.RandomMinMax( -1, 1 );
-				int y = Location.Y + Utility.RandomMinMax( -1, 1 );
-				int z = Map.GetAverageZ( x, y );
-
-				if ( Map.CanSpawnMobile( x, y, Location.Z ) )
-				{
-					creature.MoveToWorld( new Point3D( x, y, Location.Z ), Map );
-					creature.Combatant = From;
-					return true;
-				}
-				else if ( Map.CanSpawnMobile( x, y, z ) )
-				{
-					creature.MoveToWorld( new Point3D( x, y, z ), Map );
-					creature.Combatant = From;
-					return true;
-				}
-			}
-
-			return false;
-		}
-	}
-
-	public class DirtMonsterSeedEffect : MonsterSeedEffect
-	{
-		public DirtMonsterSeedEffect( Point3D location, Map map, Mobile from ) : base( location, map, from )
-		{
-		}
-
-		protected override TimeSpan Play( int step )
-		{
-			switch ( step )
-			{
-				case 0:
-				{
-					Effects.PlaySound( Location, Map, 0x106 );
-					Effects.SendLocationParticles( EffectItem.Create( Location, Map, EffectItem.DefaultDuration ), 0x3735, 1, 182, 0xBE3 );
-
-					return TimeSpan.FromSeconds( 4.0 );
-				}
-				case 1:
-				{
-					Effects.PlaySound( Location, Map, 0x222 );
-
-					return TimeSpan.FromSeconds( 4.0 );
-				}
-				case 2:
-				{
-					Effects.PlaySound( Location, Map, 0x21F );
-
-					return TimeSpan.FromSeconds( 5.0 );
-				}
-				case 3:
-				{
-					EffectItem dummy = EffectItem.Create( Location, Map, TimeSpan.FromSeconds( 20.0 ) );
-					dummy.PublicOverheadMessage( MessageType.Regular, 0x3B2, true, "* The ground erupts with chaotic growth! *" );
-
-					Effects.PlaySound( Location, Map, 0x12D );
-
-					SpawnReagents();
-					SpawnReagents();
-
-					return TimeSpan.FromSeconds( 2.0 );
-				}
-				case 4:
-				{
-					Effects.PlaySound( Location, Map, 0x12D );
-
-					SpawnReagents();
-					SpawnReagents();
-
-					return TimeSpan.FromSeconds( 2.0 );
-				}
-				case 5:
-				{
-					Effects.PlaySound( Location, Map, 0x12D );
-
-					SpawnReagents();
-					SpawnReagents();
-
-					return TimeSpan.FromSeconds( 3.0 );
-				}
-				default:
-				{
-					Effects.PlaySound( Location, Map, 0x12D );
-
-					SpawnReagents();
-					SpawnReagents();
-
-					return TimeSpan.Zero;
-				}
-			}
-		}
-
-		private void SpawnReagents()
-		{
-			Item reagents;
-			int amount = Utility.RandomMinMax( 10, 25 );
-
-			switch ( Utility.Random( 9 ) )
-			{
-				case 0: reagents = new BlackPearl( amount ); break;
-				case 1: reagents = new Bloodmoss( amount ); break;
-				case 2: reagents = new Garlic( amount ); break;
-				case 3: reagents = new Ginseng( amount ); break;
-				case 4: reagents = new MandrakeRoot( amount ); break;
-				case 5: reagents = new Nightshade( amount ); break;
-				case 6: reagents = new SulfurousAsh( amount ); break;
-				case 7: reagents = new SpidersSilk( amount ); break;
-				default: reagents = new FertileDirt( amount ); break;
-			}
-
-			if ( !SpawnItem( reagents ) )
-				reagents.Delete();
-		}
-	}
-
-	public class FurrowsMonsterSeedEffect : MonsterSeedEffect
-	{
-		public FurrowsMonsterSeedEffect( Point3D location, Map map, Mobile from ) : base( location, map, from )
-		{
-		}
-
-		protected override TimeSpan Play( int step )
-		{
-			switch ( step )
-			{
-				case 0:
-				{
-					Effects.PlaySound( Location, Map, 0x106 );
-					Effects.SendLocationParticles( EffectItem.Create( Location, Map, EffectItem.DefaultDuration ), 0x3735, 1, 182, 0xBE3 );
-
-					return TimeSpan.FromSeconds( 4.0 );
-				}
-				case 1:
-				{
-					EffectItem hole = EffectItem.Create( Location, Map, TimeSpan.FromSeconds( 10.0 ) );
-					hole.ItemID = 0x913;
-
-					Effects.PlaySound( Location, Map, 0x222 );
-
-					return TimeSpan.FromSeconds( 4.0 );
-				}
-				case 2:
-				{
-					Effects.PlaySound( Location, Map, 0x21F );
-
-					return TimeSpan.FromSeconds( 4.0 );
-				}
-				default:
-				{
-					EffectItem dummy = EffectItem.Create( Location, Map, TimeSpan.FromSeconds( 20.0 ) );
-					dummy.PublicOverheadMessage( MessageType.Regular, 0x3B2, true, "* A magical bunny leaps out of its hole, disturbed by the thorn's effect! *" );
-
-					BaseCreature spawn = new VorpalBunny();
-					if ( !SpawnCreature( spawn ) )
-						spawn.Delete();
-
-					return TimeSpan.Zero;
-				}
-			}
-		}
-	}
-
-	public class SwampMonsterSeedEffect : MonsterSeedEffect
-	{
-		public SwampMonsterSeedEffect( Point3D location, Map map, Mobile from ) : base( location, map, from )
-		{
-		}
-
-		protected override TimeSpan Play( int step )
-		{
-			switch ( step )
-			{
-				case 0:
-				{
-					Effects.PlaySound( Location, Map, 0x106 );
-					Effects.SendLocationParticles( EffectItem.Create( Location, Map, EffectItem.DefaultDuration ), 0x3735, 1, 182, 0xBE3 );
-
-					return TimeSpan.FromSeconds( 4.0 );
-				}
-				case 1:
-				{
-					Effects.PlaySound( Location, Map, 0x222 );
-
-					return TimeSpan.FromSeconds( 4.0 );
-				}
-				case 2:
-				{
-					Effects.PlaySound( Location, Map, 0x21F );
-
-					return TimeSpan.FromSeconds( 1.0 );
-				}
-				default:
-				{
-					EffectItem dummy = EffectItem.Create( Location, Map, TimeSpan.FromSeconds( 20.0 ) );
-					dummy.PublicOverheadMessage( MessageType.Regular, 0x3B2, true, "* Strange green tendrils rise from the ground, whipping wildly! *" );
-					Effects.PlaySound( Location, Map, 0x2B0 );
-
-					BaseCreature spawn = new WhippingVine();
-					if ( !SpawnCreature( spawn ) )
-						spawn.Delete();
-
-					return TimeSpan.Zero;
-				}
-			}
-		}
-	}
-
-	public class SnowMonsterSeedEffect : MonsterSeedEffect
-	{
-		public SnowMonsterSeedEffect( Point3D location, Map map, Mobile from ) : base( location, map, from )
-		{
-		}
-
-		protected override TimeSpan Play( int step )
-		{
-			switch ( step )
-			{
-				case 0:
-				{
-					Effects.PlaySound( Location, Map, 0x106 );
-					Effects.SendLocationParticles( EffectItem.Create( Location, Map, EffectItem.DefaultDuration ), 0x3735, 1, 182, 0xBE3 );
-
-					return TimeSpan.FromSeconds( 4.0 );
-				}
-				case 1:
-				{
-					Effects.PlaySound( Location, Map, 0x222 );
-
-					return TimeSpan.FromSeconds( 4.0 );
-				}
-				case 2:
-				{
-					Effects.PlaySound( Location, Map, 0x21F );
-
-					return TimeSpan.FromSeconds( 4.0 );
-				}
-				default:
-				{
-					EffectItem dummy = EffectItem.Create( Location, Map, TimeSpan.FromSeconds( 20.0 ) );
-					dummy.PublicOverheadMessage( MessageType.Regular, 0x3B2, true, "* Slithering ice serpents rise to the surface to investigate the disturbance! *" );
-
-					BaseCreature spawn = new GiantIceWorm();
-					if ( !SpawnCreature( spawn ) )
-						spawn.Delete();
-
-					for ( int i = 0; i < 3; i++ )
-					{
-						BaseCreature snake = new IceSnake();
-						if ( !SpawnCreature( snake ) )
-							snake.Delete();
+						creature.MoveToWorld( new Point3D( x, y, target.Z ), from.Map );
 					}
-
-					return TimeSpan.Zero;
+					//else if ( from.Map.CanSpawnMobile( x, y, z ) )
+					//{
+					//	creature.MoveToWorld( new Point3D( x, y, z ), from.Map );
+					//}
 				}
-			}
-		}
-	}
-
-	public class SandMonsterSeedEffect : MonsterSeedEffect
-	{
-		public SandMonsterSeedEffect( Point3D location, Map map, Mobile from ) : base( location, map, from )
-		{
-		}
-
-		protected override TimeSpan Play( int step )
-		{
-			switch ( step )
-			{
-				case 0:
-				{
-					Effects.PlaySound( Location, Map, 0x106 );
-					Effects.SendLocationParticles( EffectItem.Create( Location, Map, EffectItem.DefaultDuration ), 0x3735, 1, 182, 0xBE3 );
-
-					return TimeSpan.FromSeconds( 4.0 );
-				}
-				case 1:
-				{
-					Effects.PlaySound( Location, Map, 0x222 );
-
-					return TimeSpan.FromSeconds( 4.0 );
-				}
-				case 2:
-				{
-					Effects.PlaySound( Location, Map, 0x21F );
-
-					return TimeSpan.FromSeconds( 5.0 );
-				}
-				default:
-				{
-					EffectItem dummy = EffectItem.Create( Location, Map, TimeSpan.FromSeconds( 20.0 ) );
-					dummy.PublicOverheadMessage( MessageType.Regular, 0x3B2, true, "* The sand collapses, revealing a dark hole. *" );
-
-					MonsterSeedSHTeleporter.Create( Location, Map );
-
-					return TimeSpan.Zero;
-				}
-			}
-		}
-	}
-
-	public class MonsterSeedSHTeleporter : Item
-	{
-		public static readonly Point3D Destination = new Point3D( 5738, 1856, 0 );
-
-		public static void Create( Point3D location, Map map )
-		{
-			MonsterSeedSHTeleporter tele = new MonsterSeedSHTeleporter();
-
-			tele.MoveToWorld( location, map );
-
-			new InternalTimer( tele ).Start();
-		}
-
-		public override string DefaultName
-		{
-			get { return "a hole"; }
-		}
-
-		private MonsterSeedSHTeleporter() : base( 0x913 )
-		{
-			Movable = false;
-			Hue = 0x1;
-		}
-
-		public MonsterSeedSHTeleporter( Serial serial ) : base( serial )
-		{
-		}
-
-		public override void OnDoubleClick( Mobile from )
-		{
-			if ( from.InRange( this, 3 ) )
-			{
-				BaseCreature.TeleportPets( from, Destination, Map );
-
-				from.Location = Destination;
-			}
-			else
-			{
-				from.SendLocalizedMessage( 1019045 ); // I can't reach that.
-			}
-		}
-
-		private class InternalTimer : Timer
-		{
-			private MonsterSeedSHTeleporter m_Teleporter;
-
-			public InternalTimer( MonsterSeedSHTeleporter teleporter ) : base( TimeSpan.FromMinutes( 1.0 ) )
-			{
-				m_Teleporter = teleporter;
-				Priority = TimerPriority.FiveSeconds;
-			}
-
-			protected override void OnTick()
-			{
-				m_Teleporter.Delete();
 			}
 		}
 
@@ -707,8 +168,6 @@ namespace Server.Items
 			base.Deserialize( reader );
 
 			int version = reader.ReadInt();
-
-			Delete();
 		}
 	}
 }
