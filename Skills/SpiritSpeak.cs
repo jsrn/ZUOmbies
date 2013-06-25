@@ -15,45 +15,16 @@ namespace Server.SkillHandlers
 
 		public static TimeSpan OnUse( Mobile m )
 		{
-			if ( Core.AOS )
-			{
-				Spell spell = new SpiritSpeakSpell( m );
-
-				spell.Cast();
-
-				if ( spell.IsCasting )
-					return TimeSpan.FromSeconds( 5.0 );
-
-				return TimeSpan.Zero;
-			}
-
 			m.RevealingAction();
 
-			if ( m.CheckSkill( SkillName.SpiritSpeak, 0, 100 ) )
-			{	
-				if ( !m.CanHearGhosts )
-				{
-					Timer t = new SpiritSpeakTimer( m );
-					double secs = m.Skills[SkillName.SpiritSpeak].Base / 50;
-					secs *= 90;
-					if ( secs < 15 )
-						secs = 15;
+			Spell spell = new SpiritSpeakSpell( m );
 
-					t.Delay = TimeSpan.FromSeconds( secs );//15seconds to 3 minutes
-					t.Start();
-					m.CanHearGhosts = true;
-				}
+			spell.Cast();
 
-				m.PlaySound( 0x24A );
-				m.SendLocalizedMessage( 502444 );//You contact the neitherworld.
-			}
-			else
-			{
-				m.SendLocalizedMessage( 502443 );//You fail to contact the neitherworld.
-				m.CanHearGhosts = false;
-			}
+			if ( spell.IsCasting )
+				return TimeSpan.FromSeconds( 5.0 );
 
-			return TimeSpan.FromSeconds( 1.0 );
+			return TimeSpan.Zero;
 		}
 
 		private class SpiritSpeakTimer : Timer
