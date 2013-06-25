@@ -2,6 +2,7 @@ using System;
 using Server;
 using Server.Targeting;
 using Server.Gumps;
+using Server.Mobiles;
 
 namespace Server.Items
 {
@@ -23,19 +24,27 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			if ( !from.Alive )
+			PlayerMobile pm = (PlayerMobile)from;
+
+			if ( !pm.Undead )
+			{
+				pm.SendMessage( "The shrine gives you an unsettling feeling." );
+				return;
+			}
+
+			if ( !pm.Alive )
 				return;
 
-			if ( !from.InRange( this.GetWorldLocation(), 2 ) )
+			if ( !pm.InRange( this.GetWorldLocation(), 2 ) )
 			{
-				from.SendMessage( "You must be closer to the shrine to pray." );
+				pm.SendMessage( "You must be closer to the shrine to pray." );
 				return;
 			}
 			else
 			{
-				from.SendMessage( "You pray at the defiled shrine." );
-				from.CloseGump( typeof( DefiledShrineGump ) );
-				from.SendGump( new DefiledShrineGump( from ) );
+				pm.SendMessage( "You pray at the defiled shrine." );
+				pm.CloseGump( typeof( DefiledShrineGump ) );
+				pm.SendGump( new DefiledShrineGump( pm ) );
 			}			
 		}
 
