@@ -1,13 +1,16 @@
 using System;
 using Server;
 using Server.Items;
+using Server.Mobiles;
 
 namespace Server.Items
 {
-	public abstract class ReaperSeed : MonsterSeed
+	public class ReaperSeed : MonsterSeed
 	{
-		public ReaperSeed( int itemID ) : base( itemID )
+		[Constructable]
+		public ReaperSeed() : base( typeof( Reaper ) )
 		{
+			Name = "a reaper seed";
 		}
 
 		public ReaperSeed( Serial serial ) : base( serial )

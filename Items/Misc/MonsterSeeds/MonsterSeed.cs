@@ -118,8 +118,8 @@ namespace Server.Items
 
 						object[] arg = new object[] { from, land, m_Creature };
 
+
 						Timer.DelayCall( TimeSpan.FromSeconds( 2.0 ), new TimerStateCallback( SpawnCreature ), arg);
-						//SpawnCreature( from, land, m_Creature );
 					}
 				}
 			}

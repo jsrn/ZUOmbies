@@ -1,13 +1,16 @@
 using System;
 using Server;
 using Server.Items;
+using Server.Mobiles;
 
 namespace Server.Items
 {
-	public abstract class CorpserSeed : MonsterSeed
+	public class CorpserSeed : MonsterSeed
 	{
-		public CorpserSeed( int itemID ) : base( itemID )
+		[Constructable]
+		public CorpserSeed() : base( typeof( Corpser ) )
 		{
+			Name = "a corpser seed";
 		}
 
 		public CorpserSeed( Serial serial ) : base( serial )
