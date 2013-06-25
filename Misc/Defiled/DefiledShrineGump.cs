@@ -13,21 +13,21 @@ namespace Server.Gumps
 	public class DefiledRewardEntry
 	{
 		// Familiars
-		public static readonly DefiledRewardEntry Skeleton = new DefiledRewardEntry( 8423, "skeleton", 50, typeof( Skeleton ) );
-		public static readonly DefiledRewardEntry UndeadHound = new DefiledRewardEntry( 8405, "dire wolf", 50, typeof( DireWolf ) );
+		public static DefiledRewardEntry SkeletonArcher = new DefiledRewardEntry( 8423, "bone archer", 50, typeof( SkeletonArcher ) );
+		public static DefiledRewardEntry UndeadHound = new DefiledRewardEntry( 8405, "dire wolf", 50, typeof( DireWolf ) );
 		// Weapons
-		public static readonly DefiledRewardEntry Longsword = new DefiledRewardEntry( 3937, "longsword", 50, typeof( Longsword ) );
-		public static readonly DefiledRewardEntry Mace = new DefiledRewardEntry( 3932, "mace", 50, typeof( Mace ) );
-		public static readonly DefiledRewardEntry Bow = new DefiledRewardEntry( 5042, "bow", 50, typeof( Bow ) );
+		public static DefiledRewardEntry Longsword = new DefiledRewardEntry( 3937, "longsword", 50, typeof( Longsword ) );
+		public static DefiledRewardEntry Mace = new DefiledRewardEntry( 3932, "mace", 50, typeof( Mace ) );
+		public static DefiledRewardEntry Bow = new DefiledRewardEntry( 5042, "bow", 50, typeof( Bow ) );
 		// Armour
-		public static readonly DefiledRewardEntry Gorget = new DefiledRewardEntry( 5139, "gorget", 50, typeof( PlateGorget ) );
-		public static readonly DefiledRewardEntry PlateArms = new DefiledRewardEntry( 5143, "plate arms", 50, typeof( PlateArms ) );
-		public static readonly DefiledRewardEntry PlateTunic = new DefiledRewardEntry( 5141, "plate tunic", 100, typeof( PlateChest ) );
-		public static readonly DefiledRewardEntry PlateLegs = new DefiledRewardEntry( 5146, "plate legs", 100, typeof( PlateLegs ) );
-		public static readonly DefiledRewardEntry ChainTunic = new DefiledRewardEntry( 5055, "chain tunic", 50, typeof( ChainChest ) );
-		public static readonly DefiledRewardEntry ChainLeggings = new DefiledRewardEntry( 5054, "chain legs", 50, typeof( ChainLegs ) );
+		public static DefiledRewardEntry Gorget = new DefiledRewardEntry( 5139, "gorget", 50, typeof( PlateGorget ) );
+		public static DefiledRewardEntry PlateArms = new DefiledRewardEntry( 5143, "plate arms", 50, typeof( PlateArms ) );
+		public static DefiledRewardEntry PlateTunic = new DefiledRewardEntry( 5141, "plate tunic", 100, typeof( PlateChest ) );
+		public static DefiledRewardEntry PlateLegs = new DefiledRewardEntry( 5146, "plate legs", 100, typeof( PlateLegs ) );
+		public static DefiledRewardEntry ChainTunic = new DefiledRewardEntry( 5055, "chain tunic", 50, typeof( ChainChest ) );
+		public static DefiledRewardEntry ChainLeggings = new DefiledRewardEntry( 5054, "chain legs", 50, typeof( ChainLegs ) );
 		// Spells
-		public static readonly DefiledRewardEntry Spellbook = new DefiledRewardEntry( 5139, "spellbook", 50, typeof( NecromancerSpellbook ) );
+		public static DefiledRewardEntry Spellbook = new DefiledRewardEntry( 5139, "spellbook", 50, typeof( NecromancerSpellbook ) );
 
 		private int m_Art, m_Cost;
 		private string m_Label;
@@ -65,27 +65,28 @@ namespace Server.Gumps
 		}
 
 		private static DefiledRewardCategory[] Categories = new DefiledRewardCategory[]
-			{
-				new DefiledRewardCategory( "Familiars",
-					DefiledRewardEntry.Skeleton,
-					DefiledRewardEntry.UndeadHound ),
+		{
+			new DefiledRewardCategory( "Familiars",
+				new DefiledRewardEntry( 8423, "skeleton", 50, typeof( Skeleton ) ),
+				DefiledRewardEntry.SkeletonArcher,
+				DefiledRewardEntry.UndeadHound ),
 
-				new DefiledRewardCategory( "Weapons",
-					DefiledRewardEntry.Longsword,
-					DefiledRewardEntry.Mace,
-					DefiledRewardEntry.Bow ),
+			new DefiledRewardCategory( "Weapons",
+				DefiledRewardEntry.Longsword,
+				DefiledRewardEntry.Mace,
+				DefiledRewardEntry.Bow ),
 
-				new DefiledRewardCategory( "Armour",
-					DefiledRewardEntry.Gorget,
-					DefiledRewardEntry.PlateArms,
-					DefiledRewardEntry.PlateTunic,
-					DefiledRewardEntry.PlateLegs,
-					DefiledRewardEntry.ChainTunic,
-					DefiledRewardEntry.ChainLeggings ),
+			new DefiledRewardCategory( "Armour",
+				DefiledRewardEntry.Gorget,
+				DefiledRewardEntry.PlateArms,
+				DefiledRewardEntry.PlateTunic,
+				DefiledRewardEntry.PlateLegs,
+				DefiledRewardEntry.ChainTunic,
+				DefiledRewardEntry.ChainLeggings ),
 
-				new DefiledRewardCategory( "Spells",
-					DefiledRewardEntry.Spellbook )
-			};
+			new DefiledRewardCategory( "Spells",
+				DefiledRewardEntry.Spellbook )
+		};
 
 
 		private Mobile m_From;
@@ -153,15 +154,9 @@ namespace Server.Gumps
 }
 
 /*
-
 thomasvane: But yeah, back to the list. Cheapo option, skells/skell archers, then ghouls, then corpser seeds, then bone knights, then shades, then reaper seeds.
-Hoagie: Awesome stuff
 thomasvane: Ghouls are like wraiths/specters/shades, but not see through and have no magery.
-
 thomasvane: Maybe buying the scolls in the first place costs points.
 thomasvane: Hell, maybe even the initial book costs points.
-thomasvane: They have to prove they're worthy of His gifts.
 2406 and 1175
-
-
 */
