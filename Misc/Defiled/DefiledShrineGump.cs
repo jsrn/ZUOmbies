@@ -24,7 +24,7 @@ namespace Server.Gumps
 		public static readonly DefiledRewardEntry PlateArms = new DefiledRewardEntry( 5143, "plate arms", 50, typeof( PlateArms ) );
 		public static readonly DefiledRewardEntry PlateTunic = new DefiledRewardEntry( 5141, "plate tunic", 100, typeof( PlateChest ) );
 		public static readonly DefiledRewardEntry PlateLegs = new DefiledRewardEntry( 5146, "plate legs", 100, typeof( PlateLegs ) );
-		public static readonly DefiledRewardEntry ChainTunic = new DefiledRewardEntry( 5055, "phain tunic", 50, typeof( ChainChest ) );
+		public static readonly DefiledRewardEntry ChainTunic = new DefiledRewardEntry( 5055, "chain tunic", 50, typeof( ChainChest ) );
 		public static readonly DefiledRewardEntry ChainLeggings = new DefiledRewardEntry( 5054, "chain legs", 50, typeof( ChainLegs ) );
 		// Spells
 		public static readonly DefiledRewardEntry Spellbook = new DefiledRewardEntry( 5139, "spellbook", 50, typeof( NecromancerSpellbook ) );
