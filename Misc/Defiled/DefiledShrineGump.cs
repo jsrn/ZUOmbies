@@ -53,7 +53,7 @@ namespace Server.Gumps
 				new DefiledRewardEntry( 8423, "skeleton", 50, typeof( Skeleton ) ),
 				new DefiledRewardEntry( 8423, "bone archer", 50, typeof( SkeletonArcher ) ),
 				new DefiledRewardEntry( 8423, "ghoul", 50, typeof( Ghoul ) ),
-				new DefiledRewardEntry( 8423, "wraiths", 50, typeof( Wraith ) ),
+				new DefiledRewardEntry( 8423, "wraith", 50, typeof( Wraith ) ),
 				new DefiledRewardEntry( 8423, "spectre", 50, typeof( Spectre ) ),
 				new DefiledRewardEntry( 8423, "shade", 50, typeof( Shade ) ),
 				new DefiledRewardEntry( 8405, "dire wolf", 50, typeof( DireWolf ) ) ),
