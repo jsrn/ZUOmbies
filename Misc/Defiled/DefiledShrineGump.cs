@@ -10,69 +10,41 @@ using Server.Items;
 
 namespace Server.Gumps
 {
-	public class DefiledWeaponRewardEntry : DefiledRewardEntry
-	{
-		public static readonly DefiledRewardEntry Longsword = new DefiledWeaponRewardEntry( 3937, "longsword", 50, new Longsword() );
-		public static readonly DefiledRewardEntry Mace = new DefiledWeaponRewardEntry( 3932, "mace", 50, new Mace() );
-		public static readonly DefiledRewardEntry Bow = new DefiledWeaponRewardEntry( 5042, "bow", 50, new Bow() );
-
-		private BaseWeapon m_Weapon;
-
-		public DefiledWeaponRewardEntry( int Art, string Label, int Cost, BaseWeapon Weapon ) : base( Art, Label, Cost )
-		{
-			m_Weapon = Weapon;
-		}
-
-		public BaseWeapon Weapon { get { return m_Weapon; } }
-	}
-
-	public class DefiledArmourRewardEntry : DefiledRewardEntry
-	{
-		public static readonly DefiledRewardEntry Gorget = new DefiledArmourRewardEntry( 5139, "gorget", 50, new PlateGorget() );
-		public static readonly DefiledRewardEntry PlateArms = new DefiledArmourRewardEntry( 5143, "plate arms", 50, new PlateArms() );
-		public static readonly DefiledRewardEntry PlateTunic = new DefiledArmourRewardEntry( 5141, "plate tunic", 100, new PlateChest() );
-		public static readonly DefiledRewardEntry PlateLegs = new DefiledArmourRewardEntry( 5146, "plate legs", 100, new PlateLegs() );
-		public static readonly DefiledRewardEntry ChainTunic = new DefiledArmourRewardEntry( 5055, "phain tunic", 50, new ChainChest() );
-		public static readonly DefiledRewardEntry ChainLeggings = new DefiledArmourRewardEntry( 5054, "chain legs", 50, new ChainLegs() );
-
-		private BaseArmor m_Armour;
-
-		public DefiledArmourRewardEntry( int Art, string Label, int Cost, BaseArmor Armour ) : base( Art, Label, Cost )
-		{
-			m_Armour = Armour;
-		}
-
-		public BaseArmor Armour { get { return m_Armour; } }
-	}
-
-	public class DefiledFamiliarRewardEntry : DefiledRewardEntry
-	{
-		public static readonly DefiledRewardEntry Skeleton = new DefiledFamiliarRewardEntry( 8423, "skeleton", 50, new Skeleton() );
-		public static readonly DefiledRewardEntry UndeadHound = new DefiledFamiliarRewardEntry( 8405, "dire wolf", 50, new DireWolf() );
-
-		private BaseCreature m_Creature;
-
-		public DefiledFamiliarRewardEntry( int Art, string Label, int Cost, BaseCreature Creature ) : base( Art, Label, Cost )
-		{
-			m_Creature = Creature;
-		}
-	}
-
 	public class DefiledRewardEntry
 	{
+		// Familiars
+		public static readonly DefiledRewardEntry Skeleton = new DefiledRewardEntry( 8423, "skeleton", 50, typeof( Skeleton ) );
+		public static readonly DefiledRewardEntry UndeadHound = new DefiledRewardEntry( 8405, "dire wolf", 50, typeof( DireWolf ) );
+		// Weapons
+		public static readonly DefiledRewardEntry Longsword = new DefiledRewardEntry( 3937, "longsword", 50, typeof( Longsword ) );
+		public static readonly DefiledRewardEntry Mace = new DefiledRewardEntry( 3932, "mace", 50, typeof( Mace ) );
+		public static readonly DefiledRewardEntry Bow = new DefiledRewardEntry( 5042, "bow", 50, typeof( Bow ) );
+		// Armour
+		public static readonly DefiledRewardEntry Gorget = new DefiledRewardEntry( 5139, "gorget", 50, typeof( PlateGorget ) );
+		public static readonly DefiledRewardEntry PlateArms = new DefiledRewardEntry( 5143, "plate arms", 50, typeof( PlateArms ) );
+		public static readonly DefiledRewardEntry PlateTunic = new DefiledRewardEntry( 5141, "plate tunic", 100, typeof( PlateChest ) );
+		public static readonly DefiledRewardEntry PlateLegs = new DefiledRewardEntry( 5146, "plate legs", 100, typeof( PlateLegs ) );
+		public static readonly DefiledRewardEntry ChainTunic = new DefiledRewardEntry( 5055, "phain tunic", 50, typeof( ChainChest ) );
+		public static readonly DefiledRewardEntry ChainLeggings = new DefiledRewardEntry( 5054, "chain legs", 50, typeof( ChainLegs ) );
+		// Spells
+		public static readonly DefiledRewardEntry Spellbook = new DefiledRewardEntry( 5139, "spellbook", 50, typeof( NecromancerSpellbook ) );
+
 		private int m_Art, m_Cost;
 		private string m_Label;
+		private Type m_Type;
 
-		public DefiledRewardEntry( int Art, string Label, int Cost )
+		public DefiledRewardEntry( int Art, string Label, int Cost, Type Type )
 		{
 			m_Art = Art;
 			m_Label = Label;
 			m_Cost = Cost;
+			m_Type = Type;
 		}
 
 		public int ArtID { get { return m_Art; } }
 		public string Label { get { return m_Label; } }
 		public int Cost { get { return m_Cost; } }
+		public Type Type { get { return m_Type; } }
 	}
 
 	public class DefiledShrineGump : Gump
@@ -95,21 +67,24 @@ namespace Server.Gumps
 		private static DefiledRewardCategory[] Categories = new DefiledRewardCategory[]
 			{
 				new DefiledRewardCategory( "Familiars",
-					DefiledFamiliarRewardEntry.Skeleton,
-					DefiledFamiliarRewardEntry.UndeadHound ),
+					DefiledRewardEntry.Skeleton,
+					DefiledRewardEntry.UndeadHound ),
 
 				new DefiledRewardCategory( "Weapons",
-					DefiledWeaponRewardEntry.Longsword,
-					DefiledWeaponRewardEntry.Mace,
-					DefiledWeaponRewardEntry.Bow ),
+					DefiledRewardEntry.Longsword,
+					DefiledRewardEntry.Mace,
+					DefiledRewardEntry.Bow ),
 
 				new DefiledRewardCategory( "Armour",
-					DefiledArmourRewardEntry.Gorget,
-					DefiledArmourRewardEntry.PlateArms,
-					DefiledArmourRewardEntry.PlateTunic,
-					DefiledArmourRewardEntry.PlateLegs,
-					DefiledArmourRewardEntry.ChainTunic,
-					DefiledArmourRewardEntry.ChainLeggings )
+					DefiledRewardEntry.Gorget,
+					DefiledRewardEntry.PlateArms,
+					DefiledRewardEntry.PlateTunic,
+					DefiledRewardEntry.PlateLegs,
+					DefiledRewardEntry.ChainTunic,
+					DefiledRewardEntry.ChainLeggings ),
+
+				new DefiledRewardCategory( "Spells",
+					DefiledRewardEntry.Spellbook )
 			};
 
 
@@ -169,9 +144,6 @@ namespace Server.Gumps
 					if ( ent >= 0 && ent < Categories[cat].Entries.Length )
 					{
 						DefiledRewardEntry entry = Categories[cat].Entries[ent];
-						string label = entry.Label;
-						string category = Categories[cat].Label;
-						int cost = entry.Cost;
 						DefiledRewards.GiveReward( entry, (PlayerMobile)m_From );
 					}
 				}
