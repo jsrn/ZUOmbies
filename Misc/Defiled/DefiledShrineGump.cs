@@ -12,23 +12,6 @@ namespace Server.Gumps
 {
 	public class DefiledRewardEntry
 	{
-		// Familiars
-		public static DefiledRewardEntry SkeletonArcher = new DefiledRewardEntry( 8423, "bone archer", 50, typeof( SkeletonArcher ) );
-		public static DefiledRewardEntry UndeadHound = new DefiledRewardEntry( 8405, "dire wolf", 50, typeof( DireWolf ) );
-		// Weapons
-		public static DefiledRewardEntry Longsword = new DefiledRewardEntry( 3937, "longsword", 50, typeof( Longsword ) );
-		public static DefiledRewardEntry Mace = new DefiledRewardEntry( 3932, "mace", 50, typeof( Mace ) );
-		public static DefiledRewardEntry Bow = new DefiledRewardEntry( 5042, "bow", 50, typeof( Bow ) );
-		// Armour
-		public static DefiledRewardEntry Gorget = new DefiledRewardEntry( 5139, "gorget", 50, typeof( PlateGorget ) );
-		public static DefiledRewardEntry PlateArms = new DefiledRewardEntry( 5143, "plate arms", 50, typeof( PlateArms ) );
-		public static DefiledRewardEntry PlateTunic = new DefiledRewardEntry( 5141, "plate tunic", 100, typeof( PlateChest ) );
-		public static DefiledRewardEntry PlateLegs = new DefiledRewardEntry( 5146, "plate legs", 100, typeof( PlateLegs ) );
-		public static DefiledRewardEntry ChainTunic = new DefiledRewardEntry( 5055, "chain tunic", 50, typeof( ChainChest ) );
-		public static DefiledRewardEntry ChainLeggings = new DefiledRewardEntry( 5054, "chain legs", 50, typeof( ChainLegs ) );
-		// Spells
-		public static DefiledRewardEntry Spellbook = new DefiledRewardEntry( 5139, "spellbook", 50, typeof( NecromancerSpellbook ) );
-
 		private int m_Art, m_Cost;
 		private string m_Label;
 		private Type m_Type;
@@ -68,24 +51,32 @@ namespace Server.Gumps
 		{
 			new DefiledRewardCategory( "Familiars",
 				new DefiledRewardEntry( 8423, "skeleton", 50, typeof( Skeleton ) ),
-				DefiledRewardEntry.SkeletonArcher,
-				DefiledRewardEntry.UndeadHound ),
+				new DefiledRewardEntry( 8423, "bone archer", 50, typeof( SkeletonArcher ) ),
+				new DefiledRewardEntry( 8423, "ghoul", 50, typeof( Ghoul ) ),
+				new DefiledRewardEntry( 8423, "wraiths", 50, typeof( Wraith ) ),
+				new DefiledRewardEntry( 8423, "spectre", 50, typeof( Spectre ) ),
+				new DefiledRewardEntry( 8423, "shade", 50, typeof( Shade ) ),
+				new DefiledRewardEntry( 8405, "dire wolf", 50, typeof( DireWolf ) ) ),
 
 			new DefiledRewardCategory( "Weapons",
-				DefiledRewardEntry.Longsword,
-				DefiledRewardEntry.Mace,
-				DefiledRewardEntry.Bow ),
+				new DefiledRewardEntry( 3937, "longsword", 50, typeof( Longsword ) ),
+				new DefiledRewardEntry( 3932, "mace", 50, typeof( Mace ) ),
+				new DefiledRewardEntry( 5042, "bow", 50, typeof( Bow ) ) ),
 
 			new DefiledRewardCategory( "Armour",
-				DefiledRewardEntry.Gorget,
-				DefiledRewardEntry.PlateArms,
-				DefiledRewardEntry.PlateTunic,
-				DefiledRewardEntry.PlateLegs,
-				DefiledRewardEntry.ChainTunic,
-				DefiledRewardEntry.ChainLeggings ),
+				new DefiledRewardEntry( 5139, "gorget", 50, typeof( PlateGorget ) ),
+				new DefiledRewardEntry( 5143, "plate arms", 50, typeof( PlateArms ) ),
+				new DefiledRewardEntry( 5141, "plate tunic", 100, typeof( PlateChest ) ),
+				new DefiledRewardEntry( 5146, "plate legs", 100, typeof( PlateLegs ) ),
+				new DefiledRewardEntry( 5055, "chain tunic", 50, typeof( ChainChest ) ),
+				new DefiledRewardEntry( 5054, "chain legs", 50, typeof( ChainLegs ) ) ),
 
 			new DefiledRewardCategory( "Spells",
-				DefiledRewardEntry.Spellbook )
+				new DefiledRewardEntry( 8787, "spellbook", 50, typeof( NecromancerSpellbook ) ) ),
+
+			new DefiledRewardCategory( "Items",
+				new DefiledRewardEntry( 8787, "corpser seed", 50, typeof( CorpserSeed ) ),
+				new DefiledRewardEntry( 8787, "reaper seed", 50, typeof( ReaperSeed ) ) )
 		};
 
 
@@ -155,8 +146,4 @@ namespace Server.Gumps
 
 /*
 thomasvane: But yeah, back to the list. Cheapo option, skells/skell archers, then ghouls, then corpser seeds, then bone knights, then shades, then reaper seeds.
-thomasvane: Ghouls are like wraiths/specters/shades, but not see through and have no magery.
-thomasvane: Maybe buying the scolls in the first place costs points.
-thomasvane: Hell, maybe even the initial book costs points.
-2406 and 1175
 */

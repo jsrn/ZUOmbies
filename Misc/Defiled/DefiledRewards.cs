@@ -33,6 +33,8 @@ namespace Server.Misc
 			}
 		}
 
+		// Hues are 2406 and 1175, depending on item
+
 		private static void GiveFamiliar( string label, Type familiarType, int cost, PlayerMobile m )
 		{
 			m.SendMessage( "Giving familiar: " + label );
