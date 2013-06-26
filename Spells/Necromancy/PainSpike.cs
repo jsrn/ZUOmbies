@@ -10,16 +10,15 @@ namespace Server.Spells.Necromancy
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Pain Spike", "In Sar",
-				203,
-				9031,
-				Reagent.GraveDust,
-				Reagent.PigIron
+				-1,
+				9031
 			);
 
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 1.0 ); } }
 
 		public override double RequiredSkill{ get{ return 20.0; } }
 		public override int RequiredMana{ get{ return 5; } }
+		public override int RequiredEvil{ get{ return 15; } }
 
 		public PainSpikeSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
 		{

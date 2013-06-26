@@ -21,6 +21,7 @@ namespace Server.Spells.Necromancy
 
 		public override double RequiredSkill{ get{ return 30.0; } }
 		public override int RequiredMana{ get{ return 17; } }
+		public override int RequiredEvil{ get{ return 15; } }
 
 		public MindRotSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
 		{

@@ -23,6 +23,7 @@ namespace Server.Spells.Necromancy
 
 		public override double RequiredSkill{ get{ return 30.0; } }
 		public override int RequiredMana{ get{ return 17; } }
+		public override int RequiredEvil{ get{ return 15; } }
 
 		public SummonFamiliarSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
 		{

@@ -19,6 +19,7 @@ namespace Server.Spells.Necromancy
 
 		public override double RequiredSkill { get { return 20.0; } }
 		public override int RequiredMana { get { return 11; } }
+		public override int RequiredEvil{ get{ return 15; } }
 
 		public EvilOmenSpell(Mobile caster, Item scroll)
 			: base(caster, scroll, m_Info)

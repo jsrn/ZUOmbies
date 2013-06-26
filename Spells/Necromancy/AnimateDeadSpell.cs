@@ -13,16 +13,15 @@ namespace Server.Spells.Necromancy
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Animate Dead", "Uus Corp",
-				203,
-				9031,
-				Reagent.GraveDust,
-				Reagent.DaemonBlood
+				-1,
+				9031
 			);
 
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 1.5 ); } }
 
 		public override double RequiredSkill{ get{ return 40.0; } }
 		public override int RequiredMana{ get{ return 23; } }
+		public override int RequiredEvil{ get{ return 15; } }
 
 		public AnimateDeadSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
 		{
