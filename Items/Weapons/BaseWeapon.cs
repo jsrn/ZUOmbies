@@ -119,8 +119,6 @@ namespace Server.Items
 		public virtual int AosMaxDamage{ get{ return 0; } }
 		public virtual int AosSpeed{ get{ return 0; } }
 		public virtual float MlSpeed{ get{ return 0.0f; } }
-		public virtual int AosMaxRange{ get{ return DefMaxRange; } }
-		public virtual int AosHitSound{ get{ return DefHitSound; } }
 		public virtual int AosMissSound{ get{ return DefMissSound; } }
 		public virtual SkillName AosSkill{ get{ return DefSkill; } }
 		public virtual WeaponType AosType{ get{ return DefType; } }
@@ -132,8 +130,6 @@ namespace Server.Items
 		public virtual int OldMinDamage{ get{ return 0; } }
 		public virtual int OldMaxDamage{ get{ return 0; } }
 		public virtual int OldSpeed{ get{ return 0; } }
-		public virtual int OldMaxRange{ get{ return DefMaxRange; } }
-		public virtual int OldHitSound{ get{ return DefHitSound; } }
 		public virtual int OldMissSound{ get{ return DefMissSound; } }
 		public virtual SkillName OldSkill{ get{ return DefSkill; } }
 		public virtual WeaponType OldType{ get{ return DefType; } }
@@ -301,7 +297,7 @@ namespace Server.Items
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int MaxRange
 		{
-			get{ return ( m_MaxRange == -1 ? Core.AOS ? AosMaxRange : OldMaxRange : m_MaxRange ); }
+			get{ return ( m_MaxRange == -1 ? DefMaxRange : m_MaxRange ); }
 			set{ m_MaxRange = value; InvalidateProperties(); }
 		}
 
@@ -329,7 +325,7 @@ namespace Server.Items
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int HitSound
 		{
-			get{ return ( m_HitSound == -1 ? Core.AOS ? AosHitSound : OldHitSound : m_HitSound ); }
+			get{ return ( m_HitSound == -1 ? DefHitSound : m_HitSound ); }
 			set{ m_HitSound = value; }
 		}
 
@@ -2002,11 +1998,21 @@ namespace Server.Items
 
 			switch ( m_DamageLevel )
 			{
-				case WeaponDamageLevel.Ruin:	bonus += 15; break;
-				case WeaponDamageLevel.Might:	bonus += 20; break;
-				case WeaponDamageLevel.Force:	bonus += 25; break;
-				case WeaponDamageLevel.Power:	bonus += 30; break;
-				case WeaponDamageLevel.Vanq:	bonus += 35; break;
+				case WeaponDamageLevel.TenArmsLore:		bonus += 1; break;
+				case WeaponDamageLevel.TwentyArmsLore:	bonus += 2; break;
+				case WeaponDamageLevel.ThirtyArmsLore:	bonus += 3; break;
+				case WeaponDamageLevel.FortyArmsLore:	bonus += 4; break;
+				case WeaponDamageLevel.FiftyArmsLore:	bonus += 5; break;
+				case WeaponDamageLevel.SixtyArmsLore:	bonus += 6; break;
+				case WeaponDamageLevel.SeventyArmsLore:	bonus += 7; break;
+				case WeaponDamageLevel.EightyArmsLore:	bonus += 8; break;
+				case WeaponDamageLevel.NinetyArmsLore:	bonus += 9; break;
+				case WeaponDamageLevel.GMArmsLore:		bonus += 10; break;
+				case WeaponDamageLevel.Ruin:			bonus += 15; break;
+				case WeaponDamageLevel.Might:			bonus += 20; break;
+				case WeaponDamageLevel.Force:			bonus += 25; break;
+				case WeaponDamageLevel.Power:			bonus += 30; break;
+				case WeaponDamageLevel.Vanq:			bonus += 35; break;
 			}
 
 			return bonus;
@@ -2093,11 +2099,6 @@ namespace Server.Items
 
 		public virtual int VirtualDamageBonus{ get{ return 0; } }
 
-		public virtual int ComputeDamageAOS( Mobile attacker, Mobile defender )
-		{
-			return (int)ScaleDamageAOS( attacker, GetBaseDamage( attacker ), true );
-		}
-
 		public virtual double ScaleDamageOld( Mobile attacker, double damage, bool checkSkills )
 		{
 			if ( checkSkills )
@@ -2158,14 +2159,14 @@ namespace Server.Items
 			damage += (damage * tacticsBonus) + (damage * strBonus) + (damage * anatomyBonus) + (damage * lumberBonus) + (damage * qualityBonus) + ((damage * VirtualDamageBonus) / 100);
 
 			// Old quality bonus:
-#if false
+			#if false
 			/* Apply quality offset
 			 * : Low         : -4
 			 * : Regular     :  0
 			 * : Exceptional : +4
 			 */
 			damage += ((int)m_Quality - 1) * 4.0;
-#endif
+			#endif
 
 			/* Apply damage level offset
 			 * : Regular : 0
@@ -2196,9 +2197,6 @@ namespace Server.Items
 
 		public virtual int ComputeDamage( Mobile attacker, Mobile defender )
 		{
-			if ( Core.AOS )
-				return ComputeDamageAOS( attacker, defender );
-
 			return (int)ScaleDamageOld( attacker, GetBaseDamage( attacker ), true );
 		}
 
@@ -2735,7 +2733,7 @@ namespace Server.Items
 					if ( m_MaxDamage == OldMaxDamage )
 						m_MaxDamage = -1;
 
-					if ( m_HitSound == OldHitSound )
+					if ( m_HitSound == DefHitSound )
 						m_HitSound = -1;
 
 					if ( m_MissSound == OldMissSound )
@@ -2744,7 +2742,7 @@ namespace Server.Items
 					if ( m_Speed == OldSpeed )
 						m_Speed = -1;
 
-					if ( m_MaxRange == OldMaxRange )
+					if ( m_MaxRange == DefMaxRange )
 						m_MaxRange = -1;
 
 					if ( m_Skill == OldSkill )
@@ -2970,235 +2968,6 @@ namespace Server.Items
 		public override void GetProperties( ObjectPropertyList list )
 		{
 			base.GetProperties( list );
-
-			if ( m_Crafter != null )
-				list.Add( 1050043, m_Crafter.Name ); // crafted by ~1_NAME~
-
-			#region Factions
-			if ( m_FactionState != null )
-				list.Add( 1041350 ); // faction item
-			#endregion
-
-			if ( m_AosSkillBonuses != null )
-				m_AosSkillBonuses.GetProperties( list );
-
-			if ( m_Quality == WeaponQuality.Exceptional )
-				list.Add( 1060636 ); // exceptional
-
-			if( RequiredRace == Race.Elf )
-				list.Add( 1075086 ); // Elves Only
-
-			if ( ArtifactRarity > 0 )
-				list.Add( 1061078, ArtifactRarity.ToString() ); // artifact rarity ~1_val~
-
-			if ( this is IUsesRemaining && ((IUsesRemaining)this).ShowUsesRemaining )
-				list.Add( 1060584, ((IUsesRemaining)this).UsesRemaining.ToString() ); // uses remaining: ~1_val~
-
-			if ( m_Poison != null && m_PoisonCharges > 0 )
-				list.Add( 1062412 + m_Poison.Level, m_PoisonCharges.ToString() );
-
-			if( m_Slayer != SlayerName.None )
-			{
-				SlayerEntry entry = SlayerGroup.GetEntryByName( m_Slayer );
-				if( entry != null )
-					list.Add( entry.Title );
-			}
-
-			if( m_Slayer2 != SlayerName.None )
-			{
-				SlayerEntry entry = SlayerGroup.GetEntryByName( m_Slayer2 );
-				if( entry != null )
-					list.Add( entry.Title );
-			}
-
-
-			base.AddResistanceProperties( list );
-
-			int prop;
-
-			if ( (prop = m_AosWeaponAttributes.UseBestSkill) != 0 )
-				list.Add( 1060400 ); // use best weapon skill
-
-			if ( (prop = (GetDamageBonus() + m_AosAttributes.WeaponDamage)) != 0 )
-				list.Add( 1060401, prop.ToString() ); // damage increase ~1_val~%
-
-			if ( (prop = m_AosAttributes.DefendChance) != 0 )
-				list.Add( 1060408, prop.ToString() ); // defense chance increase ~1_val~%
-
-			if ( (prop = m_AosAttributes.EnhancePotions) != 0 )
-				list.Add( 1060411, prop.ToString() ); // enhance potions ~1_val~%
-
-			if ( (prop = m_AosAttributes.CastRecovery) != 0 )
-				list.Add( 1060412, prop.ToString() ); // faster cast recovery ~1_val~
-
-			if ( (prop = m_AosAttributes.CastSpeed) != 0 )
-				list.Add( 1060413, prop.ToString() ); // faster casting ~1_val~
-
-			if ( (prop = (GetHitChanceBonus() + m_AosAttributes.AttackChance)) != 0 )
-				list.Add( 1060415, prop.ToString() ); // hit chance increase ~1_val~%
-
-			if ( (prop = m_AosWeaponAttributes.HitColdArea) != 0 )
-				list.Add( 1060416, prop.ToString() ); // hit cold area ~1_val~%
-
-			if ( (prop = m_AosWeaponAttributes.HitDispel) != 0 )
-				list.Add( 1060417, prop.ToString() ); // hit dispel ~1_val~%
-
-			if ( (prop = m_AosWeaponAttributes.HitEnergyArea) != 0 )
-				list.Add( 1060418, prop.ToString() ); // hit energy area ~1_val~%
-
-			if ( (prop = m_AosWeaponAttributes.HitFireArea) != 0 )
-				list.Add( 1060419, prop.ToString() ); // hit fire area ~1_val~%
-
-			if ( (prop = m_AosWeaponAttributes.HitFireball) != 0 )
-				list.Add( 1060420, prop.ToString() ); // hit fireball ~1_val~%
-
-			if ( (prop = m_AosWeaponAttributes.HitHarm) != 0 )
-				list.Add( 1060421, prop.ToString() ); // hit harm ~1_val~%
-
-			if ( (prop = m_AosWeaponAttributes.HitLeechHits) != 0 )
-				list.Add( 1060422, prop.ToString() ); // hit life leech ~1_val~%
-
-			if ( (prop = m_AosWeaponAttributes.HitLightning) != 0 )
-				list.Add( 1060423, prop.ToString() ); // hit lightning ~1_val~%
-
-			if ( (prop = m_AosWeaponAttributes.HitLowerAttack) != 0 )
-				list.Add( 1060424, prop.ToString() ); // hit lower attack ~1_val~%
-
-			if ( (prop = m_AosWeaponAttributes.HitLowerDefend) != 0 )
-				list.Add( 1060425, prop.ToString() ); // hit lower defense ~1_val~%
-
-			if ( (prop = m_AosWeaponAttributes.HitMagicArrow) != 0 )
-				list.Add( 1060426, prop.ToString() ); // hit magic arrow ~1_val~%
-
-			if ( (prop = m_AosWeaponAttributes.HitLeechMana) != 0 )
-				list.Add( 1060427, prop.ToString() ); // hit mana leech ~1_val~%
-
-			if ( (prop = m_AosWeaponAttributes.HitPhysicalArea) != 0 )
-				list.Add( 1060428, prop.ToString() ); // hit physical area ~1_val~%
-
-			if ( (prop = m_AosWeaponAttributes.HitPoisonArea) != 0 )
-				list.Add( 1060429, prop.ToString() ); // hit poison area ~1_val~%
-
-			if ( (prop = m_AosWeaponAttributes.HitLeechStam) != 0 )
-				list.Add( 1060430, prop.ToString() ); // hit stamina leech ~1_val~%
-
-			if ( Core.ML && this is BaseRanged && ( prop = ( (BaseRanged) this ).Velocity ) != 0 )
-				list.Add( 1072793, prop.ToString() ); // Velocity ~1_val~%
-
-			if ( (prop = m_AosAttributes.BonusDex) != 0 )
-				list.Add( 1060409, prop.ToString() ); // dexterity bonus ~1_val~
-
-			if ( (prop = m_AosAttributes.BonusHits) != 0 )
-				list.Add( 1060431, prop.ToString() ); // hit point increase ~1_val~
-
-			if ( (prop = m_AosAttributes.BonusInt) != 0 )
-				list.Add( 1060432, prop.ToString() ); // intelligence bonus ~1_val~
-
-			if ( (prop = m_AosAttributes.LowerManaCost) != 0 )
-				list.Add( 1060433, prop.ToString() ); // lower mana cost ~1_val~%
-
-			if ( (prop = m_AosAttributes.LowerRegCost) != 0 )
-				list.Add( 1060434, prop.ToString() ); // lower reagent cost ~1_val~%
-
-			if ( (prop = (GetLuckBonus() + m_AosAttributes.Luck)) != 0 )
-				list.Add( 1060436, prop.ToString() ); // luck ~1_val~
-
-			if ( (prop = m_AosWeaponAttributes.MageWeapon) != 0 )
-				list.Add( 1060438, (30 - prop).ToString() ); // mage weapon -~1_val~ skill
-
-			if ( (prop = m_AosAttributes.BonusMana) != 0 )
-				list.Add( 1060439, prop.ToString() ); // mana increase ~1_val~
-
-			if ( (prop = m_AosAttributes.RegenMana) != 0 )
-				list.Add( 1060440, prop.ToString() ); // mana regeneration ~1_val~
-
-			if ( (prop = m_AosAttributes.NightSight) != 0 )
-				list.Add( 1060441 ); // night sight
-
-			if ( (prop = m_AosAttributes.ReflectPhysical) != 0 )
-				list.Add( 1060442, prop.ToString() ); // reflect physical damage ~1_val~%
-
-			if ( (prop = m_AosAttributes.RegenStam) != 0 )
-				list.Add( 1060443, prop.ToString() ); // stamina regeneration ~1_val~
-
-			if ( (prop = m_AosAttributes.RegenHits) != 0 )
-				list.Add( 1060444, prop.ToString() ); // hit point regeneration ~1_val~
-
-			if ( (prop = m_AosWeaponAttributes.SelfRepair) != 0 )
-				list.Add( 1060450, prop.ToString() ); // self repair ~1_val~
-
-			if ( (prop = m_AosAttributes.SpellChanneling) != 0 )
-				list.Add( 1060482 ); // spell channeling
-
-			if ( (prop = m_AosAttributes.SpellDamage) != 0 )
-				list.Add( 1060483, prop.ToString() ); // spell damage increase ~1_val~%
-
-			if ( (prop = m_AosAttributes.BonusStam) != 0 )
-				list.Add( 1060484, prop.ToString() ); // stamina increase ~1_val~
-
-			if ( (prop = m_AosAttributes.BonusStr) != 0 )
-				list.Add( 1060485, prop.ToString() ); // strength bonus ~1_val~
-
-			if ( (prop = m_AosAttributes.WeaponSpeed) != 0 )
-				list.Add( 1060486, prop.ToString() ); // swing speed increase ~1_val~%
-
-			int phys, fire, cold, pois, nrgy, chaos, direct;
-
-			GetDamageTypes( null, out phys, out fire, out cold, out pois, out nrgy, out chaos, out direct );
-
-			if ( phys != 0 )
-				list.Add( 1060403, phys.ToString() ); // physical damage ~1_val~%
-
-			if ( fire != 0 )
-				list.Add( 1060405, fire.ToString() ); // fire damage ~1_val~%
-
-			if ( cold != 0 )
-				list.Add( 1060404, cold.ToString() ); // cold damage ~1_val~%
-
-			if ( pois != 0 )
-				list.Add( 1060406, pois.ToString() ); // poison damage ~1_val~%
-
-			if ( nrgy != 0 )
-				list.Add( 1060407, nrgy.ToString() ); // energy damage ~1_val
-
-			if ( Core.ML && chaos != 0 )
-				list.Add( 1072846, chaos.ToString() ); // chaos damage ~1_val~%
-
-			if ( Core.ML && direct != 0 )
-				list.Add( 1079978, direct.ToString() ); // Direct Damage: ~1_PERCENT~%
-
-			list.Add( 1061168, "{0}\t{1}", MinDamage.ToString(), MaxDamage.ToString() ); // weapon damage ~1_val~ - ~2_val~
-
-			if ( Core.ML )
-				list.Add( 1061167, String.Format( "{0}s", Speed ) ); // weapon speed ~1_val~
-			else
-				list.Add( 1061167, Speed.ToString() );
-
-			if ( MaxRange > 1 )
-				list.Add( 1061169, MaxRange.ToString() ); // range ~1_val~
-
-			if ( StrRequirement > 0 )
-				list.Add( 1061170, StrRequirement.ToString() ); // strength requirement ~1_val~
-
-			if ( Layer == Layer.TwoHanded )
-				list.Add( 1061171 ); // two-handed weapon
-			else
-				list.Add( 1061824 ); // one-handed weapon
-
-			if ( Core.SE || m_AosWeaponAttributes.UseBestSkill == 0 )
-			{
-				switch ( Skill )
-				{
-					case SkillName.Swords:  list.Add( 1061172 ); break; // skill required: swordsmanship
-					case SkillName.Macing:  list.Add( 1061173 ); break; // skill required: mace fighting
-					case SkillName.Fencing: list.Add( 1061174 ); break; // skill required: fencing
-					case SkillName.Archery: list.Add( 1061175 ); break; // skill required: archery
-				}
-			}
-
-			if ( m_Hits >= 0 && m_MaxHits > 0 )
-				// This lists the weapon durability
-				list.Add( 1060639, "{0}\t{1} test", m_Hits, m_MaxHits ); // durability ~1_val~ / ~2_val~
 		}
 
 		public override void OnSingleClick( Mobile from )
@@ -3240,8 +3009,13 @@ namespace Server.Items
 				if ( m_DurabilityLevel != WeaponDurabilityLevel.Regular )
 					attrs.Add( new EquipInfoAttribute( 1038000 + (int)m_DurabilityLevel ) );
 
-				if ( m_DamageLevel != WeaponDamageLevel.Regular )
-					attrs.Add( new EquipInfoAttribute( 1038015 + (int)m_DamageLevel ) );
+				if ( m_DamageLevel == WeaponDamageLevel.Ruin
+					|| m_DamageLevel == WeaponDamageLevel.Ruin
+					|| m_DamageLevel == WeaponDamageLevel.Might
+					|| m_DamageLevel == WeaponDamageLevel.Force
+					|| m_DamageLevel == WeaponDamageLevel.Power
+					|| m_DamageLevel == WeaponDamageLevel.Vanq )
+					attrs.Add( new EquipInfoAttribute( 1038005 + (int)m_DamageLevel ) );
 
 				if ( m_AccuracyLevel != WeaponAccuracyLevel.Regular )
 					attrs.Add( new EquipInfoAttribute( 1038010 + (int)m_AccuracyLevel ) );
@@ -3296,37 +3070,31 @@ namespace Server.Items
 			if ( resourceType == null )
 				resourceType = craftItem.Resources.GetAt( 0 ).ItemType;
 
-			if ( Core.AOS )
+			// Begin arms lore check
+			int armsLoreBracket = (int)(from.Skills.ArmsLore.Value / 10);
+			switch ( armsLoreBracket )
 			{
-				Resource = CraftResources.GetFromType( resourceType );
+				case 1: DamageLevel = WeaponDamageLevel.TenArmsLore; break;
+				case 2: DamageLevel = WeaponDamageLevel.TwentyArmsLore; break;
+				case 3: DamageLevel = WeaponDamageLevel.ThirtyArmsLore; break;
+				case 4: DamageLevel = WeaponDamageLevel.FortyArmsLore; break;
+				case 5: DamageLevel = WeaponDamageLevel.FiftyArmsLore; break;
+				case 6: DamageLevel = WeaponDamageLevel.SixtyArmsLore; break;
+				case 7: DamageLevel = WeaponDamageLevel.SeventyArmsLore; break;
+				case 8: DamageLevel = WeaponDamageLevel.EightyArmsLore; break;
+				case 9: DamageLevel = WeaponDamageLevel.NinetyArmsLore; break;
+				case 10: DamageLevel = WeaponDamageLevel.GMArmsLore; break;
 
-				CraftContext context = craftSystem.GetContext( from );
-
-				if ( context != null && context.DoNotColor )
-					Hue = 0;
-
-				if ( tool is BaseRunicTool )
-					((BaseRunicTool)tool).ApplyAttributesTo( this );
-
-				if ( Quality == WeaponQuality.Exceptional )
-				{
-					if ( Attributes.WeaponDamage > 35 )
-						Attributes.WeaponDamage -= 20;
-					else
-						Attributes.WeaponDamage = 15;
-
-					if( Core.ML )
-					{
-						Attributes.WeaponDamage += (int)(from.Skills.ArmsLore.Value / 20);
-
-						if ( Attributes.WeaponDamage > 50 )
-							Attributes.WeaponDamage = 50;
-
-						from.CheckSkill( SkillName.ArmsLore, 0, 100 );
-					}
-				}
 			}
-			else if ( tool is BaseRunicTool )
+			Attributes.WeaponDamage += (int)(from.Skills.ArmsLore.Value / 20);
+
+			if ( Attributes.WeaponDamage > 50 )
+				Attributes.WeaponDamage = 50;
+
+			from.CheckSkill( SkillName.ArmsLore, 0, 100 );
+			// End arms lore check
+
+			if ( tool is BaseRunicTool )
 			{
 				CraftResource thisResource = CraftResources.GetFromType( resourceType );
 

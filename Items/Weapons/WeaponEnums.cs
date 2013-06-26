@@ -24,6 +24,16 @@ namespace Server.Items
 	public enum WeaponDamageLevel
 	{
 		Regular,
+		TenArmsLore,
+		TwentyArmsLore,
+		ThirtyArmsLore,
+		FortyArmsLore,
+		FiftyArmsLore,
+		SixtyArmsLore,
+		SeventyArmsLore,
+		EightyArmsLore,
+		NinetyArmsLore,
+		GMArmsLore,
 		Ruin,
 		Might,
 		Force,
