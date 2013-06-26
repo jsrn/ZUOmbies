@@ -140,7 +140,7 @@ namespace Server.Gumps
 						PlayerMobile pm = (PlayerMobile)m_From;
 						DefiledRewardEntry entry = Categories[cat].Entries[ent];
 
-						if( pm.EvilPoints > entry.Cost )
+						if( pm.EvilPoints >= entry.Cost )
 						{
 							DefiledRewards.GiveReward( entry, pm );
 							pm.EvilPoints -= entry.Cost;
