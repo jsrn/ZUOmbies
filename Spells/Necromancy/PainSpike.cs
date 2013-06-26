@@ -37,7 +37,7 @@ namespace Server.Spells.Necromancy
 			{
 				SpellHelper.Turn( Caster, m );
 
-				SpellHelper.CheckReflect( (int)this.Circle, Caster, ref m ); //Irrelevent asfter AoS
+				//SpellHelper.CheckReflect( (int)this.Circle, Caster, ref m ); //Irrelevent asfter AoS
 
 				/* Temporarily causes intense physical pain to the target, dealing direct damage.
 				 * After 10 seconds the spell wears off, and if the target is still alive, 

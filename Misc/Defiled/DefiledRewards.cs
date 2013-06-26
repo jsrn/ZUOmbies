@@ -66,7 +66,6 @@ namespace Server.Misc
 		private static void GiveWeapon( string label, Type weaponType, int cost, PlayerMobile m )
 		{
 			BaseWeapon weapon = Activator.CreateInstance( weaponType ) as BaseWeapon;
-			weapon.Name = "defiled " + label;
 			m.PlaceInBackpack( weapon );
 		}
 

@@ -362,11 +362,6 @@ namespace Server.Items
 				if ( m_Speed != -1 )
 					return m_Speed;
 
-				if ( Core.ML )
-					return MlSpeed;
-				else if ( Core.AOS )
-					return AosSpeed;
-
 				return OldSpeed;
 			}
 			set{ m_Speed = value; InvalidateProperties(); }
@@ -375,21 +370,21 @@ namespace Server.Items
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int StrRequirement
 		{
-			get{ return ( m_StrReq == -1 ? Core.AOS ? AosStrengthReq : OldStrengthReq : m_StrReq ); }
+			get{ return ( m_StrReq == -1 ? OldStrengthReq : m_StrReq ); }
 			set{ m_StrReq = value; InvalidateProperties(); }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int DexRequirement
 		{
-			get{ return ( m_DexReq == -1 ? Core.AOS ? AosDexterityReq : OldDexterityReq : m_DexReq ); }
+			get{ return ( m_DexReq == -1 ? OldDexterityReq : m_DexReq ); }
 			set{ m_DexReq = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int IntRequirement
 		{
-			get{ return ( m_IntReq == -1 ? Core.AOS ? AosIntelligenceReq : OldIntelligenceReq : m_IntReq ); }
+			get{ return ( m_IntReq == -1 ? OldIntelligenceReq : m_IntReq ); }
 			set{ m_IntReq = value; }
 		}
 
@@ -497,29 +492,6 @@ namespace Server.Items
 			return bonus;
 		}
 
-		public int GetLowerStatReq()
-		{
-			if ( !Core.AOS )
-				return 0;
-
-			int v = m_AosWeaponAttributes.LowerStatReq;
-
-			CraftResourceInfo info = CraftResources.GetInfo( m_Resource );
-
-			if ( info != null )
-			{
-				CraftAttributeInfo attrInfo = info.AttributeInfo;
-
-				if ( attrInfo != null )
-					v += attrInfo.WeaponLowerRequirements;
-			}
-
-			if ( v > 100 )
-				v = 100;
-
-			return v;
-		}
-
 		public static void BlockEquip( Mobile m, TimeSpan duration )
 		{
 			if ( m.BeginAction( typeof( BaseWeapon ) ) )
@@ -589,7 +561,7 @@ namespace Server.Items
 				from.SendMessage( "You are not nimble enough to equip that." );
 				return false;
 			} 
-			else if ( from.Str < AOS.Scale( StrRequirement, 100 - GetLowerStatReq() ) )
+			else if ( from.Str < AOS.Scale( StrRequirement, 100 ) )
 			{
 				from.SendLocalizedMessage( 500213 ); // You are not strong enough to equip that.
 				return false;
@@ -644,15 +616,6 @@ namespace Server.Items
 				from.AddSkillMod( m_SkillMod );
 			}
 
-			if ( Core.AOS && m_AosWeaponAttributes.MageWeapon != 0 && m_AosWeaponAttributes.MageWeapon != 30 )
-			{
-				if ( m_MageMod != null )
-					m_MageMod.Remove();
-
-				m_MageMod = new DefaultSkillMod( SkillName.Magery, true, -30 + m_AosWeaponAttributes.MageWeapon );
-				from.AddSkillMod( m_MageMod );
-			}
-
 			return true;
 		}
 
@@ -663,9 +626,6 @@ namespace Server.Items
 			if ( parent is Mobile )
 			{
 				Mobile from = (Mobile)parent;
-
-				if ( Core.AOS )
-					m_AosSkillBonuses.AddTo( from );
 
 				from.CheckStatTimers();
 				from.Delta( MobileDelta.WeaponDamage );
@@ -699,9 +659,6 @@ namespace Server.Items
 					m_MageMod.Remove();
 					m_MageMod = null;
 				}
-
-				if ( Core.AOS )
-					m_AosSkillBonuses.Remove();
 
 				m.CheckStatTimers();
 
@@ -3059,9 +3016,6 @@ namespace Server.Items
 
 			int prop;
 
-			if ( Core.ML && this is BaseRanged && ( (BaseRanged) this ).Balanced )
-				list.Add( 1072792 ); // Balanced
-
 			if ( (prop = m_AosWeaponAttributes.UseBestSkill) != 0 )
 				list.Add( 1060400 ); // use best weapon skill
 
@@ -3146,9 +3100,6 @@ namespace Server.Items
 			if ( (prop = m_AosAttributes.LowerRegCost) != 0 )
 				list.Add( 1060434, prop.ToString() ); // lower reagent cost ~1_val~%
 
-			if ( (prop = GetLowerStatReq()) != 0 )
-				list.Add( 1060435, prop.ToString() ); // lower requirements ~1_val~%
-
 			if ( (prop = (GetLuckBonus() + m_AosAttributes.Luck)) != 0 )
 				list.Add( 1060436, prop.ToString() ); // luck ~1_val~
 
@@ -3226,10 +3177,8 @@ namespace Server.Items
 			if ( MaxRange > 1 )
 				list.Add( 1061169, MaxRange.ToString() ); // range ~1_val~
 
-			int strReq = AOS.Scale( StrRequirement, 100 - GetLowerStatReq() );
-
-			if ( strReq > 0 )
-				list.Add( 1061170, strReq.ToString() ); // strength requirement ~1_val~
+			if ( StrRequirement > 0 )
+				list.Add( 1061170, StrRequirement.ToString() ); // strength requirement ~1_val~
 
 			if ( Layer == Layer.TwoHanded )
 				list.Add( 1061171 ); // two-handed weapon

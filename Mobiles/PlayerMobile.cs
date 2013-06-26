@@ -887,7 +887,7 @@ namespace Server.Mobiles
 
 						if( dex < weapon.DexRequirement )
 							drop = true;
-						else if( str < AOS.Scale( weapon.StrRequirement, 100 - weapon.GetLowerStatReq() ) )
+						else if( str < AOS.Scale( weapon.StrRequirement, 100 ) )
 							drop = true;
 						else if( intel < weapon.IntRequirement )
 							drop = true;

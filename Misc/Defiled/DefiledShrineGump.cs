@@ -59,7 +59,7 @@ namespace Server.Gumps
 				new DefiledRewardEntry( 8405, "dire wolf", 50, typeof( DireWolf ) ) ),
 
 			new DefiledRewardCategory( "Weapons",
-				new DefiledRewardEntry( 3937, "longsword", 50, typeof( Longsword ) ),
+				new DefiledRewardEntry( 3937, "longsword", 50, typeof( DefiledLongsword ) ),
 				new DefiledRewardEntry( 3932, "mace", 50, typeof( Mace ) ),
 				new DefiledRewardEntry( 5042, "bow", 50, typeof( Bow ) ) ),
 
