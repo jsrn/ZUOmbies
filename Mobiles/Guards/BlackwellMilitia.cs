@@ -10,10 +10,17 @@ namespace Server.Mobiles
 	public class BlackwellMilitia : BaseCreature
 	{
 		[Constructable]
-		public BlackwellMilitia() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
+		public BlackwellMilitia() : this( 190 )
 		{
-			InitStats( 40, 30, 5 );
-			Title = "the Militia Fighter";
+		}
+
+		[Constructable]
+		public BlackwellMilitia( int budget ) : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
+		{
+			if ( budget < 190 )
+				Delete();
+
+			Title = ", Blackwell Militia";
 
 			SpeechHue = Utility.RandomDyedHue();
 
@@ -26,41 +33,151 @@ namespace Server.Mobiles
 			Utility.AssignRandomHair( this );
 			Utility.AssignRandomFacialHair( this, HairHue );
 
-			AddItem( new ThighBoots( 0x1BB ) );
-			AddItem( new LeatherChest() );
-			AddItem( new LeatherArms() );
-			AddItem( new LeatherLegs() );
-			AddItem( new LeatherCap() );
-			AddItem( new LeatherGloves() );
-			AddItem( new LeatherGorget() );
+			BuySkills( budget );
+		}
 
-			Item weapon;
-			switch ( Utility.Random( 6 ) )
+		private void BuySkills( int balance )
+		{
+			int swords = 50;
+			int anatomy = 50;
+			int tactics = 50;
+			int parry = 50;
+			int archery = 50;
+
+			// 100 on skills
+			for( int i = 0; i < 10; i++ )
 			{
-				case 0: weapon = new Broadsword(); break;
-				case 1: weapon = new Cutlass(); break;
-				case 2: weapon = new Katana(); break;
-				case 3: weapon = new Longsword(); break;
-				case 4: weapon = new Scimitar(); break;
-				default: weapon = new VikingSword(); break;
+				switch( Utility.Random( 5 ) )
+				{
+					case 0:
+						swords += 10;
+						break;
+					case 1:
+						anatomy += 10;
+						break;
+					case 2:
+						tactics += 10;
+						break;
+					case 3:
+						parry += 10;
+						break;
+					case 4:
+						archery += 10;
+						break;
+				}
+
+				balance -= 10;
 			}
-			weapon.Movable = false;
-			AddItem( weapon );
 
-			Item shield = new BronzeShield();
-			shield.Movable = false;
-			AddItem( shield );
+			SetSkill( SkillName.Swords, 	Math.Min( swords, 100 	) );
+			SetSkill( SkillName.Anatomy, 	Math.Min( anatomy, 100 	) );
+			SetSkill( SkillName.Tactics, 	Math.Min( tactics, 100 	) );
+			SetSkill( SkillName.Parry, 		Math.Min( parry, 100 	) );
+			SetSkill( SkillName.Archery, 	Math.Min( archery, 100 	) );
 
-			SetSkill( SkillName.Swords, 20.0 );
+			// 50 on stats
+			int str = 50;
+			int dex = 50;
+			int intel = 10;
+
+			for( int i = 0; i < 5; i++ )
+			{
+				switch( Utility.Random( 3 ) )
+				{
+					case 0:
+						str += 10;
+						break;
+					case 1:
+						dex += 10;
+						break;
+					case 2:
+						intel += 10;
+						break;
+				}
+
+				balance -= 10;
+			}
+
+			InitStats( str, dex, intel );
+
+			BuyEquipment( balance );
+		}
+
+		private void BuyEquipment( int balance )
+		{
+			// At least 50 on gear
+			double swords = Skills[ SkillName.Swords ].Value;
+			double archery = Skills[ SkillName.Archery ].Value;
+
+			if ( swords > archery )
+			{
+				AddItem( new Broadsword() );
+				
+				if( Utility.RandomBool() )
+				{
+					AddItem( new WoodenShield() );
+					balance -= 10;
+				}	
+			}
+			else
+			{
+				AddItem( new Bow() );
+				PackItem( new Arrow( Utility.RandomMinMax( 20, 40 ) ) );
+			}
+			balance -= 20;
+
+			// At least 20
+			AddItem( new LeatherLegs() );
+			balance -= 10;
+
+			// 10
+			if ( balance >= 10 )
+			{
+				AddItem( new LeatherChest() );
+				balance -= 10;
+			}
+				
+			if ( balance >= 10 )
+			{
+				AddItem( new LeatherCap() );
+				balance -= 10;
+			}
+				
+			if ( balance >= 10 )
+			{
+				AddItem( new LeatherGloves() );
+				balance -= 10;
+			}
+				
+			if ( balance >= 10 )
+			{
+				AddItem( new LeatherArms() );
+				balance -= 10;
+			}
+				
+			if ( balance >= 10 )
+			{
+				AddItem( new LeatherGorget() );
+				balance -= 10;
+			}
+				
+			// Free base clothing
+			AddItem( new Boots() );
+			AddItem( new Shirt( 2406 ) );
+
+			if( balance != 0 )
+			{
+				PackItem( new Gold( balance ) );
+			}
 		}
 
 		public override bool ClickTitle { get { return false; } }
 
 		public override bool IsEnemy( Mobile m )
 		{
-			if ( m.Player && m.Undead )
+			if ( m.Player && ((PlayerMobile)m).Undead )
 				return true;
-				
+
 			if ( m.Player || m is BaseVendor )
 				return false;
 
@@ -77,62 +194,6 @@ namespace Server.Mobiles
 		}
 
 		public BlackwellMilitia( Serial serial ) : base( serial )
-		{
-		}
-
-		public override void Serialize( GenericWriter writer )
-		{
-			base.Serialize( writer );
-
-			writer.Write( (int) 0 ); // version
-		}
-
-		public override void Deserialize( GenericReader reader )
-		{
-			base.Deserialize( reader );
-
-			int version = reader.ReadInt();
-		}
-	}
-
-	public class BlackwellMilitiaCorpse : Corpse
-	{
-		public BlackwellMilitiaCorpse( Mobile owner, HairInfo hair, FacialHairInfo facialhair, List<Item> equipItems ) : base( owner, hair, facialhair, equipItems )
-		{
-		}
-
-		public override void AddNameProperty( ObjectPropertyList list )
-		{
-			if ( ItemID == 0x2006 ) // Corpse form
-			{
-				list.Add( "a human corpse" );
-				list.Add( 1049318, this.Name ); // the remains of ~1_NAME~ the militia fighter
-			}
-			else
-			{
-				list.Add( 1049319 ); // the remains of a militia fighter
-			}
-		}
-
-		public override void OnSingleClick( Mobile from )
-		{
-			int hue = Notoriety.GetHue( Server.Misc.NotorietyHandlers.CorpseNotoriety( from, this ) );
-
-			if ( ItemID == 0x2006 ) // Corpse form
-				from.Send( new MessageLocalized( Serial, ItemID, MessageType.Label, hue, 3, 1049318, "", Name ) ); // the remains of ~1_NAME~ the militia fighter
-			else
-				from.Send( new MessageLocalized( Serial, ItemID, MessageType.Label, hue, 3, 1049319, "", "" ) ); // the remains of a militia fighter
-		}
-
-		public override void Open( Mobile from, bool checkSelfLoot )
-		{
-			if ( from.InRange( this.GetWorldLocation(), 2 ) )
-			{
-				from.SendLocalizedMessage( 1049661, "", 0x22 ); // Thinking about his sacrifice, you can't bring yourself to loot the body of this militia fighter.
-			}
-		}
-
-		public BlackwellMilitiaCorpse( Serial serial ) : base( serial )
 		{
 		}
 
