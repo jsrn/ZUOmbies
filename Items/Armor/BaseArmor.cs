@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Server.Network;
 using Server.Engines.Craft;
 using Server.Factions;
+using Server.Mobiles;
 using AMA = Server.Items.ArmorMeditationAllowance;
 using AMT = Server.Items.ArmorMaterialType;
 using ABT = Server.Items.ArmorBodyType;
@@ -1151,6 +1152,12 @@ namespace Server.Items
 		{
 			if( !Ethics.Ethic.CheckEquip( from, this ) )
 				return false;
+
+			if( from is PlayerMobile && !((PlayerMobile)from).Undead && LootType == LootType.Cursed )
+			{
+				from.SendMessage( "Mortals cannot equip the armour of the undead." );
+				return false;
+			}
 
 			if( from.AccessLevel < AccessLevel.GameMaster )
 			{

@@ -543,6 +543,12 @@ namespace Server.Items
 			if ( !Ethics.Ethic.CheckEquip( from, this ) )
 				return false;
 
+			if( from is PlayerMobile && !((PlayerMobile)from).Undead && LootType == LootType.Cursed )
+			{
+				from.SendMessage( "Mortals cannot equip the weapons of the undead." );
+				return false;
+			}
+
 			if( RequiredRace != null && from.Race != RequiredRace )
 			{
 				if( RequiredRace == Race.Elf )
