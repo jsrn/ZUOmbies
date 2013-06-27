@@ -88,6 +88,15 @@ namespace Server.Items
 				if ( m_Bandage.Deleted )
 					return;
 
+				if ( targeted is PlayerMobile && ((PlayerMobile)targeted).Undead )
+				{
+					if( from == targeted )
+						from.SendMessage( "You have no need for the healing techniques of mortals." );
+					else
+						from.SendLocalizedMessage( 500970 ); // Bandages can not be used on that.
+					return;
+				}
+
 				if ( targeted is Mobile )
 				{
 					if ( from.InRange( m_Bandage.GetWorldLocation(), Bandage.Range ) )
