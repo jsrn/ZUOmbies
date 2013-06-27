@@ -65,8 +65,8 @@ namespace Server.Gumps
 
 			new DefiledRewardCategory( "Weapons",
 				new DefiledRewardEntry( 3937, "longsword", 50, typeof( DefiledLongsword ) ),
-				new DefiledRewardEntry( 3932, "mace", 50, typeof( Mace ) ),
-				new DefiledRewardEntry( 5042, "bow", 50, typeof( Bow ) ) ),
+				new DefiledRewardEntry( 3932, "mace", 50, typeof( DefiledMace ) ),
+				new DefiledRewardEntry( 5042, "bow", 50, typeof( DefiledBow ) ) ),
 
 			new DefiledRewardCategory( "Armour",
 				new DefiledRewardEntry( 5139, "gorget", 50, typeof( PlateGorget ) ),

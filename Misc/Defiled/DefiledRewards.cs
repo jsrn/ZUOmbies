@@ -21,7 +21,7 @@ namespace Server.Misc
 				if( target.InjuryPoints >= 30 )
 					GrantPoints( pm, 300 );
 			}
-			else if ( m is Hart )
+			else if ( m is GreatHart )
 				GrantPoints( pm, 3 );
 			else if ( m is Hind )
 				GrantPoints( pm, 5 );
@@ -32,7 +32,7 @@ namespace Server.Misc
 			else if ( m is Cow || m is Bull )
 				GrantPoints( pm, 30 );
 			//thomasvane: Killing guard dogs grants 20, killing militia ( [add militiafighter ) grants 50
-			else if ( m is MilitiaFighter )
+			else if ( m is BlackwellMilitia )
 				GrantPoints( pm, 50 );
 			else if( m is BaseCreature )
 				GrantPoints( pm, 1 );
