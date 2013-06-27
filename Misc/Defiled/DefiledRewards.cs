@@ -53,6 +53,12 @@ namespace Server.Misc
 			}
 		}
 
+		public static void TradeInItem( Item item, PlayerMobile from )
+		{
+			from.SendMessage( "You contribute the item to the war effort." );
+			item.Delete();
+		} 
+
 		// Hues are 2406 and 1175, depending on item
 
 		private static void GiveFamiliar( string label, Type familiarType, int cost, PlayerMobile m )
