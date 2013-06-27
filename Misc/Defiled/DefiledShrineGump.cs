@@ -50,11 +50,16 @@ namespace Server.Gumps
 		private static DefiledRewardCategory[] Categories = new DefiledRewardCategory[]
 		{
 			new DefiledRewardCategory( "Familiars",
+				// skeletons and skeleton archers should be 50, at one pet slot
 				new DefiledRewardEntry( 8423, "skeleton", 50, typeof( Skeleton ) ),
 				new DefiledRewardEntry( 8423, "bone archer", 50, typeof( SkeletonArcher ) ),
-				new DefiledRewardEntry( 8423, "ghoul", 50, typeof( Ghoul ) ),
+				// Ghouls are 100 at two pet slots.
+				new DefiledRewardEntry( 8423, "ghoul", 100, typeof( Ghoul ) ),
 				new DefiledRewardEntry( 8423, "wraith", 50, typeof( Wraith ) ),
-				new DefiledRewardEntry( 8423, "spectre", 50, typeof( Spectre ) ),
+				// Bone knights are 300 at 3 pet slots
+				new DefiledRewardEntry( 8423, "bone knight", 300, typeof( BoneKnight ) ),
+				// specters are 500 at 4 pet slots
+				new DefiledRewardEntry( 8423, "spectre", 500, typeof( Spectre ) ),
 				new DefiledRewardEntry( 8423, "shade", 50, typeof( Shade ) ),
 				new DefiledRewardEntry( 8405, "dire wolf", 50, typeof( DireWolf ) ) ),
 
@@ -76,7 +81,8 @@ namespace Server.Gumps
 
 			new DefiledRewardCategory( "Items",
 				new DefiledRewardEntry( 8787, "corpser seed", 50, typeof( CorpserSeed ) ),
-				new DefiledRewardEntry( 8787, "reaper seed", 50, typeof( ReaperSeed ) ) )
+				// Reaper seeds are 750 and take no slots, but don't obay the "owner" beyond their basic code to not attack undead.
+				new DefiledRewardEntry( 8787, "reaper seed", 750, typeof( ReaperSeed ) ) )
 		};
 
 
@@ -143,7 +149,6 @@ namespace Server.Gumps
 						if( pm.EvilPoints >= entry.Cost )
 						{
 							DefiledRewards.GiveReward( entry, pm );
-							pm.EvilPoints -= entry.Cost;
 						}
 						else
 						{
@@ -155,8 +160,3 @@ namespace Server.Gumps
 		}
 	}
 }
-
-/*
-thomasvane: But yeah, back to the list. Cheapo option, skells/skell archers, then ghouls, then corpser seeds, then bone knights, then shades, then reaper seeds.
-thomasvane: For costs, I think skeletons and skeleton archers should be 50, at one pet slot. Ghouls are 100 at two pet slots. Bone knights are 300 at 3 pet slots, and specters are 500 at 4 pet slots. Reaper seeds are 750 and take no slots, but don't obay the "owner" beyond their basic code to not attack undead.
-*/

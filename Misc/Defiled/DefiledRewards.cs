@@ -86,13 +86,15 @@ namespace Server.Misc
 			m.SendMessage( "Giving familiar: " + label );
 			BaseCreature bc = Activator.CreateInstance( familiarType ) as BaseCreature;
 			bc.Name = "defiled " + label;
-			BaseCreature.Summon( bc, m, m.Location, -1, TimeSpan.FromDays( 1.0 ) );
+			if ( BaseCreature.Summon( bc, m, m.Location, -1, TimeSpan.FromDays( 1.0 ) ) )
+				m.EvilPoints -= cost;
 		}
 
 		private static void GiveWeapon( string label, Type weaponType, int cost, PlayerMobile m )
 		{
 			BaseWeapon weapon = Activator.CreateInstance( weaponType ) as BaseWeapon;
 			m.PlaceInBackpack( weapon );
+			m.EvilPoints -= cost;
 		}
 
 		private static void GiveArmour( string label, Type armourType, int cost, PlayerMobile m )
@@ -101,12 +103,14 @@ namespace Server.Misc
 			armour.Name = "defiled " + label;
 			armour.Hue = 1175;
 			m.PlaceInBackpack( armour );
+			m.EvilPoints -= cost;
 		}
 
 		private static void GiveItem( string label, Type itemType, int cost, PlayerMobile m )
 		{
 			Item item = Activator.CreateInstance( itemType ) as Item;
 			m.PlaceInBackpack( item );
+			m.EvilPoints -= cost;
 		}
 	}
 }
