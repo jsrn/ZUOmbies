@@ -158,4 +158,5 @@ namespace Server.Gumps
 
 /*
 thomasvane: But yeah, back to the list. Cheapo option, skells/skell archers, then ghouls, then corpser seeds, then bone knights, then shades, then reaper seeds.
+thomasvane: For costs, I think skeletons and skeleton archers should be 50, at one pet slot. Ghouls are 100 at two pet slots. Bone knights are 300 at 3 pet slots, and specters are 500 at 4 pet slots. Reaper seeds are 750 and take no slots, but don't obay the "owner" beyond their basic code to not attack undead.
 */

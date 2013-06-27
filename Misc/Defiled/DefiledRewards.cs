@@ -55,7 +55,27 @@ namespace Server.Misc
 
 		public static void TradeInItem( Item item, PlayerMobile from )
 		{
-			from.SendMessage( "You contribute the item to the war effort." );
+			int points = 0;
+
+			if( item is BaseWeapon || item is BaseArmor )
+				points = 1;
+			//I was thinking 3pts per dead body part, that you can pick up from a chopped up humanoid
+			else if ( item is BonePile || item is LeftArm || item is LeftLeg || item is RibCage || item is RightArm || item is RightLeg || item is Torso )
+				points = 3;
+			//Hoagie: 5 for the head
+			else if ( item is Head )
+				points = 5;
+
+			string message = "You contribute to the war effort";
+
+			if( points == 0 )
+				message += ", but the Guardian is not impressed.";
+			else
+				message += ". [ " + points + " ]";
+
+			from.SendMessage( message );
+
+			GrantPoints( from, points );
 			item.Delete();
 		} 
 
@@ -90,3 +110,14 @@ namespace Server.Misc
 		}
 	}
 }
+
+/*
+
+thomasvane: I'd say we should figure out the value of the weapons first, based on req skill and resources needed.
+thomasvane: Then we can assign to value of resources, and know we're not making them more valuable than the weapons.
+thomasvane: Since deer are the primary hunted game for the town, you get 3 pts for killing great harts, 5 for hinds since they're more vital to breeding
+thomasvane: Killing livestock grants 10 for chickens, 20 for sheep and goats, and 30 for cows and bulls if we add them later
+thomasvane: Killing guard dogs grants 20, killing militia ( [add militiafighter ) grants 50
+thomasvane: Downing a player is 100 and perma killing one is 400
+
+*/
