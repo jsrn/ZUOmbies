@@ -40,6 +40,8 @@ namespace Server.Mobiles
 			Karma = -3000;
 
 			VirtualArmor = 40;
+
+			ControlSlots = 3;
 			
 			switch ( Utility.Random( 6 ) )
 			{
