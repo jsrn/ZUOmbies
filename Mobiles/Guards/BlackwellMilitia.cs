@@ -109,7 +109,7 @@ namespace Server.Mobiles
 			double swords = Skills[ SkillName.Swords ].Value;
 			double archery = Skills[ SkillName.Archery ].Value;
 
-			if ( swords > archery )
+			if ( swords >= archery )
 			{
 				AddItem( new Broadsword() );
 				
