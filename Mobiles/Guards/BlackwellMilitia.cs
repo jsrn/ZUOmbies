@@ -58,6 +58,9 @@ namespace Server.Mobiles
 
 		public override bool IsEnemy( Mobile m )
 		{
+			if ( m.Player && m.Undead )
+				return true;
+				
 			if ( m.Player || m is BaseVendor )
 				return false;
 
