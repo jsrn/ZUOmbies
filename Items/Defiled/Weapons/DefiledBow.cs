@@ -8,7 +8,7 @@ namespace Server.Items
 	public class DefiledBow : Bow
 	{
 		[Constructable]
-		public DefiledBow() : base( 0x13B2 )
+		public DefiledBow() : base()
 		{
 			Name = "defiled bow";
 			LootType = LootType.Cursed;
