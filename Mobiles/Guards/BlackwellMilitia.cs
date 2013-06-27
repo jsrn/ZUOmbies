@@ -10,14 +10,14 @@ namespace Server.Mobiles
 	public class BlackwellMilitia : BaseCreature
 	{
 		[Constructable]
-		public BlackwellMilitia() : this( 190 )
+		public BlackwellMilitia() : this( 200 )
 		{
 		}
 
 		[Constructable]
 		public BlackwellMilitia( int budget ) : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
-			if ( budget < 190 )
+			if ( budget < 200 )
 				Delete();
 
 			Title = ", Blackwell Militia";
@@ -128,37 +128,37 @@ namespace Server.Mobiles
 
 			// At least 20
 			AddItem( new LeatherLegs() );
-			balance -= 10;
+			balance -= 20;
 
 			// 10
-			if ( balance >= 10 )
+			if ( balance >= 15 )
 			{
 				AddItem( new LeatherChest() );
-				balance -= 10;
+				balance -= 15;
 			}
 				
-			if ( balance >= 10 )
+			if ( balance >= 15 )
 			{
 				AddItem( new LeatherCap() );
-				balance -= 10;
+				balance -= 15;
 			}
 				
-			if ( balance >= 10 )
+			if ( balance >= 15 )
 			{
 				AddItem( new LeatherGloves() );
-				balance -= 10;
+				balance -= 15;
 			}
 				
-			if ( balance >= 10 )
+			if ( balance >= 15 )
 			{
 				AddItem( new LeatherArms() );
-				balance -= 10;
+				balance -= 15;
 			}
 				
-			if ( balance >= 10 )
+			if ( balance >= 15 )
 			{
 				AddItem( new LeatherGorget() );
-				balance -= 10;
+				balance -= 15;
 			}
 				
 			// Free base clothing
