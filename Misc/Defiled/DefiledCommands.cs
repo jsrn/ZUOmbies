@@ -11,9 +11,17 @@ namespace Server.Scripts.Commands
 	{
 		public static void Initialize()
 		{
+			CommandSystem.Register( "MakeDefiled", AccessLevel.GameMaster, new CommandEventHandler( MakeDefiled_OnCommand ) );
 			CommandSystem.Register( "MakeZombie", AccessLevel.GameMaster, new CommandEventHandler( MakeZombie_OnCommand ) );
 			CommandSystem.Register( "MakeLich", AccessLevel.GameMaster, new CommandEventHandler( MakeLich_OnCommand ) );
 			CommandSystem.Register( "ResetForm", AccessLevel.GameMaster, new CommandEventHandler( ResetForm_OnCommand ) );
+		}
+
+		[Usage( "MakeDefiled" )]
+		[Description( "Turn the targetted player into a defiled soldier." )]
+		private static void MakeDefiled_OnCommand( CommandEventArgs e )
+		{
+			e.Mobile.Target = new MakeDefiledTarget();
 		}
 
 		[Usage( "MakeZombie" )]
@@ -54,6 +62,31 @@ namespace Server.Scripts.Commands
 					PlayerMobile pl = (PlayerMobile)target;
 					pl.BodyMod = m_NewForm;
 					pl.SendMessage( "You take a different form." );
+				}
+				else
+				{
+					from.SendMessage( "You can not change that." );
+				}
+			}	
+		}
+
+		class MakeDefiledTarget : Target
+		{
+
+			public MakeDefiledTarget() :  base ( 8, false, TargetFlags.None )
+			{
+				AllowNonlocal = true;
+			}
+
+			protected override void OnTarget( Mobile from, object target )
+			{
+				if ( target is PlayerMobile && !((PlayerMobile)target).Undead )
+				{
+					PlayerMobile pl = (PlayerMobile)target;
+					pl.FacialHairItemID = 5201;
+					pl.Hue = 0;
+					pl.Undead = true;
+					pl.SendMessage( "You complete your transformation into the living dead." );
 				}
 				else
 				{
