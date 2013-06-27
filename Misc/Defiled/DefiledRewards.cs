@@ -13,16 +13,29 @@ namespace Server.Misc
 		{
 			if( m is PlayerMobile )
 			{
+				// Downing a player is 100
 				GrantPoints( pm, 100 );
 
+				// Perma killing one is 400
 				PlayerMobile target = (PlayerMobile)m;
 				if( target.InjuryPoints >= 30 )
 					GrantPoints( pm, 300 );
 			}
+			else if ( m is Hart )
+				GrantPoints( pm, 3 );
+			else if ( m is Hind )
+				GrantPoints( pm, 5 );
+			else if ( m is Chicken )
+				GrantPoints( pm, 10 );
+			else if ( m is Sheep || m is Goat )
+				GrantPoints( pm, 20 );
+			else if ( m is Cow || m is Bull )
+				GrantPoints( pm, 30 );
+			//thomasvane: Killing guard dogs grants 20, killing militia ( [add militiafighter ) grants 50
+			else if ( m is MilitiaFighter )
+				GrantPoints( pm, 50 );
 			else if( m is BaseCreature )
-			{
-				GrantPoints( pm, 25 );
-			}
+				GrantPoints( pm, 1 );
 		}
 
 		public static void GrantPoints( PlayerMobile pm, int amount )
@@ -116,12 +129,6 @@ namespace Server.Misc
 }
 
 /*
-
 thomasvane: I'd say we should figure out the value of the weapons first, based on req skill and resources needed.
 thomasvane: Then we can assign to value of resources, and know we're not making them more valuable than the weapons.
-thomasvane: Since deer are the primary hunted game for the town, you get 3 pts for killing great harts, 5 for hinds since they're more vital to breeding
-thomasvane: Killing livestock grants 10 for chickens, 20 for sheep and goats, and 30 for cows and bulls if we add them later
-thomasvane: Killing guard dogs grants 20, killing militia ( [add militiafighter ) grants 50
-thomasvane: Downing a player is 100 and perma killing one is 400
-
 */
