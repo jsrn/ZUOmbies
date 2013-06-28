@@ -8,6 +8,71 @@ namespace Server.SkillHandlers
 {
 	public class Anatomy
 	{
+		private void ExamineHuman( PlayerMobile from, PlayerMobile targ )
+		{
+			int targetInjuryPoints = targ.getDeathPoints();
+
+			string message = "";
+
+			if( from == targ ){
+				message += "You ";
+			} else {
+				message += "They ";
+			}
+
+			if( targetInjuryPoints == 0 )
+			{
+				message += "look fine. [0/30]";
+			}
+			else if( targetInjuryPoints < 10 )
+			{
+				message += "look a bit bruised up. [" + targetInjuryPoints + "/30]";
+			}
+			else if( targetInjuryPoints < 20 )
+			{
+				message += "look quite badly beaten. [" + targetInjuryPoints + "/30]";
+			}
+			else if( targetInjuryPoints < 30 )
+			{
+				message += "are badly injured! [" + targetInjuryPoints + "/30]";
+			}
+
+			.PrivateOverheadMessage( MessageType.Regular, 0x3B2, true, message, from.NetState );
+
+			if( from == targ ){
+				int hungerAmount = ((PlayerMobile)targ).Hunger;
+				string hungerMessage = "";
+
+				if( hungerAmount == 0)
+					hungerMessage += "You are very hungry. [" + hungerAmount + "/20]";
+				else if (hungerAmount < 5)
+					hungerMessage += "You are quite hungry. [" + hungerAmount + "/20]";
+				else if (hungerAmount < 10)
+					hungerMessage += "You are a little hungry. [" + hungerAmount + "/20]";
+				else if (hungerAmount < 15)
+					hungerMessage += "You are peckish. [" + hungerAmount + "/20]";
+				else
+					hungerMessage += "You are full. [" + hungerAmount + "/20]";
+
+				targ.PrivateOverheadMessage( MessageType.Regular, 0x3B2, true, hungerMessage, from.NetState );
+			}
+		}
+
+		private void ExamineUndead( PlayerMobile from, PlayerMobile targ )
+		{
+			string message = "";
+
+			if( from == targ ){
+				message += "You ";
+			} else {
+				message += "They  ";
+			}
+
+			message += "crackle menacingly, with deep black eyesockets and an aura of hatred.";
+
+			from.PrivateOverheadMessage( MessageType.Regular, 0x3B2, true, message, from.NetState );
+		}
+
 		public static void Initialize()
 		{
 			SkillInfo.Table[(int)SkillName.Anatomy].Callback = new SkillUseCallback( OnUse );
@@ -44,52 +109,13 @@ namespace Server.SkillHandlers
 
 					if( targ is PlayerMobile )
 					{
-						PlayerMobile targPM = (PlayerMobile)targ;
-						int targetInjuryPoints = targPM.getDeathPoints();
-
-						string message = "";
-
-						if( from == targeted ){
-							message += "You ";
-						} else {
-							message += "They ";
-						}
-
-						if( targetInjuryPoints == 0 )
+						if( targPM.Undead )
 						{
-							message += "look fine. [0/30]";
+							ExamineUndead( (PlayerMobile)from, (PlayerMobile)targ );
 						}
-						else if( targetInjuryPoints < 10 )
+						else
 						{
-							message += "look a bit bruised up. [" + targetInjuryPoints + "/30]";
-						}
-						else if( targetInjuryPoints < 20 )
-						{
-							message += "look quite badly beaten. [" + targetInjuryPoints + "/30]";
-						}
-						else if( targetInjuryPoints < 30 )
-						{
-							message += "are badly injured! [" + targetInjuryPoints + "/30]";
-						}
-
-						targ.PrivateOverheadMessage( MessageType.Regular, 0x3B2, true, message, from.NetState );
-
-						if( from == targeted ){
-							int hungerAmount = ((PlayerMobile)targ).Hunger;
-							string hungerMessage = "";
-
-							if( hungerAmount == 0)
-								hungerMessage += "You are very hungry. [" + hungerAmount + "/20]";
-							else if (hungerAmount < 5)
-								hungerMessage += "You are quite hungry. [" + hungerAmount + "/20]";
-							else if (hungerAmount < 10)
-								hungerMessage += "You are a little hungry. [" + hungerAmount + "/20]";
-							else if (hungerAmount < 15)
-								hungerMessage += "You are peckish. [" + hungerAmount + "/20]";
-							else
-								hungerMessage += "You are full. [" + hungerAmount + "/20]";
-
-							targ.PrivateOverheadMessage( MessageType.Regular, 0x3B2, true, hungerMessage, from.NetState );
+							ExamineHuman( (PlayerMobile)from, (PlayerMobile)targ );
 						}
 					}
 					else
