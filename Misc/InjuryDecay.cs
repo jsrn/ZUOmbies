@@ -30,7 +30,7 @@ namespace Server.Misc
 				{
 					PlayerMobile m = (PlayerMobile)state.Mobile;
 
-					if( m.InjuryPoints >= 1 )
+					if( m.InjuryPoints >= 1 && !m.Undead )
 						m.InjuryPoints -= 1;
 				}
 			}
