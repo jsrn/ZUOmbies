@@ -61,6 +61,12 @@ namespace Server.Items
 			if ( !Movable )
 				return;
 
+			if( from.Player && ((PlayerMobile)from).Undead )
+			{
+				from.SendMessage( "You do not have a functioning digestive system." );
+				return;
+			}
+
 			if ( from.InRange( this.GetWorldLocation(), 1 ) )
 			{
 				Eat( from );
