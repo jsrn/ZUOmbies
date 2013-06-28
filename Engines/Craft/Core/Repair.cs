@@ -130,6 +130,10 @@ namespace Server.Engines.Craft
 					{
 						number = 1044277; // That item cannot be repaired.
 					}
+					else if ( weapon.LootType == LootType.Cursed )
+					{
+						number = 1044277; // That item cannot be repaired.
+					}
 					else
 					{
 						weapon.MaxHitPoints -= toWeaken;
