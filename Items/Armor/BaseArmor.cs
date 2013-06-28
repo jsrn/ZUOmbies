@@ -1270,8 +1270,8 @@ namespace Server.Items
 		public virtual int OnHit( BaseWeapon weapon, int damageTaken )
 		{
 			double fraction = ArmorRating / 100;
-			int Absorbed = (int)(damageTaken - (damageTaken*fraction));
-			damageTaken = (int)(damageTaken * fraction);
+			int Absorbed = (int)(damageTaken * fraction);
+			damageTaken -= Absorbed;
 
 			//Console.Error.WriteLine( "     AR: " + ArmorRating );
 			//Console.Error.WriteLine( "     armour absorbed: " + Absorbed );
