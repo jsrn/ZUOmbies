@@ -77,7 +77,8 @@ namespace Server.Gumps
 				new DefiledRewardEntry( 5054, "chain legs", 50, typeof( ChainLegs ) ) ),
 
 			new DefiledRewardCategory( "Spells",
-				new DefiledRewardEntry( 8787, "spellbook", 50, typeof( NecromancerSpellbook ) ) ),
+				// Spells between 50 and 400, cost 1/4 of initial cost to cast
+				new DefiledRewardEntry( 8787, "spellbook", 500, typeof( NecromancerSpellbook ) ) ),
 
 			new DefiledRewardCategory( "Items",
 				new DefiledRewardEntry( 8787, "corpser seed", 50, typeof( CorpserSeed ) ),
