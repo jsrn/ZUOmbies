@@ -112,6 +112,12 @@ namespace Server.Gumps
 			}
 			y += 5;
 			AddHtml( 5, y, 150, 25, "Balance: " + ((PlayerMobile)from).EvilPoints, true, false );
+			y += 30;
+			int points = 30 - ((PlayerMobile)from).InjuryPoints;
+			AddHtml( 5, y, 150, 25, "Favour: " + points + "/30", true, false );
+			y += 25;
+			AddHtml( 5, y, 150, 25, "Worship", true, false );
+			AddButton( 155, y, 4005, 4007, 2, GumpButtonType.Reply, 3 );
 
 			for ( int i=0;i<Categories.Length;i++ )
 			{
@@ -133,7 +139,8 @@ namespace Server.Gumps
 
 		public override void OnResponse( NetState state, RelayInfo info )
 		{
-			if ( info.ButtonID == 1 && info.Switches.Length > 0 )
+			PlayerMobile pm = (PlayerMobile)m_From;
+			if ( info.ButtonID == 1 && info.Switches.Length > 0 ) // Okay
 			{
 				int cnum = info.Switches[0];
 				int cat = cnum%256;
@@ -143,7 +150,6 @@ namespace Server.Gumps
 				{
 					if ( ent >= 0 && ent < Categories[cat].Entries.Length )
 					{
-						PlayerMobile pm = (PlayerMobile)m_From;
 						DefiledRewardEntry entry = Categories[cat].Entries[ent];
 
 						if( pm.EvilPoints >= entry.Cost )
@@ -157,6 +163,26 @@ namespace Server.Gumps
 					}
 				}
 			}
+			else if ( info.ButtonID == 2 ) // Worshio
+			{
+				if ( pm.InjuryPoints == 0 )
+				{
+					pm.SendMessage( "You worship the Guardian." );
+				}
+				else if( pm.EvilPoints < 10 )
+				{
+					pm.SendMessage( "You worship the Guardian, but he cares little for you." );
+				}
+				else
+				{
+					pm.SendMessage( "You beseech The Guardian for the power to continue." );
+					while( pm.EvilPoints >= 10 && pm.InjuryPoints > 0 )
+					{
+						pm.EvilPoints -= 10;
+						pm.InjuryPoints -= 1;
+					}
+				}
+			} 
 		}
 	}
 }
