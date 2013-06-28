@@ -53,7 +53,6 @@ namespace Server.Mobiles
 				case 5: PackItem( new PlateHelm() ); break;
 			}
 
-			PackSlayer();
 			PackItem( new Scimitar() );
 			PackItem( new WoodenShield() );
 		}
