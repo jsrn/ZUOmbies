@@ -83,7 +83,8 @@ namespace Server.Gumps
 			new DefiledRewardCategory( "Items",
 				new DefiledRewardEntry( 8787, "corpser seed", 50, typeof( CorpserSeed ) ),
 				// Reaper seeds are 750 and take no slots, but don't obay the "owner" beyond their basic code to not attack undead.
-				new DefiledRewardEntry( 8787, "reaper seed", 750, typeof( ReaperSeed ) ) )
+				//new DefiledRewardEntry( 8787, "lesser reaper seed", 100, typeof( LesserReaperSeed ) ),
+				new DefiledRewardEntry( 8787, "reaper seed", 100, typeof( ReaperSeed ) ) )
 		};
 
 
