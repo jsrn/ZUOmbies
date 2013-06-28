@@ -143,6 +143,7 @@ namespace Server.Items
 			}
 		}
 
+		[CommandProperty( AccessLevel.GameMaster )]
 		public virtual double ArmorRating
 		{
 			get
@@ -1268,10 +1269,13 @@ namespace Server.Items
 
 		public virtual int OnHit( BaseWeapon weapon, int damageTaken )
 		{
-			double HalfAr = ArmorRating / 2.0;
-			int Absorbed = (int)(HalfAr + HalfAr*Utility.RandomDouble());
+			double fraction = ArmorRating / 100;
+			int Absorbed = (int)(damageTaken - (damageTaken*fraction));
+			damageTaken = (int)(damageTaken * fraction);
 
-			damageTaken -= Absorbed;
+			//Console.Error.WriteLine( "     AR: " + ArmorRating );
+			//Console.Error.WriteLine( "     armour absorbed: " + Absorbed );
+
 			if ( damageTaken < 0 ) 
 				damageTaken = 0;
 
@@ -1280,45 +1284,38 @@ namespace Server.Items
 
 			if ( 25 > Utility.Random( 100 ) ) // 25% chance to lower durability
 			{
-				if ( Core.AOS && m_AosArmorAttributes.SelfRepair > Utility.Random( 10 ) )
-				{
-					HitPoints += 2;
-				}
+				int wear;
+
+				if ( weapon.Type == WeaponType.Bashing )
+					wear = Absorbed / 4;
 				else
+					wear = Utility.Random( 2 );
+
+				if ( wear > 0 && m_MaxHitPoints > 0 )
 				{
-					int wear;
-
-					if ( weapon.Type == WeaponType.Bashing )
-						wear = Absorbed / 2;
-					else
-						wear = Utility.Random( 2 );
-
-					if ( wear > 0 && m_MaxHitPoints > 0 )
+					if ( m_HitPoints >= wear )
 					{
-						if ( m_HitPoints >= wear )
+						HitPoints -= wear;
+						wear = 0;
+					}
+					else
+					{
+						wear -= HitPoints;
+						HitPoints = 0;
+					}
+
+					if ( wear > 0 )
+					{
+						if ( m_MaxHitPoints > wear )
 						{
-							HitPoints -= wear;
-							wear = 0;
+							MaxHitPoints -= wear;
+
+							if ( Parent is Mobile )
+								((Mobile)Parent).LocalOverheadMessage( MessageType.Regular, 0x3B2, 1061121 ); // Your equipment is severely damaged.
 						}
 						else
 						{
-							wear -= HitPoints;
-							HitPoints = 0;
-						}
-
-						if ( wear > 0 )
-						{
-							if ( m_MaxHitPoints > wear )
-							{
-								MaxHitPoints -= wear;
-
-								if ( Parent is Mobile )
-									((Mobile)Parent).LocalOverheadMessage( MessageType.Regular, 0x3B2, 1061121 ); // Your equipment is severely damaged.
-							}
-							else
-							{
-								Delete();
-							}
+							Delete();
 						}
 					}
 				}

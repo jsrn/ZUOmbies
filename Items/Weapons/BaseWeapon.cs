@@ -1116,9 +1116,6 @@ namespace Server.Items
 
 		public virtual int AbsorbDamage( Mobile attacker, Mobile defender, int damage )
 		{
-			if ( Core.AOS )
-				return AbsorbDamageAOS( attacker, defender, damage );
-
 			double chance = Utility.RandomDouble();
 
 			Item armorItem;
@@ -1138,12 +1135,21 @@ namespace Server.Items
 
 			IWearableDurability armor = armorItem as IWearableDurability;
 
+			int before;
 			if ( armor != null )
+			{
+				before = damage;
 				damage = armor.OnHit( this, damage );
+				//Console.Error.WriteLine( "     armour: " + before + " -> " + damage );
+			}
 
 			BaseShield shield = defender.FindItemOnLayer( Layer.TwoHanded ) as BaseShield;
 			if ( shield != null )
+			{
+				before = damage;
 				damage = shield.OnHit( this, damage );
+				//Console.Error.WriteLine( "     shield: " + before + " -> " + damage );
+			}
 
 			int virtualArmor = defender.VirtualArmor + defender.VirtualArmorMod;
 
@@ -1292,7 +1298,10 @@ namespace Server.Items
 			if ( defender is BaseCreature )
 				((BaseCreature)defender).AlterMeleeDamageFrom( attacker, ref damage );
 
+			//Console.Error.WriteLine( "Damage:" );
+			int before = damage;
 			damage = AbsorbDamage( attacker, defender, damage );
+			//Console.Error.WriteLine( "     Total: " + before + " -> " + damage );
 
 			if ( damage < 1 )
 				damage = 1;
@@ -1300,6 +1309,7 @@ namespace Server.Items
 			AddBlood( attacker, defender, damage );
 
 			defender.Damage( damage, attacker );
+			
 
 			if ( m_MaxHits > 0 && ((MaxRange <= 1 && (defender is Slime || defender is ToxicElemental)) || Utility.Random( 25 ) == 0) ) // Stratics says 50% chance, seems more like 4%..
 			{
