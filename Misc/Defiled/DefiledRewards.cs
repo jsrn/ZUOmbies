@@ -106,8 +106,7 @@ namespace Server.Misc
 		private static void GiveWeapon( string label, Type weaponType, int cost, PlayerMobile m )
 		{
 			BaseWeapon weapon = Activator.CreateInstance( weaponType ) as BaseWeapon;
-			weapon.Resource = CraftResource.Valorite;
-			weapon.Quality = ArmorQuality.Exceptional;
+			DefileWeapon( weapon );
 			m.PlaceInBackpack( weapon );
 			m.EvilPoints -= cost;
 		}
@@ -115,10 +114,7 @@ namespace Server.Misc
 		private static void GiveArmour( string label, Type armourType, int cost, PlayerMobile m )
 		{
 			BaseArmor armour = Activator.CreateInstance( armourType ) as BaseArmor;
-			armour.Name = "defiled " + label;
-			armour.Hue = 1175;
-			armour.Resource = CraftResource.Valorite;
-			armour.Quality = ArmorQuality.Exceptional;
+			DefileArmour( armour );
 			m.PlaceInBackpack( armour );
 			m.EvilPoints -= cost;
 		}
@@ -128,6 +124,28 @@ namespace Server.Misc
 			Item item = Activator.CreateInstance( itemType ) as Item;
 			m.PlaceInBackpack( item );
 			m.EvilPoints -= cost;
+		}
+
+		private static void DefileArmour( BaseArmor armour )
+		{
+			armour.Quality = ArmorQuality.Exceptional;
+
+			if ( armour.Resource == CraftResource.RegularLeather )
+				armour.Resource = CraftResource.BarbedLeather;
+			else if ( armour.Resource == CraftResource.Iron )
+				armour.Resource = CraftResource.Valorite;
+
+			armour.LootType = LootType.Cursed;
+			armour.Hue = 1175;
+		}
+
+		private static void DefileWeapon( BaseWeapon weapon )
+		{
+			weapon.Quality = WeaponQuality.Exceptional;
+			weapon.LootType = LootType.Cursed;
+
+			if( weapon.Resource == CraftResource.Iron )
+				weapon.Resource = CraftResource.Valorite;
 		}
 	}
 }
