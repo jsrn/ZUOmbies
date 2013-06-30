@@ -106,6 +106,8 @@ namespace Server.Misc
 		private static void GiveWeapon( string label, Type weaponType, int cost, PlayerMobile m )
 		{
 			BaseWeapon weapon = Activator.CreateInstance( weaponType ) as BaseWeapon;
+			weapon.Resource = CraftResource.Valorite;
+			weapon.Quality = ArmorQuality.Exceptional;
 			m.PlaceInBackpack( weapon );
 			m.EvilPoints -= cost;
 		}
@@ -115,6 +117,8 @@ namespace Server.Misc
 			BaseArmor armour = Activator.CreateInstance( armourType ) as BaseArmor;
 			armour.Name = "defiled " + label;
 			armour.Hue = 1175;
+			armour.Resource = CraftResource.Valorite;
+			armour.Quality = ArmorQuality.Exceptional;
 			m.PlaceInBackpack( armour );
 			m.EvilPoints -= cost;
 		}
