@@ -76,7 +76,7 @@ namespace Server.Gumps
 				new DefiledRewardEntry( 5146, "plate legs", 100, typeof( PlateLegs ) ),
 				new DefiledRewardEntry( 5146, "plate helm", 100, typeof( PlateHelm ) ),
 				new DefiledRewardEntry( 5055, "chain tunic", 50, typeof( ChainChest ) ),
-				new DefiledRewardEntry( 5054, "chain legs", 50, typeof( ChainLegs ) ),
+				new DefiledRewardEntry( 5054, "chain legs", 50, typeof( ChainLegs ) ) ),
 
 			new DefiledRewardCategory( "Leather",
 				new DefiledRewardEntry( 5054, "leather cap", 50, typeof( LeatherCap ) ),
