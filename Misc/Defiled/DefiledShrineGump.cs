@@ -68,7 +68,7 @@ namespace Server.Gumps
 				new DefiledRewardEntry( 3932, "mace", 50, typeof( Mace ) ),
 				new DefiledRewardEntry( 5042, "bow", 50, typeof( Bow ) ) ),
 
-			new DefiledRewardCategory( "Armour",
+			new DefiledRewardCategory( "Metal",
 				new DefiledRewardEntry( 5139, "plate gorget", 50, typeof( PlateGorget ) ),
 				new DefiledRewardEntry( 5143, "plate arms", 50, typeof( PlateArms ) ),
 				new DefiledRewardEntry( 5143, "plate gloves", 50, typeof( PlateGloves ) ),
@@ -77,6 +77,8 @@ namespace Server.Gumps
 				new DefiledRewardEntry( 5146, "plate helm", 100, typeof( PlateHelm ) ),
 				new DefiledRewardEntry( 5055, "chain tunic", 50, typeof( ChainChest ) ),
 				new DefiledRewardEntry( 5054, "chain legs", 50, typeof( ChainLegs ) ),
+
+			new DefiledRewardCategory( "Leather",
 				new DefiledRewardEntry( 5054, "leather cap", 50, typeof( LeatherCap ) ),
 				new DefiledRewardEntry( 5054, "leather gorget", 50, typeof( LeatherGorget ) ),
 				new DefiledRewardEntry( 5054, "leather chest", 50, typeof( LeatherChest ) ),
