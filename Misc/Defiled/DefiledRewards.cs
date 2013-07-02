@@ -76,14 +76,14 @@ namespace Server.Misc
 		{
 			int points = 0;
 
-			if( item is BaseWeapon || item is BaseArmor )
-				points = 1;
-			//I was thinking 3pts per dead body part, that you can pick up from a chopped up humanoid
-			else if ( item is BonePile || item is LeftArm || item is LeftLeg || item is RibCage || item is RightArm || item is RightLeg || item is Torso )
+			if ( item is BonePile || item is LeftArm || item is LeftLeg || item is RibCage || item is RightArm || item is RightLeg || item is Torso )
 				points = 3;
-			//Hoagie: 5 for the head
+			else if ( item is Bow || item is Quiver || item is Scimitar || item is WoodenShield || item is Hatchet )
+				points = 5;
 			else if ( item is Head )
 				points = 5;
+			else if( item is BaseWeapon || item is BaseArmor )
+				points = 1;
 
 			string message = "You contribute to the war effort";
 
