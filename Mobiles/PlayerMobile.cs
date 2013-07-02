@@ -2404,6 +2404,11 @@ namespace Server.Mobiles
 
 		public override bool CheckPoisonImmunity( Mobile from, Poison poison )
 		{
+			if( Undead )
+			{
+				return poison.Level < 2;
+			}
+
 			return base.CheckPoisonImmunity( from, poison );
 		}
 
