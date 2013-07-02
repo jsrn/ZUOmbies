@@ -4383,7 +4383,15 @@ namespace Server.Mobiles
 		{
 			if ( mob is PlayerMobile && ((PlayerMobile)mob).Undead )
 			{
-				DefiledRewards.GrantPoints( (PlayerMobile)mob, this );
+				if( IsUndead )
+				{
+					DefiledRewards.GrantPoints( (PlayerMobile)mob, -10 );
+				}
+				else
+				{
+					DefiledRewards.GrantPoints( (PlayerMobile)mob, this );
+				}
+				
 			}
 		}
 
