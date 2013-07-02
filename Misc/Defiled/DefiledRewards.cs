@@ -13,13 +13,19 @@ namespace Server.Misc
 		{
 			if( m is PlayerMobile )
 			{
-				// Downing a player is 100
-				GrantPoints( pm, 100 );
+				int points = 100;
 
-				// Perma killing one is 400
 				PlayerMobile target = (PlayerMobile)m;
 				if( target.InjuryPoints >= 30 )
-					GrantPoints( pm, 300 );
+					points += 300;
+
+				if ( target.Undead )
+				{
+					points = 0 - points;
+					points /= 2;
+				}
+					
+				GrantPoints( pm, points );
 			}
 			else if ( m is GreatHart )
 				GrantPoints( pm, 3 );
