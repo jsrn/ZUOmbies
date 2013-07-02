@@ -1211,6 +1211,13 @@ namespace Server.Items
 			}
 			else if ( ((Body)Amount).IsHuman && ItemID == 0x2006 )
 			{
+				// Prevent carving of non-permadead players
+				if ( dead.Player && ((PlayerMobile)dead).InjuryPoints < 30 )
+				{
+					from.SendMessage( "You cannot dismember them while they still live." );
+					return;
+				}
+
 				new Blood( 0x122D ).MoveToWorld( Location, Map );
 
 				new Torso().MoveToWorld( Location, Map );
