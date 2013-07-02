@@ -53,7 +53,7 @@ namespace Server.Gumps
 				// skeletons and skeleton archers should be 50, at one pet slot
 				new DefiledRewardEntry( 8423, "skeleton", 50, typeof( Skeleton ) ),
 				new DefiledRewardEntry( 8423, "bone archer", 50, typeof( SkeletonArcher ) ),
-				// Ghouls are 100 at two pet slots.
+				new DefiledRewardEntry( 8423, "spider", 100, typeof( GiantSpider ) ),
 				new DefiledRewardEntry( 8423, "ghoul", 100, typeof( Ghoul ) ),
 				new DefiledRewardEntry( 8423, "wraith", 50, typeof( Wraith ) ),
 				// Bone knights are 300 at 3 pet slots
@@ -94,9 +94,8 @@ namespace Server.Gumps
 
 			new DefiledRewardCategory( "Items",
 				new DefiledRewardEntry( 8787, "corpser seed", 50, typeof( CorpserSeed ) ),
-				// Reaper seeds are 750 and take no slots, but don't obay the "owner" beyond their basic code to not attack undead.
-				//new DefiledRewardEntry( 8787, "lesser reaper seed", 100, typeof( LesserReaperSeed ) ),
-				new DefiledRewardEntry( 8787, "reaper seed", 100, typeof( ReaperSeed ) ) )
+				new DefiledRewardEntry( 8787, "lesser reaper seed", 750, typeof( LesserReaperSeed ) ),
+				new DefiledRewardEntry( 8787, "reaper seed", 1000, typeof( ReaperSeed ) ) )
 		};
 
 
