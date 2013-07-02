@@ -816,7 +816,7 @@ namespace Server.Mobiles
 		public virtual bool IsEnemy( Mobile m )
 		{
 			// Undead don't attack player undead
-			if ( IsUndead() && m.Player && ((PlayerMobile)m).Undead )
+			if ( IsHostileToUndeadPlayers() && m.Player && ((PlayerMobile)m).Undead )
 				return false;
 
 			OppositionGroup g = this.OppositionGroup;
@@ -4988,6 +4988,17 @@ namespace Server.Mobiles
 					m_NextHealTime = DateTime.Now + TimeSpan.FromSeconds( HealInterval );
 				}
 			}
+		}
+
+		public bool IsHostileToUndeadPlayers()
+		{
+			return IsUndead()
+			|| this is DireWolf
+			|| this is GiantSpider
+			|| this is DreadSpider
+			|| this is LesserReaper
+			|| this is Reaper
+			|| this is Corpser;
 		}
 
 		public bool IsUndead()
