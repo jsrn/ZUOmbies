@@ -10,9 +10,8 @@ namespace Server.Spells.Necromancy
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Curse Weapon", "An Sanct Gra Char",
-				203,
-				9031,
-				Reagent.PigIron
+				-1,
+				9031
 			);
 
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 0.75 ); } }

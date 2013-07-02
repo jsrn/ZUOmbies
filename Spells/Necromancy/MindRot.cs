@@ -10,11 +10,8 @@ namespace Server.Spells.Necromancy
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Mind Rot", "Wis An Ben",
-				203,
-				9031,
-				Reagent.BatWing,
-				Reagent.PigIron,
-				Reagent.DaemonBlood
+				-1,
+				9031
 			);
 
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 1.5 ); } }

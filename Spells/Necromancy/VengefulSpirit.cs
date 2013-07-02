@@ -11,11 +11,8 @@ namespace Server.Spells.Necromancy
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Vengeful Spirit", "Kal Xen Bal Beh",
-				203,
-				9031,
-				Reagent.BatWing,
-				Reagent.GraveDust,
-				Reagent.PigIron
+				-1,
+				9031
 			);
 
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 2.0 ); } }

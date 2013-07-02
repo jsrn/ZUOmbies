@@ -10,9 +10,8 @@ namespace Server.Spells.Necromancy
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Blood Oath", "In Jux Mani Xen",
-				203,
-				9031,
-				Reagent.DaemonBlood
+				-1,
+				9031
 			);
 
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 1.5 ); } }

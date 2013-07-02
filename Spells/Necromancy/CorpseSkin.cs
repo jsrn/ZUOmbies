@@ -10,10 +10,8 @@ namespace Server.Spells.Necromancy
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Corpse Skin", "In Agle Corp Ylem",
-				203,
-				9051,
-				Reagent.BatWing,
-				Reagent.GraveDust
+				-1,
+				9051
 			);
 
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 1.5 ); } }

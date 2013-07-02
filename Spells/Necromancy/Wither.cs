@@ -9,11 +9,8 @@ namespace Server.Spells.Necromancy
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Wither", "Kal Vas An Flam",
-				203,
-				9031,
-				Reagent.NoxCrystal,
-				Reagent.GraveDust,
-				Reagent.PigIron
+				-1,
+				9031
 			);
 
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 1.5 ); } }

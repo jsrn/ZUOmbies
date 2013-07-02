@@ -10,10 +10,8 @@ namespace Server.Spells.Necromancy
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Strangle", "In Bal Nox",
-				209,
-				9031,
-				Reagent.DaemonBlood,
-				Reagent.NoxCrystal
+				-1,
+				9031
 			);
 
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 2.0 ); } }

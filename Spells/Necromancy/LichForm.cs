@@ -10,11 +10,8 @@ namespace Server.Spells.Necromancy
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Lich Form", "Rel Xen Corp Ort",
-				203,
-				9031,
-				Reagent.GraveDust,
-				Reagent.DaemonBlood,
-				Reagent.NoxCrystal
+				-1,
+				9031
 			);
 
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 2.0 ); } }

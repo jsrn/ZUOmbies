@@ -10,10 +10,8 @@ namespace Server.Spells.Necromancy
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Horrific Beast", "Rel Xen Vas Bal",
-				203,
-				9031,
-				Reagent.BatWing,
-				Reagent.DaemonBlood
+				-1,
+				9031
 			);
 
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 2.0 ); } }

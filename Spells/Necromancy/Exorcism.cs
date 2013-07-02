@@ -14,10 +14,8 @@ namespace Server.Spells.Necromancy
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Exorcism", "Ort Corp Grav",
-				203,
-				9031,
-				Reagent.NoxCrystal,
-				Reagent.GraveDust
+				-1,
+				9031
 			);
 
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 2.0 ); } }

@@ -9,10 +9,8 @@ namespace Server.Spells.Necromancy
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Evil Omen", "Pas Tym An Sanct",
-				203,
-				9031,
-				Reagent.BatWing,
-				Reagent.NoxCrystal
+				-1,
+				9031
 			);
 
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds(0.75); } }
