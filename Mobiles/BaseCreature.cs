@@ -815,6 +815,10 @@ namespace Server.Mobiles
 
 		public virtual bool IsEnemy( Mobile m )
 		{
+			// Undead don't attack player undead
+			if ( IsUndead && m.Player && ((PlayerMobile)m).Undead )
+				return false;
+
 			OppositionGroup g = this.OppositionGroup;
 
 			if ( g != null && g.IsEnemy( this, m ) )
