@@ -816,7 +816,7 @@ namespace Server.Mobiles
 		public virtual bool IsEnemy( Mobile m )
 		{
 			// Undead don't attack player undead
-			if ( IsUndead && m.Player && ((PlayerMobile)m).Undead )
+			if ( IsUndead() && m.Player && ((PlayerMobile)m).Undead )
 				return false;
 
 			OppositionGroup g = this.OppositionGroup;
@@ -4383,7 +4383,7 @@ namespace Server.Mobiles
 		{
 			if ( mob is PlayerMobile && ((PlayerMobile)mob).Undead )
 			{
-				if( IsUndead )
+				if( IsUndead() )
 				{
 					DefiledRewards.GrantPoints( (PlayerMobile)mob, -10 );
 				}
