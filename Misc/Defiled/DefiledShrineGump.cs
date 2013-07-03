@@ -96,7 +96,7 @@ namespace Server.Gumps
 
 			new DefiledRewardCategory( "Spells",
 				// Spells between 50 and 400, cost 1/4 of initial cost to cast
-				new DefiledRewardEntry( 8787, "spellbook", 500, typeof( NecromancerSpellbook ) ) ),
+				new DefiledRewardEntry( 8787, "spellbook", 500, typeof( NecromancerSpellbook ) ),
 				// Animate dead
 				// Blood Oath
 				// Corpse Skin
@@ -105,8 +105,11 @@ namespace Server.Gumps
 				// Lich Form
 				// Mind Rot
 				// Pain spike
+				new DefiledRewardEntry( 8808, "pain spike", 50, typeof( PainSpikeScroll ) ),
 				// Poison strike
+				new DefiledRewardEntry( 8809, "poison strike", 170, typeof( PoisonStrikeScroll ) ),
 				// Strangle
+				new DefiledRewardEntry( 8810, "strangle", 290, typeof( StrangleScroll ) ) ),
 				// Summon familiar
 				// Vampiric embrace
 				// Vengeful spirit
@@ -114,7 +117,7 @@ namespace Server.Gumps
 				// Wraith form
 
 			new DefiledRewardCategory( "Items",
-				new DefiledRewardEntry( 3533, "corpser", 50, typeof( CorpserSeed ) ),
+				new DefiledRewardEntry( 3533, "corpser", 100, typeof( CorpserSeed ) ),
 				new DefiledRewardEntry( 3533, "lesser reaper", 750, typeof( LesserReaperSeed ) ),
 				new DefiledRewardEntry( 3533, "reaper", 1000, typeof( ReaperSeed ) ) )
 		};
