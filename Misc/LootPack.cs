@@ -472,15 +472,10 @@ namespace Server
 					typeof( LichFormScroll ),			typeof( PoisonStrikeScroll ),	typeof( StrangleScroll ),	typeof( WitherScroll )
 				},
 
-				((Core.SE) ?
-				new Type[] // high
-				{
-					typeof( VengefulSpiritScroll ),		typeof( VampiricEmbraceScroll ), typeof( ExorcismScroll )
-				} : 
 				new Type[] // high
 				{
 					typeof( VengefulSpiritScroll ),		typeof( VampiricEmbraceScroll )
-				})
+				}
 			};
 
 		public static Item RandomScroll( int index, int minCircle, int maxCircle )

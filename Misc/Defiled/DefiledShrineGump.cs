@@ -91,6 +91,21 @@ namespace Server.Gumps
 			new DefiledRewardCategory( "Spells",
 				// Spells between 50 and 400, cost 1/4 of initial cost to cast
 				new DefiledRewardEntry( 8787, "spellbook", 500, typeof( NecromancerSpellbook ) ) ),
+				// Animate dead
+				// Blood Oath
+				// Corpse Skin
+				// Curse Weapon
+				// Evil Omen
+				// Lich Form
+				// Mind Rot
+				// Pain spike
+				// Poison strike
+				// Strangle
+				// Summon familiar
+				// Vampiric embrace
+				// Vengeful spirit
+				// Wither
+				// Wraith form
 
 			new DefiledRewardCategory( "Items",
 				new DefiledRewardEntry( 8787, "corpser seed", 50, typeof( CorpserSeed ) ),

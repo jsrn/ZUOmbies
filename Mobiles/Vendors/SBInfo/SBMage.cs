@@ -112,7 +112,6 @@ namespace Server.Mobiles
 
 				if ( Core.SE )
 				{				
-					Add( typeof( ExorcismScroll ), 1 );
 					Add( typeof( AnimateDeadScroll ), 26 );
 					Add( typeof( BloodOathScroll ), 26 );
 					Add( typeof( CorpseSkinScroll ), 26 );

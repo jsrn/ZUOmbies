@@ -218,8 +218,7 @@ namespace Server
 			typeof( AnimateDeadScroll ),		typeof( BloodOathScroll ),		typeof( CorpseSkinScroll ),	typeof( CurseWeaponScroll ),
 			typeof( EvilOmenScroll ),			typeof( LichFormScroll ),		typeof( MindRotScroll ),
 			typeof( PainSpikeScroll ),			typeof( PoisonStrikeScroll ),	typeof( StrangleScroll ),	typeof( SummonFamiliarScroll ),
-			typeof( VampiricEmbraceScroll ),	typeof( VengefulSpiritScroll ),	typeof( WitherScroll ),		typeof( WraithFormScroll ),
-			typeof( ExorcismScroll )
+			typeof( VampiricEmbraceScroll ),	typeof( VengefulSpiritScroll ),	typeof( WitherScroll ),		typeof( WraithFormScroll )
 		};
 
 		private static Type[] m_PaladinScrollTypes = new Type[0];
