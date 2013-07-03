@@ -463,18 +463,18 @@ namespace Server
 			{
 				new Type[] // low
 				{
-					typeof( AnimateDeadScroll ),		typeof( BloodOathScroll ),		typeof( CorpseSkinScroll ),	typeof( CurseWeaponScroll ),
-					typeof( EvilOmenScroll ),			typeof( MindRotScroll ),		typeof( PainSpikeScroll ),
-					typeof( SummonFamiliarScroll ),		typeof( WraithFormScroll )
+					//typeof( AnimateDeadScroll ),		typeof( BloodOathScroll ),		typeof( CorpseSkinScroll ),	typeof( CurseWeaponScroll ),
+					//typeof( EvilOmenScroll ),			typeof( MindRotScroll ),		typeof( PainSpikeScroll ),
+					//typeof( SummonFamiliarScroll ),		typeof( WraithFormScroll )
 				},
 				new Type[] // med
 				{
-					typeof( LichFormScroll ),			typeof( PoisonStrikeScroll ),	typeof( StrangleScroll ),	typeof( WitherScroll )
+					//typeof( LichFormScroll ),			typeof( PoisonStrikeScroll ),	typeof( StrangleScroll ),	typeof( WitherScroll )
 				},
 
 				new Type[] // high
 				{
-					typeof( VengefulSpiritScroll ),		typeof( VampiricEmbraceScroll )
+					//typeof( VengefulSpiritScroll ),		typeof( VampiricEmbraceScroll )
 				}
 			};
 
