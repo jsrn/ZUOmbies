@@ -224,7 +224,10 @@ namespace Server.Items
 			public override void OnMovement( Mobile m, Point3D oldLocation )
 			{
 				if ( Parent == null && Utility.InRange( Location, m.Location, 1 ) && !Utility.InRange( Location, oldLocation, 1 ) )
-					Ankhs.Resurrect( m, this );
+				{
+					if( m.Player && !((PlayerMobile)m).Undead )
+						Ankhs.Resurrect( m, this );
+				}
 			}
 
 			public override void GetContextMenuEntries( Mobile from, List<ContextMenuEntry> list )
@@ -242,6 +245,11 @@ namespace Server.Items
 
 			public override void OnDoubleClickDead( Mobile m )
 			{
+				if( m.Player && ((PlayerMobile)m).Undead )
+				{
+					m.SendMessage( "The Avatar would not aid the likes of you." );
+					return;
+				}
 				Ankhs.Resurrect( m, this );
 			}
 
