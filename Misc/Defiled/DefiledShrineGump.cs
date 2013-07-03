@@ -53,15 +53,15 @@ namespace Server.Gumps
 				// skeletons and skeleton archers should be 50, at one pet slot
 				new DefiledRewardEntry( 8423, "skeleton", 50, typeof( Skeleton ) ),
 				new DefiledRewardEntry( 8423, "bone archer", 50, typeof( SkeletonArcher ) ),
-				new DefiledRewardEntry( 8423, "spider", 100, typeof( GiantSpider ) ),
-				new DefiledRewardEntry( 8423, "ghoul", 100, typeof( Ghoul ) ),
-				new DefiledRewardEntry( 8423, "wraith", 50, typeof( Wraith ) ),
+				new DefiledRewardEntry( 8445, "spider", 100, typeof( GiantSpider ) ),
+				new DefiledRewardEntry( 8457, "ghoul", 100, typeof( Ghoul ) ),
+				new DefiledRewardEntry( 8457, "wraith", 50, typeof( Wraith ) ),
 				// Bone knights are 300 at 3 pet slots
 				new DefiledRewardEntry( 8423, "bone knight", 300, typeof( BoneKnight ) ),
 				// specters are 500 at 4 pet slots
-				new DefiledRewardEntry( 8423, "spectre", 500, typeof( Spectre ) ),
-				new DefiledRewardEntry( 8423, "shade", 50, typeof( Shade ) ),
-				new DefiledRewardEntry( 8405, "dire wolf", 50, typeof( DireWolf ) ) ),
+				new DefiledRewardEntry( 8457, "spectre", 500, typeof( Spectre ) ),
+				new DefiledRewardEntry( 8457, "shade", 50, typeof( Shade ) ),
+				new DefiledRewardEntry( 8426, "dire wolf", 50, typeof( DireWolf ) ) ),
 
 			new DefiledRewardCategory( "Weapons",
 				new DefiledRewardEntry( 3937, "longsword", 50, typeof( Longsword ) ),
@@ -81,12 +81,12 @@ namespace Server.Gumps
 				new DefiledRewardEntry( 5054, "legs", 50, typeof( ChainLegs ) ) ),
 
 			new DefiledRewardCategory( "Leather",
-				new DefiledRewardEntry( 5054, "cap", 50, typeof( LeatherCap ) ),
-				new DefiledRewardEntry( 5054, "gorget", 50, typeof( LeatherGorget ) ),
-				new DefiledRewardEntry( 5054, "chest", 50, typeof( LeatherChest ) ),
-				new DefiledRewardEntry( 5054, "legs", 50, typeof( LeatherLegs ) ),
-				new DefiledRewardEntry( 5054, "arms", 50, typeof( LeatherArms ) ),
-				new DefiledRewardEntry( 5054, "gloves", 50, typeof( LeatherGloves ) ) ),
+				new DefiledRewardEntry( 7609, "cap", 50, typeof( LeatherCap ) ),
+				new DefiledRewardEntry( 5063, "gorget", 50, typeof( LeatherGorget ) ),
+				new DefiledRewardEntry( 5068, "chest", 50, typeof( LeatherChest ) ),
+				new DefiledRewardEntry( 5067, "legs", 50, typeof( LeatherLegs ) ),
+				new DefiledRewardEntry( 5061, "arms", 50, typeof( LeatherArms ) ),
+				new DefiledRewardEntry( 5062, "gloves", 50, typeof( LeatherGloves ) ) ),
 
 			new DefiledRewardCategory( "Spells",
 				// Spells between 50 and 400, cost 1/4 of initial cost to cast
@@ -108,9 +108,9 @@ namespace Server.Gumps
 				// Wraith form
 
 			new DefiledRewardCategory( "Items",
-				new DefiledRewardEntry( 8787, "corpser seed", 50, typeof( CorpserSeed ) ),
-				new DefiledRewardEntry( 8787, "lesser reaper seed", 750, typeof( LesserReaperSeed ) ),
-				new DefiledRewardEntry( 8787, "reaper seed", 1000, typeof( ReaperSeed ) ) )
+				new DefiledRewardEntry( 3533, "corpser", 50, typeof( CorpserSeed ) ),
+				new DefiledRewardEntry( 3533, "lesser reaper", 750, typeof( LesserReaperSeed ) ),
+				new DefiledRewardEntry( 3533, "reaper", 1000, typeof( ReaperSeed ) ) )
 		};
 
 
@@ -158,7 +158,7 @@ namespace Server.Gumps
 					x = 198 + (c%3)*129;
 					y = 38 + (c/3)*67;
 
-					AddHtml( x, y, 110, 18, entry.Label + " [" + entry.Cost + "]", false, false );
+					AddHtml( x, y, 128, 18, entry.Label + " [" + entry.Cost + "]", false, false );
 					AddItem( x+20, y+25, entry.ArtID );
 					AddRadio( x, y+20, 210, 211, false, (c<<8) + i );
 				}
