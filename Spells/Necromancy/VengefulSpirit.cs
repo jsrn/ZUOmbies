@@ -19,7 +19,7 @@ namespace Server.Spells.Necromancy
 
 		public override double RequiredSkill{ get{ return 80.0; } }
 		public override int RequiredMana{ get{ return 41; } }
-		public override int RequiredEvil{ get{ return 15; } }
+		public override int RequiredEvil{ get{ return 41; } }
 
 		public VengefulSpiritSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
 		{

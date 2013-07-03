@@ -18,7 +18,7 @@ namespace Server.Spells.Necromancy
 
 		public override double RequiredSkill{ get{ return 65.0; } }
 		public override int RequiredMana{ get{ return 29; } }
-		public override int RequiredEvil{ get{ return 15; } }
+		public override int RequiredEvil{ get{ return 29; } }
 
 		public StrangleSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
 		{

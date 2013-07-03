@@ -18,7 +18,7 @@ namespace Server.Spells.Necromancy
 
 		public override double RequiredSkill{ get{ return 70.0; } }
 		public override int RequiredMana{ get{ return 23; } }
-		public override int RequiredEvil{ get{ return 15; } }
+		public override int RequiredEvil{ get{ return 23; } }
 
 		public override int Body{ get{ return 749; } }
 

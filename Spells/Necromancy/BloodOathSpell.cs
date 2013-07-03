@@ -18,7 +18,7 @@ namespace Server.Spells.Necromancy
 
 		public override double RequiredSkill{ get{ return 20.0; } }
 		public override int RequiredMana{ get{ return 13; } }
-		public override int RequiredEvil{ get{ return 15; } }
+		public override int RequiredEvil{ get{ return 13; } }
 
 		public BloodOathSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
 		{

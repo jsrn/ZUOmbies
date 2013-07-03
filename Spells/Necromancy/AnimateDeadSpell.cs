@@ -21,7 +21,7 @@ namespace Server.Spells.Necromancy
 
 		public override double RequiredSkill{ get{ return 40.0; } }
 		public override int RequiredMana{ get{ return 23; } }
-		public override int RequiredEvil{ get{ return 15; } }
+		public override int RequiredEvil{ get{ return 23; } }
 
 		public AnimateDeadSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
 		{
