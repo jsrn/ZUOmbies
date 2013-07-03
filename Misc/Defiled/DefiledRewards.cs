@@ -38,7 +38,7 @@ namespace Server.Misc
 			else if ( m is Cow || m is Bull )
 				GrantPoints( pm, 30 );
 			//thomasvane: Killing guard dogs grants 20, killing militia ( [add militiafighter ) grants 50
-			else if ( m is BlackwellMilitia )
+			else if ( m is BlackwellMilitia || m is MilitiaFighter )
 				GrantPoints( pm, 50 );
 			else if( m is BaseCreature )
 				GrantPoints( pm, 1 );
