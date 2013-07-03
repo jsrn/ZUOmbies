@@ -120,7 +120,6 @@ namespace Server.Mobiles
 					Add( typeof( EvilOmenScroll ), 26 );
 					Add( typeof( PainSpikeScroll ), 26 );
 					Add( typeof( SummonFamiliarScroll ), 26 );
-					Add( typeof( HorrificBeastScroll ), 27 );
 					Add( typeof( MindRotScroll ), 39 );
 					Add( typeof( PoisonStrikeScroll ), 39 );
 					Add( typeof( WraithFormScroll ), 51 );

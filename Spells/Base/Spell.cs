@@ -336,7 +336,7 @@ namespace Server.Spells
 
 				TransformContext context = TransformationSpellHelper.GetContext( defender );
 
-				if( (atkBook.Slayer == SlayerName.Silver || atkBook.Slayer2 == SlayerName.Silver) && context != null && context.Type != typeof( HorrificBeastSpell ) )
+				if( (atkBook.Slayer == SlayerName.Silver || atkBook.Slayer2 == SlayerName.Silver) && context != null )
 					scalar +=.25; // Every necromancer transformation other than horrific beast take an additional 25% damage
 
 				if( scalar != 1.0 )
@@ -480,10 +480,6 @@ namespace Server.Spells
 			else if ( m_Caster.Spell != null && m_Caster.Spell.IsCasting )
 			{
 				m_Caster.SendLocalizedMessage( 502642 ); // You are already casting a spell.
-			}
-			else if ( BlockedByHorrificBeast && TransformationSpellHelper.UnderTransformation( m_Caster, typeof( HorrificBeastSpell ) ) )
-			{
-				m_Caster.SendLocalizedMessage( 1061091 ); // You cannot cast that spell in this form.
 			}
 			else if ( !(m_Scroll is BaseWand) && (m_Caster.Paralyzed || m_Caster.Frozen) )
 			{

@@ -93,7 +93,6 @@ namespace Server.Spells
 			Register( 102, typeof( Necromancy.CorpseSkinSpell ) );
 			Register( 103, typeof( Necromancy.CurseWeaponSpell ) );
 			Register( 104, typeof( Necromancy.EvilOmenSpell ) );
-			Register( 105, typeof( Necromancy.HorrificBeastSpell ) );
 			Register( 106, typeof( Necromancy.LichFormSpell ) );
 			Register( 107, typeof( Necromancy.MindRotSpell ) );
 			Register( 108, typeof( Necromancy.PainSpikeSpell ) );

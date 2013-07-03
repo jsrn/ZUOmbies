@@ -68,9 +68,6 @@ namespace Server.Misc
 			if( Core.ML && from is PlayerMobile )	//does racial bonus go before/after?
 				points = Math.Min( points, 18 );
 
-			if ( CheckTransform( from, typeof( HorrificBeastSpell ) ) )
-				points += 20;
-
 			if ( CheckAnimal( from, typeof( Dog ) ) || CheckAnimal( from, typeof( Cat ) ) )
 				points += from.Skills[SkillName.Ninjitsu].Fixed / 30;
 

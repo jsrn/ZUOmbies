@@ -464,7 +464,7 @@ namespace Server
 				new Type[] // low
 				{
 					typeof( AnimateDeadScroll ),		typeof( BloodOathScroll ),		typeof( CorpseSkinScroll ),	typeof( CurseWeaponScroll ),
-					typeof( EvilOmenScroll ),			typeof( HorrificBeastScroll ),	typeof( MindRotScroll ),	typeof( PainSpikeScroll ),
+					typeof( EvilOmenScroll ),			typeof( MindRotScroll ),		typeof( PainSpikeScroll ),
 					typeof( SummonFamiliarScroll ),		typeof( WraithFormScroll )
 				},
 				new Type[] // med

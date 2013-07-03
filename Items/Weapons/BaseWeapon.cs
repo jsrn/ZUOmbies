@@ -1820,10 +1820,6 @@ namespace Server.Items
 			 */
 			int damageBonus = AosAttributes.GetValue( attacker, AosAttribute.WeaponDamage );
 
-			// Horrific Beast transformation gives a +25% bonus to damage.
-			if( TransformationSpellHelper.UnderTransformation( attacker, typeof( HorrificBeastSpell ) ) )
-				damageBonus += 25;
-
 			// Divine Fury gives a +10% bonus to damage.
 			if ( Spells.Chivalry.DivineFurySpell.UnderEffect( attacker ) )
 				damageBonus += 10;

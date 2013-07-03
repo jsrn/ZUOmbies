@@ -208,7 +208,7 @@ namespace Server
 		private static Type[] m_NecromancyScrollTypes = new Type[]
 			{
 				typeof( AnimateDeadScroll ),		typeof( BloodOathScroll ),		typeof( CorpseSkinScroll ),	typeof( CurseWeaponScroll ),
-				typeof( EvilOmenScroll ),			typeof( HorrificBeastScroll ),	typeof( LichFormScroll ),	typeof( MindRotScroll ),
+				typeof( EvilOmenScroll ),			typeof( LichFormScroll ),		typeof( MindRotScroll ),
 				typeof( PainSpikeScroll ),			typeof( PoisonStrikeScroll ),	typeof( StrangleScroll ),	typeof( SummonFamiliarScroll ),
 				typeof( VampiricEmbraceScroll ),	typeof( VengefulSpiritScroll ),	typeof( WitherScroll ),		typeof( WraithFormScroll )
 			};
@@ -216,7 +216,7 @@ namespace Server
 		private static Type[] m_SENecromancyScrollTypes = new Type[]
 		{
 			typeof( AnimateDeadScroll ),		typeof( BloodOathScroll ),		typeof( CorpseSkinScroll ),	typeof( CurseWeaponScroll ),
-			typeof( EvilOmenScroll ),			typeof( HorrificBeastScroll ),	typeof( LichFormScroll ),	typeof( MindRotScroll ),
+			typeof( EvilOmenScroll ),			typeof( LichFormScroll ),		typeof( MindRotScroll ),
 			typeof( PainSpikeScroll ),			typeof( PoisonStrikeScroll ),	typeof( StrangleScroll ),	typeof( SummonFamiliarScroll ),
 			typeof( VampiricEmbraceScroll ),	typeof( VengefulSpiritScroll ),	typeof( WitherScroll ),		typeof( WraithFormScroll ),
 			typeof( ExorcismScroll )
