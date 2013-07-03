@@ -68,13 +68,14 @@ namespace Server.Gumps
 				new DefiledRewardEntry( 3932, "mace", 50, typeof( Mace ) ),
 				new DefiledRewardEntry( 5042, "bow", 50, typeof( Bow ) ) ),
 
-			new DefiledRewardCategory( "Metal",
+			new DefiledRewardCategory( "Plate",
 				new DefiledRewardEntry( 5139, "gorget", 50, typeof( PlateGorget ) ),
 				new DefiledRewardEntry( 5143, "arms", 50, typeof( PlateArms ) ),
 				new DefiledRewardEntry( 5143, "gloves", 50, typeof( PlateGloves ) ),
 				new DefiledRewardEntry( 5141, "tunic", 100, typeof( PlateChest ) ),
 				new DefiledRewardEntry( 5146, "legs", 100, typeof( PlateLegs ) ),
-				new DefiledRewardEntry( 5146, "helm", 100, typeof( PlateHelm ) ) ),
+				new DefiledRewardEntry( 5134, "helm", 100, typeof( NorseHelm ) ),
+				new DefiledRewardEntry( 7035, "shield", 100, typeof( MetalShield ) ) ),
 
 			new DefiledRewardCategory( "Chain",
 				new DefiledRewardEntry( 5055, "tunic", 50, typeof( ChainChest ) ),
