@@ -16,6 +16,11 @@ namespace Server.SkillHandlers
 
 		public static TimeSpan OnUse( Mobile m )
 		{
+			if( m.Player && !((PlayerMobile)m).Undead )
+			{
+				m.SendMessage( "You cannot commune with spirits!" );
+				return TimeSpan.Zero;
+			}
 			m.RevealingAction();
 
 			Spell spell = new SpiritSpeakSpell( m );
