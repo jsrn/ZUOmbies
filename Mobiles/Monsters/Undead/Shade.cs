@@ -42,6 +42,8 @@ namespace Server.Mobiles
 			VirtualArmor = 28;
 
 			PackReg( 10 );
+
+			ControlSlots = 4;
 		}
 
 		public override void GenerateLoot()

@@ -41,6 +41,8 @@ namespace Server.Mobiles
 			VirtualArmor = 28;
 
 			PackItem( Loot.RandomWeapon() );
+
+			ControlSlots = 4;
 		}
 
 		public override void GenerateLoot()

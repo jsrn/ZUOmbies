@@ -51,43 +51,46 @@ namespace Server.Gumps
 		{
 			new DefiledRewardCategory( "Familiars",
 				// skeletons and skeleton archers should be 50, at one pet slot
-				new DefiledRewardEntry( 8423, "skeleton", 50, typeof( Skeleton ) ),
-				new DefiledRewardEntry( 8423, "bone archer", 50, typeof( SkeletonArcher ) ),
-				new DefiledRewardEntry( 8445, "spider", 100, typeof( GiantSpider ) ),
-				new DefiledRewardEntry( 8457, "ghoul", 100, typeof( Ghoul ) ),
-				new DefiledRewardEntry( 8457, "wraith", 50, typeof( Wraith ) ),
-				// Bone knights are 300 at 3 pet slots
-				new DefiledRewardEntry( 8423, "bone knight", 300, typeof( BoneKnight ) ),
-				// specters are 500 at 4 pet slots
-				new DefiledRewardEntry( 8457, "spectre", 500, typeof( Spectre ) ),
-				new DefiledRewardEntry( 8457, "shade", 50, typeof( Shade ) ),
-				new DefiledRewardEntry( 8426, "dire wolf", 50, typeof( DireWolf ) ) ),
+				new DefiledRewardEntry( 8423, "skeleton", 50, typeof( Skeleton ) ), // 1
+				new DefiledRewardEntry( 8423, "bone archer", 50, typeof( SkeletonArcher ) ), // 1
+				new DefiledRewardEntry( 8445, "spider", 150, typeof( GiantSpider ) ), // 1
+				new DefiledRewardEntry( 8457, "ghoul", 500, typeof( Ghoul ) ), // 4
+				new DefiledRewardEntry( 8457, "wraith", 500, typeof( Wraith ) ), // 4
+				new DefiledRewardEntry( 8423, "bone knight", 300, typeof( BoneKnight ) ), // 3
+				
+				new DefiledRewardEntry( 8426, "dire wolf", 200, typeof( DireWolf ) ),
+				new DefiledRewardEntry( 8457, "spectre", 500, typeof( Spectre ) ), // 4
+				new DefiledRewardEntry( 8457, "shade", 500, typeof( Shade ) ) // 4
+				),
 
 			new DefiledRewardCategory( "Weapons",
-				new DefiledRewardEntry( 3937, "longsword", 50, typeof( Longsword ) ),
-				new DefiledRewardEntry( 3932, "mace", 50, typeof( Mace ) ),
-				new DefiledRewardEntry( 5042, "bow", 50, typeof( Bow ) ),
-				new DefiledRewardEntry( 5121, "kryss", 50, typeof( Kryss ) ),
-				new DefiledRewardEntry( 3909, "axe", 50, typeof( ExecutionersAxe ) ) ),
+				new DefiledRewardEntry( 3937, "longsword", 100, typeof( Longsword ) ),
+				new DefiledRewardEntry( 3932, "mace", 100, typeof( Mace ) ),
+				new DefiledRewardEntry( 5042, "bow", 100, typeof( Bow ) ),
+				new DefiledRewardEntry( 5121, "kryss", 100, typeof( Kryss ) ),
+				new DefiledRewardEntry( 3909, "axe", 100, typeof( ExecutionersAxe ) )
+				),
 
 			new DefiledRewardCategory( "Plate",
-				new DefiledRewardEntry( 5139, "gorget", 50, typeof( PlateGorget ) ),
-				new DefiledRewardEntry( 5143, "arms", 50, typeof( PlateArms ) ),
-				new DefiledRewardEntry( 5140, "gloves", 50, typeof( PlateGloves ) ),
-				new DefiledRewardEntry( 5141, "tunic", 100, typeof( PlateChest ) ),
-				new DefiledRewardEntry( 5146, "legs", 100, typeof( PlateLegs ) ),
+				new DefiledRewardEntry( 5139, "gorget", 100, typeof( PlateGorget ) ),
+				new DefiledRewardEntry( 5143, "arms", 100, typeof( PlateArms ) ),
+				new DefiledRewardEntry( 5140, "gloves", 100, typeof( PlateGloves ) ),
+				new DefiledRewardEntry( 5141, "tunic", 300, typeof( PlateChest ) ),
+				new DefiledRewardEntry( 5146, "legs", 200, typeof( PlateLegs ) ),
 				new DefiledRewardEntry( 5134, "helm", 100, typeof( NorseHelm ) ),
-				new DefiledRewardEntry( 7035, "shield", 100, typeof( MetalShield ) ) ),
+				new DefiledRewardEntry( 7035, "shield", 100, typeof( MetalShield ) )
+				),
 
 			new DefiledRewardCategory( "Chain",
-				new DefiledRewardEntry( 5055, "tunic", 50, typeof( ChainChest ) ),
-				new DefiledRewardEntry( 5054, "legs", 50, typeof( ChainLegs ) ) ),
+				new DefiledRewardEntry( 5055, "tunic", 200, typeof( ChainChest ) ),
+				new DefiledRewardEntry( 5054, "legs", 150, typeof( ChainLegs ) )
+				),
 
 			new DefiledRewardCategory( "Leather",
 				new DefiledRewardEntry( 7609, "cap", 50, typeof( LeatherCap ) ),
 				new DefiledRewardEntry( 5063, "gorget", 50, typeof( LeatherGorget ) ),
-				new DefiledRewardEntry( 5068, "chest", 50, typeof( LeatherChest ) ),
-				new DefiledRewardEntry( 5067, "legs", 50, typeof( LeatherLegs ) ),
+				new DefiledRewardEntry( 5068, "chest", 100, typeof( LeatherChest ) ),
+				new DefiledRewardEntry( 5067, "legs", 75, typeof( LeatherLegs ) ),
 				new DefiledRewardEntry( 5061, "arms", 50, typeof( LeatherArms ) ),
 				new DefiledRewardEntry( 5062, "gloves", 50, typeof( LeatherGloves ) ) ),
 

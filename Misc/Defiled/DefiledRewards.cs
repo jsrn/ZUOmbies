@@ -153,7 +153,7 @@ namespace Server.Misc
 			if( weapon.Resource == CraftResource.Iron )
 				weapon.Resource = CraftResource.Valorite;
 
-			weapon.Hue = 0;
+			weapon.Hue = 2406;
 		}
 	}
 }
