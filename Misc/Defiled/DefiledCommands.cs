@@ -87,6 +87,12 @@ namespace Server.Scripts.Commands
 					pl.Hue = 0;
 					pl.Undead = true;
 					pl.SendMessage( "You complete your transformation into the living dead." );
+					pl.EvilPoints = 100;
+					pl.Skills[SkillName.Necromancy].Base = 70.0;
+					// Swap healing for SS
+					double spiritSpeak = pl.Skills[SkillName.Healing].Base;
+					pl.Skills[SkillName.Healing].Base = 0;
+					pl.Skills[SkillName.SpiritSpeak].Base = spiritSpeak;
 				}
 				else
 				{
