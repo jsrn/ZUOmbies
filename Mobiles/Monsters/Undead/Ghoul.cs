@@ -42,7 +42,7 @@ namespace Server.Mobiles
 
 			PackItem( Loot.RandomWeapon() );
 
-			ControlSlots = 4;
+			ControlSlots = 1;
 		}
 
 		public override void GenerateLoot()

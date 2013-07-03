@@ -53,8 +53,8 @@ namespace Server.Gumps
 				// skeletons and skeleton archers should be 50, at one pet slot
 				new DefiledRewardEntry( 8423, "skeleton", 50, typeof( Skeleton ) ), // 1
 				new DefiledRewardEntry( 8423, "bone archer", 50, typeof( SkeletonArcher ) ), // 1
+				new DefiledRewardEntry( 8457, "ghoul", 100, typeof( Ghoul ) ), // 1
 				new DefiledRewardEntry( 8445, "spider", 150, typeof( GiantSpider ) ), // 1
-				new DefiledRewardEntry( 8457, "ghoul", 500, typeof( Ghoul ) ), // 4
 				new DefiledRewardEntry( 8457, "wraith", 500, typeof( Wraith ) ), // 4
 				new DefiledRewardEntry( 8423, "bone knight", 300, typeof( BoneKnight ) ), // 3
 				
