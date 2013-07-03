@@ -2,6 +2,7 @@ using System;
 using Server;
 using Server.Engines.Craft;
 using System.Collections.Generic;
+using Server.Mobiles;
 
 namespace Server.Items
 {
@@ -94,6 +95,12 @@ namespace Server.Items
 		{
 			if ( !Movable )
 				return;
+
+			if ( from.Player && ((PlayerMobile)from).Undead && !( this is BaseConflagrationPotion || this is BaseExplosionPotion ) )
+			{
+				from.SendMessage( "You do not have a functioning digestive system." );
+				return;
+			}
 
 			if ( from.InRange( this.GetWorldLocation(), 1 ) )
 			{
