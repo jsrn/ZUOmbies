@@ -174,6 +174,7 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( Bag ), 1015283, "bag", 30.0, 60.0, typeof( Leather ), 1044462, 15, 1044463 );
 			AddCraft( typeof( Backpack ), 1015283, "backpack", 60.0, 90.0, typeof( Leather ), 1044462, 20, 1044463 );
 			AddCraft( typeof( Bedroll ), 1015283, "bedroll", 40.0, 80.0, typeof( Cloth ), 1044286, 20, 1044287 );
+			AddCraft( typeof( DisguiseKit ), 1015283, "disguise kit", 60.0, 100.0, typeof( Cloth ), 1044286, 20, 1044287 );
 			AddCraft( typeof( GozaMatEastDeed ), 1015283, 1030404, 55.0, 80.0, typeof( Cloth ), 1044286, 25, 1044287 );
 			AddCraft( typeof( GozaMatSouthDeed ), 1015283, 1030405, 55.0, 80.0, typeof( Cloth ), 1044286, 25, 1044287 );
 			AddCraft( typeof( SquareGozaMatEastDeed ), 1015283, 1030407, 55.0, 80.0, typeof( Cloth ), 1044286, 25, 1044287 );
