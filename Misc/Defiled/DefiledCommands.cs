@@ -93,6 +93,7 @@ namespace Server.Scripts.Commands
 					double spiritSpeak = pl.Skills[SkillName.Healing].Base;
 					pl.Skills[SkillName.Healing].Base = 0;
 					pl.Skills[SkillName.SpiritSpeak].Base = spiritSpeak;
+					pl.NameHue = 1644;
 				}
 				else
 				{
