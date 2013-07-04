@@ -59,6 +59,9 @@ namespace Server.Engines.Quests.Haven
 
 		public override bool IsEnemy( Mobile m )
 		{
+			if ( m.Player && ((PlayerMobile)m).Undead )
+				return true;
+
 			if ( m.Player || m is BaseVendor )
 				return false;
 
