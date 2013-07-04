@@ -4,6 +4,7 @@ using Server.Mobiles;
 using Server.Items;
 using System.Collections.Generic; // For Dictionary
 using Server.Gumps;
+using Server.Engines.Quests.Haven; // For MilitiaFighter
 
 namespace Server.Misc
 {
@@ -37,7 +38,7 @@ namespace Server.Misc
 				GrantPoints( pm, 20 );
 			else if ( m is Cow || m is Bull )
 				GrantPoints( pm, 30 );
-			//thomasvane: Killing guard dogs grants 20, killing militia ( [add militiafighter ) grants 50
+			//thomasvane: Killing guard dogs grants 20
 			else if ( m is BlackwellMilitia || m is MilitiaFighter )
 				GrantPoints( pm, 50 );
 			else if( m is BaseCreature )
