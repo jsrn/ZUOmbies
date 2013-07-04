@@ -49,6 +49,10 @@ namespace Server.Items
 				// That must be in your pack for you to use it.
 				from.SendLocalizedMessage( 1042001 );
 			}
+			else if ( pm.Undead )
+			{
+				from.SendMessage( "There is no fake beard in the world that could help you." );
+			}
 			else if ( !from.CanBeginAction( typeof( IncognitoSpell ) ) )
 			{
 				// You cannot disguise yourself while incognitoed.
