@@ -12,10 +12,10 @@ namespace Server.Items
 		public abstract int MinDamage { get; }
 		public abstract int MaxDamage { get; }
 
-		public override bool RequireFreeHand{ get{ return false; } }
+		public override bool RequireFreeHand{ get{ return true; } }
 
-		private static bool LeveledExplosion = false; // Should explosion potions explode other nearby potions?
-		private static bool InstantExplosion = false; // Should explosion potions explode on impact?
+		private static bool LeveledExplosion = true; // Should explosion potions explode other nearby potions?
+		private static bool InstantExplosion = true; // Should explosion potions explode on impact?
 		private static bool RelativeLocation = false; // Is the explosion target location relative for mobiles?
 		private const int ExplosionRange = 2; // How long is the blast radius?
 
