@@ -47,6 +47,13 @@ namespace Server.Misc
 
 		public static void GrantPoints( PlayerMobile pm, int amount )
 		{
+			if( amount > 0 )
+				pm.SendMessage( "You have gained the Guardian's favour. [" + amount + "]" );
+			else if ( amount == 0 )
+				pm.SendMessage( "That is not enough to please the Guardian." );
+			else
+				pm.SendMessage( "You have lost favour! [" + amount + "]");
+
 			pm.EvilPoints += amount;
 		}
 
@@ -85,15 +92,6 @@ namespace Server.Misc
 				points = 5;
 			else if( item is BaseWeapon || item is BaseArmor )
 				points = 1;
-
-			string message = "You contribute to the war effort";
-
-			if( points == 0 )
-				message += ", but the Guardian is not impressed.";
-			else
-				message += ". [ " + points + " ]";
-
-			from.SendMessage( message );
 
 			GrantPoints( from, points );
 			item.Delete();
