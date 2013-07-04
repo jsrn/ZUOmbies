@@ -8,7 +8,7 @@ namespace Server.Items
 	{
 		public override SpellbookType SpellbookType{ get{ return SpellbookType.Necromancer; } }
 		public override int BookOffset{ get{ return 100; } }
-		public override int BookCount{ get{ return ((Core.SE) ? 17 : 16); } }
+		public override int BookCount{ get{ return 16; } }
 
 		[Constructable]
 		public NecromancerSpellbook() : this( (ulong)0 )
@@ -18,7 +18,8 @@ namespace Server.Items
 		[Constructable]
 		public NecromancerSpellbook( ulong content ) : base( content, 0x2253 )
 		{
-			Layer = (Core.ML ? Layer.OneHanded : Layer.Invalid);
+			Layer = Layer.OneHanded;
+			LootType = LootType.Blessed;
 		}
 
 		public NecromancerSpellbook( Serial serial ) : base( serial )
