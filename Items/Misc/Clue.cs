@@ -1,4 +1,5 @@
 using System;
+using Server.Mobiles;
 
 namespace Server.Items
 {
@@ -21,7 +22,7 @@ namespace Server.Items
 
 		public void AttemptToSolve( PlayerMobile from )
 		{
-			from.CheckSkill( SkillName.Forensics, target, m_RequiredForensicEval - 15, m_RequiredForensicEval + 15 );
+			from.CheckSkill( SkillName.Forensics, m_RequiredForensicEval - 15, m_RequiredForensicEval + 15 );
 			from.SendMessage( "jeepers!" );
 		}
 
