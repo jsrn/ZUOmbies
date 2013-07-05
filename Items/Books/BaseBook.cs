@@ -62,6 +62,7 @@ namespace Server.Items
 		private BookPageInfo[] m_Pages;
 		private bool m_Writable;
 		private SecureLevel m_SecureLevel;
+		private int m_RequiredInt = 20;
 		
 		[CommandProperty( AccessLevel.GameMaster )]
 		public string Title
@@ -111,6 +112,7 @@ namespace Server.Items
 			m_Title = title;
 			m_Author = author;
 			m_Writable = writable;
+			m_RequiredInt = m_RequiredInt;
 
 			BookContent content = this.DefaultContent;
 
@@ -319,7 +321,11 @@ namespace Server.Items
 			}
 
 			from.Send( new BookHeader( from, this ) );
-			from.Send( new BookPageDetails( this ) );
+
+			if( from.Int < m_RequiredInt )
+				from.Send( new BookPageDetailsForTheIlliterate( this ) );
+			else
+				from.Send( new BookPageDetails( this ) );
 		}
 
 		public static void Initialize()
@@ -379,7 +385,7 @@ namespace Server.Items
 			Mobile from = state.Mobile;
 			BaseBook book = World.FindItem( pvSrc.ReadInt32() ) as BaseBook;
 
-			if ( book == null || !book.Writable || !from.InRange( book.GetWorldLocation(), 1 ) || !book.IsAccessibleTo( from ) )
+			if ( book == null || !book.Writable || !from.InRange( book.GetWorldLocation(), 1 ) || !book.IsAccessibleTo( from ) || from.Int < 20 ) // m_RequiredInt
 				return;
 
 			int pageCount = pvSrc.ReadUInt16();
@@ -460,6 +466,34 @@ namespace Server.Items
 					m_Stream.Write( buffer, 0, buffer.Length );
 					m_Stream.Write( (byte) 0 );
 				}
+			}
+		}
+	}
+
+	public sealed class BookPageDetailsForTheIlliterate : Packet
+	{
+		public BookPageDetailsForTheIlliterate( BaseBook book ) : base( 0x66 )
+		{
+			EnsureCapacity( 256 );
+
+			m_Stream.Write( (int)    book.Serial );
+			m_Stream.Write( (ushort) 1 ); // All burns must fit on one page
+
+			string[] lines = {
+				"Hello,",
+				"prime",
+				"minister"
+			};
+
+			m_Stream.Write( (ushort) (1) );
+			m_Stream.Write( (ushort) lines.Length );
+
+			for ( int j = 0; j < lines.Length; ++j )
+			{
+				byte[] buffer = Utility.UTF8.GetBytes( lines[j] );
+
+				m_Stream.Write( buffer, 0, buffer.Length );
+				m_Stream.Write( (byte) 0 );
 			}
 		}
 	}
