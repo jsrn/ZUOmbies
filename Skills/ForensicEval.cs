@@ -33,7 +33,11 @@ namespace Server.SkillHandlers
 
 			protected override void OnTarget( Mobile from, object target )
 			{
-				if ( target is Mobile )
+				if ( target is Clue )
+				{
+					((Clue)target).AttemptToSolve( (PlayerMobile)from );
+				}
+				else if ( target is Mobile )
 				{
 					if ( from.CheckTargetSkill( SkillName.Forensics, target, 40.0, 100.0 ) )
 					{
