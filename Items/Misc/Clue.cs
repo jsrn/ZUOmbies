@@ -8,7 +8,9 @@ namespace Server.Items
 	public class Clue : Item
 	{
 		private string m_Name;
+
 		private double m_RequiredForensicEval;
+		private int m_RequiredInt;
 
 		private string m_FailureMessage;
 		private string m_SuccessMessage;
@@ -16,11 +18,52 @@ namespace Server.Items
 
 		private List<PlayerMobile> m_Sleuths;
 
+		[CommandProperty( AccessLevel.GameMaster )]
+		public double RequiredSkill
+		{
+			get{ return m_RequiredForensicEval; }
+			set{ m_RequiredForensicEval = value; }
+		}
+
+		[CommandProperty( AccessLevel.GameMaster )]
+		public double RequiredInt
+		{
+			get{ return m_RequiredInt; }
+			set{ m_RequiredInt = value; }
+		}
+
+		[CommandProperty( AccessLevel.GameMaster )]
+		public string FailureMessage
+		{
+			get{ return m_FailureMessage; }
+			set{ m_FailureMessage = value; }
+		}
+
+		[CommandProperty( AccessLevel.GameMaster )]
+		public string SuccessMessage
+		{
+			get{ return m_SuccessMessage; }
+			set{ m_SuccessMessage = value; }
+		}
+
+		[CommandProperty( AccessLevel.GameMaster )]
+		public string GreatSuccessMessage
+		{
+			get{ return m_GreatSuccessMessage; }
+			set{ m_GreatSuccessMessage = value; }
+		}
+
 		[Constructable]
 		public Clue() : base( 0x1422 )
 		{
 			Weight = 1.0;
 			Name = "a clue";
+
+			m_RequiredForensicEval = 0;
+
+			m_FailureMessage = "You can't seem to figure it out...";
+			m_SuccessMessage = "Something fishy is going on here...";
+			m_GreatSuccessMessage = "... and you know exactly what!";
 
 			m_Sleuths = new List<PlayerMobile>();
 		}
@@ -42,18 +85,18 @@ namespace Server.Items
 
 			if ( from.CheckSkill( SkillName.Forensics, minChance, maxChance ) ) // Passed the basic
 			{
-				from.SendMessage( "You found a clue!" );
+				from.SendMessage( m_SuccessMessage );
 				
 				if ( from.CheckSkill( SkillName.Forensics, minChance, maxChance ) ) // Try again for exceptional
 				{
-					from.SendMessage( "You found it really well!" );
+					from.SendMessage( m_GreatSuccessMessage );
 				}
 
 				m_Sleuths.Add( from );
 			}
 			else
 			{
-				from.SendMessage( "You can't seem to figure it out..." );
+				from.SendMessage( m_FailureMessage );
 			}
 		}
 
