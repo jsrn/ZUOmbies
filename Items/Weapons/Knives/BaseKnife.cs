@@ -35,6 +35,13 @@ namespace Server.Items
 			int version = reader.ReadInt();
 		}
 
+		public override void OnDoubleClick( Mobile from )
+		{
+			from.SendLocalizedMessage( 1010018 ); // What do you want to use this item on?
+
+			from.Target = new BladedItemTarget( this );
+		}
+
 		public override void OnHit( Mobile attacker, Mobile defender, double damageBonus )
 		{
 			base.OnHit( attacker, defender, damageBonus );
