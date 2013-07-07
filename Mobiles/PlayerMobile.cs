@@ -1878,8 +1878,8 @@ namespace Server.Mobiles
 				Timer.DelayCall( TimeSpan.FromSeconds( 10 ), new TimerCallback( ((PlayerMobile) from).RecoverAmmo ) );
 
 			// Check zombification
-			if( from is Zombie || from is ZombieBrute )
-				ZombieInfection.CheckBites( this, from );
+			//if( from is Zombie || from is ZombieBrute )
+			//	ZombieInfection.CheckBites( this, from );
 
 			base.OnDamage( amount, from, willKill );
 		}
