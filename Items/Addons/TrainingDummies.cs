@@ -148,7 +148,7 @@ namespace Server.Items
 			private TrainingDummy m_Dummy;
 			private bool m_Delay = true;
 
-			public InternalTimer( TrainingDummy dummy ) : base( TimeSpan.FromSeconds( 0.25 ), TimeSpan.FromSeconds( 2.75 ) )
+			public InternalTimer( TrainingDummy dummy ) : base( TimeSpan.FromSeconds( 0.25 ), TimeSpan.FromSeconds( 5.0 ) )
 			{
 				m_Dummy = dummy;
 				Priority = TimerPriority.FiftyMS;

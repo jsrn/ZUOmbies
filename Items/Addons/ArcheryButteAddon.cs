@@ -96,7 +96,7 @@ namespace Server.Items
 			m_Entries = null;
 		}
 
-		private static TimeSpan UseDelay = TimeSpan.FromSeconds( 2.0 );
+		private static TimeSpan UseDelay = TimeSpan.FromSeconds( 5.0 );
 
 		private class ScoreEntry
 		{
