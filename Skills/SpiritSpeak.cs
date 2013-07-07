@@ -80,7 +80,7 @@ namespace Server.SkillHandlers
 
 			public override bool CheckDisturb( DisturbType type, bool checkFirst, bool resistable )
 			{
-				if ( type == DisturbType.EquipRequest || type == DisturbType.UseRequest )
+				if ( type == DisturbType.EquipRequest || type == DisturbType.UseRequest || type == DisturbType.Hurt )
 					return false;
 
 				return true;
