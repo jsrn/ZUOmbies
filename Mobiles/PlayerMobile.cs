@@ -1189,8 +1189,7 @@ namespace Server.Mobiles
 			// If target is player mobile, and target is wearing deathrobe
 			if( targetIsPlayer && ((PlayerMobile)target).IsWearingDeathRobe() )
 			{
-				this.SendMessage( "You cannot attack them while they are injured!" );
-				return false;
+				this.SendMessage( "You should not attack them while they are injured!" );
 			}
 				
 			if ( m_DesignContext != null || (target is PlayerMobile && ((PlayerMobile)target).m_DesignContext != null) )
