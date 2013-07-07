@@ -2793,25 +2793,6 @@ namespace Server.Mobiles
 			deathTimer = TimeSpan.Zero;
 		}
 
-		private void DecayDeathRobes()
-		{
-			TimeSpan increment = TimeSpan.FromMinutes( 30 );
-
-			if( deathTimer < TimeSpan.Zero + increment )
-			{
-				List<Item> items = this.Items;
-
-				if ( items == null )
-					return;
-
-				for ( int i = 0; i < items.Count; i++)
-				{
-					if(items[i] is DeathRobe)
-						items[i].Delete();
-				}
-			}
-		}
-
 		public override void Serialize( GenericWriter writer )
 		{
 			//cleanup our anti-macro table
@@ -2829,8 +2810,6 @@ namespace Server.Mobiles
 			}
 
 			CheckKillDecay();
-
-			DecayDeathRobes();
 
 			CheckAtrophies( this );
 
