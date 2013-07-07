@@ -26,7 +26,7 @@ namespace Server.Items
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
-		public double RequiredInt
+		public int RequiredInt
 		{
 			get{ return m_RequiredInt; }
 			set{ m_RequiredInt = value; }
