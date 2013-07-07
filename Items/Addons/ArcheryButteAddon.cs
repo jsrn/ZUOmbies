@@ -65,7 +65,7 @@ namespace Server.Items
 		public ArcheryButte( int itemID ) : base( itemID )
 		{
 			m_MinSkill = -25.0;
-			m_MaxSkill = +25.0;
+			m_MaxSkill = +60.0;
 		}
 
 		public ArcheryButte( Serial serial ) : base( serial )
