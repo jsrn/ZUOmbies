@@ -112,7 +112,6 @@ namespace Server.Items
 			m_Title = title;
 			m_Author = author;
 			m_Writable = writable;
-			m_RequiredInt = m_RequiredInt;
 
 			BookContent content = this.DefaultContent;
 
