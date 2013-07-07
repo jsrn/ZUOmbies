@@ -33,22 +33,6 @@ namespace Server.SkillHandlers
 			return TimeSpan.Zero;
 		}
 
-		private class SpiritSpeakTimer : Timer
-		{
-			private Mobile m_Owner;
-			public SpiritSpeakTimer( Mobile m ) : base( TimeSpan.FromMinutes( 2.0 ) )
-			{
-				m_Owner = m;
-				Priority = TimerPriority.FiveSeconds;
-			}
-
-			protected override void OnTick()
-			{
-				m_Owner.CanHearGhosts = false;
-				m_Owner.SendLocalizedMessage( 502445 );//You feel your contact with the neitherworld fading.
-			}
-		}
-
 		private class SpiritSpeakSpell : Spell
 		{
 			private static SpellInfo m_Info = new SpellInfo( "Spirit Speak", "", 269 );
