@@ -15,7 +15,7 @@ namespace Server.Spells.Necromancy
 				9031
 			);
 
-		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( (Core.ML ? 1.75 : 1.5) ); } }
+		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 1.5 ); } }
 
 		public override double RequiredSkill { get { return 50.0; } }
 		public override int RequiredMana { get { return 17; } }
@@ -44,19 +44,11 @@ namespace Server.Spells.Necromancy
 				 * One tile from main target receives 50% damage, two tiles from target receives 33% damage.
 				 */
 
-				//CheckResisted( m ); // Check magic resist for skill, but do not use return value	//reports from OSI:  Necro spells don't give Resist gain
-
 				Effects.SendLocationParticles( EffectItem.Create( m.Location, m.Map, EffectItem.DefaultDuration ), 0x36B0, 1, 14, 63, 7, 9915, 0 );
 				Effects.PlaySound( m.Location, m.Map, 0x229 );
 
-				double damage = Utility.RandomMinMax( (Core.ML ? 32 : 36), 40 ) * ((300 + (GetDamageSkill( Caster ) * 9)) / 1000);
-				
-				double sdiBonus = (double)AosAttributes.GetValue( Caster, AosAttribute.SpellDamage )/100;
-				double pvmDamage = damage * (1 + sdiBonus);
-				
-				if ( Core.ML && sdiBonus > 0.15 )
-					sdiBonus = 0.15;
-				double pvpDamage = damage * (1 + sdiBonus);
+				double modifier = ((300 + (GetDamageSkill( Caster ) * 9)) / 1000);
+				double damage = Utility.RandomMinMax( 22, 28 ) * modifier;
 
 				Map map = m.Map;
 
@@ -69,7 +61,7 @@ namespace Server.Spells.Necromancy
 
 					foreach( Mobile targ in m.GetMobilesInRange( 2 ) )
 						if(!(Caster is BaseCreature && targ is BaseCreature ))
-							if( ( targ != Caster && m != targ ) && ( SpellHelper.ValidIndirectTarget( Caster, targ ) && Caster.CanBeHarmful( targ, false) ) )
+							if( ( targ != Caster && m != targ ) && Caster.CanBeHarmful( targ, false ) )
 								targets.Add( targ );
 
 					for( int i = 0; i < targets.Count; ++i )
@@ -85,7 +77,7 @@ namespace Server.Spells.Necromancy
 							num = 3;
 
 						Caster.DoHarmful( targ );
-						SpellHelper.Damage( this, targ, ((m.Player && Caster.Player) ? pvpDamage : pvmDamage) / num, 0, 0, 0, 100, 0 );
+						SpellHelper.Damage( this, targ, damage / num, 0, 0, 0, 100, 0 );
 					}
 				}
 			}
@@ -98,7 +90,7 @@ namespace Server.Spells.Necromancy
 			private PoisonStrikeSpell m_Owner;
 
 			public InternalTarget( PoisonStrikeSpell owner )
-				: base( Core.ML ? 10 : 12, false, TargetFlags.Harmful )
+				: base( 12, false, TargetFlags.Harmful )
 			{
 				m_Owner = owner;
 			}
