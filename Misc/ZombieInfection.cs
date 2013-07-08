@@ -75,17 +75,17 @@ namespace Server.Misc
 			}
 			
 			Dictionary<BaseArmor, double> armourRatings = new Dictionary<BaseArmor, double>();
-			if ( pm.NeckArmor != null )
+			if ( pm.NeckArmor as BaseArmor != null )
 				armourRatings.Add( pm.NeckArmor as BaseArmor, 0.3 );
-			if ( pm.HeadArmor != null )
+			if ( pm.HeadArmor as BaseArmor != null )
 				armourRatings.Add( pm.HeadArmor as BaseArmor, 0.3 );
-			if ( pm.ChestArmor != null )
+			if ( pm.ChestArmor as BaseArmor != null )
 				armourRatings.Add( pm.ChestArmor as BaseArmor, 0.2 );
-			if ( pm.LegsArmor != null )
+			if ( pm.LegsArmor as BaseArmor != null )
 				armourRatings.Add( pm.LegsArmor as BaseArmor, 0.2 );
-			if ( pm.HandArmor != null )
+			if ( pm.HandArmor as BaseArmor != null )
 				armourRatings.Add( pm.HandArmor as BaseArmor, 0.3 );
-			if ( pm.ArmsArmor != null )
+			if ( pm.ArmsArmor as BaseArmor != null )
 				armourRatings.Add( pm.ArmsArmor as BaseArmor, 0.3 );
 
 			foreach(KeyValuePair<BaseArmor, double> entry in armourRatings)
