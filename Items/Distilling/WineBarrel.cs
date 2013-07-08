@@ -48,7 +48,7 @@ namespace Server.Items
 				for ( int i = 0; i < ((Grapes)item).Amount; i++ )
 				{
 					Item beverage = new BeverageBottle( BeverageType.Wine ); // 0 == ale
-					AddItem( beverage );
+					DropItem( beverage );
 				}
 				from.SendMessage( "You add the materials to the barrel, and retrieve some of the older stock." );
 			}
