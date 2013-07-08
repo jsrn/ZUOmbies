@@ -19,11 +19,16 @@ namespace Server.Scripts.Commands
 		private static void WhosOnline_OnCommand( CommandEventArgs e )
 		{
 			e.Mobile.SendMessage( "The following players are online:" );
+			int count = 0;
 			foreach( NetState ns in NetState.Instances )
 			{
 				if( ns.Mobile != null )
+				{
 					e.Mobile.SendMessage( ns.Mobile.Name );
+					count++;
+				}	
 			}
+			e.Mobile.SendMessage( "Total: " + count );
 		}
 	}
 }
