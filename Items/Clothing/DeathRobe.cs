@@ -8,7 +8,7 @@ namespace Server.Items
 		private Timer m_DecayTimer;
 		private DateTime m_DecayTime;
 		
-		private static TimeSpan m_DefaultDecayTime = TimeSpan.FromMinutes(1.0);
+		private static TimeSpan m_DefaultDecayTime = TimeSpan.FromMinutes( 30.0 );
 		
 		public override bool DisplayLootType
 		{
@@ -18,6 +18,7 @@ namespace Server.Items
 		[Constructable]
 		public DeathRobe()
 		{
+			LootType = LootType.Newbied;
 			Hue = 2301;
 			BeginDecay( m_DefaultDecayTime );
 			Name = "a bandage dressing";
@@ -42,8 +43,7 @@ namespace Server.Items
 		
 		public override bool OnDroppedToWorld( Mobile from, Point3D p )
 		{
-			BeginDecay( m_DefaultDecayTime );
-			
+			Delete();
 			return true;
 		}
 		
@@ -64,25 +64,6 @@ namespace Server.Items
 				m_DecayTimer.Stop();
 
 			m_DecayTimer = null;
-		}
-
-		private class InternalTimer : Timer
-		{
-			private DeathRobe m_Robe;
-
-			public InternalTimer( DeathRobe c, TimeSpan delay ) : base( delay )
-			{
-				m_Robe = c;
-				Priority = TimerPriority.FiveSeconds;
-			}
-
-			protected override void OnTick()
-			{
-				if ( m_Robe.Parent != null || m_Robe.IsLockedDown )
-					Stop();
-				else
-					m_Robe.Delete();
-			}
 		}
 
 		public DeathRobe( Serial serial ) : base( serial )
@@ -129,6 +110,22 @@ namespace Server.Items
 
 			if ( version < 1 && Hue == 0 )
 				Hue = 2301;
+		}
+
+		private class InternalTimer : Timer
+		{
+			private DeathRobe m_Robe;
+
+			public InternalTimer( DeathRobe c, TimeSpan delay ) : base( delay )
+			{
+				m_Robe = c;
+				Priority = TimerPriority.FiveSeconds;
+			}
+
+			protected override void OnTick()
+			{
+				m_Robe.Delete();
+			}
 		}
 	}
 }
