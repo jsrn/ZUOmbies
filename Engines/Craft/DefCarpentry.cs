@@ -151,6 +151,15 @@ namespace Server.Engines.Craft
 			AddRes( index, typeof( BarrelHoops ), 1044289, 1, 1044253 );
 			AddRes( index, typeof( BarrelLid ), 1044251, 1, 1044253 );
 
+			index = AddCraft( typeof( Barrel ), 1044292, "barrel", 57.8, 82.8, typeof( BarrelStaves ), 1044288, 5, 1044253 );
+			AddRes( index, typeof( BarrelHoops ), 1044289, 1, 1044253 );
+			AddRes( index, typeof( BarrelLid ), 1044251, 1, 1044253 );
+
+			AddCraft( typeof( BeerBarrel ), 1044292, "beer barrel", 0.0, 82.8, typeof( Barrel ), "barrel", 1, 1044253 );
+			AddCraft( typeof( CiderBarrel ), 1044292, "cider barrel", 0.0, 82.8, typeof( Barrel ), "barrel", 1, 1044253 );
+			AddCraft( typeof( WineBarrel ), 1044292, "wine barrel", 0.0, 82.8, typeof( Barrel ), "barrel", 1, 1044253 );
+			AddCraft( typeof( LiquorBarrel ), 1044292, "beer barrel", 0.0, 82.8, typeof( Barrel ), "barrel", 1, 1044253 );
+
 			// Staves and Shields
 			AddCraft( typeof( Club ), 1044295, "wooden club", 0.0, 50.0, typeof( Log ), 1044041, 1, 1044351 );
 			AddCraft( typeof( WoodenSword ), 1044295, "wooden sword", 70.0, 95.0, typeof( Log ), 1044041, 6, 1044351 );
