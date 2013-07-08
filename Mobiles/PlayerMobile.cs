@@ -306,6 +306,11 @@ namespace Server.Mobiles
 			set{ SetFlag( PlayerFlag.Undead, value ); }
 		}
 
+		public bool IsInFreeDeathZone
+		{
+			get { return m_FreeDeaths; }
+		}
+
 		[CommandProperty( AccessLevel.GameMaster )]
 		public bool Glassblowing
 		{
@@ -2066,47 +2071,7 @@ namespace Server.Mobiles
 
 			Mobile killer = this.FindMostRecentDamager( true );
 
-			int injuryPointsGained = 0;
-
-			if ( killer is BaseCreature ) // Killer is monster/creature
-			{
-				BaseCreature bc = (BaseCreature)killer;
-
-				if( bc.GetMaster() != null )
-				{
-					if( !this.m_FreeDeaths )
-						injuryPointsGained = 5;
-				}
-				else
-				{
-					injuryPointsGained = (int) (( bc.Fame / 24000.0 ) * 30);
-
-					if ( injuryPointsGained < 5 )
-						injuryPointsGained = 5;
-				}
-
-				ResetDeathTime();
-			}
-			else if ( killer is BaseChampion ) // Killer is champion
-			{
-				injuryPointsGained = 20;
-				ResetDeathTime();
-			}
-			else if ( killer is PlayerMobile && !this.m_FreeDeaths ) // Killer is player, and not in zone
-			{
-				PlayerMobile pm = (PlayerMobile)killer;
-				
-				if ( !(pm.Weapon is Fists) )
-				{
-					injuryPointsGained = 5;
-					ResetDeathTime();
-				}
-
-				if( pm.Undead )
-					DefiledRewards.GrantPoints( pm, this );
-			}
-
-			InjuryPoints += injuryPointsGained;
+			CheckInjuryPoints.CheckInjuries( this, killer );
 
 			Faction.HandleDeath( this, killer );
 
