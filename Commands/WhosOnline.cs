@@ -3,6 +3,7 @@ using Server;
 using Server.Mobiles; 
 using Server.Scripts.Commands;
 using Server.Commands;
+using Server.Network;
 
 namespace Server.Scripts.Commands
 {
@@ -17,7 +18,12 @@ namespace Server.Scripts.Commands
 		[Description( "List the currently online players." )]
 		private static void WhosOnline_OnCommand( CommandEventArgs e )
 		{
-			e.Mobile.SendMessage( "You take yourself down a peg or two." );
+			e.Mobile.SendMessage( "The following players are online:" );
+			foreach( NetState ns in NetState.Instances )
+			{
+				if( ns.Mobile != null )
+					e.Mobile.SendMessage( ns.Mobile.Name );
+			}
 		}
 	}
 }
