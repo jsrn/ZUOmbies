@@ -39,7 +39,7 @@ namespace Server.Spells.Necromancy
 			{
 				Caster.SendMessage( "You cannot enter a blood oath with that." );
 			}
-			else if ( CheckHSequence( m ) )
+			else if ( CheckBSequence( m ) )
 			{
 				// Heals a target at a cost of 1/3 the healed HP to yourself
 				SpellHelper.Turn( Caster, m );
