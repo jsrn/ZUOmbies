@@ -995,14 +995,6 @@ namespace Server.Mobiles
 			if ( Spells.Necromancy.EvilOmenSpell.TryEndEffect( this ) )
 				amount = (int)(amount * 1.25);
 
-			Mobile oath = Spells.Necromancy.BloodOathSpell.GetBloodOath( from );
-
-			if ( oath == this )
-			{
-				amount = (int)(amount * 1.1);
-				from.Damage( amount, from );
-			}
-
 			base.Damage( amount, from );
 
 			if ( SubdueBeforeTame && !Controlled )
