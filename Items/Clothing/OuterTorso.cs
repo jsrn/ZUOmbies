@@ -505,6 +505,40 @@ namespace Server.Items
 			int version = reader.ReadInt();
 		}
 	}
+
+	public class HoodedRobe : BaseOuterTorso
+	{
+		[Constructable]
+		public HoodedRobe() : this( 0x21E )
+		{
+		}
+		
+		[Constructable]
+		public HoodedRobe( int hue ) : base( 0x2687, hue )
+		{
+			Weight = 1.0;
+			StrRequirement = 0;
+			Name = "a hooded robe";
+		}
+
+		public HoodedRobe( Serial serial ) : base( serial )
+		{
+		}
+		
+		public override void Serialize( GenericWriter writer )
+		{
+			base.Serialize( writer );
+
+			writer.Write( (int) 0 ); // version
+		}
+
+		public override void Deserialize( GenericReader reader )
+		{
+			base.Deserialize( reader );
+
+			int version = reader.ReadInt();
+		}
+	}
 	
 	[Flipable( 0x1f01, 0x1f02 )]
 	public class PlainDress : BaseOuterTorso
