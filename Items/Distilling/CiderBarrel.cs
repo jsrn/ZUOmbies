@@ -13,7 +13,6 @@ namespace Server.Items
 		public CiderBarrel() : base( 0xE77 )
 		{
 			Name = "a cider barrel";
-			Movable = false;
 		}
 
 		public CiderBarrel( Serial serial ) : base( serial )

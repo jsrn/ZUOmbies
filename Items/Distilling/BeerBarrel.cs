@@ -13,7 +13,6 @@ namespace Server.Items
 		public BeerBarrel() : base( 0xE77 )
 		{
 			Name = "a beer barrel";
-			Movable = false;
 		}
 
 		public BeerBarrel( Serial serial ) : base( serial )
