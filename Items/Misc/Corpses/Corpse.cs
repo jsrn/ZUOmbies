@@ -1009,7 +1009,6 @@ namespace Server.Items
 						if ( (item.Layer == Layer.Hair || item.Layer == Layer.FacialHair) || !item.Movable || !GetRestoreInfo( item, ref loc ) )
 							continue;
 
-						from.SendMessage( "Looting own corpse." );
 						if ( checkRobe )
 						{
 							DeathRobe robe = from.FindItemOnLayer( Layer.OuterTorso ) as DeathRobe;
