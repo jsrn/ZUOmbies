@@ -2758,7 +2758,6 @@ namespace Server.Items
 					attrs.Add( new EquipInfoAttribute( 1038000 + (int)m_DurabilityLevel ) );
 
 				if ( m_DamageLevel == WeaponDamageLevel.Ruin
-					|| m_DamageLevel == WeaponDamageLevel.Ruin
 					|| m_DamageLevel == WeaponDamageLevel.Might
 					|| m_DamageLevel == WeaponDamageLevel.Force
 					|| m_DamageLevel == WeaponDamageLevel.Power
@@ -2768,7 +2767,7 @@ namespace Server.Items
 				if ( m_AccuracyLevel != WeaponAccuracyLevel.Regular )
 					attrs.Add( new EquipInfoAttribute( 1038010 + (int)m_AccuracyLevel ) );
 			}
-			else if( m_Slayer != SlayerName.None || m_Slayer2 != SlayerName.None || m_DurabilityLevel != WeaponDurabilityLevel.Regular || m_DamageLevel != WeaponDamageLevel.Regular || m_AccuracyLevel != WeaponAccuracyLevel.Regular )
+			else if( m_Slayer != SlayerName.None || m_Slayer2 != SlayerName.None || m_DurabilityLevel != WeaponDurabilityLevel.Regular || ( m_DamageLevel != WeaponDamageLevel.Regular && !HasArmsloreProp() ) || m_AccuracyLevel != WeaponAccuracyLevel.Regular )
 				attrs.Add( new EquipInfoAttribute( 1038000 ) ); // Unidentified
 
 			if ( m_Poison != null && m_PoisonCharges > 0 )
@@ -2792,6 +2791,20 @@ namespace Server.Items
 			EquipmentInfo eqInfo = new EquipmentInfo( number, m_Crafter, false, attrs.ToArray() );
 
 			from.Send( new DisplayEquipmentInfo( this, eqInfo ) );
+		}
+
+		private bool HasArmsloreProp()
+		{
+			return m_DamageLevel == WeaponDamageLevel.TenArmsLore
+				|| m_DamageLevel == WeaponDamageLevel.TwentyArmsLore
+				|| m_DamageLevel == WeaponDamageLevel.ThirtyArmsLore
+				|| m_DamageLevel == WeaponDamageLevel.FortyArmsLore
+				|| m_DamageLevel == WeaponDamageLevel.FiftyArmsLore
+				|| m_DamageLevel == WeaponDamageLevel.SixtyArmsLore
+				|| m_DamageLevel == WeaponDamageLevel.SeventyArmsLore
+				|| m_DamageLevel == WeaponDamageLevel.EightyArmsLore
+				|| m_DamageLevel == WeaponDamageLevel.NinetyArmsLore
+				|| m_DamageLevel == WeaponDamageLevel.GMArmsLore;
 		}
 
 		private static BaseWeapon m_Fists; // This value holds the default--fist--weapon
