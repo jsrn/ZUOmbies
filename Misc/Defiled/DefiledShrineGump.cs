@@ -99,6 +99,7 @@ namespace Server.Gumps
 				new DefiledRewardEntry( 8787, "spellbook", 500, typeof( NecromancerSpellbook ) ),
 				// Animate dead
 				// Blood Oath
+				new DefiledRewardEntry( 8801, "blood oath", 130, typeof( BloodOathScroll ) ),
 				// Corpse Skin
 				// Curse Weapon
 				// Evil Omen
