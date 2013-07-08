@@ -816,8 +816,16 @@ namespace Server.Mobiles
 		public virtual bool IsEnemy( Mobile m )
 		{
 			// Undead don't attack player undead
-			if ( IsHostileToUndeadPlayers() && m.Player && ((PlayerMobile)m).Undead )
+			if ( IsFriendlyToUndeadPlayers() && m.Player && ((PlayerMobile)m).Undead )
 				return false;
+
+			// And don't attack their pets
+			if( IsFriendlyToUndeadPlayers() && ((BaseCreature)m).GetMaster() != null )
+			{
+				PlayerMobile master = ((BaseCreature)m).GetMaster() as PlayerMobile;
+				if( master.Undead )
+					return false;
+			}
 
 			OppositionGroup g = this.OppositionGroup;
 
@@ -4982,7 +4990,7 @@ namespace Server.Mobiles
 			}
 		}
 
-		public bool IsHostileToUndeadPlayers()
+		public bool IsFriendlyToUndeadPlayers()
 		{
 			return IsUndead()
 			|| this is DireWolf
