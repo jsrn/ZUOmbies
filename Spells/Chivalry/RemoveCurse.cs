@@ -86,7 +86,6 @@ namespace Server.Spells.Chivalry
 					CorpseSkinSpell.RemoveCurse( m );
 					CurseSpell.RemoveEffect( m );
 					MortalStrike.EndWound( m );
-					if (Core.ML) { BloodOathSpell.RemoveCurse ( m ); }
 					MindRotSpell.ClearMindRotScalar ( m );
 
 					BuffInfo.RemoveBuff( m, BuffIcon.Clumsy );
