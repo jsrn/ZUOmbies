@@ -55,8 +55,12 @@ namespace Server.Spells.Necromancy
 				m.FixedParticles( 0x375A, 1, 17, 9919, 33, 7, EffectLayer.Waist );
 				m.FixedParticles( 0x3728, 1, 13, 9502, 33, 7, (EffectLayer)255 );
 
-				int toHeal = (int)(Caster.Skills[SkillName.SpiritSpeak].Value * 0.4);
-				toHeal += Utility.Random( 1, 10 );
+				int toHeal = (int)(Caster.Skills[SkillName.SpiritSpeak].Value * 0.3);
+				int variation = Utility.Random( 4 );
+				if( Utility.RandomBool() )
+					toHeal += variation;
+				else
+					toHeal -= variation;
 
 				int toDamage = toHeal / 3;
 
