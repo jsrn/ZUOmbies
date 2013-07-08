@@ -321,9 +321,9 @@ namespace Server.Items
 
 			from.Send( new BookHeader( from, this ) );
 
-			if( from.Int < m_RequiredInt )
-				from.Send( new BookPageDetailsForTheIlliterate( this ) );
-			else
+			//if( from.Int < m_RequiredInt )
+			//	from.Send( new BookPageDetailsForTheIlliterate( this ) );
+			//else
 				from.Send( new BookPageDetails( this ) );
 		}
 
