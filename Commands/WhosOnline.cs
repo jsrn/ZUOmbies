@@ -24,7 +24,12 @@ namespace Server.Scripts.Commands
 			{
 				if( ns.Mobile != null )
 				{
-					e.Mobile.SendMessage( ns.Mobile.Name );
+					string name = ns.Mobile.Name;
+					if( ns.Mobile.AccessLevel > AccessLevel.Player )
+					{
+						name = "* " + name;
+					}
+					e.Mobile.SendMessage( name );
 					count++;
 				}	
 			}
