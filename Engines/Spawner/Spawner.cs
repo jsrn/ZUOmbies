@@ -364,13 +364,13 @@ namespace Server.Mobiles
 				Spawn();
 		}
 		
-		public void Spawn()
+		public virtual void Spawn()
 		{
 			if ( SpawnNamesCount > 0 )
 				Spawn( Utility.Random( SpawnNamesCount ) );
 		}
 		
-		public void Spawn( string creatureName )
+		public virtual void Spawn( string creatureName )
 		{
 			for ( int i = 0; i < m_SpawnNames.Count; i++ )
 			{
@@ -511,7 +511,7 @@ namespace Server.Mobiles
 
 		public Point3D HomeLocation { get { return this.Location; } }
 
-		public void Spawn( int index )
+		public virtual void Spawn( int index )
 		{
 			Map map = Map;
 
