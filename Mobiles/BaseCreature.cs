@@ -820,7 +820,7 @@ namespace Server.Mobiles
 				return false;
 
 			// And don't attack their pets
-			if( IsFriendlyToUndeadPlayers() && ((BaseCreature)m).GetMaster() != null )
+			if( m is BaseCreature && IsFriendlyToUndeadPlayers() && ((BaseCreature)m).GetMaster() != null )
 			{
 				PlayerMobile master = ((BaseCreature)m).GetMaster() as PlayerMobile;
 				if( master.Undead )
