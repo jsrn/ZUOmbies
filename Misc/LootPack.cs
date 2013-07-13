@@ -167,44 +167,37 @@ namespace Server
 		#region Pre-AOS definitions
 		public static readonly LootPack OldPoor = new LootPack( new LootPackEntry[]
 			{
-				new LootPackEntry(  true, Gold,			1.00, "1d25" ),
-				new LootPackEntry( false, Instruments,	  0.02, 1 )
+				new LootPackEntry(  true, Gold,			1.00, "1d20" ),
 			} );
 
 		public static readonly LootPack OldMeager = new LootPack( new LootPackEntry[]
 			{
-				new LootPackEntry(  true, Gold,			2.00, "5d10+25" ),
-				new LootPackEntry( false, Instruments,	  0.10, 1 )
+				new LootPackEntry(  true, Gold,			2.00, "3d10" ),
 			} );
 
 		public static readonly LootPack OldAverage = new LootPack( new LootPackEntry[]
 			{
-				new LootPackEntry(  true, Gold,			3.00, "10d10+50" ),
-				new LootPackEntry( false, Instruments,	  0.40, 1 )
+				new LootPackEntry(  true, Gold,			3.00, "5d10" ),
 			} );
 
 		public static readonly LootPack OldRich = new LootPack( new LootPackEntry[]
 			{
-				new LootPackEntry(  true, Gold,			4.00, "10d10+250" ),
-				new LootPackEntry( false, Instruments,	  1.00, 1 )
+				new LootPackEntry(  true, Gold,			4.00, "5d10" ),
 			} );
 
 		public static readonly LootPack OldFilthyRich = new LootPack( new LootPackEntry[]
 			{
-				new LootPackEntry(  true, Gold,			5.00, "2d125+400" ),
-				new LootPackEntry( false, Instruments,	  2.00, 1 )
+				new LootPackEntry(  true, Gold,			5.00, "1d125" ),
 			} );
 
 		public static readonly LootPack OldUltraRich = new LootPack( new LootPackEntry[]
 			{
-				new LootPackEntry(  true, Gold,			6.00, "5d100+500" ),
-				new LootPackEntry( false, Instruments,	  2.00, 1 )
+				new LootPackEntry(  true, Gold,			6.00, "3d100" ),
 			} );
 
 		public static readonly LootPack OldSuperBoss = new LootPack( new LootPackEntry[]
 			{
-				new LootPackEntry(  true, Gold,			7.00, "5d100+500" ),
-				new LootPackEntry( false, Instruments,	  2.00, 1 )
+				new LootPackEntry(  true, Gold,			7.00, "3d100" ),
 			} );
 		#endregion
 
