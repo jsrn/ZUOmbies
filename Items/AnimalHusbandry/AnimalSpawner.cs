@@ -17,12 +17,12 @@ namespace Server.Items
 		}
 		
 		[Constructable]
-		public AnimalSpawner() : base( null )
+		public AnimalSpawner( string type ) : base( null )
 		{
 			m_AnimalsRemaining = 30;
 
 			List<string> animals = new List<string>();
-			animals.Add( "sheep" );
+			animals.Add( type );
 			SpawnNames = animals;
 		}
 
