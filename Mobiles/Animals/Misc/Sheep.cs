@@ -30,7 +30,7 @@ namespace Server.Mobiles
 			from.SendLocalizedMessage( 500452 ); // You place the gathered wool into your backpack.
 			from.AddToBackpack( new Wool( Map == Map.Felucca ? 2 : 1 ) );
 
-			NextWoolTime = DateTime.Now + TimeSpan.FromHours( 3.0 ); // TODO: Proper time delay
+			NextWoolTime = DateTime.Now + TimeSpan.FromMinutes( 20.0 ); // TODO: Proper time delay
 		}
 
 		public override void OnThink()
