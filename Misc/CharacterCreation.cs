@@ -43,17 +43,6 @@ namespace Server.Misc
 			item.Location = new Point3D( x, y, 0 );
 		}
 
-		private static Item MakePotionKeg( PotionEffect type, int hue )
-		{
-			PotionKeg keg = new PotionKeg();
-
-			keg.Held = 100;
-			keg.Type = type;
-			keg.Hue = hue;
-
-			return keg;
-		}
-
 		private static void AddShirt( Mobile m, int shirtHue )
 		{
 			int hue = Utility.ClipDyedHue( shirtHue & 0x3FFF );
@@ -90,7 +79,7 @@ namespace Server.Misc
 
 		private static void AddShoes( Mobile m )
 		{
-			EquipItem( new Shoes( Utility.RandomYellowHue() ), true );
+			EquipItem( new Boots(), true );
 		}
 
 		private static Mobile CreateMobile( Account a )
