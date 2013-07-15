@@ -279,28 +279,27 @@ namespace Server.Engines.Craft
 			AddRes( index, typeof( BaseExplosionPotion ), 1044569, 1, 1044253 );
 
 			// Faction Gas Trap
-			index = AddCraft( typeof( FactionGasTrapDeed ), 1044052, 1044598, 65.0, 115.0, typeof( Silver ), 1044572, Core.AOS ? 250 : 1000, 1044253 );
+			index = AddCraft( typeof( FactionGasTrapDeed ), 1044052, "gas mine", 65.0, 115.0, typeof( Silver ), 1044572, Core.AOS ? 250 : 1000, 1044253 );
 			AddRes( index, typeof( IronIngot ), 1044036, 10, 1044037 );
 			AddRes( index, typeof( BasePoisonPotion ), 1044571, 1, 1044253 );
 
 			// Faction explosion Trap
-			index = AddCraft( typeof( FactionExplosionTrapDeed ), 1044052, 1044599, 65.0, 115.0, typeof( Silver ), 1044572, Core.AOS ? 250 : 1000, 1044253 );
+			index = AddCraft( typeof( FactionExplosionTrapDeed ), 1044052, "land mine", 65.0, 115.0, typeof( Silver ), 1044572, Core.AOS ? 250 : 1000, 1044253 );
 			AddRes( index, typeof( IronIngot ), 1044036, 10, 1044037 );
 			AddRes( index, typeof( BaseExplosionPotion ), 1044569, 1, 1044253 );
 
 			// Faction Saw Trap
-			index = AddCraft( typeof( FactionSawTrapDeed ), 1044052, 1044600, 65.0, 115.0, typeof( Silver ), 1044572, Core.AOS ? 250 : 1000, 1044253 );
+			index = AddCraft( typeof( FactionSawTrapDeed ), 1044052, "saw trap", 65.0, 115.0, typeof( Silver ), 1044572, Core.AOS ? 250 : 1000, 1044253 );
 			AddRes( index, typeof( IronIngot ), 1044036, 10, 1044037 );
 			AddRes( index, typeof( Gears ), 1044254, 1, 1044253 );
 
 			// Faction Spike Trap			
-			index = AddCraft( typeof( FactionSpikeTrapDeed ), 1044052, 1044601, 65.0, 115.0, typeof( Silver ), 1044572, Core.AOS ? 250 : 1000, 1044253 );
+			index = AddCraft( typeof( FactionSpikeTrapDeed ), 1044052, "spike trap", 65.0, 115.0, typeof( Silver ), 1044572, Core.AOS ? 250 : 1000, 1044253 );
 			AddRes( index, typeof( IronIngot ), 1044036, 10, 1044037 );
 			AddRes( index, typeof( Springs ), 1044171, 1, 1044253 );
 
 			// Faction trap removal kit
-			index = AddCraft( typeof( FactionTrapRemovalKit ), 1044052, 1046445, 90.0, 115.0, typeof( Silver ), 1044572, 500, 1044253 );
-			AddRes( index, typeof( IronIngot ), 1044036, 10, 1044037 );
+			AddCraft( typeof( TrapRemovalKit ), 1044052, "trap removal kit", 70.0, 100.0, typeof( IronIngot ), 1044036, 10, 1044037 );
 			#endregion
 
 			// Set the overridable material
