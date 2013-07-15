@@ -61,7 +61,7 @@ namespace Server.SkillHandlers
 			{
 				m.SendLocalizedMessage( 502725 ); // You must hide first
 			}
-			else if ( m.Skills[SkillName.Hiding].Base < 80.0 )
+			else if ( m.Skills[SkillName.Hiding].Base < 50.0 )
 			{
 				m.SendLocalizedMessage( 502726 ); // You are not hidden well enough.  Become better at hiding.
 				m.RevealingAction();
@@ -75,14 +75,14 @@ namespace Server.SkillHandlers
 			{
 				int armorRating = GetArmorRating( m );
 
-				if( armorRating >= (Core.AOS ? 42 : 26) )	//I have a hunch '42' was chosen cause someone's a fan of DNA
+				if( armorRating >= 26 )
 				{
 					m.SendLocalizedMessage( 502727 ); // You could not hope to move quietly wearing this much armor.
 					m.RevealingAction();
 				}
-				else if( m.CheckSkill( SkillName.Stealth, -20.0 + (armorRating * 2), (Core.AOS ? 60.0 : 80.0) + (armorRating * 2) ) )
+				else if( m.CheckSkill( SkillName.Stealth, -20.0 + (armorRating * 2), 50.0 + (armorRating * 2) ) )
 				{
-					int steps = (int)(m.Skills[SkillName.Stealth].Value / (Core.AOS ? 5.0 : 10.0));
+					int steps = (int)(m.Skills[SkillName.Stealth].Value / 10.0 );
 
 					if( steps < 1 )
 						steps = 1;
