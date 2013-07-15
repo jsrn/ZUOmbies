@@ -3033,23 +3033,16 @@ namespace Server.Mobiles
 
 			if( Hidden && DesignContext.Find( this ) == null )	//Hidden & NOT customizing a house
 			{
-				if( !Mounted && Skills.Stealth.Value >= 25.0 )
-				{
-					bool running = (d & Direction.Running) != 0;
+				bool running = (d & Direction.Running) != 0;
 
-					if( running )
-					{
-						if( (AllowedStealthSteps -= 2) <= 0 )
-							RevealingAction();
-					}
-					else if( AllowedStealthSteps-- <= 0 )
-					{
-						Server.SkillHandlers.Stealth.OnUse( this );
-					}
-				}
-				else
+				if( running )
 				{
-					RevealingAction();
+					if( (AllowedStealthSteps -= 2) <= 0 )
+						RevealingAction();
+				}
+				else if( AllowedStealthSteps-- <= 0 )
+				{
+					Server.SkillHandlers.Stealth.OnUse( this );
 				}
 			}
 
