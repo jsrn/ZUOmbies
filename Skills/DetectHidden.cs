@@ -91,7 +91,7 @@ namespace Server.SkillHandlers
 
 							if ( src.CheckTargetSkill( SkillName.DetectHidden, trap, 80.0, 100.0 ) )
 							{
-								src.SendLocalizedMessage( 1042712, true, " " + (trap.Faction == null ? "" : trap.Faction.Definition.FriendlyName) ); // You reveal a trap placed by a faction:
+								src.SendMessage( "You detect a trap!" );
 
 								trap.Visible = true;
 								trap.BeginConceal();
