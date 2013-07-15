@@ -158,7 +158,7 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( BeerBarrel ), 1044292, "beer barrel", 0.0, 82.8, typeof( Barrel ), "barrel", 1, 1044253 );
 			AddCraft( typeof( CiderBarrel ), 1044292, "cider barrel", 0.0, 82.8, typeof( Barrel ), "barrel", 1, 1044253 );
 			AddCraft( typeof( WineBarrel ), 1044292, "wine barrel", 0.0, 82.8, typeof( Barrel ), "barrel", 1, 1044253 );
-			AddCraft( typeof( LiquorBarrel ), 1044292, "beer barrel", 0.0, 82.8, typeof( Barrel ), "barrel", 1, 1044253 );
+			AddCraft( typeof( LiquorBarrel ), 1044292, "liquor barrel", 0.0, 82.8, typeof( Barrel ), "barrel", 1, 1044253 );
 
 			// Staves and Shields
 			AddCraft( typeof( Club ), 1044295, "wooden club", 0.0, 50.0, typeof( Log ), 1044041, 1, 1044351 );
