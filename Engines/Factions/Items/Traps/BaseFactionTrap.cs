@@ -103,6 +103,7 @@ namespace Server.Factions
 				if ( ( m.Skills[SkillName.DetectHidden].Value - 80.0) / 20.0 > Utility.RandomDouble() )
 				{
 					Visible = true;
+					trap.BeginConceal();
 					PrivateOverheadLocalizedMessage( m, 1010154, MessageHue, "", "" ); // [Faction Trap]
 				}
 			}
