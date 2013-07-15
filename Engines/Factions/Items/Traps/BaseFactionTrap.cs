@@ -9,7 +9,6 @@ namespace Server.Factions
 	public enum AllowedPlacing
 	{
 		Everywhere,
-
 		AnyFactionTown,
 		ControlledFactionTown,
 		FactionStronghold
@@ -62,13 +61,7 @@ namespace Server.Factions
 
 		public virtual TimeSpan DecayPeriod
 		{
-			get
-			{
-				if ( Core.AOS )
-					return TimeSpan.FromDays( 1.0 );
-
-				return TimeSpan.MaxValue; // no decay
-			}
+			get { return TimeSpan.FromDays( 1.0 ); }
 		}
 
 		public override void OnTrigger( Mobile from )
@@ -95,50 +88,8 @@ namespace Server.Factions
 
 		public virtual int IsValidLocation( Point3D p, Map m )
 		{
-			return 0;
-
 			if( m == null )
 				return 502956; // You cannot place a trap on that.
-
-			if( Core.ML )
-			{
-				foreach( Item item in m.GetItemsInRange( p, 0 ) )
-				{
-					if( item is BaseFactionTrap && ((BaseFactionTrap)item).Faction == this.Faction )
-						return 1075263; // There is already a trap belonging to your faction at this location.;
-				}
-			}
-
-			switch( AllowedPlacing )
-			{
-				case AllowedPlacing.FactionStronghold:
-				{
-					StrongholdRegion region = (StrongholdRegion) Region.Find( p, m ).GetRegion( typeof( StrongholdRegion ) );
-
-					if ( region != null && region.Faction == m_Faction )
-						return 0;
-
-					return 1010355; // This trap can only be placed in your stronghold
-				}
-				case AllowedPlacing.AnyFactionTown:
-				{
-					Town town = Town.FromRegion( Region.Find( p, m ) );
-
-					if ( town != null )
-						return 0;
-
-					return 1010356; // This trap can only be placed in a faction town
-				}
-				case AllowedPlacing.ControlledFactionTown:
-				{
-					Town town = Town.FromRegion( Region.Find( p, m ) );
-
-					if ( town != null && town.Owner == m_Faction )
-						return 0;
-
-					return 1010357; // This trap can only be placed in a town your faction controls
-				}
-			}
 
 			return 0;
 		}
