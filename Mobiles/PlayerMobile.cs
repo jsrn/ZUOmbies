@@ -1825,7 +1825,10 @@ namespace Server.Mobiles
 
 		public override bool CheckShove( Mobile shoved )
 		{
-			if( m_IgnoreMobiles || TransformationSpellHelper.UnderTransformation( shoved, typeof( WraithFormSpell ) ) )
+			if ( Bullying.CanShove( this, shoved ) )
+				return true;
+
+			if ( m_IgnoreMobiles || TransformationSpellHelper.UnderTransformation( shoved, typeof( WraithFormSpell ) ) )
 				return true;
 			else
 				return base.CheckShove( shoved );
