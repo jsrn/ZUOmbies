@@ -49,9 +49,7 @@ namespace Server.Engines.Craft
 				return 1044038; // You have worn out your tool!
 			else if ( !BaseTool.CheckAccessible( tool, from ) )
 				return 1044263; // The tool must be on your person to use.
-			else if ( itemType != null && ( itemType.IsSubclassOf( typeof( BaseFactionTrapDeed ) ) || itemType == typeof( FactionTrapRemovalKit ) ) && Faction.Find( from ) == null )
-				return 1044573; // You have to be in a faction to do that.
-
+			
 			return 0;
 		}
 
