@@ -169,6 +169,7 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( BodySash ), 1015283, 1025441, 4.1, 29.1, typeof( Cloth ), 1044286, 4, 1044287 );
 			AddCraft( typeof( HalfApron ), 1015283, 1025435, 20.7, 45.7, typeof( Cloth ), 1044286, 6, 1044287 );
 			AddCraft( typeof( FullApron ), 1015283, 1025437, 29.0, 54.0, typeof( Cloth ), 1044286, 10, 1044287 );
+			AddCraft( typeof( BodySash ), 1015283, "sash", 15.0, 40.0, typeof( Cloth ), 1044286, 3, 1044287 );
 			AddCraft( typeof( Quiver ), 1015283, "quiver", 65.0, 115.0, typeof( Leather ), 1044462, 28, 1044463 );
 			AddCraft( typeof( OilCloth ), 1015283, 1041498, 74.6, 99.6, typeof( Cloth ), 1044286, 1, 1044287 );
 			AddCraft( typeof( Pouch ), 1015283, "pouch", 0.0, 30.0, typeof( Leather ), 1044462, 5, 1044463 );
