@@ -3028,9 +3028,6 @@ namespace Server.Mobiles
 
 		protected override bool OnMove( Direction d )
 		{
-			if( !Core.SE )
-				return base.OnMove( d );
-
 			if( AccessLevel != AccessLevel.Player )
 				return true;
 
