@@ -82,30 +82,7 @@ namespace Server.Factions
 			Effects.PlaySound( this.Location, this.Map, this.EffectSound );
 			DoAttackEffect( from );
 
-			int silverToAward = ( from.Alive ? 20 : 40 );
-
-			if ( silverToAward > 0 && m_Placer != null && m_Faction != null )
-			{
-				PlayerState victimState = PlayerState.Find( from );
-
-				if ( victimState != null && victimState.CanGiveSilverTo( m_Placer ) && victimState.KillPoints > 0 )
-				{
-					int silverGiven = m_Faction.AwardSilver( m_Placer, silverToAward );
-
-					if ( silverGiven > 0 )
-					{
-						// TODO: Get real message
-						if ( from.Alive )
-							m_Placer.SendMessage( "You have earned {0} silver pieces because {1} fell for your trap.", silverGiven, from.Name );
-						else
-							m_Placer.SendLocalizedMessage( 1042736, String.Format( "{0} silver\t{1}", silverGiven, from.Name ) ); // You have earned ~1_SILVER_AMOUNT~ pieces for vanquishing ~2_PLAYER_NAME~!
-					}
-
-					victimState.OnGivenSilverTo( m_Placer );
-				}
-			}
-
-			from.LocalOverheadMessage( MessageType.Regular, MessageHue, AttackMessage );
+			Delete();
 		}
 
 		public abstract void DoVisibleEffect();
@@ -118,6 +95,8 @@ namespace Server.Factions
 
 		public virtual int IsValidLocation( Point3D p, Map m )
 		{
+			return 0;
+
 			if( m == null )
 				return 502956; // You cannot place a trap on that.
 
@@ -274,21 +253,7 @@ namespace Server.Factions
 
 		public virtual bool IsEnemy( Mobile mob )
 		{
-			if ( mob.Hidden && mob.AccessLevel > AccessLevel.Player )
-				return false;
-
-			if ( !mob.Alive || mob.IsDeadBondedPet )
-				return false;
-
-			Faction faction = Faction.Find( mob, true );
-
-			if ( faction == null && mob is BaseFactionGuard )
-				faction = ((BaseFactionGuard)mob).Faction;
-
-			if ( faction == null )
-				return false;
-
-			return ( faction != m_Faction );
+			return mob.AccessLevel == AccessLevel.Player;
 		}
 	}
 }
