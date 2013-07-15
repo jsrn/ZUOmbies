@@ -100,7 +100,7 @@ namespace Server.Factions
 
 			if ( !CheckDecay() && CheckRange( m.Location, oldLocation, 6 ) )
 			{
-				if ( Faction.Find( m ) != null && ((m.Skills[SkillName.DetectHidden].Value - 80.0) / 20.0) > Utility.RandomDouble() )
+				if ( m.Skills[SkillName.DetectHidden].Value - 80.0) / 20.0) > Utility.RandomDouble() )
 					PrivateOverheadLocalizedMessage( m, 1010154, MessageHue, "", "" ); // [Faction Trap]
 			}
 		}
