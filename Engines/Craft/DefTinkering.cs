@@ -278,18 +278,15 @@ namespace Server.Engines.Craft
 			index = AddCraft( typeof( ExplosionTrapCraft ), 1044052, 1044597, 55.0, 105.0, typeof( IronIngot ), 1044036, 1, 1044037 );
 			AddRes( index, typeof( BaseExplosionPotion ), 1044569, 1, 1044253 );
 
-			// Faction Gas Trap
 			index = AddCraft( typeof( GasMineDeed ), 1044052, "gas mine", 65.0, 115.0, typeof( Silver ), 1044572, Core.AOS ? 250 : 1000, 1044253 );
 			AddRes( index, typeof( IronIngot ), 1044036, 10, 1044037 );
 			AddRes( index, typeof( BasePoisonPotion ), 1044571, 1, 1044253 );
 
-			// Faction explosion Trap
 			index = AddCraft( typeof( LandMineDeed ), 1044052, "land mine", 65.0, 115.0, typeof( Silver ), 1044572, Core.AOS ? 250 : 1000, 1044253 );
 			AddRes( index, typeof( IronIngot ), 1044036, 10, 1044037 );
 			AddRes( index, typeof( BaseExplosionPotion ), 1044569, 1, 1044253 );
 
-			// Faction Saw Trap
-			index = AddCraft( typeof( FactionSawTrapDeed ), 1044052, "saw trap", 65.0, 115.0, typeof( Silver ), 1044572, Core.AOS ? 250 : 1000, 1044253 );
+			index = AddCraft( typeof( SawMineDeed ), 1044052, "saw trap", 65.0, 115.0, typeof( Silver ), 1044572, Core.AOS ? 250 : 1000, 1044253 );
 			AddRes( index, typeof( IronIngot ), 1044036, 10, 1044037 );
 			AddRes( index, typeof( Gears ), 1044254, 1, 1044253 );
 
@@ -298,7 +295,6 @@ namespace Server.Engines.Craft
 			AddRes( index, typeof( IronIngot ), 1044036, 10, 1044037 );
 			AddRes( index, typeof( Springs ), 1044171, 1, 1044253 );
 
-			// Faction trap removal kit
 			AddCraft( typeof( TrapRemovalKit ), 1044052, "trap removal kit", 70.0, 100.0, typeof( IronIngot ), 1044036, 10, 1044037 );
 			#endregion
 

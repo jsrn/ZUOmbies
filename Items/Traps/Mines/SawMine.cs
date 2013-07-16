@@ -1,9 +1,9 @@
 using System;
 using Server;
 
-namespace Server.Factions
+namespace Server.Items
 {
-	public class FactionSawTrap : BaseFactionTrap
+	public class SawMine : BaseMine
 	{
 		public override int LabelNumber{ get{ return 1041047; } } // faction saw trap
 
@@ -11,8 +11,6 @@ namespace Server.Factions
 		public override int DisarmMessage{ get{ return 1010540; } } // You carefully dismantle the saw mechanism and disable the trap.
 		public override int EffectSound{ get{ return 0x218; } }
 		public override int MessageHue{ get{ return 0x5A; } }
-
-		public override AllowedPlacing AllowedPlacing{ get{ return AllowedPlacing.ControlledFactionTown; } }
 
 		public override void DoVisibleEffect()
 		{
@@ -25,20 +23,17 @@ namespace Server.Factions
 		}
 
 		[Constructable]
-		public FactionSawTrap() : this( null )
+		public SawMine() : this( null )
 		{
 		}
 
-		public FactionSawTrap( Serial serial ) : base( serial )
+		public SawMine( Serial serial ) : base( serial )
 		{
 		}
 
-		public FactionSawTrap( Faction f ) : this( f, null )
+		public SawMine( Mobile m ) : base( m, 0x11AC )
 		{
-		}
-
-		public FactionSawTrap( Faction f, Mobile m ) : base( f, m, 0x11AC )
-		{
+			Name = "a saw trap";
 		}
 
 		public override void Serialize( GenericWriter writer )
@@ -56,16 +51,16 @@ namespace Server.Factions
 		}
 	}
 
-	public class FactionSawTrapDeed : BaseFactionTrapDeed
+	public class SawMineDeed : MineDeed
 	{
-		public override Type TrapType{ get{ return typeof( FactionSawTrap ); } }
-		public override int LabelNumber{ get{ return 1044604; } } // faction saw trap deed
+		public override Type TrapType{ get{ return typeof( SawMine ); } }
 
-		public FactionSawTrapDeed() : base( 0x1107 )
+		public SawMineDeed() : base( 0x1107 )
 		{
+			Name = "a saw trap";
 		}
 		
-		public FactionSawTrapDeed( Serial serial ) : base( serial )
+		public SawMineDeed( Serial serial ) : base( serial )
 		{
 		}
 
