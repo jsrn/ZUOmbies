@@ -100,6 +100,7 @@ namespace Server.Items
 				from.SendLocalizedMessage( 1010018 ); // What do you want to use this item on?
 			
 			HarvestSystem.BeginHarvesting( from, this );
+			m.RevealingAction();
 		}
 
 		public override void GetContextMenuEntries( Mobile from, List<ContextMenuEntry> list )
