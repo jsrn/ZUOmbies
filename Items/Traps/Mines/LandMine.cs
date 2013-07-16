@@ -56,7 +56,7 @@ namespace Server.Items
 
 		public LandMineDeed() : base( 0x36D2 )
 		{
-			Name = "a land mine deed";
+			Name = "a land mine";
 		}
 		
 		public LandMineDeed( Serial serial ) : base( serial )

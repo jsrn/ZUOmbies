@@ -85,16 +85,6 @@ namespace Server.Engines.Craft
 			int itemId;
 
 			if ( !_itemIds.TryGetValue( type, out itemId ) ) {
-				if ( type == typeof( FactionExplosionTrap ) ) {
-					itemId = 14034;
-				} else if ( type == typeof( FactionGasTrap ) ) {
-					itemId = 4523;
-				} else if ( type == typeof( FactionSawTrap ) ) {
-					itemId = 4359;
-				} else if ( type == typeof( FactionSpikeTrap ) ) {
-					itemId = 4517;
-				}
-
 				if ( itemId == 0 ) {
 					object[] attrs = type.GetCustomAttributes( typeof( CraftItemIDAttribute ), false );
 
