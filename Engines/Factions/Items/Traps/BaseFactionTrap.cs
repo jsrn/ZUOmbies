@@ -56,7 +56,7 @@ namespace Server.Factions
 
 		public virtual TimeSpan ConcealPeriod
 		{
-			get{ return TimeSpan.FromMinutes( 1.0 ); }
+			get{ return TimeSpan.FromSeconds( 30.0 ); }
 		}
 
 		public virtual TimeSpan DecayPeriod
