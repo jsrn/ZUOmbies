@@ -1,18 +1,14 @@
 using System;
 using Server;
 
-namespace Server.Factions
+namespace Server.Items
 {
-	public class FactionGasTrap : BaseFactionTrap
+	public class GasMine : BaseMine
 	{
-		public override int LabelNumber{ get{ return 1044598; } } // faction gas trap
-
 		public override int AttackMessage{ get{ return 1010542; } } // A noxious green cloud of poison gas envelops you!
 		public override int DisarmMessage{ get{ return 502376; } } // The poison leaks harmlessly away due to your deft touch.
 		public override int EffectSound{ get{ return 0x230; } }
 		public override int MessageHue{ get{ return 0x44; } }
-
-		public override AllowedPlacing AllowedPlacing{ get{ return AllowedPlacing.FactionStronghold; } }
 
 		public override void DoVisibleEffect()
 		{
@@ -25,19 +21,16 @@ namespace Server.Factions
 		}
 
 		[Constructable]
-		public FactionGasTrap() : this( null )
+		public GasMine() : this( null )
 		{
 		}
 
-		public FactionGasTrap( Faction f ) : this( f, null )
+		public GasMine( Mobile m ) : base( m, 0x113C )
 		{
+			Name = "a gas mine";
 		}
 
-		public FactionGasTrap( Faction f, Mobile m ) : base( f, m, 0x113C )
-		{
-		}
-
-		public FactionGasTrap( Serial serial ) : base( serial )
+		public GasMine( Serial serial ) : base( serial )
 		{
 		}
 
@@ -56,16 +49,16 @@ namespace Server.Factions
 		}
 	}
 
-	public class FactionGasTrapDeed : BaseFactionTrapDeed
+	public class GasMineDeed : MineDeed
 	{
-		public override Type TrapType{ get{ return typeof( FactionGasTrap ); } }
-		public override int LabelNumber{ get{ return 1044602; } } // faction gas trap deed
+		public override Type TrapType{ get{ return typeof( GasMine ); } }
 
-		public FactionGasTrapDeed() : base( 0x11AB )
+		public GasMineDeed() : base( 0x11AB )
 		{
+			Name = "a gas mine";
 		}
 		
-		public FactionGasTrapDeed( Serial serial ) : base( serial )
+		public GasMineDeed( Serial serial ) : base( serial )
 		{
 		}
 
