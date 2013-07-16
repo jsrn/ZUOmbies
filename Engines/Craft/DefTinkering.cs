@@ -284,7 +284,7 @@ namespace Server.Engines.Craft
 			AddRes( index, typeof( BasePoisonPotion ), 1044571, 1, 1044253 );
 
 			// Faction explosion Trap
-			index = AddCraft( typeof( FactionExplosionTrapDeed ), 1044052, "land mine", 65.0, 115.0, typeof( Silver ), 1044572, Core.AOS ? 250 : 1000, 1044253 );
+			index = AddCraft( typeof( LandMineDeed ), 1044052, "land mine", 65.0, 115.0, typeof( Silver ), 1044572, Core.AOS ? 250 : 1000, 1044253 );
 			AddRes( index, typeof( IronIngot ), 1044036, 10, 1044037 );
 			AddRes( index, typeof( BaseExplosionPotion ), 1044569, 1, 1044253 );
 
