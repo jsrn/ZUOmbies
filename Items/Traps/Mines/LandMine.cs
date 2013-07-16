@@ -27,6 +27,7 @@ namespace Server.Items
 
 		public LandMine( Mobile m ) : base( m, 0x11C1 )
 		{
+			Name = "a land mine";
 		}
 
 		public LandMine( Serial serial ) : base( serial )
@@ -55,6 +56,7 @@ namespace Server.Items
 
 		public LandMineDeed() : base( 0x36D2 )
 		{
+			Name = "a land mine deed";
 		}
 		
 		public LandMineDeed( Serial serial ) : base( serial )
