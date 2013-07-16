@@ -78,9 +78,9 @@ namespace Server.SkillHandlers
 						from.SendLocalizedMessage( 502372 ); // You fail to disarm the trap... but you don't set it off
 					}
 				}
-				else if ( targeted is BaseFactionTrap )
+				else if ( targeted is BaseMine )
 				{
-					BaseFactionTrap trap = (BaseFactionTrap) targeted;
+					BaseMine trap = (BaseMine) targeted;
 
 					bool isOwner = trap.Placer == from;
 
