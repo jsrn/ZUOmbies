@@ -15,7 +15,8 @@ namespace Server.Misc
 			|| shoved is Rabbit
 			|| shoved is Squirrel
 			|| shoved is Rat
-			|| shoved is Snake )
+			|| shoved is Snake
+			|| shoved is Chicken )
 			{
 				return true;
 			}
