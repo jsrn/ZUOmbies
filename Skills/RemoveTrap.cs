@@ -41,7 +41,13 @@ namespace Server.SkillHandlers
 
 			protected override void OnTarget( Mobile from, object targeted )
 			{
-				if ( targeted is Mobile )
+				TrapRemovalKit kit = ( from.Backpack == null ? null : from.Backpack.FindItemByType( typeof( TrapRemovalKit ) ) as TrapRemovalKit );
+
+				if ( kit == null )
+				{
+					from.SendMessage( "You need a trap removal kit to disarm that." );
+				}
+				else if ( targeted is Mobile )
 				{
 					from.SendLocalizedMessage( 502816 ); // You feel that such an action would be inappropriate
 				}
@@ -65,6 +71,7 @@ namespace Server.SkillHandlers
 						targ.TrapLevel = 0;
 						targ.TrapType = TrapType.None;
 						from.SendLocalizedMessage( 502377 ); // You successfully render the trap harmless
+						kit.ConsumeCharge( from );
 					}
 					else
 					{
@@ -75,29 +82,19 @@ namespace Server.SkillHandlers
 				{
 					BaseFactionTrap trap = (BaseFactionTrap) targeted;
 
-					TrapRemovalKit kit = ( from.Backpack == null ? null : from.Backpack.FindItemByType( typeof( TrapRemovalKit ) ) as TrapRemovalKit );
-
 					bool isOwner = trap.Placer == from;
 
-					if ( kit == null )
+					if ( from.CheckTargetSkill( SkillName.RemoveTrap, trap, 80.0, 100.0 ) && from.CheckTargetSkill( SkillName.Tinkering, trap, 80.0, 100.0 ) )
 					{
-						from.SendMessage( "You need a trap removal kit to disarm that." );
+						from.PrivateOverheadMessage( MessageType.Regular, trap.MessageHue, trap.DisarmMessage, from.NetState );
+						trap.Delete();
 					}
 					else
 					{
-						if ( from.CheckTargetSkill( SkillName.RemoveTrap, trap, 80.0, 100.0 ) && from.CheckTargetSkill( SkillName.Tinkering, trap, 80.0, 100.0 ) )
-						{
-							from.PrivateOverheadMessage( MessageType.Regular, trap.MessageHue, trap.DisarmMessage, from.NetState );
-							trap.Delete();
-						}
-						else
-						{
-							from.SendLocalizedMessage( 502372 ); // You fail to disarm the trap... but you don't set it off
-						}
-
-						if ( kit != null )
-							kit.ConsumeCharge( from );
+						from.SendLocalizedMessage( 502372 ); // You fail to disarm the trap... but you don't set it off
 					}
+
+					kit.ConsumeCharge( from );
 				}
 				else
 				{
