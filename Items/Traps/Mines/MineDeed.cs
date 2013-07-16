@@ -25,7 +25,7 @@ namespace Server.Items
 
 		public virtual BaseMine Construct( Mobile from )
 		{
-			try{ return Activator.CreateInstance( TrapType, new object[]{ m_Faction, from } ) as BaseMine; }
+			try{ return Activator.CreateInstance( TrapType, new object[]{ from } ) as BaseMine; }
 			catch{ return null; }
 		}
 
