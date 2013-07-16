@@ -1283,7 +1283,7 @@ namespace Server.Items
 			if( (m_Slayer == SlayerName.Silver || m_Slayer2 == SlayerName.Silver) && defender is PlayerMobile && ((PlayerMobile)defender).Undead )
 			{
 				// Silver does insane extra damage to undead players
-				percentageBonus += 70;
+				percentageBonus += 40;
 			}
 
 			// Max of 300% DI
