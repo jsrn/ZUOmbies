@@ -17,7 +17,7 @@ namespace Server.Items
 		[Constructable]
 		public TrapRemovalKit() : base( 7867 )
 		{
-			m_Charges = 25;
+			m_Charges = Utility.RandomMinMax( 30, 50 );
 			Name = "trap removal kit";
 		}
 
