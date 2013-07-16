@@ -100,14 +100,14 @@ namespace Server.Items
 				ns.Send( new MessageLocalized( Serial, ItemID, MessageType.Regular, hue, 3, number, name, args ) );
 		}
 
-		public BaseFactionTrap( Mobile m, int itemID ) : base( itemID )
+		public BaseMine( Mobile m, int itemID ) : base( itemID )
 		{
 			Visible = false;
 			m_TimeOfPlacement = DateTime.Now;
 			m_Placer = m;
 		}
 
-		public BaseFactionTrap( Serial serial ) : base( serial )
+		public BaseMine( Serial serial ) : base( serial )
 		{
 		}
 
