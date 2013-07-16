@@ -69,6 +69,9 @@ namespace Server.Factions
 			if ( !IsEnemy( from ) )
 				return;
 
+			if ( Visible )
+				return;
+
 			Conceal();
 
 			DoVisibleEffect();
