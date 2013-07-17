@@ -1,6 +1,5 @@
 using System;
 using Server.Items;
-using Server.Factions;
 using Server.Mobiles;
 using Server.Multis;
 using Server.Targeting;
@@ -85,9 +84,9 @@ namespace Server.SkillHandlers
 
 					foreach ( Item item in itemsInRange )
 					{
-						if ( item is BaseFactionTrap )
+						if ( item is BaseMine )
 						{
-							BaseFactionTrap trap = (BaseFactionTrap) item;
+							BaseMine trap = (BaseMine) item;
 
 							if ( src.CheckTargetSkill( SkillName.DetectHidden, trap, 80.0, 100.0 ) )
 							{
