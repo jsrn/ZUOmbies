@@ -120,6 +120,23 @@ namespace Server.Engines.Craft
 			}
 		}
 
+		/* New values proposed by Ily
+
+		Doublet 16.0 instead of 0.0
+		Tunic 20.5 instead of 0.0
+		Cloak 27.4 instead of 41.4
+		Hooded Robe 60.0 instead of 53.9
+		Fur Cape 27.4 instead of 35.0
+		Body Sash 0.0 instead of 4.1
+		Half Apron 5.4 instead of 20.7
+		Full Apron 9,3 instead of 29.0
+		Sash 0.0 instead of 15.0
+		Oil Cloth 24.3 instead of 74.6
+		Fur Boots 37.3 instead of 50.0
+		Leather shorts 58.0 instead of 62.2 (same as skirt and bustier)
+
+		*/
+
 		public override void InitCraftList()
 		{
 			#region Hats
