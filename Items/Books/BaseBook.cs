@@ -384,7 +384,7 @@ namespace Server.Items
 			Mobile from = state.Mobile;
 			BaseBook book = World.FindItem( pvSrc.ReadInt32() ) as BaseBook;
 
-			if ( book == null || !book.Writable || !from.InRange( book.GetWorldLocation(), 1 ) || !book.IsAccessibleTo( from ) || from.Int < 20 ) // m_RequiredInt
+			if ( book == null || !book.Writable || !from.InRange( book.GetWorldLocation(), 1 ) || !book.IsAccessibleTo( from ) ) //|| from.Int < 20 ) // m_RequiredInt
 				return;
 
 			int pageCount = pvSrc.ReadUInt16();
