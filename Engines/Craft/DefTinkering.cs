@@ -295,7 +295,7 @@ namespace Server.Engines.Craft
 			AddRes( index, typeof( IronIngot ), 1044036, 10, 1044037 );
 			AddRes( index, typeof( Springs ), 1044171, 1, 1044253 );
 
-			AddCraft( typeof( TrapRemovalKit ), 1044052, "trap removal kit", 70.0, 100.0, typeof( IronIngot ), 1044036, 10, 1044037 );
+			AddCraft( typeof( TrapRemovalKit ), 1044052, "trap removal kit", 50.0, 70.0, typeof( IronIngot ), 1044036, 10, 1044037 );
 			#endregion
 
 			// Set the overridable material
