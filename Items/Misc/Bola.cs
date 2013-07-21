@@ -75,8 +75,7 @@ namespace Server.Items
 			Mobile from = (Mobile)states[0];
 			Mobile to = (Mobile)states[1];
 
-			if ( Core.AOS )
-				new Bola().MoveToWorld( to.Location, to.Map );
+			new Bola().MoveToWorld( to.Location, to.Map );
 
 			to.Damage( 1, from );
 
@@ -146,8 +145,7 @@ namespace Server.Items
 
 						from.DoHarmful( to );
 
-						if ( Core.AOS )
-							BaseMount.SetMountPrevention( from, BlockMountType.BolaRecovery, TimeSpan.FromSeconds( 3.0 ) );
+						BaseMount.SetMountPrevention( from, BlockMountType.BolaRecovery, TimeSpan.FromSeconds( 3.0 ) );
 
 						m_Bola.Consume();
 
