@@ -541,8 +541,6 @@ namespace Server.Misc
 
 		private static void AddSkillItems( SkillName skill, Mobile m )
 		{
-			bool elf = (m.Race == Race.Elf);
-
 			switch ( skill )
 			{
 				case SkillName.Alchemy:
