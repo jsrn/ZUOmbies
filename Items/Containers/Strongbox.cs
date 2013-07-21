@@ -15,12 +15,15 @@ namespace Server.Items
 		public override double DefaultWeight{ get{ return 100; } }
 		public override int LabelNumber { get { return 1023712; } }
 
+		[Constructable]
+		public StrongBox() : this( null, null )
+		{
+		}
+
 		public StrongBox( Mobile owner, BaseHouse house ) : base( 0xE80 )
 		{
 			m_Owner = owner;
-			m_House = house;
-
-			MaxItems = 25;
+			MaxItems = 10;
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -50,7 +53,6 @@ namespace Server.Items
 			writer.Write( (int) 0 ); // version
 
 			writer.Write( m_Owner );
-			writer.Write( m_House );
 		}
 
 		public override void Deserialize( GenericReader reader )
@@ -64,21 +66,8 @@ namespace Server.Items
 				case 0:
 				{
 					m_Owner = reader.ReadMobile();
-					m_House = reader.ReadItem() as BaseHouse;
-
 					break;
 				}
-			}
-
-			Timer.DelayCall( TimeSpan.FromSeconds( 1.0 ), new TimerCallback( Validate ) );
-		}
-
-		private void Validate()
-		{
-			if ( m_Owner != null && m_House != null && !m_House.IsCoOwner( m_Owner ) )
-			{
-				Console.WriteLine( "Warning: Destroying strongbox of {0}", m_Owner.Name );
-				Destroy();
 			}
 		}
 
@@ -86,18 +75,10 @@ namespace Server.Items
 		{
 			get
 			{
-				if ( m_House != null && m_Owner != null && !m_Owner.Deleted )
-					return !m_House.IsCoOwner( m_Owner );
+				if ( m_Owner != null && !m_Owner.Deleted )
+					return false;
 				else
 					return true;
-			}
-		}
-
-		public override TimeSpan DecayTime
-		{
-			get
-			{
-				return TimeSpan.FromMinutes( 30.0 );
 			}
 		}
 
@@ -113,7 +94,7 @@ namespace Server.Items
 		{
 			if ( m_Owner != null )
 			{
-				LabelTo( from, 1042887, m_Owner.Name ); // a strong box owned by ~1_OWNER_NAME~
+				LabelTo( from, "{0}'s strongbox", m_Owner.Name );
 
 				if ( CheckContentDisplay( from ) )
 					LabelTo( from, "({0} items, {1} stones)", TotalItems, TotalWeight );
@@ -126,10 +107,10 @@ namespace Server.Items
 
 		public override bool IsAccessibleTo( Mobile m )
 		{
-			if ( m_Owner == null || m_Owner.Deleted || m_House == null || m_House.Deleted || m.AccessLevel >= AccessLevel.GameMaster )
+			if ( m_Owner == null || m_Owner.Deleted || m.AccessLevel >= AccessLevel.GameMaster )
 				return true;
 
-			return m == m_Owner && m_House.IsCoOwner( m ) && base.IsAccessibleTo( m );
+			return m == m_Owner && base.IsAccessibleTo( m );
 		}
 
 		private void Chop( Mobile from )
@@ -141,15 +122,8 @@ namespace Server.Items
 
 		public void OnChop( Mobile from )
 		{
-			if ( m_House != null && !m_House.Deleted && m_Owner != null && !m_Owner.Deleted )
-			{
-				if ( from == m_Owner || m_House.IsOwner( from ) )
-					Chop( from );
-			}
-			else
-			{
+			if ( from == m_Owner || m_House.IsOwner( from ) )
 				Chop( from );
-			}
 		}
 
 		public Container ConvertToStandardContainer()
