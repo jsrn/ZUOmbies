@@ -99,9 +99,9 @@ namespace Server.Items
 						{
 							from.MovingEffect( m, 0x1BFE, 7, 1, false, false, 0x481, 0 );
 
-							AOS.Damage( m, from, Utility.Random( 5, from.Str / 10 ), 100, 0, 0, 0, 0 );
-
 							m_Spear.MoveToWorld( m.Location, m.Map );
+
+							AOS.Damage( m, from, Utility.Random( 5, from.Str / 10 ), 100, 0, 0, 0, 0 );
 						}
 						else
 						{
