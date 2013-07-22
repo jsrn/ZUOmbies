@@ -120,23 +120,6 @@ namespace Server.Engines.Craft
 			}
 		}
 
-		/* New values proposed by Ily
-
-		Doublet 16.0 instead of 0.0
-		Tunic 20.5 instead of 0.0
-		Cloak 27.4 instead of 41.4
-		Hooded Robe 60.0 instead of 53.9
-		Fur Cape 27.4 instead of 35.0
-		Body Sash 0.0 instead of 4.1
-		Half Apron 5.4 instead of 20.7
-		Full Apron 9,3 instead of 29.0
-		Sash 0.0 instead of 15.0
-		Oil Cloth 24.3 instead of 74.6
-		Fur Boots 37.3 instead of 50.0
-		Leather shorts 58.0 instead of 62.2 (same as skirt and bustier)
-
-		*/
-
 		public override void InitCraftList()
 		{
 			#region Hats
@@ -157,18 +140,18 @@ namespace Server.Engines.Craft
 			#endregion
 
 			#region Shirts
-			AddCraft( typeof( Doublet ), 1015269, 1028059, 0, 25.0, typeof( Cloth ), 1044286, 8, 1044287 );
+			AddCraft( typeof( Doublet ), 1015269, 1028059, 16.0, 41.0, typeof( Cloth ), 1044286, 8, 1044287 );
 			AddCraft( typeof( Shirt ), 1015269, 1025399, 20.7, 45.7, typeof( Cloth ), 1044286, 8, 1044287 );
 			AddCraft( typeof( FancyShirt ), 1015269, 1027933, 24.8, 49.8, typeof( Cloth ), 1044286, 8, 1044287 );
-			AddCraft( typeof( Tunic ), 1015269, 1028097, 00.0, 25.0, typeof( Cloth ), 1044286, 12, 1044287 );
+			AddCraft( typeof( Tunic ), 1015269, 1028097, 20.5, 45.5, typeof( Cloth ), 1044286, 12, 1044287 );
 			AddCraft( typeof( Surcoat ), 1015269, 1028189, 8.2, 33.2, typeof( Cloth ), 1044286, 14, 1044287 );
 			AddCraft( typeof( PlainDress ), 1015269, 1027937, 12.4, 37.4, typeof( Cloth ), 1044286, 10, 1044287 );
 			AddCraft( typeof( FancyDress ), 1015269, 1027935, 33.1, 58.1, typeof( Cloth ), 1044286, 12, 1044287 );
-			AddCraft( typeof( Cloak ), 1015269, 1025397, 41.4, 66.4, typeof( Cloth ), 1044286, 14, 1044287 );
+			AddCraft( typeof( Cloak ), 1015269, 1025397, 27.4, 52.4, typeof( Cloth ), 1044286, 14, 1044287 );
 			AddCraft( typeof( Robe ), 1015269, 1027939, 53.9, 78.9, typeof( Cloth ), 1044286, 16, 1044287 );
-			AddCraft( typeof( HoodedRobe ), 1015269, "hooded robe", 53.9, 78.9, typeof( Cloth ), 1044286, 18, 1044287 );
+			AddCraft( typeof( HoodedRobe ), 1015269, "hooded robe", 60.0, 85.0, typeof( Cloth ), 1044286, 18, 1044287 );
 			AddCraft( typeof( JesterSuit ), 1015269, 1028095, 8.2, 33.2, typeof( Cloth ), 1044286, 24, 1044287 );
-			AddCraft( typeof( FurCape ), 1015269, 1028969, 35.0, 60.0, typeof( Cloth ), 1044286, 13, 1044287 );
+			AddCraft( typeof( FurCape ), 1015269, 1028969, 27.4, 52.4, typeof( Cloth ), 1044286, 13, 1044287 );
 			AddCraft( typeof( GildedDress ), 1015269, 1028973, 37.5, 62.5, typeof( Cloth ), 1044286, 16, 1044287 );
 			AddCraft( typeof( FormalShirt ), 1015269, 1028975, 26.0, 51.0, typeof( Cloth ), 1044286, 16, 1044287 );
 			AddCraft( typeof( Waistcoat ), 1015269, "waistcoat", 30.0, 55.0, typeof( Cloth ), 1044286, 12, 1044287 );
@@ -183,12 +166,12 @@ namespace Server.Engines.Craft
 			#endregion
 
 			#region Misc
-			AddCraft( typeof( BodySash ), 1015283, 1025441, 4.1, 29.1, typeof( Cloth ), 1044286, 4, 1044287 );
-			AddCraft( typeof( HalfApron ), 1015283, 1025435, 20.7, 45.7, typeof( Cloth ), 1044286, 6, 1044287 );
-			AddCraft( typeof( FullApron ), 1015283, 1025437, 29.0, 54.0, typeof( Cloth ), 1044286, 10, 1044287 );
-			AddCraft( typeof( BodySash ), 1015283, "sash", 15.0, 40.0, typeof( Cloth ), 1044286, 3, 1044287 );
+			AddCraft( typeof( BodySash ), 1015283, 1025441, 0.0, 25.0, typeof( Cloth ), 1044286, 4, 1044287 );
+			AddCraft( typeof( HalfApron ), 1015283, 1025435, 5.4, 30.4, typeof( Cloth ), 1044286, 6, 1044287 );
+			AddCraft( typeof( FullApron ), 1015283, 1025437, 9.3, 34.3, typeof( Cloth ), 1044286, 10, 1044287 );
+			AddCraft( typeof( BodySash ), 1015283, "sash", 0.0, 25.0, typeof( Cloth ), 1044286, 3, 1044287 );
 			AddCraft( typeof( Quiver ), 1015283, "quiver", 65.0, 115.0, typeof( Leather ), 1044462, 28, 1044463 );
-			AddCraft( typeof( OilCloth ), 1015283, 1041498, 74.6, 99.6, typeof( Cloth ), 1044286, 1, 1044287 );
+			AddCraft( typeof( OilCloth ), 1015283, 1041498, 24.3, 49.3, typeof( Cloth ), 1044286, 1, 1044287 );
 			AddCraft( typeof( Pouch ), 1015283, "pouch", 0.0, 30.0, typeof( Leather ), 1044462, 5, 1044463 );
 			AddCraft( typeof( Bag ), 1015283, "bag", 30.0, 60.0, typeof( Leather ), 1044462, 15, 1044463 );
 			AddCraft( typeof( Backpack ), 1015283, "backpack", 60.0, 90.0, typeof( Leather ), 1044462, 20, 1044463 );
@@ -205,7 +188,7 @@ namespace Server.Engines.Craft
 			#endregion
 
 			#region Footwear
-			AddCraft( typeof( FurBoots ), 1015288, 1028967, 50.0, 75.0, typeof( Cloth ), 1044286, 12, 1044287 );
+			AddCraft( typeof( FurBoots ), 1015288, 1028967, 37.3, 62.3, typeof( Cloth ), 1044286, 12, 1044287 );
 			AddCraft( typeof( Sandals ), 1015288, 1025901, 12.4, 37.4, typeof( Leather ), 1044462, 4, 1044463 );
 			AddCraft( typeof( Shoes ), 1015288, 1025904, 16.5, 41.5, typeof( Leather ), 1044462, 6, 1044463 );
 			AddCraft( typeof( Boots ), 1015288, 1025899, 33.1, 58.1, typeof( Leather ), 1044462, 8, 1044463 );
@@ -232,7 +215,7 @@ namespace Server.Engines.Craft
 			#endregion
 
 			#region Female Armor
-			AddCraft( typeof( LeatherShorts ), 1015306, 1027168, 62.2, 87.2, typeof( Leather ), 1044462, 8, 1044463 );
+			AddCraft( typeof( LeatherShorts ), 1015306, 1027168, 58.0, 83.0, typeof( Leather ), 1044462, 8, 1044463 );
 			AddCraft( typeof( LeatherSkirt ), 1015306, 1027176, 58.0, 83.0, typeof( Leather ), 1044462, 6, 1044463 );
 			AddCraft( typeof( LeatherBustierArms ), 1015306, 1027178, 58.0, 83.0, typeof( Leather ), 1044462, 6, 1044463 );
 			AddCraft( typeof( StuddedBustierArms ), 1015306, 1027180, 82.9, 107.9, typeof( Leather ), 1044462, 8, 1044463 );
