@@ -36,7 +36,7 @@ namespace Server.Items
 			{
 				from.SendLocalizedMessage( 1049631 ); // This bola is already being used.
 			}
-			else if ( from.FindItemOnLayer( Layer.OneHanded ) != null && from.FindItemOnLayer( Layer.TwoHanded ) != null )
+			else if ( from.FindItemOnLayer( Layer.OneHanded ) == null || from.FindItemOnLayer( Layer.TwoHanded ) == null )
 			{
 				from.SendMessage( "You need a free hand to throw this." );
 			}
@@ -115,9 +115,9 @@ namespace Server.Items
 					{
 						from.SendLocalizedMessage( 1040019 ); // The bola must be in your pack to use it.
 					}
-					else if ( !Core.AOS && (from.FindItemOnLayer( Layer.OneHanded ) != null || from.FindItemOnLayer( Layer.TwoHanded ) != null) )
+					else if ( from.FindItemOnLayer( Layer.OneHanded ) == null || from.FindItemOnLayer( Layer.TwoHanded ) == null )
 					{
-						from.SendLocalizedMessage( 1040015 ); // Your hands must be free to use this
+						from.SendMessage( "You need a free hand to throw this." );
 					}
 					else if ( from.Mounted )
 					{
