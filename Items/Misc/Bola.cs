@@ -94,9 +94,9 @@ namespace Server.Items
 			}
 			else
 			{
-				if ( from.Dex > Utility.RandomMinMax( 1, 100 ) )
+				if ( from.Dex < Utility.RandomMinMax( 1, 100 ) )
 				{
-					if ( to.Dex > Utility.RandomMinMax( 1, 100 ) )
+					if ( to.Dex < Utility.RandomMinMax( 1, 100 ) )
 					{
 						to.Freeze( TimeSpan.FromSeconds( 2.0 ) );
 						from.SendMessage( "You throw the bola, and it entangles your foe!" );
