@@ -79,18 +79,41 @@ namespace Server.Items
 
 			to.Damage( 1, from );
 
-			if ( to is ChaosDragoon || to is ChaosDragoonElite )
-				from.SendLocalizedMessage( 1042047 ); // You fail to knock the rider from its mount.
+			if ( to.Mounted )
+			{
+				if ( to is ChaosDragoon || to is ChaosDragoonElite )
+					from.SendLocalizedMessage( 1042047 ); // You fail to knock the rider from its mount.
 
-			IMount mt = to.Mount;
-			if ( mt != null && !( to is ChaosDragoon || to is ChaosDragoonElite ) )
-				mt.Rider = null;
+				IMount mt = to.Mount;
+				if ( mt != null && !( to is ChaosDragoon || to is ChaosDragoonElite ) )
+					mt.Rider = null;
 
-			to.SendLocalizedMessage( 1040023 ); // You have been knocked off of your mount!
+				to.SendLocalizedMessage( 1040023 ); // You have been knocked off of your mount!
 
-			BaseMount.SetMountPrevention( to, BlockMountType.Dazed, TimeSpan.FromSeconds( 3.0 ) );
+				BaseMount.SetMountPrevention( to, BlockMountType.Dazed, TimeSpan.FromSeconds( 3.0 ) );
+			}
+			else
+			{
+				if ( from.Dex > Utility.RandomMinMax( 1, 100 ) )
+				{
+					if ( to.Dex > Utility.RandomMinMax( 1, 100 ) )
+					{
+						to.Freeze( TimeSpan.FromSeconds( 2.0 ) );
+						from.SendMessage( "You throw the bola, and it entangles your foe!" );
+						to.SendMessage( "You are entangled in a bola!" );
+					}
+					else
+					{
+						from.SendMessage( "You throw the bola, but they dodge out of the way." );
+					}
+				}
+				else
+				{
+					from.SendMessage( "You throw the bola, but miss." );
+				}
+			}
 
-			Timer.DelayCall( TimeSpan.FromSeconds( 2.0 ), new TimerStateCallback( ReleaseBolaLock ), from );
+			Timer.DelayCall( TimeSpan.FromSeconds( 20.0 ), new TimerStateCallback( ReleaseBolaLock ), from );
 		}
 
 		private class BolaTarget : Target
@@ -122,10 +145,6 @@ namespace Server.Items
 					else if ( from.Mounted )
 					{
 						from.SendLocalizedMessage( 1040016 ); // You cannot use this while riding a mount
-					}
-					else if ( !to.Mounted )
-					{
-						from.SendLocalizedMessage( 1049628 ); // You have no reason to throw a bola at that.
 					}
 					else if ( !from.CanBeHarmful( to ) )
 					{
