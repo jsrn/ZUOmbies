@@ -19,7 +19,7 @@ namespace Server.Misc
 
 		private static void EventSink_Speech( SpeechEventArgs e )
 		{
-			Match match = Regex.Match( e.Speech , @"\(.*\)", RegexOptions.IgnoreCase);
+			Match match = Regex.Match( e.Speech , @"^\(.+\)$", RegexOptions.IgnoreCase);
 
 			if (match.Success)
 			{
@@ -31,7 +31,7 @@ namespace Server.Misc
 
 		private static void CriticiseBrackets( Mobile from )
 		{
-			from.SendMessage( "Notice: Using brackets to speak OOC? Please only do this in EMERGENCIES! Use party/ICQ/Steam instead." );
+			from.SendMessage( "Notice: Using brackets to speak OOC? Please use party/ICQ/Steam instead." );
 		}
 
 		private static string ReplaceSmileyFaces( string text )
