@@ -8,7 +8,6 @@ namespace Server.Items
 		[Constructable]
 		public SmokeBomb() : base( 0x2808 )
 		{
-			Stackable = Core.ML;
 			Weight = 1.0;
 		}
 
@@ -23,20 +22,14 @@ namespace Server.Items
 				// The item must be in your backpack to use it.
 				from.SendLocalizedMessage( 1060640 );
 			}
-			else if ( from.Skills.Ninjitsu.Value < 50.0 )
-			{
-				// You need at least ~1_SKILL_REQUIREMENT~ ~2_SKILL_NAME~ skill to use that ability.
-				from.SendLocalizedMessage( 1063013, "50\tNinjitsu" );
-			}
 			else if ( from.NextSkillTime > DateTime.Now )
 			{
 				// You must wait a few seconds before you can use that item.
 				from.SendLocalizedMessage( 1070772 );
 			}
-			else if ( from.Mana < 10 )
+			else if ( from.Stamina < 20 )
 			{
-				// You don't have enough mana to do that.
-				from.SendLocalizedMessage( 1049456 );
+				from.SendMessage( "You don't have enough stamina to do that." );
 			}
 			else
 			{
@@ -44,7 +37,7 @@ namespace Server.Items
 
 				if ( from.UseSkill( SkillName.Hiding ) )
 				{
-					from.Mana -= 10;
+					from.Stamina -= 20;
 
 					from.FixedParticles( 0x3709, 1, 30, 9904, 1108, 6, EffectLayer.RightFoot );
 					from.PlaySound( 0x22F );
