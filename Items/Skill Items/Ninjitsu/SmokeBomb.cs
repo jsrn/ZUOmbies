@@ -27,7 +27,7 @@ namespace Server.Items
 				// You must wait a few seconds before you can use that item.
 				from.SendLocalizedMessage( 1070772 );
 			}
-			else if ( from.Stamina < 20 )
+			else if ( from.Stam < 20 )
 			{
 				from.SendMessage( "You don't have enough stamina to do that." );
 			}
@@ -37,7 +37,7 @@ namespace Server.Items
 
 				if ( from.UseSkill( SkillName.Hiding ) )
 				{
-					from.Stamina -= 20;
+					from.Stam -= 20;
 
 					from.FixedParticles( 0x3709, 1, 30, 9904, 1108, 6, EffectLayer.RightFoot );
 					from.PlaySound( 0x22F );
