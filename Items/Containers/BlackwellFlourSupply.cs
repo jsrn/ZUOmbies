@@ -61,7 +61,7 @@ namespace Server.Items
 			public RefillTimer( BlackwellFlourSupply supply ) : base( TimeSpan.Zero, TimeSpan.FromDays( 7.0 ) )
 			{
 				m_Supply = supply;
-				Priority = TimerPriority.OneHour;
+				Priority = TimerPriority.OneMinute;
 			}
 
 			protected override void OnTick()
