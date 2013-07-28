@@ -43,6 +43,16 @@ namespace Server.Mobiles
 			}
 		}
 
+		public int CurrentSpawnCount
+		{
+			get { return m_Spawned.Count; }
+		}
+
+		public List<ISpawnable> Spawned
+		{
+			get { return m_Spawned; }
+		}
+
 		public virtual int SpawnNamesCount { get { return m_SpawnNames.Count; } }
 
 		public override void OnAfterDuped( Item newItem )
