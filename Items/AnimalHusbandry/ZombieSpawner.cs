@@ -24,7 +24,7 @@ namespace Server.Items
 			SpawnNames = animals;
 			MinDelay = TimeSpan.FromSeconds( 5.0 );
 			MaxDelay = TimeSpan.FromSeconds( 5.0 );
-			Count = 10;
+			Count = 7;
 		}
 
 		[Constructable]
@@ -58,10 +58,8 @@ namespace Server.Items
 
 			if( m_LightLevel >= 20 )
 			{
-				double frac = Math.Abs( 20.0 - m_LightLevel ) / 6.0;
-				Console.WriteLine( "Frac: {0}", frac );
-				Count = (int)( Math.Ceiling( fullCount * frac ) );
-				Console.WriteLine( "Spawning {0} zombies", Count );
+				int newCount = Math.Abs( 19 - m_LightLevel );
+				Count = newCount;
 			}
 			else
 			{
@@ -70,7 +68,18 @@ namespace Server.Items
 
 			base.OnTick();
 
+			if ( Count < CurrentSpawnCount )
+				ClearExcessZombies();
+
 			Count = fullCount;
+		}
+
+		private void ClearExcessZombies()
+		{
+			if ( Spawned.Count != 0 )
+			{
+				Spawned[0].Delete();
+			}
 		}
 
 		private int GetLightLevel()
