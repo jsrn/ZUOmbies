@@ -72,12 +72,6 @@ namespace Server.Items
 					return;
 				}
 
-				if ( from.Map != Map.Trammel && from.Map != Map.Felucca )
-				{
-					from.LocalOverheadMessage( MessageType.Regular, 0x2B2, true, "No solen lairs exist on this facet.  Try again in Trammel or Felucca." );
-					return;
-				}
-
 				LandTarget land = targeted as LandTarget;
 
 				if ( land == null )
@@ -236,7 +230,7 @@ namespace Server.Items
 						0x75D, 0x760,
 						0x76D, 0x773
 					},
-				typeof( SnowGreenThornsEffect ) ),
+				typeof( DirtGreenThornsEffect ) ),
 
 				new TilesAndEffect( new int[]
 					{
@@ -262,7 +256,7 @@ namespace Server.Items
 						0x66F, 0x672,
 						0x7BD, 0x7D0
 					},
-				typeof( SandGreenThornsEffect ) )
+				typeof( DirtGreenThornsEffect ) )
 			};
 
 		public static GreenThornsEffect Create( Mobile from, LandTarget land )
@@ -507,174 +501,6 @@ namespace Server.Items
 					return TimeSpan.Zero;
 				}
 			}
-		}
-	}
-
-	public class SnowGreenThornsEffect : GreenThornsEffect
-	{
-		public SnowGreenThornsEffect( Point3D location, Map map, Mobile from ) : base( location, map, from )
-		{
-		}
-
-		protected override TimeSpan Play( int step )
-		{
-			switch ( step )
-			{
-				case 0:
-				{
-					Effects.PlaySound( Location, Map, 0x106 );
-					Effects.SendLocationParticles( EffectItem.Create( Location, Map, EffectItem.DefaultDuration ), 0x3735, 1, 182, 0xBE3 );
-
-					return TimeSpan.FromSeconds( 4.0 );
-				}
-				case 1:
-				{
-					Effects.PlaySound( Location, Map, 0x222 );
-
-					return TimeSpan.FromSeconds( 4.0 );
-				}
-				case 2:
-				{
-					Effects.PlaySound( Location, Map, 0x21F );
-
-					return TimeSpan.FromSeconds( 4.0 );
-				}
-				default:
-				{
-					EffectItem dummy = EffectItem.Create( Location, Map, TimeSpan.FromSeconds( 20.0 ) );
-					dummy.PublicOverheadMessage( MessageType.Regular, 0x3B2, true, "* Slithering ice serpents rise to the surface to investigate the disturbance! *" );
-
-					BaseCreature spawn = new GiantIceWorm();
-					if ( !SpawnCreature( spawn ) )
-						spawn.Delete();
-
-					for ( int i = 0; i < 3; i++ )
-					{
-						BaseCreature snake = new IceSnake();
-						if ( !SpawnCreature( snake ) )
-							snake.Delete();
-					}
-
-					return TimeSpan.Zero;
-				}
-			}
-		}
-	}
-
-	public class SandGreenThornsEffect : GreenThornsEffect
-	{
-		public SandGreenThornsEffect( Point3D location, Map map, Mobile from ) : base( location, map, from )
-		{
-		}
-
-		protected override TimeSpan Play( int step )
-		{
-			switch ( step )
-			{
-				case 0:
-				{
-					Effects.PlaySound( Location, Map, 0x106 );
-					Effects.SendLocationParticles( EffectItem.Create( Location, Map, EffectItem.DefaultDuration ), 0x3735, 1, 182, 0xBE3 );
-
-					return TimeSpan.FromSeconds( 4.0 );
-				}
-				case 1:
-				{
-					Effects.PlaySound( Location, Map, 0x222 );
-
-					return TimeSpan.FromSeconds( 4.0 );
-				}
-				case 2:
-				{
-					Effects.PlaySound( Location, Map, 0x21F );
-
-					return TimeSpan.FromSeconds( 5.0 );
-				}
-				default:
-				{
-					EffectItem dummy = EffectItem.Create( Location, Map, TimeSpan.FromSeconds( 20.0 ) );
-					dummy.PublicOverheadMessage( MessageType.Regular, 0x3B2, true, "* The sand collapses, revealing a dark hole. *" );
-
-					GreenThornsSHTeleporter.Create( Location, Map );
-
-					return TimeSpan.Zero;
-				}
-			}
-		}
-	}
-
-	public class GreenThornsSHTeleporter : Item
-	{
-		public static readonly Point3D Destination = new Point3D( 5738, 1856, 0 );
-
-		public static void Create( Point3D location, Map map )
-		{
-			GreenThornsSHTeleporter tele = new GreenThornsSHTeleporter();
-
-			tele.MoveToWorld( location, map );
-
-			new InternalTimer( tele ).Start();
-		}
-
-		public override string DefaultName
-		{
-			get { return "a hole"; }
-		}
-
-		private GreenThornsSHTeleporter() : base( 0x913 )
-		{
-			Movable = false;
-			Hue = 0x1;
-		}
-
-		public GreenThornsSHTeleporter( Serial serial ) : base( serial )
-		{
-		}
-
-		public override void OnDoubleClick( Mobile from )
-		{
-			if ( from.InRange( this, 3 ) )
-			{
-				BaseCreature.TeleportPets( from, Destination, Map );
-
-				from.Location = Destination;
-			}
-			else
-			{
-				from.SendLocalizedMessage( 1019045 ); // I can't reach that.
-			}
-		}
-
-		private class InternalTimer : Timer
-		{
-			private GreenThornsSHTeleporter m_Teleporter;
-
-			public InternalTimer( GreenThornsSHTeleporter teleporter ) : base( TimeSpan.FromMinutes( 1.0 ) )
-			{
-				m_Teleporter = teleporter;
-				Priority = TimerPriority.FiveSeconds;
-			}
-
-			protected override void OnTick()
-			{
-				m_Teleporter.Delete();
-			}
-		}
-
-		public override void Serialize( GenericWriter writer )
-		{
-			base.Serialize( writer );
-
-			writer.Write( (int) 0 ); // version
-		}
-
-		public override void Deserialize( GenericReader reader )
-		{
-			base.Deserialize( reader );
-
-			int version = reader.ReadInt();
-
-			Delete();
 		}
 	}
 }
