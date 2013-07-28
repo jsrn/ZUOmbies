@@ -3,6 +3,7 @@ using Server;
 using Server.Items;
 using Server.Mobiles;
 using Server.Targeting;
+using Server.Engines.Plants;
 
 namespace Server.Engines.Harvest
 {
@@ -68,22 +69,28 @@ namespace Server.Engines.Harvest
 			treasuresAndTrinkets.EffectDelay = TimeSpan.FromSeconds( 1.6 );
 			treasuresAndTrinkets.EffectSoundDelay = TimeSpan.FromSeconds( 0.9 );
 
-			treasuresAndTrinkets.NoResourcesMessage = "You have already searched this area for treasure.";
+			treasuresAndTrinkets.NoResourcesMessage = "You have already dug enough in this area.";
 			treasuresAndTrinkets.DoubleHarvestMessage = "Someone has beaten you to the loot.";
 			treasuresAndTrinkets.TimedOutOfRangeMessage = "You have moved too far away to continue digging.";
 			treasuresAndTrinkets.OutOfRangeMessage = 500446; // That is too far away.
 			treasuresAndTrinkets.FailMessage = "You dig into the ground, but find nothing interesting.";
-			treasuresAndTrinkets.PackFullMessage = "Your pack is full, so you do not take the treasure.";
+			treasuresAndTrinkets.PackFullMessage = "Your pack is full, so you leave the finds behind.";
 			treasuresAndTrinkets.ToolBrokeMessage = 1044038; // You have worn out your tool!
 
 			res = new HarvestResource[]
 				{
-					new HarvestResource( 00.0, 00.0, 100.0, "You found a coin!", typeof( Gold ),			typeof( Gold ) )
+					// Required skill, min skill, max skill, message, type(s) 
+					new HarvestResource( 00.0, 00.0, 100.0, "You didn't find anything useful.", typeof( FertileDirt ) ),
+					new HarvestResource( 00.0, 00.0, 100.0, "You found a coin!", typeof( Gold ) ),
+					new HarvestResource( 00.0, 00.0, 100.0, "You found a seed.", typeof( Seed ) )
 				};
 
 			veins = new HarvestVein[]
 				{
-					new HarvestVein( 100.0, 0.0, res[0], null   ) // Gold
+					// Chance, fallback chance, type, fallback type
+					new HarvestVein( 84.0, 00.0, res[0], null ),
+					new HarvestVein( 1.0, 00.0, res[1], null ), // Gold
+					new HarvestVein( 15.0, 00.0, res[2], null ) // Seed
 				};
 
 			treasuresAndTrinkets.Resources = res;
