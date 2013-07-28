@@ -39,7 +39,19 @@ namespace Server.Items
 				{
 					from.Stam -= 20;
 
-					from.FixedParticles( 0x3709, 1, 30, 9904, 1108, 6, EffectLayer.RightFoot );
+					// Effects nicked from the GM hide/unhide command
+					Effects.SendLocationEffect( new Point3D( from.X + 1, from.Y, from.Z + 4 ), from.Map, 0x3728, 13 );
+					Effects.SendLocationEffect( new Point3D( from.X + 1, from.Y, from.Z ), from.Map, 0x3728, 13 );
+					Effects.SendLocationEffect( new Point3D( from.X + 1, from.Y, from.Z - 4 ), from.Map, 0x3728, 13 );
+					Effects.SendLocationEffect( new Point3D( from.X, from.Y + 1, from.Z + 4 ), from.Map, 0x3728, 13 );
+					Effects.SendLocationEffect( new Point3D( from.X, from.Y + 1, from.Z ), from.Map, 0x3728, 13 );
+					Effects.SendLocationEffect( new Point3D( from.X, from.Y + 1, from.Z - 4 ), from.Map, 0x3728, 13 );
+
+					Effects.SendLocationEffect( new Point3D( from.X + 1, from.Y + 1, from.Z + 11 ), from.Map, 0x3728, 13 );
+					Effects.SendLocationEffect( new Point3D( from.X + 1, from.Y + 1, from.Z + 7 ), from.Map, 0x3728, 13 );
+					Effects.SendLocationEffect( new Point3D( from.X + 1, from.Y + 1, from.Z + 3 ), from.Map, 0x3728, 13 );
+					Effects.SendLocationEffect( new Point3D( from.X + 1, from.Y + 1, from.Z - 1 ), from.Map, 0x3728, 13 );
+
 					from.PlaySound( 0x22F );
 
 					Consume();
