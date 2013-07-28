@@ -205,7 +205,7 @@ namespace Server.Items
 						0x9, 0x15,
 						0x150, 0x15C
 					},
-				typeof( FurrowsGreenThornsEffect ) ),
+				typeof( DirtGreenThornsEffect ) ),
 
 				new TilesAndEffect( new int[]
 					{
@@ -462,53 +462,6 @@ namespace Server.Items
 
 			if ( !SpawnItem( reagents ) )
 				reagents.Delete();
-		}
-	}
-
-	public class FurrowsGreenThornsEffect : GreenThornsEffect
-	{
-		public FurrowsGreenThornsEffect( Point3D location, Map map, Mobile from ) : base( location, map, from )
-		{
-		}
-
-		protected override TimeSpan Play( int step )
-		{
-			switch ( step )
-			{
-				case 0:
-				{
-					Effects.PlaySound( Location, Map, 0x106 );
-					Effects.SendLocationParticles( EffectItem.Create( Location, Map, EffectItem.DefaultDuration ), 0x3735, 1, 182, 0xBE3 );
-
-					return TimeSpan.FromSeconds( 4.0 );
-				}
-				case 1:
-				{
-					EffectItem hole = EffectItem.Create( Location, Map, TimeSpan.FromSeconds( 10.0 ) );
-					hole.ItemID = 0x913;
-
-					Effects.PlaySound( Location, Map, 0x222 );
-
-					return TimeSpan.FromSeconds( 4.0 );
-				}
-				case 2:
-				{
-					Effects.PlaySound( Location, Map, 0x21F );
-
-					return TimeSpan.FromSeconds( 4.0 );
-				}
-				default:
-				{
-					EffectItem dummy = EffectItem.Create( Location, Map, TimeSpan.FromSeconds( 20.0 ) );
-					dummy.PublicOverheadMessage( MessageType.Regular, 0x3B2, true, "* A magical bunny leaps out of its hole, disturbed by the thorn's effect! *" );
-
-					BaseCreature spawn = new VorpalBunny();
-					if ( !SpawnCreature( spawn ) )
-						spawn.Delete();
-
-					return TimeSpan.Zero;
-				}
-			}
 		}
 	}
 
