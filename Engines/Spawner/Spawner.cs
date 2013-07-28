@@ -333,7 +333,7 @@ namespace Server.Mobiles
 			InvalidateProperties();
 		}
 
-		public void OnTick()
+		public virtual void OnTick()
 		{
 			DoTimer();
 
