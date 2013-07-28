@@ -48,6 +48,18 @@ namespace Server.Engines.Craft
 			{
 				try
 				{
+					if ( item is BaseArmor )
+					{
+						if( ((BaseArmor)item).LootType == LootType.Cursed )
+							return SmeltResult.Invalid;
+					}
+
+					if ( item is BaseWeapon )
+					{
+						if( ((BaseWeapon)item).LootType == LootType.Cursed )
+							return SmeltResult.Invalid;
+					}
+
 					if ( CraftResources.GetType( resource ) != CraftResourceType.Metal )
 						return SmeltResult.Invalid;
 
