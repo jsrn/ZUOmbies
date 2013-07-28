@@ -79,7 +79,18 @@ namespace Server.Items
 		{
 			if ( Spawned.Count != 0 )
 			{
-				Spawned[0].Delete();
+				Mobile m = Spawned[0] as Mobile;
+
+				bool seen = false;
+
+				foreach ( Mobile seer in m.GetMobilesInRange( 16 ) )
+				{
+					if ( seer.Player )
+						seen = true;
+				}
+
+				if ( !seen )
+					Spawned[0].Delete();
 			}
 		}
 
