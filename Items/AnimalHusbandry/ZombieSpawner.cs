@@ -25,6 +25,7 @@ namespace Server.Items
 			MinDelay = TimeSpan.FromSeconds( 5.0 );
 			MaxDelay = TimeSpan.FromSeconds( 5.0 );
 			Count = 7;
+			HomeRange = 10;
 		}
 
 		[Constructable]
