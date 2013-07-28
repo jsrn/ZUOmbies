@@ -1,5 +1,6 @@
 using System;
 using Server.Items;
+using Server.Engines.Plants;
 
 namespace Server.Engines.Craft
 {
@@ -95,7 +96,8 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( BarrelLid ),					1044294, "barrel lid",		 11.0,  36.0,	typeof( Log ), 1044041,  4, 1044351 );
 			AddCraft( typeof( Dices ), 						1044294, "dice", 			 20.0, 60.0, 	typeof( Log ), 1044041, 1, 1044351 );
 			AddCraft( typeof( Torch ), 						1044294, "torch",			 00.0,  25.0,	typeof( Log ), 1044041,  1, 1044351 );			
-			AddCraft( typeof( WaxSeal ), 					1044294, "wax seal",		 40.0,  80.0,	typeof( Log ), 1044041,  1, 1044351 );			
+			AddCraft( typeof( WaxSeal ), 					1044294, "wax seal",		 40.0,  65.0,	typeof( Log ), 1044041,  1, 1044351 );
+			AddCraft( typeof( PlantBowl ), 					1044294, "plant bowl",		 40.0,  65.0,	typeof( Log ), 1044041,  10, 1044351 );			
 
 			// Furniture
 			AddCraft( typeof( FootStool ),					1044291, 1022910,	11.0,  36.0,	typeof( Log ), 1044041,  9, 1044351 );
@@ -155,10 +157,10 @@ namespace Server.Engines.Craft
 			AddRes( index, typeof( BarrelHoops ), 1044289, 1, 1044253 );
 			AddRes( index, typeof( BarrelLid ), 1044251, 1, 1044253 );
 
-			AddCraft( typeof( BeerBarrel ), 1044292, "beer barrel", 0.0, 82.8, typeof( Barrel ), "barrel", 1, 1044253 );
-			AddCraft( typeof( CiderBarrel ), 1044292, "cider barrel", 0.0, 82.8, typeof( Barrel ), "barrel", 1, 1044253 );
-			AddCraft( typeof( WineBarrel ), 1044292, "wine barrel", 0.0, 82.8, typeof( Barrel ), "barrel", 1, 1044253 );
-			AddCraft( typeof( LiquorBarrel ), 1044292, "liquor barrel", 0.0, 82.8, typeof( Barrel ), "barrel", 1, 1044253 );
+			AddCraft( typeof( BeerBarrel ), 1044292, "beer barrel", 0.0, 25.0, typeof( Barrel ), "barrel", 1, 1044253 );
+			AddCraft( typeof( CiderBarrel ), 1044292, "cider barrel", 0.0, 25.0, typeof( Barrel ), "barrel", 1, 1044253 );
+			AddCraft( typeof( WineBarrel ), 1044292, "wine barrel", 0.0, 25.0, typeof( Barrel ), "barrel", 1, 1044253 );
+			AddCraft( typeof( LiquorBarrel ), 1044292, "liquor barrel", 0.0, 25.0, typeof( Barrel ), "barrel", 1, 1044253 );
 
 			// Staves and Shields
 			AddCraft( typeof( Club ), 1044295, "wooden club", 0.0, 50.0, typeof( Log ), 1044041, 1, 1044351 );
