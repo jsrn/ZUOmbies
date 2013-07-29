@@ -22,8 +22,8 @@ namespace Server.Items
 			List<string> animals = new List<string>();
 			animals.Add( type );
 			SpawnNames = animals;
-			MinDelay = TimeSpan.FromSeconds( 5.0 );
-			MaxDelay = TimeSpan.FromSeconds( 5.0 );
+			MinDelay = TimeSpan.FromMinutes( 10.0 );
+			MaxDelay = TimeSpan.FromMinutes( 10.0 );
 			Count = 7;
 			HomeRange = 10;
 			Name = "zombie spawner";
