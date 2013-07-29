@@ -26,6 +26,7 @@ namespace Server.Items
 			MaxDelay = TimeSpan.FromSeconds( 5.0 );
 			Count = 7;
 			HomeRange = 10;
+			Name = "zombie spawner";
 		}
 
 		[Constructable]
@@ -77,9 +78,14 @@ namespace Server.Items
 
 		private void ClearExcessZombies()
 		{
-			if ( Spawned.Count != 0 )
+			bool deleted = false;
+
+			for( int i = 0; i < Spawned.Count && !deleted; i++)
 			{
-				Mobile m = Spawned[0] as Mobile;
+				Mobile m = Spawned[i] as Mobile;
+
+				if( m is null )
+					return;
 
 				bool seen = false;
 
@@ -90,7 +96,10 @@ namespace Server.Items
 				}
 
 				if ( !seen )
-					Spawned[0].Delete();
+				{
+					Spawned[i].Delete();
+					deleted = true;
+				}
 			}
 		}
 
