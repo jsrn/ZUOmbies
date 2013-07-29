@@ -84,7 +84,7 @@ namespace Server.Items
 			{
 				Mobile m = Spawned[i] as Mobile;
 
-				if( m is null )
+				if ( m == null )
 					return;
 
 				bool seen = false;
