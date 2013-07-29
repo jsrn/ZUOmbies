@@ -17,7 +17,7 @@ namespace Server.Items
 
 		public override void DoAttackEffect( Mobile m )
 		{
-			m.ApplyPoison( m, Poison.Lethal );
+			m.ApplyPoison( m, Poison.Greater );
 		}
 
 		[Constructable]
