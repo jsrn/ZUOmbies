@@ -19,7 +19,7 @@ namespace Server.Items
 
 		public override void DoAttackEffect( Mobile m )
 		{
-			m.Damage( Utility.Dice( 6, 10, 40 ), m );
+			m.Damage( Utility.RandomMinMax( 40, 60 ), m );
 		}
 
 		[Constructable]
