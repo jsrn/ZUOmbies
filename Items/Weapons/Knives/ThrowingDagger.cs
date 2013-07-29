@@ -75,6 +75,8 @@ namespace Server.Items
 
 					if ( m != from && from.HarmfulCheck( m ) )
 					{
+						from.RevealingAction();
+
 						Direction to = from.GetDirectionTo( m );
 
 						from.Direction = to;
