@@ -480,6 +480,8 @@ namespace Server.Items
 			if ( m_Open && !IsFreeToClose() )
 				return;
 
+			from.RevealingAction();
+
 			if ( m_Open )
 				OnClosed( from );
 			else
