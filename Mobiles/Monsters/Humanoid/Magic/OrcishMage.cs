@@ -44,11 +44,7 @@ namespace Server.Mobiles
 
 			VirtualArmor = 30;
 
-
 			PackReg( 6 );
-
-			if ( 0.05 > Utility.RandomDouble() )
-				PackItem( new OrcishKinMask() );
 		}
 
 		public override void GenerateLoot()

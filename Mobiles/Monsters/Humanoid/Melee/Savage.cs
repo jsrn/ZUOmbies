@@ -49,8 +49,6 @@ namespace Server.Mobiles
 
 			if ( 0.5 > Utility.RandomDouble() )
 				AddItem( new SavageMask() );
-			else if ( 0.1 > Utility.RandomDouble() )
-				AddItem( new OrcishKinMask() );
 		}
 
 		public override void GenerateLoot()

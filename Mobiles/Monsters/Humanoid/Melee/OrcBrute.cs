@@ -46,9 +46,6 @@ namespace Server.Mobiles
 			PackItem( new ShadowIronOre( 25 ) );
 			PackItem( new IronIngot( 10 ) );
 
-			if ( 0.05 > Utility.RandomDouble() )
-				PackItem( new OrcishKinMask() );
-
 			if ( 0.2 > Utility.RandomDouble() )
 				PackItem( new BolaBall() );
 		}
