@@ -124,7 +124,7 @@ namespace Server.SkillHandlers
 					{
 						min = 1 + (int)(Caster.Skills[SkillName.SpiritSpeak].Value * 0.25);
 						max = min + 4;
-						mana = 10;
+						mana = 6;
 						number = 1061286; // You channel your own spiritual energy to heal your wounds.
 					}
 
