@@ -143,25 +143,7 @@ namespace Server.Engines.Plants
 		[CommandProperty( AccessLevel.GameMaster )]
 		public bool ValidGrowthLocation
 		{
-			get
-			{
-				if ( IsLockedDown && RootParent == null )
-					return true;
-
-
-				Mobile owner = RootParent as Mobile;
-				if ( owner == null )
-					return false;
-
-				if ( owner.Backpack != null && IsChildOf( owner.Backpack ) )
-					return true;
-
-				BankBox bank = owner.FindBankNoCreate();
-				if ( bank != null && IsChildOf( bank ) )
-					return true;
-
-				return false;
-			}
+			get { return true; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
