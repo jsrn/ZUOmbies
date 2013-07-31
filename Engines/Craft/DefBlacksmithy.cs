@@ -265,6 +265,7 @@ namespace Server.Engines.Craft
 
 			#region Axes
 			AddCraft( typeof( Axe ), 1011082, 1023913, 34.2, 84.2, typeof( IronIngot ), 1044036, 14, 1044037 );
+			AddCraft( typeof( ThrowingAxe ), 1011082, "throwing axe", 34.2, 84.2, typeof( IronIngot ), 1044036, 10, 1044037 );
 			AddCraft( typeof( BattleAxe ), 1011082, 1023911, 30.5, 80.5, typeof( IronIngot ), 1044036, 14, 1044037 );
 			AddCraft( typeof( DoubleAxe ), 1011082, 1023915, 29.3, 79.3, typeof( IronIngot ), 1044036, 12, 1044037 );
 			AddCraft( typeof( ExecutionersAxe ), 1011082, 1023909, 34.2, 84.2, typeof( IronIngot ), 1044036, 14, 1044037 );
