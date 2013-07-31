@@ -16,7 +16,7 @@ namespace Server.Items
 		[Constructable]
 		public ThrowingAxe() : base( 0xF43 )
 		{
-			Weight = 1.0;
+			Weight = 5.0;
 			Layer = Layer.OneHanded;
 		}
 
