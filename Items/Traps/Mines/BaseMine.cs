@@ -78,7 +78,12 @@ namespace Server.Items
 		{
 			base.OnMovement( m, oldLocation );
 
-			if ( !CheckDecay() && CheckRange( m.Location, oldLocation, 5 ) )
+			int range = (int)(m.Skills[SkillName.DetectHidden].Value / 20.0);
+
+			if ( range < 1 )
+				range = 1;
+
+			if ( !CheckDecay() && CheckRange( m.Location, oldLocation, range ) )
 			{
 				if ( m.Skills[SkillName.DetectHidden].Value / 2.0 > Utility.RandomMinMax( 1, 100 ) )
 				{
