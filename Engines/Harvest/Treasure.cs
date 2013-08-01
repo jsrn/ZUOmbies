@@ -80,9 +80,9 @@ namespace Server.Engines.Harvest
 			res = new HarvestResource[]
 				{
 					// Required skill, min skill, max skill, message, type(s) 
-					new HarvestResource( 00.0, 00.0, 100.0, "You didn't find anything useful.", typeof( FertileDirt ) ),
-					new HarvestResource( 00.0, 00.0, 100.0, "You found a coin!", typeof( Gold ) ),
-					new HarvestResource( 00.0, 00.0, 100.0, "You found a seed.", typeof( Seed ) )
+					new HarvestResource( 00.0, 00.0, 00.0, "You didn't find anything useful.", typeof( FertileDirt ) ),
+					new HarvestResource( 00.0, 00.0, 00.0, "You found a coin!", typeof( Gold ) ),
+					new HarvestResource( 00.0, 00.0, 00.0, "You found a seed.", typeof( Seed ) )
 				};
 
 			veins = new HarvestVein[]
