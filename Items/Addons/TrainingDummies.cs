@@ -40,7 +40,7 @@ namespace Server.Items
 		public TrainingDummy( int itemID ) : base( itemID )
 		{
 			m_MinSkill = -25.0;
-			m_MaxSkill = +25.0;
+			m_MaxSkill = +60.0;
 		}
 
 		public void UpdateItemID()
