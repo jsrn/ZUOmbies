@@ -54,6 +54,7 @@ namespace Server.Items
 		public override Type TrapType{ get{ return typeof( LandMine ); } }
 		public override int LabelNumber{ get{ return 1044603; } } // faction explosion trap deed
 
+		[Constructable]
 		public LandMineDeed() : base( 0x36D2 )
 		{
 			Name = "a land mine";
