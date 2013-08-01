@@ -78,9 +78,9 @@ namespace Server.Items
 		{
 			base.OnMovement( m, oldLocation );
 
-			if ( !CheckDecay() && CheckRange( m.Location, oldLocation, 6 ) )
+			if ( !CheckDecay() && CheckRange( m.Location, oldLocation, 5 ) )
 			{
-				if ( ( m.Skills[SkillName.DetectHidden].Value - 80.0) / 20.0 > Utility.RandomDouble() )
+				if ( m.Skills[SkillName.DetectHidden].Value / 2.0 > Utility.RandomMinMax( 1, 100 ) )
 				{
 					Visible = true;
 					BeginConceal();
