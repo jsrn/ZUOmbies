@@ -8,7 +8,7 @@ namespace Server.Misc
 {
 	public class InjuryDecayTimer : Timer
 	{
-		private bool DecayWhileOffline = true;
+		private bool DecayWhileOffline = false;
 
 		public static void Initialize()
 		{
