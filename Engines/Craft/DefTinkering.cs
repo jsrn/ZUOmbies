@@ -338,8 +338,6 @@ namespace Server.Engines.Craft
 				return 1005638; // You can only trap lockable chests.
 			if ( From.Map != container.Map || !From.InRange( container.GetWorldLocation(), 2 ) )
 				return 500446; // That is too far away.
-			if ( !container.Movable )
-				return 502944; // You cannot trap this item because it is locked down.
 			if ( !container.IsAccessibleTo( From ) )
 				return 502946; // That belongs to someone else.
 			if ( container.Locked )
