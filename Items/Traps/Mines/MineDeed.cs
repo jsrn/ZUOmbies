@@ -31,24 +31,13 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			BaseMine trap = Construct( from );
-
-			if ( trap == null )
-				return;
-
-			int message = trap.IsValidLocation( from.Location, from.Map );
-
-			if ( message > 0 )
+			if ( IsChildOf( from.Backpack ) )
 			{
-				from.SendLocalizedMessage( message, "", 0x23 );
-				trap.Delete();
+				from.Target = new InternalTarget( this );
+				from.SendMessage( "Where would you like to place this trap?" );
 			}
 			else
-			{
-				from.SendLocalizedMessage( 1010360 ); // You arm the trap and carefully hide it from view
-				trap.MoveToWorld( from.Location, from.Map );
-				Delete();
-			}
+				from.SendLocalizedMessage( 1042001 ); // That must be in your pack for you to use it.
 		}
 
 		public override void Serialize( GenericWriter writer )
@@ -64,14 +53,58 @@ namespace Server.Items
 
 			int version = reader.ReadInt();
 		}
-		#region ICraftable Members
 
+		#region ICraftable Members
 		public int OnCraft( int quality, bool makersMark, Mobile from, CraftSystem craftSystem, Type typeRes, BaseTool tool, CraftItem craftItem, int resHue )
 		{
 			ItemID = 0x14F0;
 			return 1;
 		}
-
 		#endregion
+
+		private class InternalTarget : Target
+		{
+			private MineDeed m_Deed;
+
+			public InternalTarget( MineDeed deed ) : base( -1, true, TargetFlags.None )
+			{
+				m_Deed = deed;
+			}
+
+			protected override void OnTarget( Mobile from, object targeted )
+			{
+				IPoint3D p = targeted as IPoint3D;
+				Map map = from.Map;
+
+				if ( p == null || map == null || m_Deed.Deleted )
+					return;
+
+				if ( m_Deed.IsChildOf( from.Backpack ) )
+				{
+					BaseMine trap = m_Deed.Construct( from );
+
+					if ( trap == null )
+						return;
+
+					int message = trap.IsValidLocation( from.Location, from.Map );
+
+					if ( message > 0 )
+					{
+						from.SendLocalizedMessage( message, "", 0x23 );
+						trap.Delete();
+					}
+					else
+					{
+						from.SendLocalizedMessage( 1010360 ); // You arm the trap and carefully hide it from view
+						trap.MoveToWorld( new Point3D( p.X, p.Y, p.Z ), from.Map );
+						m_Deed.Delete();
+					}
+				}
+				else
+				{
+					from.SendLocalizedMessage( 1042001 ); // That must be in your pack for you to use it.
+				}
+			}
+		}
 	}
 }
