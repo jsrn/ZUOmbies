@@ -48,13 +48,6 @@ namespace Server.SkillHandlers
 				if ( !src.CheckSkill( SkillName.DetectHidden, 0.0, 100.0 ) )
 					range /= 2;
 
-				BaseHouse house = BaseHouse.FindHouseAt( p, src.Map, 16 );
-
-				bool inHouse = ( house != null && house.IsFriend( src ) );
-
-				if ( inHouse )
-					range = 22;
-
 				if ( range > 0 )
 				{
 					IPooledEnumerable inRange = src.Map.GetMobilesInRange( p, range );
@@ -66,7 +59,7 @@ namespace Server.SkillHandlers
 							double ss = srcSkill + Utility.Random( 21 ) - 10;
 							double ts = trg.Skills[SkillName.Hiding].Value + Utility.Random( 21 ) - 10;
 
-							if ( src.AccessLevel >= trg.AccessLevel && ( ss >= ts || ( inHouse && house.IsInside( trg ) ) ) )
+							if ( src.AccessLevel >= trg.AccessLevel && ss >= ts )
 							{
 								if ( trg is ShadowKnight && (trg.X != p.X || trg.Y != p.Y) )
 									continue;
@@ -88,9 +81,9 @@ namespace Server.SkillHandlers
 						{
 							BaseMine trap = (BaseMine) item;
 
-							if ( src.CheckTargetSkill( SkillName.DetectHidden, trap, 80.0, 100.0 ) )
+							if ( src.CheckTargetSkill( SkillName.DetectHidden, trap, 00.0, 100.0 ) )
 							{
-								src.SendMessage( "You detect a trap!" );
+								src.SendMessage( "You inspect the area closely, and find a trap." );
 
 								trap.Visible = true;
 								trap.BeginConceal();
