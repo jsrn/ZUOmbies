@@ -278,22 +278,22 @@ namespace Server.Engines.Craft
 			index = AddCraft( typeof( ExplosionTrapCraft ), 1044052, 1044597, 55.0, 105.0, typeof( IronIngot ), 1044036, 1, 1044037 );
 			AddRes( index, typeof( BaseExplosionPotion ), 1044569, 1, 1044253 );
 
-			index = AddCraft( typeof( GasMineDeed ), 1044052, "gas mine", 75.0, 100.0, typeof( IronIngot ), 1044036, 10, 1044037 );
+			index = AddCraft( typeof( GasMineDeed ), 1044052, "gas mine", 75.0, 100.0, typeof( IronIngot ), 1044036, 40, 1044037 );
 			AddRes( index, typeof( BasePoisonPotion ), 1044571, 1, 1044253 );
 			AddRes( index, typeof( Gears ), 1044254, 1, 1044253 );
 			AddRes( index, typeof( Springs ), 1044171, 1, 1044253 );
 			AddSkill( index, SkillName.Poisoning, 50.0, 50.0 );
 
-			index = AddCraft( typeof( LandMineDeed ), 1044052, "land mine", 75.0, 100.0, typeof( IronIngot ), 1044036, 10, 1044037 );
+			index = AddCraft( typeof( LandMineDeed ), 1044052, "land mine", 75.0, 100.0, typeof( IronIngot ), 1044036, 40, 1044037 );
 			AddRes( index, typeof( Gears ), 1044254, 1, 1044253 );
 			AddRes( index, typeof( Springs ), 1044171, 1, 1044253 );
 			AddRes( index, typeof( BaseExplosionPotion ), 1044569, 1, 1044253 );
 
-			index = AddCraft( typeof( SawMineDeed ), 1044052, "saw trap", 60.0, 85.0, typeof( IronIngot ), 1044036, 10, 1044037 );
+			index = AddCraft( typeof( SawMineDeed ), 1044052, "saw trap", 60.0, 85.0, typeof( IronIngot ), 1044036, 40, 1044037 );
 			AddRes( index, typeof( Gears ), 1044254, 1, 1044253 );
 
 			// Faction Spike Trap			
-			index = AddCraft( typeof( SpikeMineDeed ), 1044052, "spike trap", 60.0, 85.0, typeof( IronIngot ), 1044036, 10, 1044037 );
+			index = AddCraft( typeof( SpikeMineDeed ), 1044052, "spike trap", 60.0, 85.0, typeof( IronIngot ), 1044036, 40, 1044037 );
 			AddRes( index, typeof( Springs ), 1044171, 1, 1044253 );
 
 			AddCraft( typeof( TrapRemovalKit ), 1044052, "trap removal kit", 50.0, 70.0, typeof( IronIngot ), 1044036, 10, 1044037 );
