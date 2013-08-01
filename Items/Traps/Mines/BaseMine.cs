@@ -68,10 +68,36 @@ namespace Server.Items
 
 		public virtual int IsValidLocation( Point3D p, Map m )
 		{
-			if( m == null )
+			if ( m == null )
+				return 502956; // You cannot place a trap on that.
+
+			if ( TileAlreadyContainsMine( p, m ) )
 				return 502956; // You cannot place a trap on that.
 
 			return 0;
+		}
+
+		private bool TileAlreadyContainsMine( Point3D location, Map map )
+		{
+			IPooledEnumerable eable = map.GetItemsInRange( location, 0 );
+
+			bool mined = false;
+
+			foreach ( Item entity in eable )
+			{
+				if ( Math.Abs( location.Z - entity.Z ) <= 16 )
+				{
+					if ( entity is BaseMine )
+					{
+						mined = true;
+						break;
+					}
+				}
+			}
+
+			eable.Free();
+
+			return mined;
 		}
 
 		public override void OnMovement( Mobile m, Point3D oldLocation )

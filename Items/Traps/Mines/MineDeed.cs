@@ -86,7 +86,7 @@ namespace Server.Items
 					if ( trap == null )
 						return;
 
-					int message = trap.IsValidLocation( from.Location, from.Map );
+					int message = trap.IsValidLocation( new Point3D( p.X, p.Y, p.Z ), from.Map );
 
 					if ( message > 0 )
 					{
