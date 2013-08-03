@@ -78,7 +78,9 @@ namespace Server.Items
 				/* Red */
 				new CustomHueGroup( 1018351, new int[]{ 1640, 1641, 1642, 1643, 1644 } ),
 				/* Olive */
-				new CustomHueGroup( 1018352, new int[]{ 2001, 2002, 2003, 2004, 2005 } )
+				new CustomHueGroup( 1018352, new int[]{ 2001, 2002, 2003, 2004, 2005, 1445 } ),
+				/* Blacks */
+				new CustomHueGroup( "Black", new int[]{ 2406, 1175 } )
 			}, false, 1018344 );
 
 		public static readonly CustomHuePicker LeatherDyeTub = new CustomHuePicker( new CustomHueGroup[]
