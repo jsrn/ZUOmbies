@@ -53,11 +53,6 @@ namespace Server.Mobiles
 			}
 		}
 
-		public override void GenerateLoot()
-		{
-			AddLoot( LootPack.Meager );
-		}
-
 		public override bool CanOpenDoors { get { return false; } }
 		public override bool BleedImmune{ get{ return true; } }
 		public override Poison PoisonImmune{ get{ return Poison.Regular; } }
