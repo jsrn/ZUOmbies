@@ -36,7 +36,7 @@ namespace Server.Items
 			{
 				from.SendLocalizedMessage( 1049631 ); // This bola is already being used.
 			}
-			else if ( from.FindItemOnLayer( Layer.OneHanded ) == null || from.FindItemOnLayer( Layer.TwoHanded ) == null )
+			else if ( !BasePotion.HasFreeHand( from ) )
 			{
 				from.SendMessage( "You need a free hand to throw this." );
 			}
@@ -47,15 +47,6 @@ namespace Server.Items
 			else
 			{
 				EtherealMount.StopMounting( from );
-
-				Item one = from.FindItemOnLayer( Layer.OneHanded );
-				Item two = from.FindItemOnLayer( Layer.TwoHanded );
-
-				if ( one != null )
-					from.AddToBackpack( one );
-
-				if ( two != null )
-					from.AddToBackpack( two );
 
 				from.Target = new BolaTarget( this );
 				from.LocalOverheadMessage( MessageType.Emote, 0x3B2, 1049632 ); // * You begin to swing the bola...*
