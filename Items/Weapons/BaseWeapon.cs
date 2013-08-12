@@ -1935,12 +1935,16 @@ namespace Server.Items
 
 		public virtual int ScaleDamageByDurability( int damage )
 		{
-			int scale = 100;
-
 			if ( m_MaxHits > 0 && m_Hits < m_MaxHits )
-				scale = 50 + ((50 * m_Hits) / m_MaxHits);
+			{
+				double penalty = damage * 0.15; // Max loss of 15%
 
-			return AOS.Scale( damage, scale );
+				penalty -= penalty * ( (double)m_Hits / (double)m_MaxHits );
+
+				damage -= (int)penalty;
+			}
+
+			return damage;
 		}
 
 		public virtual int ComputeDamage( Mobile attacker, Mobile defender )
