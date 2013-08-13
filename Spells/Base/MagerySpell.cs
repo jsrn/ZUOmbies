@@ -60,6 +60,14 @@ namespace Server.Spells
 			return m.Skills[SkillName.MagicResist].Value;
 		}
 
+		public static int ScaleDamageAgainstResist( double damage, double maxResisted, Mobile target )
+		{
+			target.CheckSkill( SkillName.MagicResist, 00.0, 100.0 );
+			double resistFraction = target.Skills[SkillName.MagicResist].Value / 100;
+			double resisted = ( maxResisted * damage ) * resistFraction;
+			return (int)(damage - resisted);
+		}
+
 		public virtual bool CheckResisted( Mobile target )
 		{
 			double n = GetResistPercent( target );
