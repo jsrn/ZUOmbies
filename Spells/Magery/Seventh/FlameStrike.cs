@@ -39,25 +39,11 @@ namespace Server.Spells.Seventh
 
 				SpellHelper.CheckReflect( (int)this.Circle, Caster, ref m );
 
-				double damage;
+				double damage = Utility.Random( 27, 22 );
 
-				if ( Core.AOS )
-				{
-					damage = GetNewAosDamage( 48, 1, 5, m );
-				}
-				else
-				{
-					damage = Utility.Random( 27, 22 );
+				damage = MagerySpell.ScaleDamageAgainstResist( damage, 0.4, m );
 
-					if ( CheckResisted( m ) )
-					{
-						damage *= 0.6;
-
-						m.SendLocalizedMessage( 501783 ); // You feel yourself resisting magical energy.
-					}
-
-					damage *= GetDamageScalar( m );
-				}
+				damage *= GetDamageScalar( m );
 
 				m.FixedParticles( 0x3709, 10, 30, 5052, EffectLayer.LeftFoot );
 				m.PlaySound( 0x208 );
