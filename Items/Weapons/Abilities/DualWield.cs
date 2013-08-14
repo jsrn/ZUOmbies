@@ -1,4 +1,3 @@
-
 using System;
 using Server;
 using System.Collections;
@@ -17,7 +16,7 @@ namespace Server.Items
 		{
 		}
 
-		public override int BaseMana { get { return 30; } }
+		public override int BaseStam { get { return 30; } }
 
 		public override bool CheckSkills( Mobile from )
 		{
@@ -32,7 +31,7 @@ namespace Server.Items
 
 		public override void OnHit( Mobile attacker, Mobile defender, int damage )
 		{
-			if( !Validate( attacker ) || !CheckMana( attacker, true ) )
+			if( !Validate( attacker ) || !CheckStam( attacker, true ) )
 				return;
 
 			if( Registry.Contains( attacker ) )

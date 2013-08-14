@@ -14,14 +14,14 @@ namespace Server.Items
 		{
 		}
 
-		public override int BaseMana{ get{ return 30; } }
+		public override int BaseStam{ get{ return 30; } }
 
 		public static readonly TimeSpan PlayerDuration = TimeSpan.FromSeconds( 6.0 );
 		public static readonly TimeSpan NPCDuration = TimeSpan.FromSeconds( 12.0 );
 
 		public override void OnHit(Mobile attacker, Mobile defender, int damage)
 		{
-			if ( !Validate( attacker ) || !CheckMana( attacker, true ) )
+			if ( !Validate( attacker ) || !CheckStam( attacker, true ) )
 				return;
 
 			ClearCurrentAbility( attacker );

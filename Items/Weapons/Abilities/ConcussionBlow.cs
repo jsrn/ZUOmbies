@@ -11,11 +11,11 @@ namespace Server.Items
 		{
 		}
 
-		public override int BaseMana{ get{ return 25; } }
+		public override int BaseStam{ get{ return 25; } }
 
 		public override bool OnBeforeDamage( Mobile attacker, Mobile defender )
 		{
-			if ( !Validate( attacker ) || !CheckMana( attacker, true ) )
+			if ( !Validate( attacker ) || !CheckStam( attacker, true ) )
 				return false;
 
 			ClearCurrentAbility( attacker );

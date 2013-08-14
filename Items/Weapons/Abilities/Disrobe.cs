@@ -11,7 +11,7 @@ namespace Server.Items
 		{
 		}
 
-		public override int BaseMana{ get{ return 20; } } // Not Sure what amount of mana a creature uses.
+		public override int BaseStam{ get{ return 20; } } // Not Sure what amount of mana a creature uses.
 
 		public static readonly TimeSpan BlockEquipDuration = TimeSpan.FromSeconds( 5.0 );
 
@@ -32,7 +32,7 @@ namespace Server.Items
 			{
 				attacker.SendLocalizedMessage(1004001); // You cannot disarm your opponent.
 			}
-			else if ( CheckMana( attacker, true ) )
+			else if ( CheckStam( attacker, true ) )
 			{
 				//attacker.SendLocalizedMessage( 1060092 ); // You disarm their weapon!
 				defender.SendLocalizedMessage(1062002); // You can no longer wear your ~1_ARMOR~

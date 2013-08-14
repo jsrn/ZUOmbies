@@ -14,7 +14,7 @@ namespace Server.Items
 		{
 		}
 
-		public override int BaseMana{ get{ return 15; } }
+		public override int BaseStam{ get{ return 15; } }
 
 		public override void OnHit( Mobile attacker, Mobile defender, int damage )
 		{
@@ -33,7 +33,7 @@ namespace Server.Items
 			if ( weapon == null )
 				return;
 
-			if ( !CheckMana( attacker, true ) )
+			if ( !CheckStam( attacker, true ) )
 				return;
 
 			attacker.FixedEffect( 0x3728, 10, 15 );

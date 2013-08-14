@@ -12,7 +12,7 @@ namespace Server.Items
 		{
 		}
 
-		public override int BaseMana { get { return 30; } }
+		public override int BaseStam { get { return 30; } }
 
 		public override bool CheckSkills( Mobile from )
 		{
@@ -53,7 +53,7 @@ namespace Server.Items
 
 		public void Use( Mobile attacker, Mobile defender )
 		{
-			if( !Validate( attacker ) || !CheckMana( attacker, true ) || attacker.Weapon == null )	//sanity
+			if( !Validate( attacker ) || !CheckStam( attacker, true ) || attacker.Weapon == null )	//sanity
 				return;
 
 			ClearCurrentAbility( attacker );

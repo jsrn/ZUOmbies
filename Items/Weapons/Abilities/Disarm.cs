@@ -12,7 +12,7 @@ namespace Server.Items
 		{
 		}
 
-		public override int BaseMana{ get{ return 20; } }
+		public override int BaseStam{ get{ return 20; } }
 
 		// No longer active in pub21:
 		/*public override bool CheckSkills( Mobile from )
@@ -67,7 +67,7 @@ namespace Server.Items
 			{
 				attacker.SendLocalizedMessage( 1060849 ); // Your target is already unarmed!
 			}
-			else if ( CheckMana( attacker, true ) )
+			else if ( CheckStam( attacker, true ) )
 			{
 				attacker.SendLocalizedMessage( 1060092 ); // You disarm their weapon!
 				defender.SendLocalizedMessage( 1060093 ); // Your weapon has been disarmed!

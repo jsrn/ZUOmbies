@@ -1,4 +1,3 @@
-
 using System;
 using Server.Items;
 using Server.Mobiles;
@@ -16,7 +15,7 @@ namespace Server.Items
 		{
 		}
 
-		public override int BaseMana { get { return 30; } }
+		public override int BaseStam { get { return 30; } }
 
 		public override bool RequiresSE { get { return true; } }
 
@@ -40,7 +39,7 @@ namespace Server.Items
 				return;
 			}
 
-			if( !Validate( attacker ) || !CheckMana( attacker, true ) )
+			if( !Validate( attacker ) || !CheckStam( attacker, true ) )
 				return;
 
 			ClearCurrentAbility( attacker );

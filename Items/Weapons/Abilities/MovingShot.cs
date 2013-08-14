@@ -12,12 +12,12 @@ namespace Server.Items
 		{
 		}
 
-		public override int BaseMana{ get{ return 15; } }
+		public override int BaseStam{ get{ return 15; } }
 		public override int AccuracyBonus{ get{ return -25; } }
 
 		public override bool OnBeforeSwing( Mobile attacker, Mobile defender )
 		{
-			return ( Validate( attacker ) && CheckMana( attacker, true ) );
+			return ( Validate( attacker ) && CheckStam( attacker, true ) );
 		}
 		
 		public override void OnMiss( Mobile attacker, Mobile defender )

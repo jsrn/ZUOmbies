@@ -26,7 +26,7 @@ namespace Server.Items
 			return base.CheckSkills( from );
 		}
 
-		public override int BaseMana { get { return 30; } }
+		public override int BaseStam { get { return 30; } }
 
 		private static Hashtable m_Registry = new Hashtable();
 		public static Hashtable Registry { get { return m_Registry; } }
@@ -74,7 +74,7 @@ namespace Server.Items
 
 			if( targets.Count > 0 )
 			{
-				if( !CheckMana( attacker, true ) )
+				if( !CheckStam( attacker, true ) )
 					return;
 
 				attacker.FixedEffect( 0x3728, 10, 15 );

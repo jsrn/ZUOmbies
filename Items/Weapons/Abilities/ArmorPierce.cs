@@ -23,14 +23,14 @@ namespace Server.Items
 			return base.CheckSkills( from );
 		}
 
-		public override int BaseMana{ get{ return 30; } }
+		public override int BaseStam{ get{ return 30; } }
 		public override double DamageScalar{ get{ return 1.5; } }
 
 		public override bool RequiresSE { get { return true; } }
 
 		public override void OnHit( Mobile attacker, Mobile defender, int damage )
 		{
-			if ( !Validate( attacker ) || !CheckMana( attacker, true ) )
+			if ( !Validate( attacker ) || !CheckStam( attacker, true ) )
 				return;
 
 			ClearCurrentAbility( attacker );

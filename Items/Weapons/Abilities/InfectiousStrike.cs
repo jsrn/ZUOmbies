@@ -18,7 +18,7 @@ namespace Server.Items
 		{
 		}
 
-		public override int BaseMana{ get{ return 15; } }
+		public override int BaseStam{ get{ return 15; } }
 
 		public override bool RequiresTactics( Mobile from )
 		{
@@ -45,7 +45,7 @@ namespace Server.Items
 				return;
 			}
 
-			if ( !CheckMana( attacker, true ) )
+			if ( !CheckStam( attacker, true ) )
 				return;
 
 			--weapon.PoisonCharges;

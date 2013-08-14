@@ -12,7 +12,7 @@ namespace Server.Items
 		{
 		}
 
-		public override int BaseMana{ get{ return 30; } }
+		public override int BaseStam{ get{ return 30; } }
 
 		public static readonly TimeSpan PlayerFreezeDuration = TimeSpan.FromSeconds( 3.0 );
 		public static readonly TimeSpan NPCFreezeDuration = TimeSpan.FromSeconds( 6.0 );
@@ -61,7 +61,7 @@ namespace Server.Items
 
 		public override void OnHit( Mobile attacker, Mobile defender, int damage )
 		{
-			if( !Validate( attacker ) || !CheckMana( attacker, true ) )
+			if( !Validate( attacker ) || !CheckStam( attacker, true ) )
 				return;
 
 			ClearCurrentAbility( attacker );

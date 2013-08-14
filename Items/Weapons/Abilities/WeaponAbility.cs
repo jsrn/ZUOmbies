@@ -9,7 +9,7 @@ namespace Server.Items
 {
 	public abstract class WeaponAbility
 	{
-		public virtual int BaseMana{ get{ return 0; } }
+		public virtual int BaseStam{ get{ return 0; } }
 
 		public virtual int AccuracyBonus{ get{ return 0; } }
 		public virtual double DamageScalar{ get{ return 1.0; } }
@@ -52,9 +52,9 @@ namespace Server.Items
 			return 200.0;
 		}
 
-		public virtual int CalculateMana( Mobile from )
+		public virtual int CalculateStam( Mobile from )
 		{
-			int mana = BaseMana;
+			int stam = BaseStam;
 
 			double skillTotal = GetSkill( from, SkillName.Swords ) + GetSkill( from, SkillName.Macing )
 				+ GetSkill( from, SkillName.Fencing ) + GetSkill( from, SkillName.Archery ) + GetSkill( from, SkillName.Parry )
@@ -62,25 +62,19 @@ namespace Server.Items
 				+ GetSkill( from, SkillName.Poisoning ) + GetSkill( from, SkillName.Bushido ) + GetSkill( from, SkillName.Ninjitsu );
 
 			if ( skillTotal >= 300.0 )
-				mana -= 10;
+				stam -= 10;
 			else if ( skillTotal >= 200.0 )
-				mana -= 5;
+				stam -= 5;
 
 			double scalar = 1.0;
 			if ( !Server.Spells.Necromancy.MindRotSpell.GetMindRotScalar( from, ref scalar ) )
 				scalar = 1.0;
 
-			// Lower Mana Cost = 40%
-			int lmc = Math.Min( AosAttributes.GetValue( from, AosAttribute.LowerManaCost ), 40 );
-
-			scalar -= (double)lmc / 100;
-			mana = (int)(mana * scalar);
-
-			// Using a special move within 3 seconds of the previous special move costs double mana 
+			// Using a special move within 3 seconds of the previous special move costs double stam 
 			if ( GetContext( from ) != null )
-				mana *= 2;
+				stam *= 2;
 
-			return mana;
+			return stam;
 		}
 
 		public virtual bool CheckWeaponSkill( Mobile from )
@@ -92,9 +86,9 @@ namespace Server.Items
 
 			Skill skill = from.Skills[weapon.Skill];
 			double reqSkill = GetRequiredSkill( from );
-			bool reqTactics = Core.ML && RequiresTactics( from );
+			bool reqTactics = RequiresTactics( from );
 
-			if ( Core.ML && reqTactics && from.Skills[SkillName.Tactics].Base < reqSkill )
+			if ( reqTactics && from.Skills[SkillName.Tactics].Base < reqSkill )
 			{
 				from.SendLocalizedMessage( 1079308, reqSkill.ToString() ); // You need ~1_SKILL_REQUIREMENT~ weapon and tactics skill to perform that attack
 				return false;
@@ -135,13 +129,13 @@ namespace Server.Items
 			return skill.Value;
 		}
 
-		public virtual bool CheckMana( Mobile from, bool consume )
+		public virtual bool CheckStam( Mobile from, bool consume )
 		{
-			int mana = CalculateMana( from );
+			int stam = CalculateStam( from );
 
-			if ( from.Mana < mana )
+			if ( from.Stam < stam )
 			{
-				from.SendLocalizedMessage( 1060181, mana.ToString() ); // You need ~1_MANA_REQUIREMENT~ mana to perform that attack
+				from.SendLocalizedMessage( 1060181, stam.ToString() ); // You need ~1_stam_REQUIREMENT~ stam to perform that attack
 				return false;
 			}
 
@@ -155,7 +149,7 @@ namespace Server.Items
 					AddContext( from, new WeaponAbilityContext( timer ) );
 				}
 
-				from.Mana -= mana;
+				from.Stam -= stam;
 			}
 
 			return true;
@@ -183,7 +177,7 @@ namespace Server.Items
 				return false;
 			}
 
-			return CheckSkills( from ) && CheckMana( from, false );
+			return CheckSkills( from ) && CheckStam( from, false );
 		}
 
 		private static WeaponAbility[] m_Abilities = new WeaponAbility[31]
@@ -279,12 +273,6 @@ namespace Server.Items
 
 		public static WeaponAbility GetCurrentAbility( Mobile m )
 		{
-			if ( !Core.AOS )
-			{
-				ClearCurrentAbility( m );
-				return null;
-			}
-
 			WeaponAbility a = (WeaponAbility)m_Table[m];
 
 			if ( !IsWeaponAbility( m, a ) )
@@ -304,12 +292,6 @@ namespace Server.Items
 
 		public static bool SetCurrentAbility( Mobile m, WeaponAbility a )
 		{
-			if ( !Core.AOS )
-			{
-				ClearCurrentAbility( m );
-				return false;
-			}
-
 			if ( !IsWeaponAbility( m, a ) )
 			{
 				ClearCurrentAbility( m );
@@ -340,7 +322,7 @@ namespace Server.Items
 		{
 			m_Table.Remove( m );
 
-			if ( Core.AOS && m.NetState != null )
+			if ( m.NetState != null )
 				m.Send( ClearWeaponAbility.Instance );
 		}
 

@@ -15,7 +15,7 @@ namespace Server.Items
 		{
 		}
 
-		public override int BaseMana{ get{ return 20; } }
+		public override int BaseStam{ get{ return 20; } }
 
 		public override bool Validate( Mobile from )
 		{
@@ -55,7 +55,7 @@ namespace Server.Items
 				return;
 			}
 
-			if ( !CheckMana( attacker, true ) )
+			if ( !CheckStam( attacker, true ) )
 				return;
 
 			if ( Core.ML && attacker is LesserHiryu && 0.8 >= Utility.RandomDouble() )
