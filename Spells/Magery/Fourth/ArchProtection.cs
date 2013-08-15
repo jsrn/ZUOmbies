@@ -59,42 +59,24 @@ namespace Server.Spells.Fourth
 					eable.Free();
 				}
 
-				if ( Core.AOS )
-				{
-					Party party = Party.Get( Caster );
+				Effects.PlaySound( p, Caster.Map, 0x299 );
 
+				int val = (int)(Caster.Skills[SkillName.Magery].Value/10.0 + 1);
+
+				if ( targets.Count > 0 )
+				{
 					for ( int i = 0; i < targets.Count; ++i )
 					{
 						Mobile m = targets[i];
 
-						if ( m == Caster || ( party != null && party.Contains( m ) ) )
+						if ( m.BeginAction( typeof( ArchProtectionSpell ) ) )
 						{
 							Caster.DoBeneficial( m );
-							Spells.Second.ProtectionSpell.Toggle( Caster, m );
-						}
-					}
-				}
-				else
-				{
-					Effects.PlaySound( p, Caster.Map, 0x299 );
+							m.VirtualArmorMod += val;
+							new InternalTimer( m, Caster, val ).Start();
 
-					int val = (int)(Caster.Skills[SkillName.Magery].Value/10.0 + 1);
-
-					if ( targets.Count > 0 )
-					{
-						for ( int i = 0; i < targets.Count; ++i )
-						{
-							Mobile m = targets[i];
-
-							if ( m.BeginAction( typeof( ArchProtectionSpell ) ) )
-							{
-								Caster.DoBeneficial( m );
-								m.VirtualArmorMod += val;
-								new InternalTimer( m, Caster, val ).Start();
-
-								m.FixedParticles( 0x375A, 9, 20, 5027, EffectLayer.Waist );
-								m.PlaySound( 0x1F7 );
-							}
+							m.FixedParticles( 0x375A, 9, 20, 5027, EffectLayer.Waist );
+							m.PlaySound( 0x1F7 );
 						}
 					}
 				}
