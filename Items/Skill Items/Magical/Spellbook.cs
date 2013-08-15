@@ -337,6 +337,11 @@ namespace Server.Items
 					from.SendLocalizedMessage( 500179 ); // That spell is already present in that spellbook.
 					return false;
 				}
+				else if ( IsFifthCircleOrAbove( from, scroll ) ) // Can only drop level 4 or above
+				{
+					from.SendMessage( "The illusory lettering of the scroll evades your attempts at transcription." );
+					return false;
+				}
 				else
 				{
 					int val = scroll.SpellID - BookOffset;
@@ -483,6 +488,15 @@ namespace Server.Items
 			spellID -= BookOffset;
 
 			return ( spellID >= 0 && spellID < BookCount && (m_Content & ((ulong)1 << spellID)) != 0 );
+		}
+
+		public bool IsFifthCircleOrAbove( Mobile from, SpellScroll scroll )
+		{
+			MagerySpell spell = SpellRegistry.NewSpell( scroll.SpellID, from, scroll ) as MagerySpell;
+			if ( spell != null && spell.Circle > SpellCircle.Fourth )
+				return true;
+			else
+				return false;
 		}
 
 		public Spellbook( Serial serial ) : base( serial )
