@@ -752,15 +752,15 @@ namespace Server.Items
 				if ( HitLower.IsUnderAttackEffect( attacker ) )
 					bonus -= 25; // Under Hit Lower Attack effect -> 25% malus
 
-				WeaponAbility ability = WeaponAbility.GetCurrentAbility( attacker );
+				//WeaponAbility ability = WeaponAbility.GetCurrentAbility( attacker );
 
-				if ( ability != null )
-					bonus += ability.AccuracyBonus;
+				//if ( ability != null )
+				//	bonus += ability.AccuracyBonus;
 
-				SpecialMove move = SpecialMove.GetCurrentMove( attacker );
+				//SpecialMove move = SpecialMove.GetCurrentMove( attacker );
 
-				if ( move != null )
-					bonus += move.GetAccuracyBonus( attacker );
+				//if ( move != null )
+				//	bonus += move.GetAccuracyBonus( attacker );
 
 				// Max Hit Chance Increase = 45%
 				if ( bonus > 45 )
@@ -1140,7 +1140,6 @@ namespace Server.Items
 			{
 				before = damage;
 				damage = armor.OnHit( this, damage );
-				//Console.Error.WriteLine( "     armour: " + before + " -> " + damage );
 			}
 
 			BaseShield shield = defender.FindItemOnLayer( Layer.TwoHanded ) as BaseShield;
@@ -1148,7 +1147,10 @@ namespace Server.Items
 			{
 				before = damage;
 				damage = shield.OnHit( this, damage );
-				//Console.Error.WriteLine( "     shield: " + before + " -> " + damage );
+				if ( damage != before )
+				{
+					WeaponAbility.ClearCurrentAbility( attacker );
+				}
 			}
 
 			int virtualArmor = defender.VirtualArmor + defender.VirtualArmorMod;
@@ -1307,6 +1309,29 @@ namespace Server.Items
 				damage = 1;
 
 			AddBlood( attacker, defender, damage );
+
+			// Handle special moves
+
+			WeaponAbility a = WeaponAbility.GetCurrentAbility( attacker );
+			SpecialMove move = SpecialMove.GetCurrentMove( attacker );
+			if ( a != null && !a.OnBeforeDamage( attacker, defender ) )
+			{
+				WeaponAbility.ClearCurrentAbility( attacker );
+				a = null;
+			}
+
+			if ( move != null && !move.OnBeforeDamage( attacker, defender ) )
+			{
+				SpecialMove.ClearCurrentMove( attacker );
+				move = null;
+			}
+
+			if ( a != null )
+				a.OnHit( attacker, defender, damage );
+
+			if ( move != null )
+				move.OnHit( attacker, defender, damage );
+			// End special moves
 
 			defender.Damage( damage, attacker );
 			
