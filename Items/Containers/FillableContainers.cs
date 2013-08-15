@@ -1112,14 +1112,14 @@ namespace Server.Items
 			{
 				new FillableEntry( 16, typeof( BlankScroll ) ),
 				new FillableEntry( 14, typeof( Spellbook ) ),
-				new FillableEntry( 12, Loot.RegularScrollTypes,  0, 8 ),
-				new FillableEntry( 11, Loot.RegularScrollTypes,  8, 8 ),
+				new FillableEntry( 12, Loot.RegularScrollTypes, 0, 8 ),
+				new FillableEntry( 11, Loot.RegularScrollTypes, 8, 8 ),
 				new FillableEntry( 10, Loot.RegularScrollTypes, 16, 8 ),
-				new FillableEntry(  9, Loot.RegularScrollTypes, 24, 8 ),
-				new FillableEntry(  8, Loot.RegularScrollTypes, 32, 8 ),
-				new FillableEntry(  7, Loot.RegularScrollTypes, 40, 8 ),
-				new FillableEntry(  6, Loot.RegularScrollTypes, 48, 8 ),
-				new FillableEntry(  5, Loot.RegularScrollTypes, 56, 8 )
+				new FillableEntry(  9, Loot.RegularScrollTypes, 24, 6 ),
+				new FillableEntry(  8, Loot.RegularScrollTypes, 30, 6 ),
+				new FillableEntry(  7, Loot.RegularScrollTypes, 36, 5 ),
+				new FillableEntry(  6, Loot.RegularScrollTypes, 41, 3 ),
+				new FillableEntry(  5, Loot.RegularScrollTypes, 44, 1 )
 			} );
 
 		public static FillableContent Merchant = new FillableContent(
