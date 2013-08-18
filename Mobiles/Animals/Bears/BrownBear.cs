@@ -10,6 +10,10 @@ namespace Server.Mobiles
 		public BrownBear() : base( AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4 )
 		{
 			Name = "a brown bear";
+
+			if ( Utility.RandomMinMax( 1, 100 ) == 1 )
+				Name = "an esca bear";
+
 			Body = 167;
 			BaseSoundID = 0xA3;
 
