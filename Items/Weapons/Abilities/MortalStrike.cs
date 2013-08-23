@@ -16,8 +16,7 @@ namespace Server.Items
 
 		public override int BaseStam{ get{ return 30; } }
 
-		public static readonly TimeSpan PlayerDuration = TimeSpan.FromSeconds( 6.0 );
-		public static readonly TimeSpan NPCDuration = TimeSpan.FromSeconds( 12.0 );
+		public static readonly TimeSpan Duration = TimeSpan.FromSeconds( 3.0 );
 
 		public override void OnHit(Mobile attacker, Mobile defender, int damage)
 		{
@@ -34,7 +33,7 @@ namespace Server.Items
 
 			// Do not reset timer if one is already in place.
 			if ( !IsWounded( defender ) )
-				BeginWound( defender, defender.Player ? PlayerDuration : NPCDuration );
+				BeginWound( defender, Duration );
 		}
 
 		private static Hashtable m_Table = new Hashtable();
