@@ -298,7 +298,7 @@ namespace Server.Engines.Craft
 			//AddRes( index, typeof( RecallScroll ), 1044445, 1, 1044253 );
 			//AddRes( index, typeof( GateTravelScroll ), 1044446, 1, 1044253 );
 
-			AddCraft(typeof(Spellbook), 1044294, 1023834, 50.0, 126, typeof(BlankScroll), 1044377, 10, 1044378);
+			//AddCraft(typeof(Spellbook), 1044294, 1023834, 50.0, 126, typeof(BlankScroll), 1044377, 10, 1044378);
 
 			AddCraft( typeof( BlankMap ), 1044294, "blank map", 0.00, 50.0, typeof( BlankScroll ), 1044377, 1, 1044378 );
 			AddCraft( typeof( BlueBook ), 1044294, "blue book", 0.00, 50.0, typeof( BlankScroll ), 1044377, 5, 1044378 );
