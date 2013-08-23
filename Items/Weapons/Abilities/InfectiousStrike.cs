@@ -48,8 +48,6 @@ namespace Server.Items
 			if ( !CheckStam( attacker, true ) )
 				return;
 
-			--weapon.PoisonCharges;
-
 			// Infectious strike special move now uses poisoning skill to help determine potency 
 			int maxLevel = attacker.Skills[SkillName.Poisoning].Fixed / 200;
 			if ( maxLevel < 0 ) maxLevel = 0;
@@ -66,16 +64,22 @@ namespace Server.Items
 
 					attacker.SendLocalizedMessage( 1060080 ); // Your precise strike has increased the level of the poison by 1
 					defender.SendLocalizedMessage( 1060081 ); // The poison seems extra effective!
+
+					defender.PlaySound( 0xDD );
+					defender.FixedParticles( 0x3728, 244, 25, 9941, 1266, 0, EffectLayer.Waist );
+
+					--weapon.PoisonCharges;
+
+					if ( defender.ApplyPoison( attacker, p ) != ApplyPoisonResult.Immune )
+					{
+						attacker.SendLocalizedMessage( 1008096, true, defender.Name ); // You have poisoned your target : 
+						defender.SendLocalizedMessage( 1008097, false, attacker.Name ); //  : poisoned you!
+					}
 				}
-			}
-
-			defender.PlaySound( 0xDD );
-			defender.FixedParticles( 0x3728, 244, 25, 9941, 1266, 0, EffectLayer.Waist );
-
-			if ( defender.ApplyPoison( attacker, p ) != ApplyPoisonResult.Immune )
-			{
-				attacker.SendLocalizedMessage( 1008096, true, defender.Name ); // You have poisoned your target : 
-				defender.SendLocalizedMessage( 1008097, false, attacker.Name ); //  : poisoned you!
+				else
+				{
+					attacker.SendMessage( "Your strike was not precise enough to enhance the poison." );
+				}
 			}
 		}
 	}
