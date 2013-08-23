@@ -1,7 +1,9 @@
 using System;
+using System.Text.RegularExpressions;
 using System.Collections;
 using Server;
 using Server.Gumps;
+using Server.Prompts;
 using Server.Spells;
 using Server.Spells.Fifth;
 using Server.Spells.Seventh;
@@ -108,16 +110,19 @@ namespace Server.Items
 
 			AddPage( 0 );
 
-			AddBackground( 100, 10, 400, 385, 2600 );
+			AddBackground( 100, 10, 400, 420, 2600 );
 
 			// <center>THIEF DISGUISE KIT</center>
-			AddHtmlLocalized( 100, 25, 400, 35, 1011045, false, false );
+			AddHtml( 100, 25, 400, 35, "<center>Disguise Kit</center>", false, false );
 
-			AddButton( 140, 353, 4005, 4007, 0, GumpButtonType.Reply, 0 );
-			AddHtmlLocalized( 172, 355, 90, 35, 1011036, false, false ); // OKAY
+			AddHtml( 145, 355, 50, 35, "Alias:", false, false ); // OKAY
+			AddTextField( 195, 353, 200, 20, 0 );
 
-			AddButton( 257, 353, 4005, 4007, 1, GumpButtonType.Reply, 0 );
-			AddHtmlLocalized( 289, 355, 90, 35, 1011046, false, false ); // APPLY
+			AddButton( 140, 380, 4005, 4007, 0, GumpButtonType.Reply, 0 );
+			AddHtmlLocalized( 172, 382, 90, 35, 1011036, false, false ); // OKAY
+
+			AddButton( 257, 380, 4005, 4007, 1, GumpButtonType.Reply, 0 );
+			AddHtmlLocalized( 289, 382, 90, 35, 1011046, false, false ); // APPLY
 
 			if ( from.Female || from.Body.IsFemale )
 			{
@@ -133,6 +138,12 @@ namespace Server.Items
 				DrawEntries( 1, 1, 2, m_BeardEntries, 1011059 );
 				DrawEntries( 0, 2, 1, m_HairEntries, 1011056 );
 			}
+		}
+
+		public void AddTextField( int x, int y, int width, int height, int index )
+		{
+			AddBackground( x - 2, y - 2, width + 4, height + 4, 0x2486 );
+			AddTextEntry( x + 2, y + 2, width - 4, height - 4, 0, index, "" );
 		}
 
 		private void DrawEntries( int index, int page, int nextPage, DisguiseEntry[] entries, int nextNumber )
@@ -166,6 +177,23 @@ namespace Server.Items
 			}
 		}
 
+		private string ValidateName( string name )
+		{
+			name = Regex.Replace( name, "[^A-Za-z ]", "" );
+
+			if ( name == "" )
+				return NameList.RandomName( m_From.Female ? "female" : "male" );
+
+			string[] parts = name.Split( ' ' );
+
+			for ( int i = 0; i < parts.Length; i++ )
+			{
+				parts[i] = char.ToUpper(parts[i][0]) + parts[i].Substring(1);
+			}
+
+			return string.Join( " ", parts );
+		}
+
 		public override void OnResponse( NetState sender, RelayInfo info )
 		{
 			if ( info.ButtonID == 0 )
@@ -177,6 +205,12 @@ namespace Server.Items
 
 				return;
 			}
+
+			string name = info.GetTextEntry( 0 ).Text.Trim();
+
+			name = ValidateName( name );
+
+			m_From.SendMessage( "Looking good, " + name );
 
 			int[] switches = info.Switches;
 
@@ -204,7 +238,7 @@ namespace Server.Items
 				if ( !hair && (m_From.Female || m_From.Body.IsFemale) )
 					return;
 
-				m_From.NameMod = NameList.RandomName( m_From.Female ? "female" : "male" );
+				m_From.NameMod = name;
 
 				if ( m_From is PlayerMobile )
 				{
