@@ -54,8 +54,16 @@ namespace Server.Misc
 
 		private static void DecrementInjuryPoints( PlayerMobile player )
 		{
-			if( player.InjuryPoints > 0 && !player.Undead )
-				player.InjuryPoints -= 1;
+			if ( !player.Alive )
+				return;
+
+			if ( player.InjuryPoints == 0 )
+				return;
+
+			if ( player.Undead )
+				return;
+
+			player.InjuryPoints -= 1;
 		}
 	}
 }
