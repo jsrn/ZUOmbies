@@ -75,11 +75,19 @@ namespace Server.Items
 						attacker.SendLocalizedMessage( 1008096, true, defender.Name ); // You have poisoned your target : 
 						defender.SendLocalizedMessage( 1008097, false, attacker.Name ); //  : poisoned you!
 					}
+<<<<<<< HEAD
 					else
 					{
 						attacker.SendMessage( "Your strike was not precise enough to enhance the poison." );
 					}
 				}
+=======
+				}
+			}
+			else
+			{
+				attacker.SendMessage( "Your strike was not precise enough to enhance the poison." );
+>>>>>>> Move message to right place
 			}
 		}
 	}
