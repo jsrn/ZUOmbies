@@ -310,13 +310,6 @@ namespace Server.Items
 					patientNumber = -1;
 				}
 			}
-			else if ( BleedAttack.IsBleeding( m_Patient ) )
-			{
-				healerNumber = 1060088; // You bind the wound and stop the bleeding
-				patientNumber = 1060167; // The bleeding wounds have healed, you are no longer bleeding!
-
-				BleedAttack.EndBleed( m_Patient, false );
-			}
 			else if ( MortalStrike.IsWounded( m_Patient ) )
 			{
 				healerNumber = ( m_Healer == m_Patient ? 1005000 : 1010398 );
@@ -371,6 +364,16 @@ namespace Server.Items
 						{
 							m_Healer.SendMessage( "You have failed to cure your target." );
 						}
+					}
+
+					if ( BleedAttack.IsBleeding( m_Patient ) )
+					{
+						toHeal /= 2;
+
+						m_Healer.SendMessage( "You bind the wound and stop the bleeding." );
+						m_Patient.SendMessage( "The bleeding wounds have healed, you are no longer bleeding!" );
+
+						BleedAttack.EndBleed( m_Patient, false );
 					}
 
 					if ( toHeal < 1 )
