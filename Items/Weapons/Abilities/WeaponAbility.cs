@@ -135,7 +135,7 @@ namespace Server.Items
 
 			if ( from.Stam < stam )
 			{
-				from.SendLocalizedMessage( 1060181, stam.ToString() ); // You need ~1_stam_REQUIREMENT~ stam to perform that attack
+				from.SendMessage( "You are too tired to do that." );
 				return false;
 			}
 
