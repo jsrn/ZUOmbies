@@ -210,8 +210,6 @@ namespace Server.Items
 
 			name = ValidateName( name );
 
-			m_From.SendMessage( "Looking good, " + name );
-
 			int[] switches = info.Switches;
 
 			if ( switches.Length == 0 )
