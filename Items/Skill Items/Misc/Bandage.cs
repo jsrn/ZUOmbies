@@ -310,33 +310,6 @@ namespace Server.Items
 					patientNumber = -1;
 				}
 			}
-			else if ( m_Patient.Poisoned )
-			{
-				m_Healer.SendLocalizedMessage( 500969 ); // You finish applying the bandages.
-
-				double healing = m_Healer.Skills[primarySkill].Value;
-				double anatomy = m_Healer.Skills[secondarySkill].Value;
-				double chance = ((healing - 30.0) / 50.0) - (m_Patient.Poison.Level * 0.1) - (m_Slips * 0.02);
-
-				if ( (checkSkills = (healing >= 60.0 && anatomy >= 60.0)) && chance > Utility.RandomDouble() )
-				{
-					if ( m_Patient.CurePoison( m_Healer ) )
-					{
-						healerNumber = (m_Healer == m_Patient) ? -1 : 1010058; // You have cured the target of all poisons.
-						patientNumber = 1010059; // You have been cured of all poisons.
-					}
-					else
-					{
-						healerNumber = -1;
-						patientNumber = -1;
-					}
-				}
-				else
-				{
-					healerNumber = 1010060; // You have failed to cure your target!
-					patientNumber = -1;
-				}
-			}
 			else if ( BleedAttack.IsBleeding( m_Patient ) )
 			{
 				healerNumber = 1060088; // You bind the wound and stop the bleeding
@@ -370,26 +343,35 @@ namespace Server.Items
 
 					double min, max;
 
-					if ( Core.AOS )
-					{
-						min = (anatomy / 8.0) + (healing / 5.0) + 4.0;
-						max = (anatomy / 6.0) + (healing / 2.5) + 4.0;
-					}
-					else
-					{
-						min = (anatomy / 5.0) + (healing / 5.0) + 3.0;
-						max = (anatomy / 5.0) + (healing / 2.0) + 10.0;
-					}
+					min = (anatomy / 5.0) + (healing / 5.0) + 3.0;
+					max = (anatomy / 5.0) + (healing / 2.0) + 10.0;
 
 					double toHeal = min + (Utility.RandomDouble() * (max - min));
 
 					if ( m_Patient.Body.IsMonster || m_Patient.Body.IsAnimal )
 						toHeal += m_Patient.HitsMax / 100;
 
-					if ( Core.AOS )
-						toHeal -= toHeal * m_Slips * 0.35; // TODO: Verify algorithm
-					else
-						toHeal -= m_Slips * 4;
+					toHeal -= m_Slips * 4;
+
+					if ( m_Patient.Poisoned )
+					{
+						toHeal /= 2;
+
+						double poisonCureChance = ((healing - 30.0) / 50.0) - (m_Patient.Poison.Level * 0.1) - (m_Slips * 0.02);
+
+						if ( poisonCureChance > Utility.RandomDouble() )
+						{
+							if ( m_Patient.CurePoison( m_Healer ) )
+							{
+								m_Healer.SendMessage( "You have cured the target of all poisons." );
+								m_Patient.SendMessage( "You have been cured of all poisons." );
+							}
+						}
+						else
+						{
+							m_Healer.SendMessage( "You have failed to cure your target." );
+						}
+					}
 
 					if ( toHeal < 1 )
 					{
