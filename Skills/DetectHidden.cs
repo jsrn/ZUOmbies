@@ -45,6 +45,24 @@ namespace Server.SkillHandlers
 				double srcSkill = src.Skills[SkillName.DetectHidden].Value;
 				int range = (int)(srcSkill / 10.0);
 
+				// Checking for hidden stashes is free
+				IPooledEnumerable itemsInRange = src.Map.GetItemsInRange( p, 1 );
+
+				foreach ( Item item in itemsInRange )
+				{
+					if ( item is HiddenStash )
+					{
+						HiddenStash stash = (HiddenStash) item;
+
+						src.SendMessage( "You inspect the area closely, and find a hidden stash." );
+
+						stash.Visible = true;
+						stash.BeginConceal();
+
+						foundAnyone = true;
+					}
+				}
+
 				if ( !src.CheckSkill( SkillName.DetectHidden, 0.0, 100.0 ) )
 					range /= 2;
 
@@ -73,7 +91,7 @@ namespace Server.SkillHandlers
 
 					inRange.Free();
 
-					IPooledEnumerable itemsInRange = src.Map.GetItemsInRange( p, range );
+					itemsInRange = src.Map.GetItemsInRange( p, range );
 
 					foreach ( Item item in itemsInRange )
 					{
