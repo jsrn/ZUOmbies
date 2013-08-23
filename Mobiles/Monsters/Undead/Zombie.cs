@@ -9,7 +9,7 @@ namespace Server.Mobiles
 	public class Zombie : BaseCreature
 	{
 		[Constructable]
-		public Zombie() : base( AIType.AI_Berserk, FightMode.Closest, 10, 1, 0.2, 0.4 )
+		public Zombie() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
 			Name = "a zombie";
 			Body = 3;
