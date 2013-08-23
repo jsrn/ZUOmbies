@@ -227,8 +227,7 @@ namespace Server.Items
 				double healing = m_Healer.Skills[primarySkill].Value;
 				double anatomy = m_Healer.Skills[secondarySkill].Value;
 
-				if ( (checkSkills = (healing >= 50.0 && anatomy >= 50.0) )
-				      || ( Core.SE && petPatient is Factions.FactionWarHorse && petPatient.ControlMaster == m_Healer) )	//TODO: Dbl check doesn't check for faction of the horse here?
+				if ( checkSkills = (healing >= 50.0 && anatomy >= 50.0) )
 				{
 					if ( m_Patient.Map == null || !m_Patient.Map.CanFit( m_Patient.Location, 16, false, false ) )
 					{
