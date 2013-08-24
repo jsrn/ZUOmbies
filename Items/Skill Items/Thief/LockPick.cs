@@ -73,30 +73,7 @@ namespace Server.Items
 				if ( m_Item.Deleted )
 					return;
 
-				if ( targeted is BaseDoor && ((BaseDoor)targeted).Locked )
-				{
-					double skill = from.Skills[SkillName.Lockpicking].Value;
-
-					if ( skill < 100.0 )
-					{
-						from.SendMessage( "You try to pick the door's lock, but you have no idea what you're doing." );
-					}
-					else
-					{
-						if ( Utility.RandomMinMax( 1, 10 ) == 1 )
-						{
-							from.SendMessage( "You successfully pick the lock." );
-							((BaseDoor)targeted).Locked = false;
-						}
-						else
-						{
-							from.SendMessage( "You try to pick the lock, but accidentally break the pick." );
-							from.PlaySound( 0x3A4 );
-							m_Item.Consume();
-						}
-					}
-				}
-				else if ( targeted is ILockpickable )
+				if ( targeted is ILockpickable )
 				{
 					Item item = (Item)targeted;
 					from.Direction = from.GetDirectionTo( item );
