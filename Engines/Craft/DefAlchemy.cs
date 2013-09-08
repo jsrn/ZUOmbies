@@ -98,6 +98,11 @@ namespace Server.Engines.Craft
 		{
 			int index = -1;
 
+			index = AddCraft( typeof( Dyes ), "Miscellaneous", "dyes", 0.0, 25.0, typeof( Bloodmoss ), 1044353, 1, 1044361 );
+			AddRes( index, typeof( BlackPearl ), 1044353, 1, 1044361 );
+			AddRes( index, typeof( Nightshade ), 1044358, 1, 1044366 );
+			AddRes( index, typeof( SulfurousAsh ), 1044359, 1, 1044367 );
+
 			// Hairdye
 			index = AddCraft( typeof( HairDye ), "Miscellaneous", "hair dye", 25.0, 60.0, typeof( Bloodmoss ), 1044353, 1, 1044361 );
 			AddRes( index, typeof ( Bottle ), 1044529, 1, 500315 );
