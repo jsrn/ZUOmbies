@@ -271,7 +271,7 @@ namespace Server.Engines.Craft
 			AddRes( index, typeof( Bolt ), 1044570, 1, 1044253 );
 
 			// Dye Trap
-			index = AddCraft( typeof( DyeTrapCraft ), 1044052, "dye Trap", 30.0, 80.0, typeof( IronIngot ), 1044036, 1, 1044037 );
+			index = AddCraft( typeof( DyeTrapCraft ), 1044052, "dye trap", 30.0, 80.0, typeof( IronIngot ), 1044036, 1, 1044037 );
 			AddRes( index, typeof( Dyes ), "Dyes", 1, "You do not have any dyes." );
 
 			// Poison Trap
