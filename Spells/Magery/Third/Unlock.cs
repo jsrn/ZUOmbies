@@ -60,12 +60,12 @@ namespace Server.Spells.Third
 							from.SendLocalizedMessage( 503098 ); // You cannot cast this on a secure item.
 						else if ( !cont.Locked )
 							from.LocalOverheadMessage( MessageType.Regular, 0x3B2, 503101 ); // That did not need to be unlocked.
-						else if ( cont.LockLevel == 0 )
+						else if ( cont.LockLevel != -255 ) // Can only magic unlock that which has been magic locked
 							from.SendLocalizedMessage( 501666 ); // You can't unlock that!
 						else {
 							int level = (int)(from.Skills[SkillName.Magery].Value * 0.8) - 4;
 
-							if ( level >= cont.RequiredSkill && !(cont is TreasureMapChest && ((TreasureMapChest)cont).Level > 2) ) {
+							if ( ((TreasureMapChest)cont).Level > 2 ){
 								cont.Locked = false;
 
 								if ( cont.LockLevel == -255 )
