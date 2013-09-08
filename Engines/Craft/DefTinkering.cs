@@ -270,6 +270,10 @@ namespace Server.Engines.Craft
 			index = AddCraft( typeof( DartTrapCraft ), 1044052, 1024396, 30.0, 80.0, typeof( IronIngot ), 1044036, 1, 1044037 );
 			AddRes( index, typeof( Bolt ), 1044570, 1, 1044253 );
 
+			// Dye Trap
+			index = AddCraft( typeof( DyeTrapCraft ), 1044052, "dye Trap", 30.0, 80.0, typeof( IronIngot ), 1044036, 1, 1044037 );
+			AddRes( index, typeof( Dyes ), "Dyes", 1, "You do not have any dyes." );
+
 			// Poison Trap
 			index = AddCraft( typeof( PoisonTrapCraft ), 1044052, 1044593, 30.0, 80.0, typeof( IronIngot ), 1044036, 1, 1044037 );
 			AddRes( index, typeof( BasePoisonPotion ), 1044571, 1, 1044253 );
@@ -444,6 +448,16 @@ namespace Server.Engines.Craft
 		public override TrapType TrapType{ get{ return TrapType.PoisonTrap; } }
 
 		public PoisonTrapCraft( Mobile from, CraftItem craftItem, CraftSystem craftSystem, Type typeRes, BaseTool tool, int quality ) : base( from, craftItem, craftSystem, typeRes, tool, quality )
+		{
+		}
+	}
+
+	[CraftItemID( 0xFA9 )]
+	public class DyeTrapCraft : TrapCraft
+	{
+		public override TrapType TrapType{ get{ return TrapType.DyeTrap; } }
+
+		public DyeTrapCraft( Mobile from, CraftItem craftItem, CraftSystem craftSystem, Type typeRes, BaseTool tool, int quality ) : base( from, craftItem, craftSystem, typeRes, tool, quality )
 		{
 		}
 	}
