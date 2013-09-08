@@ -8,7 +8,8 @@ namespace Server.Items
 		MagicTrap,
 		ExplosionTrap,
 		DartTrap,
-		PoisonTrap
+		PoisonTrap,
+		DyeTrap
 	}
 
 	public abstract class TrapableContainer : BaseContainer, ITelekinesisable
@@ -189,6 +190,13 @@ namespace Server.Items
 						Effects.SendLocationEffect( loc, facet, 0x113A, 10, 20 );
 						Effects.PlaySound( loc, facet, 0x231 );
 
+						break;
+					}
+					case TrapType.DyeTrap:
+					{
+						from.SendMessage( "A dye pack explodes, covering your face and hair." );
+						from.HueMod = 298;
+						from.HairHue = 298;
 						break;
 					}
 				}
