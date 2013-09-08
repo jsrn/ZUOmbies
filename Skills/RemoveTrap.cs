@@ -14,13 +14,13 @@ namespace Server.SkillHandlers
 
 		public static TimeSpan OnUse( Mobile m )
 		{
-			if ( m.Skills[SkillName.Lockpicking].Value < 50 )
+			if ( m.Skills[SkillName.DetectHidden].Value < 50 )
 			{
-				m.SendLocalizedMessage( 502366 ); // You do not know enough about locks.  Become better at picking locks.
+				m.SendMessage( "You cannot see any traps to remove." );
 			}
-			else if ( m.Skills[SkillName.DetectHidden].Value < 50 )
+			else if ( m.Skills[SkillName.Tinkering].Value < 50 )
 			{
-				m.SendLocalizedMessage( 502367 ); // You are not perceptive enough.  Become better at detect hidden.
+				m.SendMessage( "You do not know enough about traps to remove one." );
 			}
 			else
 			{
