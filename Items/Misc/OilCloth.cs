@@ -101,6 +101,12 @@ namespace Server.Items
 
 					Consume();
 				}
+				else if ( pm.HueMod == 298 )
+				{
+					from.SendMessage( "With some elbow grease, you manage to rub off the dye." );
+					Consume();
+					pm.HueMod = -1;
+				}
 				else
 				{
 					from.LocalOverheadMessage( Network.MessageType.Regular, 0x3B2, 1005422 ); // Hmmmm... this does not need to be cleaned.
