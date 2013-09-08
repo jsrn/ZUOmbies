@@ -2045,7 +2045,9 @@ namespace Server.Mobiles
 		{
 			base.OnDeath(c);
 
-			HueMod = -1;
+			if ( HueMod != -1 && HueMod != 298 )
+				HueMod = -1;
+
 			NameMod = null;
 
 			SetHairMods( -1, -1 );
